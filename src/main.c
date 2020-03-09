@@ -4,18 +4,18 @@
 #include "config.h"
 #include "ui.h"
 
-char *choices[] = {
+char *feeds[] = {
     "RSS 1",
     "RSS 2",
     "RSS 3",
     "RSS 4",
     "Exit",
 };
-int n_choices = sizeof(choices) / sizeof(char *);
+int feeds_count = sizeof(feeds) / sizeof(char *);
 
 int main()
 {
-    WINDOW *menu_win;
+    WINDOW *window_feeds;
     int highlight = 1;
     int choice = 0;
     int c;
@@ -28,23 +28,23 @@ int main()
     int width = COLS;
     int height = LINES - 2;
 
-    menu_win = newwin(height, width, 2, 0);
-    keypad(menu_win, TRUE);
+    window_feeds = newwin(height, width, 2, 0);
+    keypad(window_feeds, TRUE);
     mvprintw(0, 0, "Use arrow/vim keys to go up and down, Press enter to select a choice, Press 'q' to quit.");
     refresh();
 
-    print_menu(menu_win, highlight);
+    print_feeds(window_feeds, highlight);
 
     while (1)
     {
-        c = wgetch(menu_win);
+        c = wgetch(window_feeds);
         switch (c)
         {
             case KEY_UP:
             case KEY_K:
                 if (highlight == 1)
                 {
-                    highlight = n_choices;
+                    highlight = feeds_count;
                 }
                 else
                 {
@@ -54,7 +54,7 @@ int main()
 
             case KEY_DOWN:
             case KEY_J:
-                if (highlight == n_choices)
+                if (highlight == feeds_count)
                 {
                     highlight = 1;
                 }
@@ -75,7 +75,7 @@ int main()
                 break;
         }
 
-        print_menu(menu_win, highlight);
+        print_feeds(window_feeds, highlight);
         if (choice != 0)
         {    /* User did a choice come out of the infinite loop */
             break;

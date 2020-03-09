@@ -17,7 +17,7 @@
 #define KEY_K 107
 #define KEY_Q 113
 
-extern char *choices[];
-extern int n_choices;
+extern char *feeds[];
+extern int feeds_count;
 
 #endif //CRSS_CONFIG_H

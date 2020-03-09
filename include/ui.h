@@ -12,6 +12,6 @@
 #ifndef CRSS_UI_H
 #define CRSS_UI_H
 
-void print_menu(WINDOW *menu_win, int highlight);
+void print_feeds(WINDOW *window_feeds, int highlight);
 
 #endif //CRSS_UI_H
