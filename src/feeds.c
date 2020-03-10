@@ -1,5 +1,5 @@
 /**
- * Configurations for crss.
+ * Feeds.
  *
  * @package     CRSS
  * @author      Thomas Schwarz
@@ -9,12 +9,12 @@
  * @filesource
  */
 
-#ifndef CRSS_CONFIG_H
-#define CRSS_CONFIG_H
+char *feeds[] = {
+    "RSS 1",
+    "RSS 2",
+    "RSS 3",
+    "RSS 4",
+    "Exit",
+};
+int feeds_count = sizeof(feeds) / sizeof(char *);
 
-#define ENTER 10
-#define KEY_J 106
-#define KEY_K 107
-#define KEY_Q 113
-
-#endif //CRSS_CONFIG_H

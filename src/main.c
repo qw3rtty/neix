@@ -3,15 +3,7 @@
 
 #include "config.h"
 #include "ui.h"
-
-char *feeds[] = {
-    "RSS 1",
-    "RSS 2",
-    "RSS 3",
-    "RSS 4",
-    "Exit",
-};
-int feeds_count = sizeof(feeds) / sizeof(char *);
+#include "feeds.h"
 
 int main()
 {
