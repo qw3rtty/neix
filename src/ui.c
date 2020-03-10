@@ -14,7 +14,7 @@
 #include "config.h"
 #include "feeds.h"
 
-void print_feeds(WINDOW *window_feeds, int highlight)
+void ui_print_feeds(WINDOW *window_feeds, int highlight)
 {
     int x, y, i;
 

@@ -25,7 +25,7 @@ int main()
     mvprintw(0, 0, "Use arrow/vim keys to go up and down, Press enter to select a choice, Press 'q' to quit.");
     refresh();
 
-    print_feeds(window_feeds, highlight);
+    ui_print_feeds(window_feeds, highlight);
 
     while (1)
     {
@@ -67,7 +67,7 @@ int main()
                 break;
         }
 
-        print_feeds(window_feeds, highlight);
+        ui_print_feeds(window_feeds, highlight);
         if (choice != 0)
         {    /* User did a choice come out of the infinite loop */
             break;
