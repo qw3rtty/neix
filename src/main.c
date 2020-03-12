@@ -7,6 +7,12 @@
 
 int main()
 {
+    if (feeds_load() == 0)
+    {
+        printf("Could not load feeds...\n");
+        return 0;
+    }
+
     WINDOW *window_feeds;
     int highlight = 1;
     int choice = 0;

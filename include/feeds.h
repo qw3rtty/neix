@@ -12,7 +12,12 @@
 #ifndef CRSS_FEEDS_H
 #define CRSS_FEEDS_H
 
-extern char *feeds[];
+#define FEEDS_MAX 20
+#define FEEDS_MAX_LENGTH 50
+
+extern char** feeds;
 extern int feeds_count;
+
+int feeds_load();
 
 #endif //CRSS_FEEDS_H
