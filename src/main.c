@@ -21,7 +21,7 @@ int main()
     initscr();
     clear();
     noecho();
-    cbreak();    /* Line buffering disabled. pass on everything */
+    cbreak();
 
     int width = COLS;
     int height = LINES - 2;
@@ -75,7 +75,7 @@ int main()
 
         ui_print_feeds(window_feeds, highlight);
         if (choice != 0)
-        {    /* User did a choice come out of the infinite loop */
+        {
             break;
         }
     }
