@@ -28,7 +28,7 @@ static void test_feeds_count(void **state)
 
 static void test_feeds_load_rss(void **state)
 {
-    struct curl_temp xml_feed = feeds_load_rss();
+    struct curl_temp xml_feed = feeds_load_rss("https://www.heise.de/developer/rss/news-atom.xml");
     assert_true(xml_feed.content != NULL);
     assert_true(xml_feed.size > 0);
 }

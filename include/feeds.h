@@ -41,6 +41,6 @@ struct rss
 };
 
 int feeds_load();
-struct curl_temp feeds_load_rss();
+struct curl_temp feeds_load_rss(char feed_url[]);
 
 #endif //CRSS_FEEDS_H

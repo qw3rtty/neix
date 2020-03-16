@@ -22,7 +22,7 @@ int feeds_count = 0;
 
 int feeds_load()
 {
-    struct curl_temp feed = feeds_load_rss();
+    struct curl_temp feed = feeds_load_rss("https://www.heise.de/developer/rss/news-atom.xml");
     // TODO: Parse XML
 
     feeds = calloc(FEEDS_MAX * FEEDS_MAX_LENGTH, sizeof(char *));
@@ -59,7 +59,7 @@ static size_t feeds_curl_memory(void *content, size_t size, size_t nmemb, void *
 }
 
 
-struct curl_temp feeds_load_rss()
+struct curl_temp feeds_load_rss(char feed_url[])
 {
     struct curl_temp rss_feed;
     rss_feed.content = malloc(1);
@@ -73,7 +73,7 @@ struct curl_temp feeds_load_rss()
 
     if (curl)
     {
-        curl_easy_setopt(curl, CURLOPT_URL, "https://www.heise.de/developer/rss/news-atom.xml");
+        curl_easy_setopt(curl, CURLOPT_URL, feed_url);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, feeds_curl_memory);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *) &rss_feed);
     }
