@@ -12,7 +12,7 @@
 #ifndef CRSS_FEEDS_H
 #define CRSS_FEEDS_H
 
-#define FEEDS_MAX 20
+#define FEEDS_MAX 5
 #define FEEDS_MAX_LENGTH 50
 
 extern char **feeds;
@@ -37,7 +37,7 @@ struct rss
 {
     char *title;
     char *url;
-    struct rss_item *items[];
+    struct rss_item *items[FEEDS_MAX];
 };
 
 int feeds_load();
