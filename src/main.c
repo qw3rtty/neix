@@ -14,7 +14,8 @@ int main()
     }
 
     WINDOW *window_feeds;
-    int highlight = 1;
+    int rss_choice = 1;
+    int rss_article_choice = 0;
     int choice = 0;
     int c;
 
@@ -31,7 +32,7 @@ int main()
     mvprintw(0, 0, "Use arrow/vim keys to go up and down, Press enter to select a choice, Press 'q' to quit.");
     refresh();
 
-    ui_print_feeds(window_feeds, highlight);
+    ui_print_feeds(window_feeds, rss_choice, rss_article_choice);
 
     while (1)
     {
@@ -40,31 +41,27 @@ int main()
         {
             case KEY_UP:
             case KEY_K:
-                if (highlight == 1)
-                {
-                    highlight = feeds_count;
-                }
-                else
-                {
-                    --highlight;
-                }
+                rss_article_choice = 0;
+                rss_choice = decrease_choice(rss_choice);
                 break;
 
             case KEY_DOWN:
             case KEY_J:
-                if (highlight == feeds_count)
-                {
-                    highlight = 1;
-                }
-                else
-                {
-                    ++highlight;
-                }
+                rss_article_choice = 0;
+                rss_choice = increase_choice(rss_choice);
+                break;
+
+            case KEY_UPPER_K:
+                rss_article_choice = decrease_choice(rss_article_choice);
+                break;
+
+            case KEY_UPPER_J:
+                rss_article_choice = increase_choice(rss_article_choice);
                 break;
 
             case ENTER:
             case KEY_Q:
-                choice = highlight;
+                choice = rss_choice;
                 break;
                 
             default:
@@ -73,7 +70,7 @@ int main()
                 break;
         }
 
-        ui_print_feeds(window_feeds, highlight);
+        ui_print_feeds(window_feeds, rss_choice, rss_article_choice);
         if (choice != 0)
         {
             break;

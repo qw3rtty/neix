@@ -17,4 +17,7 @@
 #define KEY_K 107
 #define KEY_Q 113
 
+#define KEY_UPPER_J 74
+#define KEY_UPPER_K 75
+
 #endif //CRSS_CONFIG_H
