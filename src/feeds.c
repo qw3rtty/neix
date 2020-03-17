@@ -27,8 +27,6 @@ int feeds_load()
     for (int i = 0; i < FEEDS_MAX; i++)
     {
         feeds[i] = malloc(sizeof(struct rss));
-        feeds[i]->title = malloc(sizeof(char));
-        feeds[i]->url = malloc(sizeof(char));
 
         feeds[i]->title = "RSS Feed";
         feeds[i]->url = "https://www.heise.de/developer/rss/news-atom.xml";
