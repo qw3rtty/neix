@@ -16,20 +16,31 @@
 
 #include "feeds.h"
 
-char **feeds = NULL;
+struct rss *feeds[FEEDS_MAX];
 int feeds_count = 0;
 
 int feeds_load()
 {
-    struct curl_temp feed = feeds_load_rss("https://www.heise.de/developer/rss/news-atom.xml");
+    // struct curl_temp feed = feeds_load_rss("https://www.heise.de/developer/rss/news-atom.xml");
     // TODO: Parse XML
 
-    feeds = calloc(FEEDS_MAX * FEEDS_MAX_LENGTH, sizeof(char *));
     for (int i = 0; i < FEEDS_MAX; i++)
     {
-        feeds[i] = malloc(sizeof(char) * FEEDS_MAX_LENGTH);
-        strcpy(feeds[i], "RSS");
+        feeds[i] = malloc(sizeof(struct rss));
+        feeds[i]->title = malloc(sizeof(char));
+        feeds[i]->url = malloc(sizeof(char));
 
+        feeds[i]->title = "RSS Feed";
+        feeds[i]->url = "https://www.heise.de/developer/rss/news-atom.xml";
+
+        for (int j = 0; j < FEEDS_MAX; j++)
+        {
+            struct rss_item *item_temp = malloc(sizeof(struct rss_item));
+            item_temp->title = "RSS Article";
+
+            feeds[i]->items[j] = malloc(FEEDS_MAX * sizeof(struct rss_item));
+            feeds[i]->items[j] = item_temp;
+        }
         feeds_count++;
     }
 

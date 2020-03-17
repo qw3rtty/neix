@@ -13,9 +13,8 @@
 #define CRSS_FEEDS_H
 
 #define FEEDS_MAX 5
-#define FEEDS_MAX_LENGTH 50
 
-extern char **feeds;
+extern struct rss *feeds[FEEDS_MAX];
 extern int feeds_count;
 
 struct curl_temp
