@@ -26,17 +26,17 @@ int feeds_load()
 
     for (int i = 0; i < FEEDS_MAX; i++)
     {
-        feeds[i] = malloc(sizeof(struct rss));
+        feeds[i] = (struct rss*) malloc(sizeof(struct rss));
 
         feeds[i]->title = "RSS Feed";
         feeds[i]->url = "https://www.heise.de/developer/rss/news-atom.xml";
 
         for (int j = 0; j < FEEDS_MAX; j++)
         {
-            struct rss_item *item_temp = malloc(sizeof(struct rss_item));
+            struct rss_item *item_temp = (struct rss_item*) malloc(sizeof(struct rss_item));
             item_temp->title = "RSS Article";
 
-            feeds[i]->items[j] = malloc(FEEDS_MAX * sizeof(struct rss_item));
+            feeds[i]->items[j] = (struct rss_item*) malloc(FEEDS_MAX * sizeof(struct rss_item));
             feeds[i]->items[j] = item_temp;
         }
         feeds_count++;
@@ -51,7 +51,7 @@ static size_t feeds_curl_memory(void *content, size_t size, size_t nmemb, void *
     size_t real_size = size * nmemb;
     struct curl_temp *mem = (struct curl_temp *) userp;
 
-    char *ptr = realloc(mem->content, mem->size + real_size + 1);
+    char *ptr = (char*) realloc(mem->content, mem->size + real_size + 1);
     if (ptr == NULL)
     {
         printf("not enough memory (realloc returned NULL)\n");
@@ -70,7 +70,7 @@ static size_t feeds_curl_memory(void *content, size_t size, size_t nmemb, void *
 struct curl_temp feeds_load_rss(char feed_url[])
 {
     struct curl_temp rss_feed;
-    rss_feed.content = malloc(1);
+    rss_feed.content = (char*) malloc(sizeof(char));
     rss_feed.size = 0;
 
     CURL *curl;

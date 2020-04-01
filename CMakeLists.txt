@@ -2,21 +2,20 @@ cmake_minimum_required(VERSION 3.13)
 
 project(crss)
 
-set(CMAKE_C_STANDARD 11)
-set(CMAKE_C_EXTENSIONS OFF)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/bin)
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lcmocka")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lcurl")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -lncurses")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wpedantic")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-unused-parameter")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lcurl")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -lncurses")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wpedantic")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-parameter")
 
 include_directories(
     ${PROJECT_SOURCE_DIR}/include
 )
 
-FILE(GLOB src ${PROJECT_SOURCE_DIR}/src/*.c)
+FILE(GLOB src ${PROJECT_SOURCE_DIR}/src/*.cpp)
 
 add_executable(crss
     ${src}

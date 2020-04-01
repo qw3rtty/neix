@@ -8,10 +8,8 @@
  * @since       Version 0.1.0
  * @filesource
  */
-#include <stdlib.h>
 #include <ncurses.h>
 
-#include "config.h"
 #include "feeds.h"
 
 void ui_print_feeds(WINDOW *window_feeds, int rss_choice, int rss_article_choice)
