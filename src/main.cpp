@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <ncurses.h>
 
 #include "config.h"
@@ -7,11 +6,8 @@
 
 int main()
 {
-    if (feeds_load() == 0)
-    {
-        printf("Could not load feeds...\n");
-        return 0;
-    }
+    CR_FeedLoader feedLoader;
+    feedLoader.load("https://www.heise.de/developer/rss/news-atom.xml");
 
     WINDOW *window_feeds;
     int rss_choice = 1;

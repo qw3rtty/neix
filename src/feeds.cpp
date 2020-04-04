@@ -1,5 +1,5 @@
 /**
- * Feeds.
+ * Feed loader class.
  *
  * @package     CRSS
  * @author      Thomas Schwarz
@@ -9,9 +9,13 @@
  * @filesource
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <iostream>
+#include <string>
+#include <utility>
+
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
 #include <curl/curl.h>
 
 #include "feeds.h"
@@ -19,11 +23,41 @@
 struct rss *feeds[FEEDS_MAX];
 int feeds_count = 0;
 
-int feeds_load()
-{
-    // struct curl_temp feed = feeds_load_rss("https://www.heise.de/developer/rss/news-atom.xml");
-    // TODO: Parse XML
 
+/**
+ * Constructor
+ */
+CR_FeedLoader::CR_FeedLoader()
+{
+    this->url = "";
+
+    this->feed = (struct curl_temp*) malloc(sizeof(struct curl_temp*));
+    this->feed->content = (char*) malloc(sizeof(char));
+    this->feed->size = 0;
+}
+
+
+/**
+ * Destructor
+ */
+CR_FeedLoader::~CR_FeedLoader()
+{
+    free(this->feed);
+}
+
+
+/**
+ * Load xml feed of given url
+ *
+ * @param   {std::string}   url   - URL which should be used for load the feed
+ * @return  {bool}                - true on success, false else
+ */
+bool CR_FeedLoader::load(std::string feedUrl)
+{
+    this->url = std::move(feedUrl);
+    bool loaded = this->loadXml();
+
+    // TODO: Create real feed items!
     for (int i = 0; i < FEEDS_MAX; i++)
     {
         feeds[i] = (struct rss*) malloc(sizeof(struct rss));
@@ -42,11 +76,32 @@ int feeds_load()
         feeds_count++;
     }
 
-    return feeds_count == 0 ? 0 : 1;
+    return loaded;
 }
 
 
-static size_t feeds_curl_memory(void *content, size_t size, size_t nmemb, void *userp)
+/**
+ * Get loaded feed
+ *
+ * @return  {struct curl_temp}
+ */
+struct curl_temp CR_FeedLoader::getFeed()
+{
+    return *this->feed;
+}
+
+
+/**
+ * Calculate size of loaded xml feed
+ *
+ * @param   {void *}    content     - The content
+ * @param   {size_t}    size        - The size
+ * @param   {size_t}    nmemb       - The count of members
+ * @param   {void *}    userp       - The userp
+ *
+ * @return  {size_t}                - The calculated size
+ */
+size_t CR_FeedLoader::curlCalculateMemory(void *content, size_t size, size_t nmemb, void *userp)
 {
     size_t real_size = size * nmemb;
     struct curl_temp *mem = (struct curl_temp *) userp;
@@ -67,12 +122,13 @@ static size_t feeds_curl_memory(void *content, size_t size, size_t nmemb, void *
 }
 
 
-struct curl_temp feeds_load_rss(char feed_url[])
+/**
+ * Load's the feed with CURL
+ *
+ * @return  {boolean}   - true on success, false else
+ */
+bool CR_FeedLoader::loadXml()
 {
-    struct curl_temp rss_feed;
-    rss_feed.content = (char*) malloc(sizeof(char));
-    rss_feed.size = 0;
-
     CURL *curl;
     CURLcode res;
 
@@ -81,24 +137,26 @@ struct curl_temp feeds_load_rss(char feed_url[])
 
     if (curl)
     {
-        curl_easy_setopt(curl, CURLOPT_URL, feed_url);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, feeds_curl_memory);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *) &rss_feed);
+        curl_easy_setopt(curl, CURLOPT_URL, this->url.c_str());
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, CR_FeedLoader::curlCalculateMemory);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *) this->feed);
     }
 
     // maybe do some verification checks ?!
 
     res = curl_easy_perform(curl);
 
-    if (res != CURLE_OK)
-    {
-        fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
-    }
-
-    // printf("%lu bytes retrieved\n", (unsigned long) rss_feed.size);
-
     curl_easy_cleanup(curl);
     curl_global_cleanup();
 
-    return rss_feed;
+    if (res != CURLE_OK)
+    {
+        std::cout << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+        return false;
+    }
+
+    //std::cout << (unsigned long) this->feed->size << " bytes loaded" << std::endl;
+
+    return true;
 }
+

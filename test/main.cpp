@@ -9,9 +9,9 @@
  * @filesource
  */
 
-int run_test_feeds(void);
+int run_test_feeds();
 
-int main(void)
+int main()
 {
     run_test_feeds();
 

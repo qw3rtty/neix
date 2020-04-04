@@ -8,19 +8,18 @@
  * @since       Version 0.1.0
  * @filesource
  */
-#include <stddef.h>
-#include <assert.h>
+#include <cassert>
 
 #include "feeds.h"
 
-int run_test_feeds(void)
+int run_test_feeds()
 {
-    int success = feeds_load();
-    assert(success);
+    CR_FeedLoader feedLoader;
+    bool feedLoaded = feedLoader.load("https://www.heise.de/developer/rss/news-atom.xml");
+    assert(feedLoaded);
     assert(feeds_count == FEEDS_MAX);
 
-    struct curl_temp xml_feed = feeds_load_rss("https://www.heise.de/developer/rss/news-atom.xml");
-
+    struct curl_temp xml_feed = feedLoader.getFeed();
     assert(xml_feed.content != NULL);
     assert(xml_feed.size > 0);
 

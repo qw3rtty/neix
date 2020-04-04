@@ -1,5 +1,5 @@
 /**
- * Feeds.
+ * Feed loader class.
  *
  * @package     CRSS
  * @author      Thomas Schwarz
@@ -13,6 +13,8 @@
 #define CRSS_FEEDS_H
 
 #define FEEDS_MAX 5
+
+#include <string>
 
 extern struct rss *feeds[FEEDS_MAX];
 extern int feeds_count;
@@ -39,7 +41,22 @@ struct rss
     struct rss_item *items[FEEDS_MAX];
 };
 
-int feeds_load();
-struct curl_temp feeds_load_rss(char feed_url[]);
+
+class CR_FeedLoader
+{
+public:
+    CR_FeedLoader();
+    ~CR_FeedLoader();
+
+    bool load(std::string feedUrl);
+    struct curl_temp getFeed();
+
+private:
+    std::string url;
+    struct curl_temp *feed;
+
+    static size_t curlCalculateMemory(void *content, size_t size, size_t nmemb, void *userp);
+    bool loadXml();
+};
 
 #endif //CRSS_FEEDS_H
