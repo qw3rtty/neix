@@ -62,13 +62,13 @@ bool CR_FeedLoader::load(std::string feedUrl)
     {
         feeds[i] = (struct rss*) malloc(sizeof(struct rss));
 
-        feeds[i]->title = "RSS Feed";
-        feeds[i]->url = "https://www.heise.de/developer/rss/news-atom.xml";
+        feeds[i]->title = (char*) "RSS Feed";
+        feeds[i]->url = (char*) "https://www.heise.de/developer/rss/news-atom.xml";
 
         for (int j = 0; j < FEEDS_MAX; j++)
         {
             struct rss_item *item_temp = (struct rss_item*) malloc(sizeof(struct rss_item));
-            item_temp->title = "RSS Article";
+            item_temp->title = (char*) "RSS Article";
 
             feeds[i]->items[j] = (struct rss_item*) malloc(FEEDS_MAX * sizeof(struct rss_item));
             feeds[i]->items[j] = item_temp;
