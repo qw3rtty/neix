@@ -2,7 +2,7 @@
 
 #include "config.h"
 #include "ui.h"
-#include "feeds.h"
+#include "CR_FeedLoader.h"
 
 int main()
 {

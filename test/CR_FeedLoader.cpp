@@ -10,7 +10,7 @@
  */
 #include <cassert>
 
-#include "feeds.h"
+#include "CR_FeedLoader.h"
 
 int run_test_feeds()
 {

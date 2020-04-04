@@ -9,8 +9,8 @@
  * @filesource
  */
 
-#ifndef CRSS_FEEDS_H
-#define CRSS_FEEDS_H
+#ifndef CRSS_CR_FEEDLOADER_H
+#define CRSS_CR_FEEDLOADER_H
 
 #define FEEDS_MAX 5
 
@@ -59,4 +59,4 @@ private:
     bool loadXml();
 };
 
-#endif //CRSS_FEEDS_H
+#endif //CRSS_CR_FEEDLOADER_H
