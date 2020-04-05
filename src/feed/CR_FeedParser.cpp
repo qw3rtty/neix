@@ -9,8 +9,14 @@
  * @filesource
  */
 
+#include <iostream>
+#include <string>
+#include <cassert>
+
+#include "../rapidxml/rapidxml.hpp"
 #include "feed/CR_FeedParser.h"
 
+using namespace rapidxml;
 
 /**
  * Constructor
@@ -44,7 +50,16 @@ void CR_FeedParser::setRawRss(struct rawRss rawContent)
  */
 char* CR_FeedParser::getFeedTitle()
 {
-    return (char*) "RSS Feed";
+    std::string s = std::move(this->rss->content);
+    s.erase(std::remove(s.begin(), s.end(), '\n'), s.end());
+    char *test = const_cast<char *>(s.c_str());
+
+    xml_document<> doc;
+    doc.parse<0>(test);
+
+    rapidxml::xml_node<>* rootNode = doc.first_node();
+
+    return rootNode->first_node("title")->value();
 }
 
 

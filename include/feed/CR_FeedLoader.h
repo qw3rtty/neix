@@ -55,6 +55,7 @@ private:
     std::string url;
     struct rawRss *feed;
 
+    void resetFeed();
     static size_t curlCalculateMemory(void *content, size_t size, size_t nmemb, void *userp);
     bool loadXml();
 };

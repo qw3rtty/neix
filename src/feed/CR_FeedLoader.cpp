@@ -30,10 +30,7 @@ int feeds_count = 0;
 CR_FeedLoader::CR_FeedLoader()
 {
     this->url = "";
-
-    this->feed = (struct rawRss*) malloc(sizeof(struct rawRss*));
-    this->feed->content = (char*) malloc(sizeof(char));
-    this->feed->size = 0;
+    this->resetFeed();
 }
 
 
@@ -45,6 +42,16 @@ CR_FeedLoader::~CR_FeedLoader()
     free(this->feed);
 }
 
+
+/**
+ * Reset feet
+ */
+void CR_FeedLoader::resetFeed()
+{
+    this->feed = (struct rawRss*) malloc(sizeof(struct rawRss*));
+    this->feed->content = (char*) malloc(sizeof(char));
+    this->feed->size = 0;
+}
 
 /**
  * Load xml feed of given url
@@ -118,6 +125,8 @@ bool CR_FeedLoader::loadXml()
 
     if (curl)
     {
+        this->resetFeed();
+
         curl_easy_setopt(curl, CURLOPT_URL, this->url.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, CR_FeedLoader::curlCalculateMemory);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *) this->feed);
