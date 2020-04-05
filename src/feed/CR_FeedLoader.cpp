@@ -57,25 +57,6 @@ bool CR_FeedLoader::load(std::string feedUrl)
     this->url = std::move(feedUrl);
     bool loaded = this->loadXml();
 
-    // TODO: Create real feed items!
-    for (int i = 0; i < FEEDS_MAX; i++)
-    {
-        feeds[i] = (struct rss*) malloc(sizeof(struct rss));
-
-        feeds[i]->title = (char*) "RSS Feed";
-        feeds[i]->url = (char*) "https://www.heise.de/developer/rss/news-atom.xml";
-
-        for (int j = 0; j < FEEDS_MAX; j++)
-        {
-            struct rssItem *item_temp = (struct rssItem*) malloc(sizeof(struct rssItem));
-            item_temp->title = (char*) "RSS Article";
-
-            feeds[i]->items[j] = (struct rssItem*) malloc(FEEDS_MAX * sizeof(struct rssItem));
-            feeds[i]->items[j] = item_temp;
-        }
-        feeds_count++;
-    }
-
     return loaded;
 }
 

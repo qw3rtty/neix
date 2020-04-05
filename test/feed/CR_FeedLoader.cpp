@@ -17,7 +17,6 @@ int run_test_feeds()
     CR_FeedLoader feedLoader;
     bool feedLoaded = feedLoader.load("https://www.heise.de/developer/rss/news-atom.xml");
     assert(feedLoaded);
-    assert(feeds_count == FEEDS_MAX);
 
     struct rawRss xml_feed = feedLoader.getFeed();
     assert(xml_feed.content != NULL);
