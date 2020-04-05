@@ -31,7 +31,7 @@ CR_FeedLoader::CR_FeedLoader()
 {
     this->url = "";
 
-    this->feed = (struct curl_temp*) malloc(sizeof(struct curl_temp*));
+    this->feed = (struct rawRss*) malloc(sizeof(struct rawRss*));
     this->feed->content = (char*) malloc(sizeof(char));
     this->feed->size = 0;
 }
@@ -67,10 +67,10 @@ bool CR_FeedLoader::load(std::string feedUrl)
 
         for (int j = 0; j < FEEDS_MAX; j++)
         {
-            struct rss_item *item_temp = (struct rss_item*) malloc(sizeof(struct rss_item));
+            struct rssItem *item_temp = (struct rssItem*) malloc(sizeof(struct rssItem));
             item_temp->title = (char*) "RSS Article";
 
-            feeds[i]->items[j] = (struct rss_item*) malloc(FEEDS_MAX * sizeof(struct rss_item));
+            feeds[i]->items[j] = (struct rssItem*) malloc(FEEDS_MAX * sizeof(struct rssItem));
             feeds[i]->items[j] = item_temp;
         }
         feeds_count++;
@@ -83,9 +83,9 @@ bool CR_FeedLoader::load(std::string feedUrl)
 /**
  * Get loaded feed
  *
- * @return  {struct curl_temp}
+ * @return  {struct rawRss}
  */
-struct curl_temp CR_FeedLoader::getFeed()
+struct rawRss CR_FeedLoader::getFeed()
 {
     return *this->feed;
 }
@@ -104,7 +104,7 @@ struct curl_temp CR_FeedLoader::getFeed()
 size_t CR_FeedLoader::curlCalculateMemory(void *content, size_t size, size_t nmemb, void *userp)
 {
     size_t real_size = size * nmemb;
-    struct curl_temp *mem = (struct curl_temp *) userp;
+    struct rawRss *mem = (struct rawRss *) userp;
 
     char *ptr = (char*) realloc(mem->content, mem->size + real_size + 1);
     if (ptr == NULL)

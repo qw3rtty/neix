@@ -19,7 +19,7 @@ int run_test_feeds()
     assert(feedLoaded);
     assert(feeds_count == FEEDS_MAX);
 
-    struct curl_temp xml_feed = feedLoader.getFeed();
+    struct rawRss xml_feed = feedLoader.getFeed();
     assert(xml_feed.content != NULL);
     assert(xml_feed.size > 0);
 

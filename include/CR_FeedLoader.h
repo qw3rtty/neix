@@ -19,13 +19,13 @@
 extern struct rss *feeds[FEEDS_MAX];
 extern int feeds_count;
 
-struct curl_temp
+struct rawRss
 {
     char *content;
     size_t size;
 };
 
-struct rss_item
+struct rssItem
 {
     char *title;
     char *description;
@@ -38,7 +38,7 @@ struct rss
 {
     char *title;
     char *url;
-    struct rss_item *items[FEEDS_MAX];
+    struct rssItem *items[FEEDS_MAX];
 };
 
 
@@ -49,11 +49,11 @@ public:
     ~CR_FeedLoader();
 
     bool load(std::string feedUrl);
-    struct curl_temp getFeed();
+    struct rawRss getFeed();
 
 private:
     std::string url;
-    struct curl_temp *feed;
+    struct rawRss *feed;
 
     static size_t curlCalculateMemory(void *content, size_t size, size_t nmemb, void *userp);
     bool loadXml();
