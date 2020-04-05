@@ -18,7 +18,7 @@
 #include <cstring>
 #include <curl/curl.h>
 
-#include "CR_FeedLoader.h"
+#include "feed/CR_FeedLoader.h"
 
 struct rss *feeds[FEEDS_MAX];
 int feeds_count = 0;

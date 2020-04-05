@@ -1,5 +1,5 @@
 /**
- * TEST feed parser.
+ * Feed parser class.
  *
  * @package     CRSS
  * @author      Thomas Schwarz
@@ -8,14 +8,19 @@
  * @since       Version 0.1.0
  * @filesource
  */
-#include <cassert>
 
-#include "CR_FeedParser.h"
+#include "feed/CR_FeedParser.h"
 
-int run_test_feed_parser()
-{
-    CR_FeedParser parser;
-    assert(true);
 
-    return 0;
-}
+/**
+ * Constructor
+ */
+CR_FeedParser::CR_FeedParser()
+{}
+
+
+/**
+ * Destructor
+ */
+CR_FeedParser::~CR_FeedParser()
+{}

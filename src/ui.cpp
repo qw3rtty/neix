@@ -10,7 +10,7 @@
  */
 #include <ncurses.h>
 
-#include "CR_FeedLoader.h"
+#include "feed/CR_FeedLoader.h"
 
 void ui_print_feeds(WINDOW *window_feeds, int rss_choice, int rss_article_choice)
 {

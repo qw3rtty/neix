@@ -16,9 +16,11 @@ include_directories(
 )
 
 FILE(GLOB src ${PROJECT_SOURCE_DIR}/src/*.cpp)
+FILE(GLOB feed ${PROJECT_SOURCE_DIR}/src/feed/*.cpp)
 
 add_executable(crss
     ${src}
+    ${feed}
 )
 
 option(enable-tests "Enables test suite" YES)
