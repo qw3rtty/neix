@@ -28,7 +28,7 @@ CR_UI::CR_UI()
     cbreak();
 
     this->windowFeedsWidth = COLS;
-    this->windowFeedsHeight = LINES - 2;
+    this->windowFeedsHeight = LINES - 4;
 }
 
 
@@ -86,7 +86,7 @@ void CR_UI::showUI()
                 break;
 
             default:
-                mvprintw(1, 0, "Charcter pressed is = %3d Hopefully it can be printed as '%c'", c, c);
+                mvprintw(LINES - 1, 0, "Charcter pressed is = %3d Hopefully it can be printed as '%c'", c, c);
                 refresh();
                 break;
         }
