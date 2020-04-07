@@ -24,6 +24,14 @@ CR_UI::CR_UI() = default;
  */
 CR_UI::~CR_UI() = default;
 
+
+/**
+ * Print UI window
+ *
+ * @param window_feeds
+ * @param rss_choice
+ * @param rss_article_choice
+ */
 void CR_UI::printUI(WINDOW *window_feeds, int rss_choice, int rss_article_choice)
 {
     int x, y, i;
@@ -67,6 +75,13 @@ void CR_UI::printUI(WINDOW *window_feeds, int rss_choice, int rss_article_choice
     wrefresh(window_feeds);
 }
 
+
+/**
+ * Increase choice
+ *
+ * @param new_choice
+ * @return
+ */
 int CR_UI::increaseChoice(int new_choice)
 {
     if (new_choice == feeds_count)
@@ -81,6 +96,13 @@ int CR_UI::increaseChoice(int new_choice)
     return new_choice;
 }
 
+
+/**
+ * Decrease choice
+ *
+ * @param new_choice
+ * @return
+ */
 int CR_UI::decreaseChoice(int new_choice)
 {
     if (new_choice == 1)
