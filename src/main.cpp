@@ -31,6 +31,7 @@ int main()
 
         for (int j = 0; j < FEEDS_MAX; j++)
         {
+            parser.setRawRss(loader.getFeed());
             struct rssItem *item_temp = parser.getFeedItem();
 
             feeds[i]->items[j] = (struct rssItem*) malloc(FEEDS_MAX * sizeof(struct rssItem));

@@ -50,7 +50,7 @@ void CR_FeedParser::setRawRss(struct rawRss rawContent)
  */
 char* CR_FeedParser::getFeedTitle()
 {
-    std::string s = std::move(this->rss->content);
+    std::string s(this->rss->content);
     s.erase(std::remove(s.begin(), s.end(), '\n'), s.end());
     char *test = const_cast<char *>(s.c_str());
 
@@ -82,7 +82,19 @@ char* CR_FeedParser::getFeedUrl()
 struct rssItem* CR_FeedParser::getFeedItem()
 {
     struct rssItem *item = (struct rssItem*) malloc(sizeof(struct rssItem));
-    item->title = (char*) "RSS Article";
+    item->title = (char*) malloc(sizeof(char) * 100);
+
+    std::string s(this->rss->content);
+    s.erase(std::remove(s.begin(), s.end(), '\n'), s.end());
+    char *test = const_cast<char *>(s.c_str());
+
+    xml_document<> doc;
+    doc.parse<0>(test);
+
+    rapidxml::xml_node<>* rootNode = doc.first_node();
+    rapidxml::xml_node<>* entryNode = rootNode->first_node("entry");
+
+    strcpy(item->title, entryNode->first_node("title")->value());
 
     return item;
 }
