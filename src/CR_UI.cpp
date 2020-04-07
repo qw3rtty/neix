@@ -1,5 +1,5 @@
 /**
- * Terminal UI.
+ * Terminal UI class.
  *
  * @package     CRSS
  * @author      Thomas Schwarz
@@ -10,9 +10,21 @@
  */
 #include <ncurses.h>
 
+#include "CR_UI.h"
 #include "feed/CR_FeedLoader.h"
 
-void ui_print_feeds(WINDOW *window_feeds, int rss_choice, int rss_article_choice)
+/**
+ * Constructor
+ */
+CR_UI::CR_UI() = default;
+
+
+/**
+ * Destructor
+ */
+CR_UI::~CR_UI() = default;
+
+void CR_UI::printUI(WINDOW *window_feeds, int rss_choice, int rss_article_choice)
 {
     int x, y, i;
 
@@ -55,21 +67,7 @@ void ui_print_feeds(WINDOW *window_feeds, int rss_choice, int rss_article_choice
     wrefresh(window_feeds);
 }
 
-int decrease_choice(int new_choice)
-{
-    if (new_choice == 1)
-    {
-        new_choice = feeds_count;
-    }
-    else
-    {
-        --new_choice;
-    }
-
-    return new_choice;
-}
-
-int increase_choice(int new_choice)
+int CR_UI::increaseChoice(int new_choice)
 {
     if (new_choice == feeds_count)
     {
@@ -78,6 +76,20 @@ int increase_choice(int new_choice)
     else
     {
         ++new_choice;
+    }
+
+    return new_choice;
+}
+
+int CR_UI::decreaseChoice(int new_choice)
+{
+    if (new_choice == 1)
+    {
+        new_choice = feeds_count;
+    }
+    else
+    {
+        --new_choice;
     }
 
     return new_choice;

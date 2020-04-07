@@ -1,7 +1,7 @@
 #include <ncurses.h>
 
 #include "config.h"
-#include "ui.h"
+#include "CR_UI.h"
 #include "feed/CR_FeedLoader.h"
 #include "feed/CR_FeedParser.h"
 
@@ -41,7 +41,7 @@ int main()
     }
 
 
-
+    CR_UI ui;
     WINDOW *window_feeds;
     int rss_choice = 1;
     int rss_article_choice = 0;
@@ -61,7 +61,7 @@ int main()
     mvprintw(0, 0, "Use arrow/vim keys to go up and down, Press enter to select a choice, Press 'q' to quit.");
     refresh();
 
-    ui_print_feeds(window_feeds, rss_choice, rss_article_choice);
+    ui.printUI(window_feeds, rss_choice, rss_article_choice);
 
     while (1)
     {
@@ -71,21 +71,21 @@ int main()
             case KEY_UP:
             case KEY_K:
                 rss_article_choice = 0;
-                rss_choice = decrease_choice(rss_choice);
+                rss_choice = ui.decreaseChoice(rss_choice);
                 break;
 
             case KEY_DOWN:
             case KEY_J:
                 rss_article_choice = 0;
-                rss_choice = increase_choice(rss_choice);
+                rss_choice = ui.increaseChoice(rss_choice);
                 break;
 
             case KEY_UPPER_K:
-                rss_article_choice = decrease_choice(rss_article_choice);
+                rss_article_choice = ui.decreaseChoice(rss_article_choice);
                 break;
 
             case KEY_UPPER_J:
-                rss_article_choice = increase_choice(rss_article_choice);
+                rss_article_choice = ui.increaseChoice(rss_article_choice);
                 break;
 
             case ENTER:
@@ -99,7 +99,7 @@ int main()
                 break;
         }
 
-        ui_print_feeds(window_feeds, rss_choice, rss_article_choice);
+        ui.printUI(window_feeds, rss_choice, rss_article_choice);
         if (choice != 0)
         {
             break;
