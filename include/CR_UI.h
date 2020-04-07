@@ -20,9 +20,21 @@ public:
     CR_UI();
     ~CR_UI();
 
-    void printUI(WINDOW *window_feeds, int rss_choice, int rss_article_choice);
+    void showUI();
+    void printWindows();
     int increaseChoice(int new_choice);
     int decreaseChoice(int new_choice);
+
+private:
+    WINDOW *windowFeeds;
+
+    int choice;
+    int articleChoice;
+    int quit;
+    int c;
+
+    int windowFeedsWidth;
+    int windowFeedsHeight;
 };
 
 #endif //CRSS_CR_UI_H
