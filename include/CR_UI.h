@@ -27,6 +27,7 @@ public:
 
 private:
     WINDOW *windowFeeds;
+    WINDOW *windowArticles;
 
     int choice;
     int articleChoice;
@@ -35,6 +36,8 @@ private:
 
     int windowFeedsWidth;
     int windowFeedsHeight;
+    int windowArticlesWidth;
+    int windowArticlesHeight;
 };
 
 #endif //CRSS_CR_UI_H

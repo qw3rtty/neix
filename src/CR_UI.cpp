@@ -27,8 +27,11 @@ CR_UI::CR_UI()
     noecho();
     cbreak();
 
-    this->windowFeedsWidth = COLS;
+    this->windowFeedsWidth = (int) (COLS / 3);
     this->windowFeedsHeight = LINES - 4;
+
+    this->windowArticlesWidth = (int) (COLS / 3) * 2;
+    this->windowArticlesHeight = LINES - 4;
 }
 
 
@@ -49,6 +52,7 @@ CR_UI::~CR_UI()
 void CR_UI::showUI()
 {
     this->windowFeeds = newwin(this->windowFeedsHeight, this->windowFeedsWidth, 2, 0);
+    this->windowArticles = newwin(this->windowArticlesHeight, this->windowArticlesWidth, 2, this->windowFeedsWidth);
     keypad(this->windowFeeds, TRUE);
     mvprintw(0, 0, "Use arrow/vim keys to go up and down, Press enter to select a choice, Press 'q' to quit.");
     refresh();
@@ -108,8 +112,9 @@ void CR_UI::printWindows()
     int x, y, i;
 
     x = 2;
-    y = 2;
+    y = 1;
     box(this->windowFeeds, 0, 0);
+    box(this->windowArticles, 0, 0);
 
     for (i = 0; i < FEEDS_MAX; ++i)
     {
@@ -124,26 +129,29 @@ void CR_UI::printWindows()
             mvwprintw(this->windowFeeds, y, x, "%s", feeds[i]->title);
         }
         ++y;
+    }
 
-        x += 2;
-        for (int j = 0; j < FEEDS_MAX; j++)
+    // TODO: Cleanup here!!
+
+    x = 2;
+    y = 1;
+    for (int j = 0; j < FEEDS_MAX; j++)
+    {
+        if (this->articleChoice == j + 1)
         {
-            if (this->choice == i + 1 && this->articleChoice == j + 1)
-            {
-                wattron(this->windowFeeds, A_REVERSE);
-                mvwprintw(this->windowFeeds, y, x, "%s", feeds[i]->items[j]->title);
-                wattroff(this->windowFeeds, A_REVERSE);
-            }
-            else
-            {
-                mvwprintw(this->windowFeeds, y, x, "%s", feeds[i]->items[j]->title);
-            }
-            ++y;
+            wattron(this->windowArticles, A_REVERSE);
+            mvwprintw(this->windowArticles, y, x, "%s", feeds[this->choice-1]->items[j]->title);
+            wattroff(this->windowArticles, A_REVERSE);
         }
-        x -= 2;
+        else
+        {
+            mvwprintw(this->windowArticles, y, x, "%s", feeds[this->choice-1]->items[j]->title);
+        }
+        ++y;
     }
 
     wrefresh(this->windowFeeds);
+    wrefresh(this->windowArticles);
 }
 
 
