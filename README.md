@@ -1,2 +1,2 @@
 # crss
-Lightweight RSS-Feed reader written in C.
+Lightweight RSS-Feed reader written in C/C++.
