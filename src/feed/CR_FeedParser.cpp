@@ -9,9 +9,9 @@
  * @filesource
  */
 
-#include <string>
 #include <cstring>
 #include <cassert>
+#include <algorithm>
 
 #include "../include/rapidxml/rapidxml.hpp"
 #include "feed/CR_FeedParser.h"
