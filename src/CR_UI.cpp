@@ -48,7 +48,7 @@ CR_UI::~CR_UI()
 void CR_UI::initChoices()
 {
     this->choice = 1;
-    this->articleChoice = 0;
+    this->articleChoice = 1;
     this->quit = 0;
 }
 
@@ -82,7 +82,7 @@ void CR_UI::createArticleWindow()
  */
 void CR_UI::showUI()
 {
-    mvprintw(0, 0, "Use arrow/vim keys to go up and down, Press enter to select a choice, Press 'q' to quit.");
+    mvprintw(0, 0, "Use vim keys to navigate through articles, Press enter to select a choice or press 'q' to quit.");
     refresh();
 
     this->printWindows();
@@ -94,22 +94,22 @@ void CR_UI::showUI()
         {
             case KEY_UP:
             case KEY_K:
-                this->articleChoice = 0;
-                this->choice = this->decreaseChoice(this->choice);
+                this->articleChoice = this->decreaseChoice(this->articleChoice);
                 break;
 
             case KEY_DOWN:
             case KEY_J:
-                this->articleChoice = 0;
-                this->choice = this->increaseChoice(this->choice);
+                this->articleChoice = this->increaseChoice(this->articleChoice);
                 break;
 
             case KEY_UPPER_K:
-                this->articleChoice = this->decreaseChoice(this->articleChoice);
+                this->articleChoice = 1;
+                this->choice = this->decreaseChoice(this->choice);
                 break;
 
             case KEY_UPPER_J:
-                this->articleChoice = this->increaseChoice(this->articleChoice);
+                this->articleChoice = 1;
+                this->choice = this->increaseChoice(this->choice);
                 break;
 
             case ENTER:
