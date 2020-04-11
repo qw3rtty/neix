@@ -9,8 +9,8 @@
  * @filesource
  */
 
-#include <iostream>
 #include <string>
+#include <cstring>
 #include <cassert>
 
 #include "../include/rapidxml/rapidxml.hpp"
