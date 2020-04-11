@@ -48,6 +48,7 @@ public:
     CR_FeedLoader();
     ~CR_FeedLoader();
 
+    bool loadFeedsFromConfig();
     bool load(std::string feedUrl);
     struct rawRss getFeed();
 

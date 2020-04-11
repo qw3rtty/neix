@@ -11,6 +11,8 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <sstream>
 #include <utility>
 
 #include <cstdio>
@@ -52,6 +54,55 @@ void CR_FeedLoader::resetFeed()
     this->feed->content = (char*) malloc(sizeof(char));
     this->feed->size = 0;
 }
+
+
+/**
+ * Load feeds from config file
+ */
+bool CR_FeedLoader::loadFeedsFromConfig()
+{
+    std::ifstream file;
+    std::string line;
+
+    std::string delimiter = "=";
+    std::string name;
+    std::string link;
+
+    std::stringstream path;
+    path << getenv("HOME") << "/.config/crss/feeds.conf";
+
+    file.open(path.str());
+    if (!file.is_open())
+    {
+        std::cout << "Could not load config file!" << std::endl;
+        return false;
+    }
+
+    while (!file.eof())
+    {
+        getline(file, line);
+        name = line.substr(0, line.find(delimiter));
+        link = line.substr(line.find(delimiter) + 1, line.length());
+
+        if (name.empty() || link.empty())
+        {
+            continue;
+        }
+
+        feeds[feeds_count] = (struct rss*) malloc(sizeof(struct rss));
+        feeds[feeds_count]->title = (char*) malloc(sizeof(char) * name.length());
+        feeds[feeds_count]->url = (char*) malloc(sizeof(char) * link.length());
+
+        strcpy(feeds[feeds_count]->title, name.c_str());
+        strcpy(feeds[feeds_count]->url, link.c_str());
+
+        feeds_count++;
+    }
+    file.close();
+
+    return true;
+}
+
 
 /**
  * Load xml feed of given url
