@@ -18,20 +18,16 @@
  */
 CR_UI::CR_UI()
 {
-    this->choice = 1;
-    this->articleChoice = 0;
-    this->quit = 0;
+    this->initChoices();
 
     initscr();
     clear();
     noecho();
     cbreak();
 
-    this->windowFeedsWidth = (int) (COLS / 3);
-    this->windowFeedsHeight = LINES - 4;
-
-    this->windowArticlesWidth = (int) (COLS / 3) * 2;
-    this->windowArticlesHeight = LINES - 4;
+    this->windowHeight = LINES - 4;
+    this->createFeedWindow();
+    this->createArticleWindow();
 }
 
 
@@ -47,13 +43,45 @@ CR_UI::~CR_UI()
 
 
 /**
+ * Initialize choices
+ */
+void CR_UI::initChoices()
+{
+    this->choice = 1;
+    this->articleChoice = 0;
+    this->quit = 0;
+}
+
+
+
+/**
+ * Create's feed window
+ */
+void CR_UI::createFeedWindow()
+{
+    this->feedWindowWidth = (int) (COLS / 3);
+    this->feedWindow = newwin(this->windowHeight, this->feedWindowWidth, 2, 0);
+    keypad(this->feedWindow, TRUE);
+}
+
+
+
+/**
+ * Create's article window
+ */
+void CR_UI::createArticleWindow()
+{
+    this->articleWindowWidth = (int) (COLS / 3) * 2;
+    this->articleWindow = newwin(this->windowHeight, this->articleWindowWidth, 2, this->feedWindowWidth);
+    keypad(this->articleWindow, TRUE);
+}
+
+
+/**
  * Show's complete UI
  */
 void CR_UI::showUI()
 {
-    this->windowFeeds = newwin(this->windowFeedsHeight, this->windowFeedsWidth, 2, 0);
-    this->windowArticles = newwin(this->windowArticlesHeight, this->windowArticlesWidth, 2, this->windowFeedsWidth);
-    keypad(this->windowFeeds, TRUE);
     mvprintw(0, 0, "Use arrow/vim keys to go up and down, Press enter to select a choice, Press 'q' to quit.");
     refresh();
 
@@ -61,7 +89,7 @@ void CR_UI::showUI()
 
     while (1)
     {
-        c = wgetch(this->windowFeeds);
+        c = wgetch(this->feedWindow);
         switch (c)
         {
             case KEY_UP:
@@ -109,49 +137,91 @@ void CR_UI::showUI()
  */
 void CR_UI::printWindows()
 {
-    int x, y, i;
+    this->printFeedsInWindow();
+    this->printArticlesInWindow();
+}
 
-    x = 2;
-    y = 1;
-    box(this->windowFeeds, 0, 0);
-    box(this->windowArticles, 0, 0);
 
+/**
+ * Print's feeds in window
+ */
+void CR_UI::printFeedsInWindow()
+{
+    int x = 2, y = 1, i;
     for (i = 0; i < FEEDS_MAX; ++i)
     {
         if (this->choice == i + 1)
         {
-            wattron(this->windowFeeds, A_REVERSE);
-            mvwprintw(this->windowFeeds, y, x, "%s", feeds[i]->title);
-            wattroff(this->windowFeeds, A_REVERSE);
+            this->printLineHighlightedInWindow(this->feedWindow, y, x, feeds[i]->title);
         }
         else
         {
-            mvwprintw(this->windowFeeds, y, x, "%s", feeds[i]->title);
+            this->printLineInWindow(this->feedWindow, y, x, feeds[i]->title);
         }
+
+        wclrtoeol(this->feedWindow);
         ++y;
     }
 
-    // TODO: Cleanup here!!
+    box(this->feedWindow, 0, 0);
+    wrefresh(this->feedWindow);
+}
 
-    x = 2;
-    y = 1;
-    for (int j = 0; j < FEEDS_MAX; j++)
+
+/**
+ * Print's articles in window
+ */
+void CR_UI::printArticlesInWindow()
+{
+    int x = 2, y = 1, i;
+    int choice = this->choice - 1;
+    for (i = 0; i < FEEDS_MAX; i++)
     {
-        if (this->articleChoice == j + 1)
+        if (this->articleChoice == i + 1)
         {
-            wattron(this->windowArticles, A_REVERSE);
-            mvwprintw(this->windowArticles, y, x, "%s", feeds[this->choice-1]->items[j]->title);
-            wattroff(this->windowArticles, A_REVERSE);
+            this->printLineHighlightedInWindow(this->articleWindow, y, x, feeds[choice]->items[i]->title);
         }
         else
         {
-            mvwprintw(this->windowArticles, y, x, "%s", feeds[this->choice-1]->items[j]->title);
+            this->printLineInWindow(this->articleWindow, y, x, feeds[choice]->items[i]->title);
         }
+
+        wclrtoeol(this->articleWindow);
         ++y;
     }
 
-    wrefresh(this->windowFeeds);
-    wrefresh(this->windowArticles);
+    box(this->articleWindow, 0, 0);
+    wrefresh(this->articleWindow);
+}
+
+
+/**
+ * Print standard line
+ *
+ * @param window
+ * @param y
+ * @param x
+ * @param line
+ */
+void CR_UI::printLineInWindow(WINDOW *window, int y, int x, char *line)
+{
+    mvwprintw(window, y, x, "%s", line);
+}
+
+
+/**
+ * Print highlighted line
+ *
+ * @param window
+ * @param y
+ * @param x
+ * @param line
+ */
+void CR_UI::printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line)
+{
+    wattron(window, A_REVERSE);
+    mvwprintw(window, y, x, "%s", line);
+    wattroff(window, A_REVERSE);
 }
 
 

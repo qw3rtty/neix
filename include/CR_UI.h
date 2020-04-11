@@ -26,18 +26,26 @@ public:
     int decreaseChoice(int new_choice);
 
 private:
-    WINDOW *windowFeeds;
-    WINDOW *windowArticles;
+    WINDOW *feedWindow;
+    WINDOW *articleWindow;
 
     int choice;
     int articleChoice;
     int quit;
     int c;
 
-    int windowFeedsWidth;
-    int windowFeedsHeight;
-    int windowArticlesWidth;
-    int windowArticlesHeight;
+    int windowHeight;
+    int feedWindowWidth;
+    int articleWindowWidth;
+
+    void initChoices();
+    void createFeedWindow();
+    void createArticleWindow();
+
+    void printFeedsInWindow();
+    void printArticlesInWindow();
+    void printLineInWindow(WINDOW *window, int y, int x, char *line);
+    void printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line);
 };
 
 #endif //CRSS_CR_UI_H
