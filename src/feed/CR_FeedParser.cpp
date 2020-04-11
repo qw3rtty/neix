@@ -44,17 +44,6 @@ void CR_FeedParser::setRawRss(struct rawRss rawContent)
 
 
 /**
- * Get URL of raw feed
- *
- * @return  {char*}    - Feed URL
- */
-char* CR_FeedParser::getFeedUrl()
-{
-    return (char*) "https://www.heise.de/developer/rss/news-atom.xml";
-}
-
-
-/**
  * Get an feed item of raw content
  *
  * @return  {struct rssItem*}    - Item of feed

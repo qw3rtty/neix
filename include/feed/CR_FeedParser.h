@@ -21,8 +21,6 @@ public:
     ~CR_FeedParser();
 
     void setRawRss(struct rawRss rawContent);
-
-    char* getFeedUrl();
     struct rssItem* getFeedItem();
 
 private:

@@ -16,7 +16,5 @@ int run_test_feed_parser()
 {
     CR_FeedParser parser;
 
-    assert(parser.getFeedUrl() == "https://www.heise.de/developer/rss/news-atom.xml");
-
     return 0;
 }
