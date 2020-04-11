@@ -22,7 +22,6 @@ public:
 
     void setRawRss(struct rawRss rawContent);
 
-    char* getFeedTitle();
     char* getFeedUrl();
     struct rssItem* getFeedItem();
 
