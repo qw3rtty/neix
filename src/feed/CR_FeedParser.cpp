@@ -13,7 +13,7 @@
 #include <string>
 #include <cassert>
 
-#include "../rapidxml/rapidxml.hpp"
+#include "../include/rapidxml/rapidxml.hpp"
 #include "feed/CR_FeedParser.h"
 
 using namespace rapidxml;
