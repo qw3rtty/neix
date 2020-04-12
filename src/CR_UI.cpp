@@ -279,7 +279,7 @@ int CR_UI::decreaseChoice(int new_choice)
 void CR_UI::openArticle()
 {
     std::string call = "open ";
-    std::string url = call + feeds[this->choice]->items[this->articleChoice]->url;
+    std::string url = call + feeds[this->choice-1]->items[this->articleChoice]->url;
 
     system(url.c_str());
 }
