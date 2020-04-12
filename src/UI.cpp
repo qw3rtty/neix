@@ -155,7 +155,7 @@ void UI::printWindows()
 void UI::printFeedsInWindow()
 {
     int x = 2, y = 1, i;
-    for (i = 0; i < FEEDS_MAX; ++i)
+    for (i = 0; i < feeds_count; ++i)
     {
         if (this->choice == i + 1)
         {
