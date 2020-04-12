@@ -20,7 +20,8 @@
 #include <cstring>
 #include <curl/curl.h>
 
-#include "feed/CR_FeedLoader.h"
+#include "feed/FeedLoader.h"
+using namespace cr;
 
 struct rss *feeds[FEEDS_MAX];
 int feeds_count = 0;
@@ -29,7 +30,7 @@ int feeds_count = 0;
 /**
  * Constructor
  */
-CR_FeedLoader::CR_FeedLoader()
+FeedLoader::FeedLoader()
 {
     this->url = "";
     this->resetFeed();
@@ -39,7 +40,7 @@ CR_FeedLoader::CR_FeedLoader()
 /**
  * Destructor
  */
-CR_FeedLoader::~CR_FeedLoader()
+FeedLoader::~FeedLoader()
 {
     free(this->feed);
 }
@@ -48,7 +49,7 @@ CR_FeedLoader::~CR_FeedLoader()
 /**
  * Reset feet
  */
-void CR_FeedLoader::resetFeed()
+void FeedLoader::resetFeed()
 {
     this->feed = (struct rawRss*) malloc(sizeof(struct rawRss*));
     this->feed->content = (char*) malloc(sizeof(char));
@@ -59,7 +60,7 @@ void CR_FeedLoader::resetFeed()
 /**
  * Load feeds from config file
  */
-bool CR_FeedLoader::loadFeedsFromConfig()
+bool FeedLoader::loadFeedsFromConfig()
 {
     std::ifstream file;
     std::string line;
@@ -110,7 +111,7 @@ bool CR_FeedLoader::loadFeedsFromConfig()
  * @param   {std::string}   url   - URL which should be used for load the feed
  * @return  {bool}                - true on success, false else
  */
-bool CR_FeedLoader::load(std::string feedUrl)
+bool FeedLoader::load(std::string feedUrl)
 {
     this->url = std::move(feedUrl);
     bool loaded = this->loadXml();
@@ -124,7 +125,7 @@ bool CR_FeedLoader::load(std::string feedUrl)
  *
  * @return  {struct rawRss}
  */
-struct rawRss CR_FeedLoader::getFeed()
+struct rawRss FeedLoader::getFeed()
 {
     return *this->feed;
 }
@@ -140,7 +141,7 @@ struct rawRss CR_FeedLoader::getFeed()
  *
  * @return  {size_t}                - The calculated size
  */
-size_t CR_FeedLoader::curlCalculateMemory(void *content, size_t size, size_t nmemb, void *userp)
+size_t FeedLoader::curlCalculateMemory(void *content, size_t size, size_t nmemb, void *userp)
 {
     size_t real_size = size * nmemb;
     struct rawRss *mem = (struct rawRss *) userp;
@@ -166,7 +167,7 @@ size_t CR_FeedLoader::curlCalculateMemory(void *content, size_t size, size_t nme
  *
  * @return  {boolean}   - true on success, false else
  */
-bool CR_FeedLoader::loadXml()
+bool FeedLoader::loadXml()
 {
     CURL *curl;
     CURLcode res;
@@ -179,7 +180,7 @@ bool CR_FeedLoader::loadXml()
         this->resetFeed();
 
         curl_easy_setopt(curl, CURLOPT_URL, this->url.c_str());
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, CR_FeedLoader::curlCalculateMemory);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, FeedLoader::curlCalculateMemory);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *) this->feed);
     }
 

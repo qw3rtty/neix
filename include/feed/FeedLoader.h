@@ -9,8 +9,8 @@
  * @filesource
  */
 
-#ifndef CRSS_CR_FEEDLOADER_H
-#define CRSS_CR_FEEDLOADER_H
+#ifndef CRSS_FEEDLOADER_H
+#define CRSS_FEEDLOADER_H
 
 #define FEEDS_MAX 5
 
@@ -41,24 +41,26 @@ struct rss
     struct rssItem *items[FEEDS_MAX];
 };
 
-
-class CR_FeedLoader
+namespace cr
 {
-public:
-    CR_FeedLoader();
-    ~CR_FeedLoader();
+    class FeedLoader
+    {
+    public:
+        FeedLoader();
+        ~FeedLoader();
 
-    bool loadFeedsFromConfig();
-    bool load(std::string feedUrl);
-    struct rawRss getFeed();
+        bool loadFeedsFromConfig();
+        bool load(std::string feedUrl);
+        struct rawRss getFeed();
 
-private:
-    std::string url;
-    struct rawRss *feed;
+    private:
+        std::string url;
+        struct rawRss *feed;
 
-    void resetFeed();
-    static size_t curlCalculateMemory(void *content, size_t size, size_t nmemb, void *userp);
-    bool loadXml();
-};
+        void resetFeed();
+        static size_t curlCalculateMemory(void *content, size_t size, size_t nmemb, void *userp);
+        bool loadXml();
+    };
+}
 
-#endif //CRSS_CR_FEEDLOADER_H
+#endif //CRSS_FEEDLOADER_H

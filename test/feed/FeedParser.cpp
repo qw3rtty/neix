@@ -10,11 +10,12 @@
  */
 #include <cassert>
 
-#include "feed/CR_FeedParser.h"
+#include "feed/FeedParser.h"
+using namespace cr;
 
 int run_test_feed_parser()
 {
-    CR_FeedParser parser;
+    FeedParser parser;
 
     return 0;
 }

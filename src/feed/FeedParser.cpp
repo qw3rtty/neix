@@ -14,21 +14,22 @@
 #include <algorithm>
 
 #include "../include/rapidxml/rapidxml.hpp"
-#include "feed/CR_FeedParser.h"
+#include "feed/FeedParser.h"
 
 using namespace rapidxml;
+using namespace cr;
 
 /**
  * Constructor
  */
-CR_FeedParser::CR_FeedParser()
+FeedParser::FeedParser()
 {}
 
 
 /**
  * Destructor
  */
-CR_FeedParser::~CR_FeedParser()
+FeedParser::~FeedParser()
 {}
 
 
@@ -37,7 +38,7 @@ CR_FeedParser::~CR_FeedParser()
  *
  * @param   {struct rawRss}     rawContent      - The loaded raw content
  */
-void CR_FeedParser::setRawRss(struct rawRss rawContent)
+void FeedParser::setRawRss(struct rawRss rawContent)
 {
     this->rss = &rawContent;
 }
@@ -48,7 +49,7 @@ void CR_FeedParser::setRawRss(struct rawRss rawContent)
  *
  * @return  {struct rssItem*}    - Item of feed
  */
-struct rssItem* CR_FeedParser::getFeedItem()
+struct rssItem* FeedParser::getFeedItem()
 {
     struct rssItem *item = (struct rssItem*) malloc(sizeof(struct rssItem));
     item->title = (char*) malloc(sizeof(char) * 100);

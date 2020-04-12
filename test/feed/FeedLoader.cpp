@@ -10,11 +10,12 @@
  */
 #include <cassert>
 
-#include "feed/CR_FeedLoader.h"
+#include "feed/FeedLoader.h"
+using namespace cr;
 
 int run_test_feeds()
 {
-    CR_FeedLoader feedLoader;
+    FeedLoader feedLoader;
     bool feedLoaded = feedLoader.load("https://www.heise.de/developer/rss/news-atom.xml");
     assert(feedLoaded);
 

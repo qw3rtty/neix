@@ -1,12 +1,14 @@
 #include <iostream>
-#include "CR_UI.h"
-#include "feed/CR_FeedLoader.h"
-#include "feed/CR_FeedParser.h"
+#include "UI.h"
+#include "feed/FeedLoader.h"
+#include "feed/FeedParser.h"
+
+using namespace cr;
 
 int main()
 {
-    CR_FeedParser parser;
-    CR_FeedLoader loader;
+    FeedParser parser;
+    FeedLoader loader;
 
     if (!loader.loadFeedsFromConfig())
     {
@@ -30,7 +32,7 @@ int main()
         }
     }
 
-    CR_UI ui;
+    UI ui;
     ui.showUI();
 
     return 0;

@@ -13,13 +13,14 @@
 #include <string>
 
 #include "config.h"
-#include "CR_UI.h"
-#include "feed/CR_FeedLoader.h"
+#include "UI.h"
+#include "feed/FeedLoader.h"
+using namespace cr;
 
 /**
  * Constructor
  */
-CR_UI::CR_UI()
+UI::UI()
 {
     this->initChoices();
 
@@ -37,7 +38,7 @@ CR_UI::CR_UI()
 /**
  * Destructor
  */
-CR_UI::~CR_UI()
+UI::~UI()
 {
     clrtoeol();
     refresh();
@@ -48,7 +49,7 @@ CR_UI::~CR_UI()
 /**
  * Initialize choices
  */
-void CR_UI::initChoices()
+void UI::initChoices()
 {
     this->choice = 1;
     this->articleChoice = 1;
@@ -60,7 +61,7 @@ void CR_UI::initChoices()
 /**
  * Create's feed window
  */
-void CR_UI::createFeedWindow()
+void UI::createFeedWindow()
 {
     this->feedWindowWidth = (int) (COLS / 3);
     this->feedWindow = newwin(this->windowHeight, this->feedWindowWidth, 2, 0);
@@ -72,7 +73,7 @@ void CR_UI::createFeedWindow()
 /**
  * Create's article window
  */
-void CR_UI::createArticleWindow()
+void UI::createArticleWindow()
 {
     this->articleWindowWidth = (int) (COLS / 3) * 2;
     this->articleWindow = newwin(this->windowHeight, this->articleWindowWidth, 2, this->feedWindowWidth);
@@ -83,7 +84,7 @@ void CR_UI::createArticleWindow()
 /**
  * Show's complete UI
  */
-void CR_UI::showUI()
+void UI::showUI()
 {
     mvprintw(0, 0, "Use vim keys to navigate through articles, Press enter to select a choice or press 'q' to quit.");
     refresh();
@@ -141,7 +142,7 @@ void CR_UI::showUI()
 /**
  * Print UI windows
  */
-void CR_UI::printWindows()
+void UI::printWindows()
 {
     this->printFeedsInWindow();
     this->printArticlesInWindow();
@@ -151,7 +152,7 @@ void CR_UI::printWindows()
 /**
  * Print's feeds in window
  */
-void CR_UI::printFeedsInWindow()
+void UI::printFeedsInWindow()
 {
     int x = 2, y = 1, i;
     for (i = 0; i < FEEDS_MAX; ++i)
@@ -177,7 +178,7 @@ void CR_UI::printFeedsInWindow()
 /**
  * Print's articles in window
  */
-void CR_UI::printArticlesInWindow()
+void UI::printArticlesInWindow()
 {
     int x = 2, y = 1, i;
     int choice = this->choice - 1;
@@ -209,7 +210,7 @@ void CR_UI::printArticlesInWindow()
  * @param x
  * @param line
  */
-void CR_UI::printLineInWindow(WINDOW *window, int y, int x, char *line)
+void UI::printLineInWindow(WINDOW *window, int y, int x, char *line)
 {
     mvwprintw(window, y, x, "%s", line);
 }
@@ -223,7 +224,7 @@ void CR_UI::printLineInWindow(WINDOW *window, int y, int x, char *line)
  * @param x
  * @param line
  */
-void CR_UI::printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line)
+void UI::printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line)
 {
     wattron(window, A_REVERSE);
     mvwprintw(window, y, x, "%s", line);
@@ -237,7 +238,7 @@ void CR_UI::printLineHighlightedInWindow(WINDOW *window, int y, int x, char *lin
  * @param new_choice
  * @return
  */
-int CR_UI::increaseChoice(int new_choice)
+int UI::increaseChoice(int new_choice)
 {
     if (new_choice == feeds_count)
     {
@@ -258,7 +259,7 @@ int CR_UI::increaseChoice(int new_choice)
  * @param new_choice
  * @return
  */
-int CR_UI::decreaseChoice(int new_choice)
+int UI::decreaseChoice(int new_choice)
 {
     if (new_choice == 1)
     {
@@ -276,10 +277,10 @@ int CR_UI::decreaseChoice(int new_choice)
 /**
  * Open selected article in default browser
  */
-void CR_UI::openArticle()
+void UI::openArticle()
 {
     std::string call = "open ";
-    std::string url = call + feeds[this->choice-1]->items[this->articleChoice]->url;
+    std::string url = call + feeds[this->choice-1]->items[this->articleChoice-1]->url;
 
     system(url.c_str());
 }
