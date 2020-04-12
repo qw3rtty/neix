@@ -46,6 +46,8 @@ private:
     void printArticlesInWindow();
     void printLineInWindow(WINDOW *window, int y, int x, char *line);
     void printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line);
+
+    void openArticle();
 };
 
 #endif //CRSS_CR_UI_H

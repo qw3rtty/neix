@@ -9,6 +9,9 @@
  * @filesource
  */
 
+#include <cstdlib>
+#include <string>
+
 #include "config.h"
 #include "CR_UI.h"
 #include "feed/CR_FeedLoader.h"
@@ -113,6 +116,9 @@ void CR_UI::showUI()
                 break;
 
             case ENTER:
+                this->openArticle();
+                break;
+
             case KEY_Q:
                 this->quit = this->choice;
                 break;
@@ -264,4 +270,16 @@ int CR_UI::decreaseChoice(int new_choice)
     }
 
     return new_choice;
+}
+
+
+/**
+ * Open selected article in default browser
+ */
+void CR_UI::openArticle()
+{
+    std::string call = "open ";
+    std::string url = call + feeds[this->choice]->items[this->articleChoice]->url;
+
+    system(url.c_str());
 }

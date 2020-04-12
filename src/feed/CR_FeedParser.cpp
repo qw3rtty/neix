@@ -52,6 +52,7 @@ struct rssItem* CR_FeedParser::getFeedItem()
 {
     struct rssItem *item = (struct rssItem*) malloc(sizeof(struct rssItem));
     item->title = (char*) malloc(sizeof(char) * 100);
+    item->url = (char*) malloc(sizeof(char) * 100);
 
     std::string s(this->rss->content);
     s.erase(std::remove(s.begin(), s.end(), '\n'), s.end());
@@ -64,6 +65,7 @@ struct rssItem* CR_FeedParser::getFeedItem()
     rapidxml::xml_node<>* entryNode = rootNode->first_node("entry");
 
     strcpy(item->title, entryNode->first_node("title")->value());
+    strcpy(item->url, entryNode->first_node("id")->value());
 
     return item;
 }
