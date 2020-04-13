@@ -21,12 +21,11 @@ int main()
 
         std::string url(feeds[i]->url);
         loader.load(url);
+        parser.setRawRss(loader.getFeed());
 
         for (int j = 0; j < FEEDS_MAX; j++)
         {
-            parser.setRawRss(loader.getFeed());
             struct rssItem *item_temp = parser.getFeedItem();
-
             feeds[i]->items[j] = (struct rssItem*) malloc(FEEDS_MAX * sizeof(struct rssItem));
             feeds[i]->items[j] = item_temp;
         }

@@ -12,7 +12,10 @@
 #ifndef CRSS_FEEDPARSER_H
 #define CRSS_FEEDPARSER_H
 
+#include "../rapidxml/rapidxml.hpp"
 #include "FeedLoader.h"
+
+using namespace rapidxml;
 
 namespace cr
 {
@@ -26,6 +29,9 @@ namespace cr
         struct rssItem* getFeedItem();
 
     private:
+        xml_document<> xmlDocument;
+        xml_node<> *rootNode;
+        xml_node<> *entryNode;
         struct rawRss *rss;
     };
 }

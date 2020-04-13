@@ -41,6 +41,14 @@ FeedParser::~FeedParser()
 void FeedParser::setRawRss(struct rawRss rawContent)
 {
     this->rss = &rawContent;
+
+    std::string s(this->rss->content);
+    s.erase(std::remove(s.begin(), s.end(), '\n'), s.end());
+    char *temp = const_cast<char *>(s.c_str());
+
+    this->xmlDocument.parse<0>(temp);
+    this->rootNode = this->xmlDocument.first_node();
+    this->entryNode = nullptr;
 }
 
 
@@ -55,18 +63,17 @@ struct rssItem* FeedParser::getFeedItem()
     item->title = (char*) malloc(sizeof(char) * 100);
     item->url = (char*) malloc(sizeof(char) * 100);
 
-    std::string s(this->rss->content);
-    s.erase(std::remove(s.begin(), s.end(), '\n'), s.end());
-    char *test = const_cast<char *>(s.c_str());
+    if (this->entryNode == nullptr)
+    {
+        this->entryNode = this->rootNode->first_node("entry");
+    }
+    else
+    {
+        this->entryNode = this->entryNode->next_sibling();
+    }
 
-    xml_document<> doc;
-    doc.parse<0>(test);
-
-    rapidxml::xml_node<>* rootNode = doc.first_node();
-    rapidxml::xml_node<>* entryNode = rootNode->first_node("entry");
-
-    strcpy(item->title, entryNode->first_node("title")->value());
-    strcpy(item->url, entryNode->first_node("id")->value());
+    strcpy(item->title, this->entryNode->first_node("title")->value());
+    strcpy(item->url, this->entryNode->first_node("id")->value());
 
     return item;
 }
