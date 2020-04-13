@@ -12,7 +12,7 @@
 #ifndef CRSS_FEEDLOADER_H
 #define CRSS_FEEDLOADER_H
 
-#define FEEDS_MAX 5
+#define FEEDS_MAX 10
 
 #include <string>
 

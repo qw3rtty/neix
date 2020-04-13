@@ -98,22 +98,22 @@ void UI::showUI()
         {
             case KEY_UP:
             case KEY_K:
-                this->articleChoice = this->decreaseChoice(this->articleChoice);
+                this->articleChoice = this->decreaseChoice(this->articleChoice, FEEDS_MAX);
                 break;
 
             case KEY_DOWN:
             case KEY_J:
-                this->articleChoice = this->increaseChoice(this->articleChoice);
+                this->articleChoice = this->increaseChoice(this->articleChoice, FEEDS_MAX);
                 break;
 
             case KEY_UPPER_K:
                 this->articleChoice = 1;
-                this->choice = this->decreaseChoice(this->choice);
+                this->choice = this->decreaseChoice(this->choice, feeds_count);
                 break;
 
             case KEY_UPPER_J:
                 this->articleChoice = 1;
-                this->choice = this->increaseChoice(this->choice);
+                this->choice = this->increaseChoice(this->choice, feeds_count);
                 break;
 
             case ENTER:
@@ -236,11 +236,12 @@ void UI::printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line)
  * Increase choice
  *
  * @param new_choice
+ * @param count
  * @return
  */
-int UI::increaseChoice(int new_choice)
+int UI::increaseChoice(int new_choice, int count)
 {
-    if (new_choice == feeds_count)
+    if (new_choice == count)
     {
         new_choice = 1;
     }
@@ -257,13 +258,14 @@ int UI::increaseChoice(int new_choice)
  * Decrease choice
  *
  * @param new_choice
+ * @param count
  * @return
  */
-int UI::decreaseChoice(int new_choice)
+int UI::decreaseChoice(int new_choice, int count)
 {
     if (new_choice == 1)
     {
-        new_choice = feeds_count;
+        new_choice = count;
     }
     else
     {

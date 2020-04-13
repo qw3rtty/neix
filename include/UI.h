@@ -24,8 +24,8 @@ namespace cr
 
         void showUI();
         void printWindows();
-        int increaseChoice(int new_choice);
-        int decreaseChoice(int new_choice);
+        int increaseChoice(int new_choice, int count);
+        int decreaseChoice(int new_choice, int count);
 
     private:
         WINDOW *feedWindow;
