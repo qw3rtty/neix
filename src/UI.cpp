@@ -181,16 +181,16 @@ void UI::printFeedsInWindow()
 void UI::printArticlesInWindow()
 {
     int x = 2, y = 1, i;
-    int choice = this->choice - 1;
+    int currentChoice = this->choice - 1;
     for (i = 0; i < FEEDS_MAX; i++)
     {
         if (this->articleChoice == i + 1)
         {
-            this->printLineHighlightedInWindow(this->articleWindow, y, x, feeds[choice]->items[i]->title);
+            this->printLineHighlightedInWindow(this->articleWindow, y, x, feeds[currentChoice]->items[i]->title);
         }
         else
         {
-            this->printLineInWindow(this->articleWindow, y, x, feeds[choice]->items[i]->title);
+            this->printLineInWindow(this->articleWindow, y, x, feeds[currentChoice]->items[i]->title);
         }
 
         wclrtoeol(this->articleWindow);
