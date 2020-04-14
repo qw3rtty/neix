@@ -91,8 +91,8 @@ bool FeedLoader::loadFeedsFromConfig()
         }
 
         feeds[feeds_count] = (struct rss*) malloc(sizeof(struct rss));
-        feeds[feeds_count]->title = (char*) malloc(sizeof(char) * name.length());
-        feeds[feeds_count]->url = (char*) malloc(sizeof(char) * link.length());
+        feeds[feeds_count]->title = (char*) malloc(sizeof(char) * name.length() + 1);
+        feeds[feeds_count]->url = (char*) malloc(sizeof(char) * link.length() + 1);
 
         strcpy(feeds[feeds_count]->title, name.c_str());
         strcpy(feeds[feeds_count]->url, link.c_str());

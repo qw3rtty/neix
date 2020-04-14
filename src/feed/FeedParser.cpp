@@ -60,9 +60,6 @@ void FeedParser::setRawRss(struct rawRss rawContent)
 struct rssItem* FeedParser::getFeedItem()
 {
     struct rssItem *item = (struct rssItem*) malloc(sizeof(struct rssItem));
-    item->title = (char*) malloc(sizeof(char) * 100);
-    item->url = (char*) malloc(sizeof(char) * 100);
-
     if (this->entryNode == nullptr)
     {
         this->entryNode = this->rootNode->first_node("entry");
@@ -72,8 +69,13 @@ struct rssItem* FeedParser::getFeedItem()
         this->entryNode = this->entryNode->next_sibling();
     }
 
-    strcpy(item->title, this->entryNode->first_node("title")->value());
-    strcpy(item->url, this->entryNode->first_node("id")->value());
+    char *title = this->entryNode->first_node("title")->value();
+    item->title = (char*) malloc(sizeof(char) * strlen(title) + 1);
+    strcpy(item->title, title);
+
+    char *url = this->entryNode->first_node("link")->first_attribute("href")->value();
+    item->url = (char*) malloc(sizeof(char) * strlen(url) + 1);
+    strcpy(item->url, url);
 
     return item;
 }
