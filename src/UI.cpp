@@ -15,7 +15,7 @@
 #include "config.h"
 #include "UI.h"
 #include "feed/FeedLoader.h"
-using namespace cr;
+using namespace crss;
 
 /**
  * Constructor

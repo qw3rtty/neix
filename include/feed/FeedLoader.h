@@ -41,7 +41,7 @@ struct rss
     struct rssItem *items[FEEDS_MAX];
 };
 
-namespace cr
+namespace crss
 {
     class FeedLoader
     {

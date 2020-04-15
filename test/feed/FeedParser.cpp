@@ -11,7 +11,7 @@
 #include <cassert>
 
 #include "feed/FeedParser.h"
-using namespace cr;
+using namespace crss;
 
 int run_test_feed_parser()
 {

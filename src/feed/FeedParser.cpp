@@ -17,7 +17,7 @@
 #include "feed/FeedParser.h"
 
 using namespace rapidxml;
-using namespace cr;
+using namespace crss;
 
 /**
  * Constructor

@@ -3,7 +3,7 @@
 #include "feed/FeedLoader.h"
 #include "feed/FeedParser.h"
 
-using namespace cr;
+using namespace crss;
 
 int main()
 {

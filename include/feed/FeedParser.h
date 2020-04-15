@@ -17,7 +17,7 @@
 
 using namespace rapidxml;
 
-namespace cr
+namespace crss
 {
     class FeedParser
     {

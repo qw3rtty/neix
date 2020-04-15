@@ -14,7 +14,7 @@
 
 #include <ncurses.h>
 
-namespace cr
+namespace crss
 {
     class UI
     {
