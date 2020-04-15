@@ -20,11 +20,10 @@
 #include <cstring>
 #include <curl/curl.h>
 
+#include "feed/Feeds.h"
 #include "feed/FeedLoader.h"
+#include "feed/FeedParser.h"
 using namespace crss;
-
-struct rss *feeds[FEEDS_MAX];
-int feeds_count = 0;
 
 
 /**
@@ -59,6 +58,8 @@ void FeedLoader::resetFeed()
 
 /**
  * Load feeds from config file
+ *
+ * @return  {boolean}   - true on success, false else
  */
 bool FeedLoader::loadFeedsFromConfig()
 {
@@ -79,6 +80,7 @@ bool FeedLoader::loadFeedsFromConfig()
         return false;
     }
 
+    Feeds *feeds = Feeds::getInstance();
     while (!file.eof())
     {
         getline(file, line);
@@ -90,16 +92,47 @@ bool FeedLoader::loadFeedsFromConfig()
             continue;
         }
 
-        feeds[feeds_count] = (struct rss*) malloc(sizeof(struct rss));
-        feeds[feeds_count]->title = (char*) malloc(sizeof(char) * name.length() + 1);
-        feeds[feeds_count]->url = (char*) malloc(sizeof(char) * link.length() + 1);
+        struct rss *newFeed = (struct rss*) malloc(sizeof(struct rss));
+        newFeed->title = (char*) malloc(sizeof(char) * name.length() + 1);
+        newFeed->url = (char*) malloc(sizeof(char) * link.length() + 1);
 
-        strcpy(feeds[feeds_count]->title, name.c_str());
-        strcpy(feeds[feeds_count]->url, link.c_str());
+        strcpy(newFeed->title, name.c_str());
+        strcpy(newFeed->url, link.c_str());
 
-        feeds_count++;
+        feeds->addFeed(newFeed);
     }
     file.close();
+
+    return true;
+}
+
+
+/**
+ * Load articles of all feeds
+ *
+ * @return  {boolean}   - true on success, false else
+ */
+bool FeedLoader::loadArticlesOfFeeds()
+{
+    Feeds *feeds = Feeds::getInstance();
+    FeedParser parser;
+
+    std::cout << feeds->getFeedCount() << " Feeds to load" << std::endl;
+    for (int i = 0; i < feeds->getFeedCount(); i++)
+    {
+        struct rss *feed = feeds->getFeed(i);
+        std::cout << "Loading: " << feed->title << " | " << feed->url << std::endl;
+
+        std::string url(feed->url);
+        this->load(url);
+        parser.setRawRss(this->getFeed());
+
+        for (int j = 0; j < FEEDS_MAX; j++)
+        {
+            struct rssItem *newArticle = parser.getFeedItem();
+            feeds->addArticleToFeed(i, j, newArticle);
+        }
+    }
 
     return true;
 }

@@ -22,7 +22,7 @@ namespace crss
         UI();
         ~UI();
 
-        void showUI();
+        void show();
         void printWindows();
         int increaseChoice(int new_choice, int count);
         int decreaseChoice(int new_choice, int count);

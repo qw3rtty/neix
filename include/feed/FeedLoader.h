@@ -12,33 +12,13 @@
 #ifndef CRSS_FEEDLOADER_H
 #define CRSS_FEEDLOADER_H
 
-#define FEEDS_MAX 10
-
 #include <string>
-
-extern struct rss *feeds[FEEDS_MAX];
-extern int feeds_count;
+#include "Feeds.h"
 
 struct rawRss
 {
     char *content;
     size_t size;
-};
-
-struct rssItem
-{
-    char *title;
-    char *description;
-    char *date;
-    char *url;
-    int read;
-};
-
-struct rss
-{
-    char *title;
-    char *url;
-    struct rssItem *items[FEEDS_MAX];
 };
 
 namespace crss
@@ -50,6 +30,7 @@ namespace crss
         ~FeedLoader();
 
         bool loadFeedsFromConfig();
+        bool loadArticlesOfFeeds();
         bool load(std::string feedUrl);
         struct rawRss getFeed();
 

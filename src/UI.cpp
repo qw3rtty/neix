@@ -84,8 +84,9 @@ void UI::createArticleWindow()
 /**
  * Show's complete UI
  */
-void UI::showUI()
+void UI::show()
 {
+    Feeds *feeds = Feeds::getInstance();
     mvprintw(0, 0, "Use vim keys to navigate through articles, Press enter to select a choice or press 'q' to quit.");
     refresh();
 
@@ -108,12 +109,12 @@ void UI::showUI()
 
             case KEY_UPPER_K:
                 this->articleChoice = 1;
-                this->choice = this->decreaseChoice(this->choice, feeds_count);
+                this->choice = this->decreaseChoice(this->choice, feeds->getFeedCount());
                 break;
 
             case KEY_UPPER_J:
                 this->articleChoice = 1;
-                this->choice = this->increaseChoice(this->choice, feeds_count);
+                this->choice = this->increaseChoice(this->choice, feeds->getFeedCount());
                 break;
 
             case ENTER:
@@ -154,16 +155,17 @@ void UI::printWindows()
  */
 void UI::printFeedsInWindow()
 {
+    Feeds *feeds = Feeds::getInstance();
     int x = 2, y = 1, i;
-    for (i = 0; i < feeds_count; ++i)
+    for (i = 0; i < feeds->getFeedCount(); ++i)
     {
         if (this->choice == i + 1)
         {
-            this->printLineHighlightedInWindow(this->feedWindow, y, x, feeds[i]->title);
+            this->printLineHighlightedInWindow(this->feedWindow, y, x, feeds->getFeed(i)->title);
         }
         else
         {
-            this->printLineInWindow(this->feedWindow, y, x, feeds[i]->title);
+            this->printLineInWindow(this->feedWindow, y, x, feeds->getFeed(i)->title);
         }
 
         wclrtoeol(this->feedWindow);
@@ -180,17 +182,18 @@ void UI::printFeedsInWindow()
  */
 void UI::printArticlesInWindow()
 {
+    Feeds *feeds = Feeds::getInstance();
     int x = 2, y = 1, i;
     int currentChoice = this->choice - 1;
     for (i = 0; i < FEEDS_MAX; i++)
     {
         if (this->articleChoice == i + 1)
         {
-            this->printLineHighlightedInWindow(this->articleWindow, y, x, feeds[currentChoice]->items[i]->title);
+            this->printLineHighlightedInWindow(this->articleWindow, y, x, feeds->getArticleOfFeed(currentChoice, i)->title);
         }
         else
         {
-            this->printLineInWindow(this->articleWindow, y, x, feeds[currentChoice]->items[i]->title);
+            this->printLineInWindow(this->articleWindow, y, x, feeds->getArticleOfFeed(currentChoice, i)->title);
         }
 
         wclrtoeol(this->articleWindow);
@@ -281,8 +284,9 @@ int UI::decreaseChoice(int new_choice, int count)
  */
 void UI::openArticle()
 {
+    Feeds *feeds = Feeds::getInstance();
     std::string call = "open ";
-    std::string url = call + feeds[this->choice-1]->items[this->articleChoice-1]->url;
+    std::string url = call + feeds->getArticleOfFeed(this->choice-1, this->articleChoice-1)->url;
 
     system(url.c_str());
 }
