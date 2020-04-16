@@ -58,7 +58,7 @@ bool Feeds::validIndex(int index)
 {
     bool valid = true;
 
-    if (index < 0 || index > this->getFeedCount())
+    if (index < 0 || index > this->getCount())
     {
         valid = false;
     }
@@ -73,7 +73,7 @@ bool Feeds::validIndex(int index)
  * @param   {struct rss*}   newFeed     - New feed to add
  * @return  {boolean}                   - true on success, false else
  */
-bool Feeds::addFeed(struct rss *newFeed)
+bool Feeds::add(struct rss *newFeed)
 {
     this->rssFeeds[this->count] = (struct rss*) malloc(sizeof(struct rss));
     memcpy(&this->rssFeeds[this->count], &newFeed, sizeof(newFeed));
@@ -91,7 +91,7 @@ bool Feeds::addFeed(struct rss *newFeed)
  * @param   {struct rssItem *}  newArticle      - The new article to add
  * @return  {boolean}                           - true on success, false else
  */
-bool Feeds::addArticleToFeed(int feedIndex, int articleIndex, struct rssItem *newArticle)
+bool Feeds::addArticle(int feedIndex, int articleIndex, struct rssItem *newArticle)
 {
     if (!this->validIndex(feedIndex))
     {
@@ -111,7 +111,7 @@ bool Feeds::addArticleToFeed(int feedIndex, int articleIndex, struct rssItem *ne
  * @param   {int}           index   - Index of feed which should be returned
  * @return  {struct rss*}           - RSS feed
  */
-struct rss *Feeds::getFeed(int index)
+struct rss *Feeds::get(int index)
 {
     if (!this->validIndex(index))
     {
@@ -129,7 +129,7 @@ struct rss *Feeds::getFeed(int index)
  * @param   {int}               articleIndex    - Index of article
  * @return  {struct rssItem*}                   - RSS article of feed
  */
-struct rssItem * Feeds::getArticleOfFeed(int feedIndex, int articleIndex)
+struct rssItem * Feeds::getArticle(int feedIndex, int articleIndex)
 {
     if (!this->validIndex(feedIndex))
     {
@@ -145,7 +145,7 @@ struct rssItem * Feeds::getArticleOfFeed(int feedIndex, int articleIndex)
  *
  * @return  {int}   - Count of feeds
  */
-int Feeds::getFeedCount()
+int Feeds::getCount()
 {
     return this->count;
 }

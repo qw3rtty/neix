@@ -36,12 +36,12 @@ namespace crss
     {
     public:
         static Feeds *getInstance();
-        struct rss *getFeed(int index);
-        struct rssItem *getArticleOfFeed(int feedIndex, int articleIndex);
-        int getFeedCount();
+        struct rss *get(int index);
+        struct rssItem *getArticle(int feedIndex, int articleIndex);
+        int getCount();
 
-        bool addFeed(struct rss *newFeed);
-        bool addArticleToFeed(int feedIndex, int articleIndex, struct rssItem *newArticle);
+        bool add(struct rss *newFeed);
+        bool addArticle(int feedIndex, int articleIndex, struct rssItem *newArticle);
 
     private:
         Feeds();
