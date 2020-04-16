@@ -49,6 +49,25 @@ Feeds *Feeds::getInstance()
 
 
 /**
+ * Validate if given index is in range
+ *
+ * @param   {int}   index   - Index to check
+ * @return  {bool}          - true if index is valid, false else
+ */
+bool Feeds::validIndex(int index)
+{
+    bool valid = true;
+
+    if (index < 0 || index > this->getFeedCount())
+    {
+        valid = false;
+    }
+
+    return valid;
+}
+
+
+/**
  * Add given feed
  *
  * @param   {struct rss*}   newFeed     - New feed to add
@@ -74,7 +93,11 @@ bool Feeds::addFeed(struct rss *newFeed)
  */
 bool Feeds::addArticleToFeed(int feedIndex, int articleIndex, struct rssItem *newArticle)
 {
-    // TODO: check if index exists!
+    if (!this->validIndex(feedIndex))
+    {
+        throw "Index is not in range!";
+    }
+
     this->rssFeeds[feedIndex]->items[articleIndex] = (struct rssItem*) malloc(FEEDS_MAX * sizeof(struct rssItem));
     this->rssFeeds[feedIndex]->items[articleIndex] = newArticle;
 
@@ -90,7 +113,11 @@ bool Feeds::addArticleToFeed(int feedIndex, int articleIndex, struct rssItem *ne
  */
 struct rss *Feeds::getFeed(int index)
 {
-    // TODO: check if index exists!
+    if (!this->validIndex(index))
+    {
+        throw "Index is not in range!";
+    }
+
     return this->rssFeeds[index];
 }
 
@@ -104,7 +131,11 @@ struct rss *Feeds::getFeed(int index)
  */
 struct rssItem * Feeds::getArticleOfFeed(int feedIndex, int articleIndex)
 {
-    // TODO: check if index exists!
+    if (!this->validIndex(feedIndex))
+    {
+        throw "Index is not in range!";
+    }
+
     return this->rssFeeds[feedIndex]->items[articleIndex];
 }
 

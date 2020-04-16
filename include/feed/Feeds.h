@@ -49,6 +49,8 @@ namespace crss
 
         static Feeds *instance;
         struct rss *rssFeeds[FEEDS_MAX];
+
+        bool validIndex(int index);
     };
 }
 
