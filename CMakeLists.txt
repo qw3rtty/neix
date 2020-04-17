@@ -27,7 +27,7 @@ option(enable-tests "Enables test suite" YES)
 if(enable-tests)
     enable_testing()
     add_subdirectory(test)
-    add_test(Test-Application /bin/tests)
+    add_test(Feeds /bin/tests)
 endif()
 
 INSTALL(TARGETS crss RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")

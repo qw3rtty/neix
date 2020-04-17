@@ -16,8 +16,14 @@ using namespace crss;
 int run_test_feeds()
 {
     FeedLoader feedLoader;
-    bool feedLoaded = feedLoader.load("https://www.heise.de/developer/rss/news-atom.xml");
-    assert(feedLoaded);
+    bool xmlLoaded = feedLoader.load("https://www.heise.de/developer/rss/news-atom.xml");
+    assert(xmlLoaded);
+
+    bool feedsLoaded = feedLoader.loadFeedsFromConfig();
+    assert(feedsLoaded);
+
+    bool articleLoaded = feedLoader.loadArticlesOfFeeds();
+    assert(articleLoaded);
 
     struct rawRss xml_feed = feedLoader.getFeed();
     assert(xml_feed.content != NULL);
