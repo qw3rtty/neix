@@ -10,11 +10,13 @@
  */
 
 #include <cstdlib>
+#include <ctime>
 #include <string>
 
 #include "config.h"
 #include "UI.h"
-#include "feed/FeedLoader.h"
+#include "feed/Feeds.h"
+
 using namespace crss;
 
 /**
@@ -29,6 +31,7 @@ UI::UI()
     noecho();
     cbreak();
 
+    this->lineSpacer = 4;
     this->windowHeight = LINES - 4;
     this->createFeedWindow();
     this->createArticleWindow();
@@ -189,11 +192,11 @@ void UI::printArticlesInWindow()
     {
         if (this->articleChoice == i + 1)
         {
-            this->printLineHighlightedInWindow(this->articleWindow, y, x, feeds->getArticle(currentChoice, i)->title);
+            this->printArticleHighlightedInWindow(this->articleWindow, y, x, feeds->getArticle(currentChoice, i));
         }
         else
         {
-            this->printLineInWindow(this->articleWindow, y, x, feeds->getArticle(currentChoice, i)->title);
+            this->printArticleInWindow(this->articleWindow, y, x, feeds->getArticle(currentChoice, i));
         }
 
         wclrtoeol(this->articleWindow);
@@ -230,7 +233,55 @@ void UI::printLineInWindow(WINDOW *window, int y, int x, char *line)
 void UI::printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line)
 {
     wattron(window, A_REVERSE);
-    mvwprintw(window, y, x, "%s", line);
+    this->printLineInWindow(window, y, x, line);
+    wattroff(window, A_REVERSE);
+}
+
+
+/**
+ * Print standard feed article
+ *
+ * @param window
+ * @param y
+ * @param x
+ * @param entry
+ */
+void UI::printArticleInWindow(WINDOW *window, int y, int x, struct rssItem *entry)
+{
+    int xPos = x;
+    char *readIcon = (char*)"*";
+    if (entry->read)
+    {
+        readIcon = (char*)" ";
+    }
+    mvwprintw(window, y, xPos, "%s", readIcon);
+
+    xPos += strlen(readIcon) + this->lineSpacer;
+    mvwprintw(window, y, xPos, "%s", entry->date); // TODO: Format date
+
+    xPos += strlen(entry->date) + this->lineSpacer;
+    std::string fullTitle(entry->title);
+    std::string title = fullTitle.substr(0, 60);
+    if (fullTitle.length() > 60)
+    {
+        title += "...";
+    }
+    mvwprintw(window, y, xPos, "%s", title.c_str());
+}
+
+
+/**
+ * Print highlighted feed article
+ *
+ * @param window
+ * @param y
+ * @param x
+ * @param entry
+ */
+void UI::printArticleHighlightedInWindow(WINDOW *window, int y, int x, struct rssItem *entry)
+{
+    wattron(window, A_REVERSE);
+    this->printArticleInWindow(window, y, x, entry);
     wattroff(window, A_REVERSE);
 }
 
@@ -285,8 +336,11 @@ int UI::decreaseChoice(int new_choice, int count)
 void UI::openArticle()
 {
     Feeds *feeds = Feeds::getInstance();
+    struct rssItem *entry = feeds->getArticle(this->choice - 1, this->articleChoice - 1);
+    entry->read = 1;
+
     std::string call = "open ";
-    std::string url = call + feeds->getArticle(this->choice - 1, this->articleChoice - 1)->url;
+    std::string url = call + entry->url;
 
     system(url.c_str());
 }

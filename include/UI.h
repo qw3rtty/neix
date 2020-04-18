@@ -13,6 +13,7 @@
 #define CRSS_UI_H
 
 #include <ncurses.h>
+#include "feed/Feeds.h"
 
 namespace crss
 {
@@ -31,6 +32,7 @@ namespace crss
         WINDOW *feedWindow;
         WINDOW *articleWindow;
 
+        int lineSpacer;
         int choice;
         int articleChoice;
         int quit;
@@ -46,8 +48,11 @@ namespace crss
 
         void printFeedsInWindow();
         void printArticlesInWindow();
+
         void printLineInWindow(WINDOW *window, int y, int x, char *line);
         void printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line);
+        void printArticleInWindow(WINDOW *window, int y, int x, struct rssItem *entry);
+        void printArticleHighlightedInWindow(WINDOW *window, int y, int x, struct rssItem *entry);
 
         void openArticle();
     };
