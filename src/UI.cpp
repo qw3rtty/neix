@@ -133,11 +133,7 @@ void UI::show()
                 break;
         }
 
-        if (c != ENTER)
-        {
-            this->printWindows();
-        }
-
+        this->printWindows();
         if (this->quit != 0)
         {
             break;
