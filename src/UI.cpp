@@ -133,7 +133,11 @@ void UI::show()
                 break;
         }
 
-        this->printWindows();
+        if (c != ENTER)
+        {
+            this->printWindows();
+        }
+
         if (this->quit != 0)
         {
             break;
@@ -342,6 +346,13 @@ void UI::openArticle()
 
     struct rssItem *entry = feeds->getArticle(this->choice - 1, this->articleChoice - 1);
     entry->read = 1;
+
+
+//    wclear(this->articleWindow);
+//    box(this->articleWindow, 0, 0);
+//    wrefresh(this->articleWindow);
+//    mvwprintw(this->articleWindow, 2, 1, "%s", entry->description);
+//    wrefresh(this->articleWindow);
 
     std::string call = "open ";
     std::string url = call + entry->url;

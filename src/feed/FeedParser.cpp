@@ -74,6 +74,13 @@ struct rssItem* FeedParser::getFeedItem()
     item->title = (char*) malloc(sizeof(char) * strlen(title) + 1);
     strcpy(item->title, title);
 
+    if (this->entryNode->first_node("content"))
+    {
+        char *description = this->entryNode->first_node("content")->value();
+        item->description = (char*) malloc(sizeof(char) * strlen(description) + 1);
+        strcpy(item->description, description);
+    }
+
     char *date = this->entryNode->first_node("updated")->value();
     item->date = (char*) malloc(sizeof(char) * strlen(date) + 1);
     strcpy(item->date, date);
