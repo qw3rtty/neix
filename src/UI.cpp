@@ -249,10 +249,10 @@ void UI::printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line)
 void UI::printArticleInWindow(WINDOW *window, int y, int x, struct rssItem *entry)
 {
     int xPos = x;
-    char *readIcon = (char*)"*";
+    char *readIcon = (char*)"[*]";
     if (entry->read)
     {
-        readIcon = (char*)" ";
+        readIcon = (char*)"[ ]";
     }
     mvwprintw(window, y, xPos, "%s", readIcon);
 
@@ -342,5 +342,5 @@ void UI::openArticle()
     std::string call = "open ";
     std::string url = call + entry->url;
 
-    system(url.c_str());
+//    system(url.c_str());
 }
