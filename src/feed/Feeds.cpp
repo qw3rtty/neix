@@ -9,9 +9,9 @@
  * @filesource
  */
 
-#include <stdio.h>
-#include <string.h>
+#include <cstring>
 #include <cstdlib>
+#include <cstdio>
 #include "feed/Feeds.h"
 
 using namespace crss;
@@ -148,4 +148,23 @@ struct rssItem * Feeds::getArticle(int feedIndex, int articleIndex)
 int Feeds::getCount()
 {
     return this->count;
+}
+
+
+/**
+ * Create feed line with unread/item count
+ *
+ * @param   {int}   feedIndex   - Index of feed
+ * @return  {char*}
+ */
+char* Feeds::getFeedLineTitle(int feedIndex)
+{
+    Feeds *feeds = Feeds::getInstance();
+    struct rss *feed = feeds->get(feedIndex);
+
+    char *line = feed->title;
+    char *lineWithCount = (char*) malloc(sizeof(char) * (strlen(line) + 10));
+    sprintf(lineWithCount, "%s [%d/%d]", line, feed->unreadCount, feed->articleCount);
+
+    return lineWithCount;
 }

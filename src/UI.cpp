@@ -10,7 +10,6 @@
  */
 
 #include <cstdlib>
-#include <ctime>
 #include <string>
 
 #include "config.h"
@@ -162,13 +161,14 @@ void UI::printFeedsInWindow()
     int x = 2, y = 1, i;
     for (i = 0; i < feeds->getCount(); ++i)
     {
+        char *line = feeds->getFeedLineTitle(i);
         if (this->choice == i + 1)
         {
-            this->printLineHighlightedInWindow(this->feedWindow, y, x, feeds->get(i)->title);
+            this->printLineHighlightedInWindow(this->feedWindow, y, x, line);
         }
         else
         {
-            this->printLineInWindow(this->feedWindow, y, x, feeds->get(i)->title);
+            this->printLineInWindow(this->feedWindow, y, x, line);
         }
 
         wclrtoeol(this->feedWindow);
@@ -336,11 +336,15 @@ int UI::decreaseChoice(int new_choice, int count)
 void UI::openArticle()
 {
     Feeds *feeds = Feeds::getInstance();
+
+    struct rss *feed = feeds->get(this->choice - 1);
+    feed->unreadCount--;
+
     struct rssItem *entry = feeds->getArticle(this->choice - 1, this->articleChoice - 1);
     entry->read = 1;
 
     std::string call = "open ";
     std::string url = call + entry->url;
 
-//    system(url.c_str());
+    system(url.c_str());
 }

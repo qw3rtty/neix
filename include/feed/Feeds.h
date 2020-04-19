@@ -26,7 +26,8 @@ struct rss
 {
     char *title;
     char *url;
-    int itemCount;
+    int articleCount;
+    int unreadCount;
     struct rssItem *items[FEEDS_MAX];
 };
 
@@ -39,6 +40,7 @@ namespace crss
         struct rss *get(int index);
         struct rssItem *getArticle(int feedIndex, int articleIndex);
         int getCount();
+        char* getFeedLineTitle(int feedIndex);
 
         bool add(struct rss *newFeed);
         bool addArticle(int feedIndex, int articleIndex, struct rssItem *newArticle);

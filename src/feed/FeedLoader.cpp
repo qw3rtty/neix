@@ -99,6 +99,9 @@ bool FeedLoader::loadFeedsFromConfig()
         strcpy(newFeed->title, name.c_str());
         strcpy(newFeed->url, link.c_str());
 
+        newFeed->articleCount = 0;
+        newFeed->unreadCount = 0;
+
         feeds->add(newFeed);
     }
     file.close();
@@ -131,6 +134,9 @@ bool FeedLoader::loadArticlesOfFeeds()
         {
             struct rssItem *newArticle = parser.getFeedItem();
             feeds->addArticle(i, j, newArticle);
+
+            feed->articleCount++;
+            feed->unreadCount++;
         }
     }
 
