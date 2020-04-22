@@ -36,7 +36,7 @@ FeedParser::~FeedParser()
 /**
  * Set raw rss content
  *
- * @param   {struct rawRss}     rawContent      - The loaded raw content
+ * @param rawContent    - The loaded raw content
  */
 void FeedParser::setRawRss(struct rawRss rawContent)
 {
@@ -55,7 +55,7 @@ void FeedParser::setRawRss(struct rawRss rawContent)
 /**
  * Get an feed item of raw content
  *
- * @return  {struct rssItem*}    - Item of feed
+ * @return  Item of feed
  */
 struct rssItem* FeedParser::getFeedItem()
 {

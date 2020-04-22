@@ -59,7 +59,6 @@ void UI::initChoices()
 }
 
 
-
 /**
  * Create's feed window
  */
@@ -69,7 +68,6 @@ void UI::createFeedWindow()
     this->feedWindow = newwin(this->windowHeight, this->feedWindowWidth, 2, 0);
     keypad(this->feedWindow, TRUE);
 }
-
 
 
 /**
@@ -211,10 +209,10 @@ void UI::printArticlesInWindow()
 /**
  * Print standard line
  *
- * @param window
- * @param y
- * @param x
- * @param line
+ * @param   window      - The window to print
+ * @param   y           - Y coordinate
+ * @param   x           - X coordinate
+ * @param   line        - Line to print
  */
 void UI::printLineInWindow(WINDOW *window, int y, int x, char *line)
 {
@@ -225,10 +223,10 @@ void UI::printLineInWindow(WINDOW *window, int y, int x, char *line)
 /**
  * Print highlighted line
  *
- * @param window
- * @param y
- * @param x
- * @param line
+ * @param   window      - The window to print
+ * @param   y           - Y coordinate
+ * @param   x           - X coordinate
+ * @param   line        - Line to print
  */
 void UI::printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line)
 {
@@ -241,10 +239,10 @@ void UI::printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line)
 /**
  * Print standard feed article
  *
- * @param window
- * @param y
- * @param x
- * @param entry
+ * @param   window      - The window to print
+ * @param   y           - Y coordinate
+ * @param   x           - X coordinate
+ * @param   entry       - RSS item to print
  */
 void UI::printArticleInWindow(WINDOW *window, int y, int x, struct rssItem *entry)
 {
@@ -273,10 +271,10 @@ void UI::printArticleInWindow(WINDOW *window, int y, int x, struct rssItem *entr
 /**
  * Print highlighted feed article
  *
- * @param window
- * @param y
- * @param x
- * @param entry
+ * @param   window      - The window to print
+ * @param   y           - Y coordinate
+ * @param   x           - X coordinate
+ * @param   entry       - RSS item to print
  */
 void UI::printArticleHighlightedInWindow(WINDOW *window, int y, int x, struct rssItem *entry)
 {
@@ -289,9 +287,9 @@ void UI::printArticleHighlightedInWindow(WINDOW *window, int y, int x, struct rs
 /**
  * Increase choice
  *
- * @param new_choice
- * @param count
- * @return
+ * @param   new_choice      - The new choice index
+ * @param   count           - Count of feeds/article
+ * @return  New choice index
  */
 int UI::increaseChoice(int new_choice, int count)
 {
@@ -311,9 +309,9 @@ int UI::increaseChoice(int new_choice, int count)
 /**
  * Decrease choice
  *
- * @param new_choice
- * @param count
- * @return
+ * @param   new_choice      - The new choice index
+ * @param   count           - Count of feeds/article
+ * @return  New choice index
  */
 int UI::decreaseChoice(int new_choice, int count)
 {

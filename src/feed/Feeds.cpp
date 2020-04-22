@@ -35,7 +35,7 @@ Feeds::Feeds()
 /**
  * Get instance of feeds
  *
- * @return  {*Feeds}
+ * @return  The instance
  */
 Feeds *Feeds::getInstance()
 {
@@ -51,8 +51,8 @@ Feeds *Feeds::getInstance()
 /**
  * Validate if given index is in range
  *
- * @param   {int}   index   - Index to check
- * @return  {bool}          - true if index is valid, false else
+ * @param  index    - Index to check
+ * @return         true if index is valid, false else
  */
 bool Feeds::validIndex(int index)
 {
@@ -69,9 +69,8 @@ bool Feeds::validIndex(int index)
 
 /**
  * Add given feed
- *
- * @param   {struct rss*}   newFeed     - New feed to add
- * @return  {boolean}                   - true on success, false else
+ * @param   newFeed     - New feed to add
+ * @return  true on success, false else
  */
 bool Feeds::add(struct rss *newFeed)
 {
@@ -86,10 +85,10 @@ bool Feeds::add(struct rss *newFeed)
 /**
  * Add given article to feed
  *
- * @param   {int}               feedIndex       - Index of feed
- * @param   {int}               articleIndex    - Index of new article
- * @param   {struct rssItem *}  newArticle      - The new article to add
- * @return  {boolean}                           - true on success, false else
+ * @param   feedIndex       - Index of feed
+ * @param   articleIndex    - Index of new article
+ * @param   newArticle      - The new article to add
+ * @return  true on success, false else
  */
 bool Feeds::addArticle(int feedIndex, int articleIndex, struct rssItem *newArticle)
 {
@@ -108,8 +107,8 @@ bool Feeds::addArticle(int feedIndex, int articleIndex, struct rssItem *newArtic
 /**
  * Get feed of given index
  *
- * @param   {int}           index   - Index of feed which should be returned
- * @return  {struct rss*}           - RSS feed
+ * @param   index   - Index of feed which should be returned
+ * @return  The RSS feed
  */
 struct rss *Feeds::get(int index)
 {
@@ -125,9 +124,9 @@ struct rss *Feeds::get(int index)
 /**
  * Get specific article of feed
  *
- * @param   {int}               feedIndex       - Index of feed
- * @param   {int}               articleIndex    - Index of article
- * @return  {struct rssItem*}                   - RSS article of feed
+ * @param   feedIndex       - Index of feed
+ * @param   articleIndex    - Index of article
+ * @return  RSS article of feed
  */
 struct rssItem * Feeds::getArticle(int feedIndex, int articleIndex)
 {
@@ -143,7 +142,7 @@ struct rssItem * Feeds::getArticle(int feedIndex, int articleIndex)
 /**
  * Get count of all feeds
  *
- * @return  {int}   - Count of feeds
+ * @return  Count of feeds
  */
 int Feeds::getCount()
 {
@@ -154,8 +153,8 @@ int Feeds::getCount()
 /**
  * Create feed line with unread/item count
  *
- * @param   {int}   feedIndex   - Index of feed
- * @return  {char*}
+ * @param   feedIndex   Index of feed
+ * @return  Title line of feed
  */
 char* Feeds::getFeedLineTitle(int feedIndex)
 {

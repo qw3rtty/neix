@@ -59,7 +59,7 @@ void FeedLoader::resetFeed()
 /**
  * Load feeds from config file
  *
- * @return  {boolean}   - true on success, false else
+ * @return  true on success, false else
  */
 bool FeedLoader::loadFeedsFromConfig()
 {
@@ -113,7 +113,7 @@ bool FeedLoader::loadFeedsFromConfig()
 /**
  * Load articles of all feeds
  *
- * @return  {boolean}   - true on success, false else
+ * @return  true on success, false else
  */
 bool FeedLoader::loadArticlesOfFeeds()
 {
@@ -147,8 +147,8 @@ bool FeedLoader::loadArticlesOfFeeds()
 /**
  * Load xml feed of given url
  *
- * @param   {std::string}   url   - URL which should be used for load the feed
- * @return  {bool}                - true on success, false else
+ * @param   feedUrl     - URL which should be used for load the feed
+ * @return  true on success, false else
  */
 bool FeedLoader::load(std::string feedUrl)
 {
@@ -162,7 +162,7 @@ bool FeedLoader::load(std::string feedUrl)
 /**
  * Get loaded feed
  *
- * @return  {struct rawRss}
+ * @return  raw loaded feed
  */
 struct rawRss FeedLoader::getFeed()
 {
@@ -173,12 +173,11 @@ struct rawRss FeedLoader::getFeed()
 /**
  * Calculate size of loaded xml feed
  *
- * @param   {void *}    content     - The content
- * @param   {size_t}    size        - The size
- * @param   {size_t}    nmemb       - The count of members
- * @param   {void *}    userp       - The userp
- *
- * @return  {size_t}                - The calculated size
+ * @param content   - The content
+ * @param size      - The size
+ * @param nmemb     - The count of members
+ * @param userp     - The userp
+ * @return          The calculated size
  */
 size_t FeedLoader::curlCalculateMemory(void *content, size_t size, size_t nmemb, void *userp)
 {
@@ -204,7 +203,7 @@ size_t FeedLoader::curlCalculateMemory(void *content, size_t size, size_t nmemb,
 /**
  * Load's the feed with CURL
  *
- * @return  {boolean}   - true on success, false else
+ * @return  true on success, false else
  */
 bool FeedLoader::loadXml()
 {
