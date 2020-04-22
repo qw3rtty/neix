@@ -11,6 +11,7 @@
 
 #include <cstdlib>
 #include <string>
+#include <cstring>
 
 #include "config.h"
 #include "UI.h"
