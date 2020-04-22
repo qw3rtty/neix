@@ -16,7 +16,7 @@
 #include "feed/FeedParser.h"
 using namespace crss;
 
-int run_test_feed_parser()
+int main()
 {
     FeedLoader feedLoader;
     feedLoader.load("https://www.heise.de/developer/rss/news-atom.xml");

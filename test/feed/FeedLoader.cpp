@@ -13,7 +13,7 @@
 #include "feed/FeedLoader.h"
 using namespace crss;
 
-int run_test_feeds()
+int main()
 {
     FeedLoader feedLoader;
     bool xmlLoaded = feedLoader.load("https://www.heise.de/developer/rss/news-atom.xml");
