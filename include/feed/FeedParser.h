@@ -33,6 +33,8 @@ namespace crss
         xml_node<> *rootNode;
         xml_node<> *entryNode;
         struct rawRss *rss;
+
+        char* formatTimeString(char *timeString);
     };
 }
 

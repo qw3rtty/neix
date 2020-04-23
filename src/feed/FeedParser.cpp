@@ -9,9 +9,13 @@
  * @filesource
  */
 
+#include <iostream>
 #include <cstring>
 #include <cassert>
 #include <algorithm>
+#include <ctime>
+#include <iomanip>
+#include <sstream>
 
 #include "../include/rapidxml/rapidxml.hpp"
 #include "feed/FeedParser.h"
@@ -83,11 +87,33 @@ struct rssItem* FeedParser::getFeedItem()
 
     char *date = this->entryNode->first_node("updated")->value();
     item->date = (char*) malloc(sizeof(char) * strlen(date) + 1);
-    strcpy(item->date, date);
+    strcpy(item->date, this->formatTimeString(date));
 
     char *url = this->entryNode->first_node("link")->first_attribute("href")->value();
     item->url = (char*) malloc(sizeof(char) * strlen(url) + 1);
     strcpy(item->url, url);
 
     return item;
+}
+
+
+/**
+ * Format given times string to configured format
+ *
+ * @param   timeString
+ * @return  Formatted time string
+ */
+char* FeedParser::formatTimeString(char *timeString)
+{
+    std::stringstream date(timeString);
+    std::ostringstream formattedTimeString;
+    struct std::tm when;
+
+    date >> std::get_time(&when,"%Y-%m-%dT%H:%M:%S+%Z");
+    formattedTimeString << std::put_time(&when, "%d.%m.%Y %H:%M"); // TODO: get format from config
+
+    char *formattedDate = (char*) malloc(sizeof(char) * formattedTimeString.str().length());
+    strcpy(formattedDate, formattedTimeString.str().c_str());
+
+    return formattedDate;
 }
