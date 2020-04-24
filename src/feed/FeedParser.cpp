@@ -85,13 +85,13 @@ struct rssItem* FeedParser::getFeedItem()
         strcpy(item->description, description);
     }
 
-    char *date = this->entryNode->first_node("updated")->value();
-    item->date = (char*) malloc(sizeof(char) * strlen(date) + 1);
-    strcpy(item->date, this->formatTimeString(date));
-
     char *url = this->entryNode->first_node("link")->first_attribute("href")->value();
     item->url = (char*) malloc(sizeof(char) * strlen(url) + 1);
     strcpy(item->url, url);
+
+    char *date = this->entryNode->first_node("updated")->value();
+    item->date = (char*) malloc(sizeof(char) * strlen(date) + 1);
+    strcpy(item->date, this->formatTimeString(date));
 
     return item;
 }
@@ -105,7 +105,8 @@ struct rssItem* FeedParser::getFeedItem()
  */
 char* FeedParser::formatTimeString(char *timeString)
 {
-    std::stringstream date(timeString);
+    char *tmpTimeString = strdup(timeString);
+    std::stringstream date(tmpTimeString);
     std::ostringstream formattedTimeString;
     struct std::tm when;
 
