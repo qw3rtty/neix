@@ -75,23 +75,20 @@ struct rssItem* FeedParser::getFeedItem()
     }
 
     char *title = this->entryNode->first_node("title")->value();
-    item->title = (char*) malloc(sizeof(char) * strlen(title) + 1);
-    strcpy(item->title, title);
+    item->title = strdup(title);
 
     if (this->entryNode->first_node("content"))
     {
         char *description = this->entryNode->first_node("content")->value();
-        item->description = (char*) malloc(sizeof(char) * strlen(description) + 1);
-        strcpy(item->description, description);
+        item->description = strdup(description);
     }
 
     char *url = this->entryNode->first_node("link")->first_attribute("href")->value();
-    item->url = (char*) malloc(sizeof(char) * strlen(url) + 1);
-    strcpy(item->url, url);
+    item->url = strdup(url);
 
     char *date = this->entryNode->first_node("updated")->value();
-    item->date = (char*) malloc(sizeof(char) * strlen(date) + 1);
-    strcpy(item->date, this->formatTimeString(date));
+    char *formattedDate = this->formatTimeString(date);
+    item->date = strdup(formattedDate);
 
     return item;
 }
@@ -113,8 +110,6 @@ char* FeedParser::formatTimeString(const char *timeString)
     date >> std::get_time(&when,"%Y-%m-%dT%H:%M:%S+%Z");
     formattedTimeString << std::put_time(&when, "%d.%m.%Y %H:%M"); // TODO: get format from config
 
-    char *formattedDate = (char*) malloc(sizeof(char) * formattedTimeString.str().length());
-    strcpy(formattedDate, formattedTimeString.str().c_str());
-
+    char *formattedDate = strdup(formattedTimeString.str().c_str());
     return formattedDate;
 }
