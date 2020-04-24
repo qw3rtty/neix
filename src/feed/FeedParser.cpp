@@ -103,7 +103,7 @@ struct rssItem* FeedParser::getFeedItem()
  * @param   timeString
  * @return  Formatted time string
  */
-char* FeedParser::formatTimeString(char *timeString)
+char* FeedParser::formatTimeString(const char *timeString)
 {
     char *tmpTimeString = strdup(timeString);
     std::stringstream date(tmpTimeString);
