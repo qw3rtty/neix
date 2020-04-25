@@ -16,6 +16,7 @@
 #include <ctime>
 #include <iomanip>
 #include <sstream>
+#include <regex>
 
 #include "../include/rapidxml/rapidxml.hpp"
 #include "feed/FeedParser.h"
@@ -77,10 +78,16 @@ struct rssItem* FeedParser::getFeedItem()
     char *title = this->entryNode->first_node("title")->value();
     item->title = strdup(title);
 
+    if (this->entryNode->first_node("summary"))
+    {
+        char *description = this->entryNode->first_node("summary")->value();
+        item->description = this->convertHtmlToPlaintext(description);
+    }
+
     if (this->entryNode->first_node("content"))
     {
         char *description = this->entryNode->first_node("content")->value();
-        item->description = strdup(description);
+        item->description = this->convertHtmlToPlaintext(description);
     }
 
     char *url = this->entryNode->first_node("link")->first_attribute("href")->value();
@@ -91,6 +98,26 @@ struct rssItem* FeedParser::getFeedItem()
     item->date = strdup(formattedDate);
 
     return item;
+}
+
+
+/**
+ * Convert given text to plaintext
+ * > removes html tags
+ *
+ * @param   text    - The text which should be parsed
+ * @return
+ */
+char * FeedParser::convertHtmlToPlaintext(char *text)
+{
+    char *plaintext;
+    std::regex regex("<[^>]*>");
+    std::string convertedText;
+
+    convertedText = std::regex_replace(text, regex, "");
+    plaintext = strdup(convertedText.c_str());
+
+    return plaintext;
 }
 
 

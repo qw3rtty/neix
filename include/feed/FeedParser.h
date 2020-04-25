@@ -28,13 +28,14 @@ namespace crss
         void setRawRss(struct rawRss rawContent);
         struct rssItem* getFeedItem();
 
+        char* convertHtmlToPlaintext(char *text);
+        char* formatTimeString(const char *timeString);
+
     private:
         xml_document<> xmlDocument;
         xml_node<> *rootNode;
         xml_node<> *entryNode;
         struct rawRss *rss;
-
-        char* formatTimeString(const char *timeString);
     };
 }
 
