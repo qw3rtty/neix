@@ -10,7 +10,6 @@
  */
 #include <cassert>
 #include <cstring>
-#include <cstdlib>
 
 #include "feed/FeedLoader.h"
 #include "feed/FeedParser.h"
@@ -26,6 +25,13 @@ int main()
 
     struct rssItem *item = parser.getFeedItem();
     assert(item != nullptr);
+
+    char htmlText[] = "<p>Some text</p>";
+    char *plaintext = parser.convertHtmlToPlaintext(htmlText);
+    assert(strcmp(plaintext, "Some text") == 0);
+
+    char *timeString = parser.formatTimeString("2020-04-26T15:15:00+02:00");
+    assert(strcmp(timeString, "26.04.2020 15:15") == 0);
 
     return 0;
 }

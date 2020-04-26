@@ -13,6 +13,7 @@
 #define CRSS_FEEDLOADER_H
 
 #include <string>
+#include <sstream>
 #include "Feeds.h"
 
 struct rawRss
@@ -33,6 +34,7 @@ namespace crss
         bool loadArticlesOfFeeds();
         bool load(std::string feedUrl);
         struct rawRss getFeed();
+        std::stringstream configPath;
 
     private:
         std::string url;

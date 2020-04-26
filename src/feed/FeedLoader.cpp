@@ -31,6 +31,7 @@ using namespace crss;
  */
 FeedLoader::FeedLoader()
 {
+    this->configPath << getenv("HOME") << "/.config/crss/feeds.conf";
     this->url = "";
     this->resetFeed();
 }
@@ -70,10 +71,7 @@ bool FeedLoader::loadFeedsFromConfig()
     std::string name;
     std::string link;
 
-    std::stringstream path;
-    path << getenv("HOME") << "/.config/crss/feeds.conf";
-
-    file.open(path.str());
+    file.open(this->configPath.str());
     if (!file.is_open())
     {
         std::cout << "Could not load config file!" << std::endl;
