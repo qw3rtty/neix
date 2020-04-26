@@ -11,6 +11,7 @@
 #include <exception>
 #include <stdexcept>
 #include <iostream>
+#include <cstring>
 #include <sstream>
 #include <cstdlib>
 #include <cassert>
