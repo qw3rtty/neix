@@ -29,6 +29,7 @@ if(enable-tests)
     add_subdirectory(test)
     add_test(FeedLoader /bin/test-feedloader)
     add_test(FeedParser /bin/test-feedparser)
+    add_test(Feeds /bin/test-feeds)
 endif()
 
 INSTALL(TARGETS crss RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")

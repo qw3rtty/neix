@@ -42,6 +42,7 @@ namespace crss
         int getCount();
         char* getFeedLineTitle(int feedIndex);
 
+        bool validIndex(int index);
         bool add(struct rss *newFeed);
         bool addArticle(int feedIndex, int articleIndex, struct rssItem *newArticle);
 
@@ -51,8 +52,6 @@ namespace crss
 
         static Feeds *instance;
         struct rss *rssFeeds[FEEDS_MAX];
-
-        bool validIndex(int index);
     };
 }
 

@@ -5,6 +5,7 @@ FILE(GLOB feed ${PROJECT_SOURCE_DIR}/src/feed/*.cpp)
 FILE(GLOB tests ${PROJECT_SOURCE_DIR}/test/*.cpp)
 FILE(GLOB testFeedLoader ${PROJECT_SOURCE_DIR}/test/feed/FeedLoader.cpp)
 FILE(GLOB testFeedParser ${PROJECT_SOURCE_DIR}/test/feed/FeedParser.cpp)
+FILE(GLOB testFeeds ${PROJECT_SOURCE_DIR}/test/feed/Feeds.cpp)
 
 add_executable(test-feedloader
     ${src}
@@ -16,4 +17,10 @@ add_executable(test-feedparser
     ${src}
     ${feed}
     ${testFeedParser}
+)
+
+add_executable(test-feeds
+    ${src}
+    ${feed}
+    ${testFeeds}
 )

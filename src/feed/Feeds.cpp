@@ -8,7 +8,7 @@
  * @since       Version 0.1.0
  * @filesource
  */
-
+#include <stdexcept>
 #include <cstring>
 #include <cstdlib>
 #include <cstdio>
@@ -94,7 +94,7 @@ bool Feeds::addArticle(int feedIndex, int articleIndex, struct rssItem *newArtic
 {
     if (!this->validIndex(feedIndex))
     {
-        throw "Index is not in range!";
+        throw std::out_of_range("Index is out of range!");
     }
 
     this->rssFeeds[feedIndex]->items[articleIndex] = (struct rssItem*) malloc(FEEDS_MAX * sizeof(struct rssItem));
@@ -114,7 +114,7 @@ struct rss *Feeds::get(int index)
 {
     if (!this->validIndex(index))
     {
-        throw "Index is not in range!";
+        throw std::out_of_range("Index is out of range!");
     }
 
     return this->rssFeeds[index];
@@ -132,7 +132,7 @@ struct rssItem * Feeds::getArticle(int feedIndex, int articleIndex)
 {
     if (!this->validIndex(feedIndex))
     {
-        throw "Index is not in range!";
+        throw std::out_of_range("Index is out of range!");
     }
 
     return this->rssFeeds[feedIndex]->items[articleIndex];
