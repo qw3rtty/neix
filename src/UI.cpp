@@ -31,6 +31,7 @@ UI::UI()
     noecho();
     cbreak();
 
+    this->reading = false;
     this->lineSpacer = 4;
     this->windowHeight = LINES - 4;
     this->createFeedWindow();
@@ -123,7 +124,16 @@ void UI::show()
                 break;
 
             case KEY_Q:
-                this->quit = this->choice;
+                if (this->reading)
+                {
+                    this->reading = false;
+                    wclear(this->feedWindow);
+                    wclear(this->articleWindow);
+                }
+                else
+                {
+                    this->quit = this->choice;
+                }
                 break;
 
             default:
@@ -132,7 +142,7 @@ void UI::show()
                 break;
         }
 
-        if (this->c != ENTER)
+        if (!this->reading)
         {
             this->printWindows();
         }
@@ -150,10 +160,7 @@ void UI::show()
  */
 void UI::printWindows()
 {
-    wclear(this->feedWindow);
     this->printFeedsInWindow();
-
-    wclear(this->articleWindow);
     this->printArticlesInWindow();
 }
 
@@ -342,6 +349,7 @@ int UI::decreaseChoice(int new_choice, int count)
 void UI::openArticle()
 {
     Feeds *feeds = Feeds::getInstance();
+    this->reading = true;
 
     struct rss *feed = feeds->get(this->choice - 1);
     feed->unreadCount--;
@@ -349,12 +357,18 @@ void UI::openArticle()
     struct rssItem *entry = feeds->getArticle(this->choice - 1, this->articleChoice - 1);
     entry->read = 1;
 
+    wclear(this->articleWindow);
+    box(this->articleWindow, 0, 0);
+    wrefresh(this->articleWindow);
+    mvwprintw(this->articleWindow, 1, 2, "Feed:     %s", feed->title);
+    mvwprintw(this->articleWindow, 2, 2, "Article:  %s", entry->title);
+    mvwprintw(this->articleWindow, 3, 2, "--------");
+
     if (strlen(entry->description) > 0)
     {
-        wclear(this->articleWindow);
-        box(this->articleWindow, 0, 0);
-        wrefresh(this->articleWindow);
-        mvwprintw(this->articleWindow, 2, 1, "%s", entry->description);
-        wrefresh(this->articleWindow);
+        mvwprintw(this->articleWindow, 4, 2, "%s", entry->description);
     }
+
+    wrefresh(this->articleWindow);
+
 }

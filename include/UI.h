@@ -32,6 +32,7 @@ namespace crss
         WINDOW *feedWindow;
         WINDOW *articleWindow;
 
+        bool reading;
         int lineSpacer;
         int choice;
         int articleChoice;
