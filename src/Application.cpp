@@ -362,11 +362,12 @@ void Application::openArticle()
     wrefresh(this->articleWindow);
     mvwprintw(this->articleWindow, 1, 2, "Feed:     %s", feed->title);
     mvwprintw(this->articleWindow, 2, 2, "Article:  %s", entry->title);
-    mvwprintw(this->articleWindow, 3, 2, "--------");
+    mvwprintw(this->articleWindow, 3, 2, "Date:     %s", entry->date);
+    mvwprintw(this->articleWindow, 4, 2, "--------");
 
     if (strlen(entry->description) > 0)
     {
-        mvwprintw(this->articleWindow, 4, 2, "%s", entry->description);
+        mvwprintw(this->articleWindow, 6, 2, "%s", entry->description);
     }
 
     wrefresh(this->articleWindow);
