@@ -1,5 +1,5 @@
 #include <iostream>
-#include "UI.h"
+#include "Application.h"
 #include "feed/FeedLoader.h"
 
 using namespace crss;
@@ -18,7 +18,7 @@ int main()
         std::cout << "Error while loading articles from feeds!" << std::endl;
     }
 
-    UI ui;
+    Application ui;
     ui.show();
 
     return 0;

@@ -9,19 +9,19 @@
  * @filesource
  */
 
-#ifndef CRSS_UI_H
-#define CRSS_UI_H
+#ifndef CRSS_APPLICATION_H
+#define CRSS_APPLICATION_H
 
 #include <ncurses.h>
 #include "feed/Feeds.h"
 
 namespace crss
 {
-    class UI
+    class Application
     {
     public:
-        UI();
-        ~UI();
+        Application();
+        ~Application();
 
         void show();
         void printWindows();
@@ -59,4 +59,4 @@ namespace crss
     };
 }
 
-#endif //CRSS_UI_H
+#endif //CRSS_APPLICATION_H

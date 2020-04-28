@@ -14,7 +14,7 @@
 #include <cstring>
 
 #include "config.h"
-#include "UI.h"
+#include "Application.h"
 #include "feed/Feeds.h"
 
 using namespace crss;
@@ -22,7 +22,7 @@ using namespace crss;
 /**
  * Constructor
  */
-UI::UI()
+Application::Application()
 {
     this->initChoices();
 
@@ -42,7 +42,7 @@ UI::UI()
 /**
  * Destructor
  */
-UI::~UI()
+Application::~Application()
 {
     clrtoeol();
     refresh();
@@ -53,7 +53,7 @@ UI::~UI()
 /**
  * Initialize choices
  */
-void UI::initChoices()
+void Application::initChoices()
 {
     this->choice = 1;
     this->articleChoice = 1;
@@ -64,7 +64,7 @@ void UI::initChoices()
 /**
  * Create's feed window
  */
-void UI::createFeedWindow()
+void Application::createFeedWindow()
 {
     this->feedWindowWidth = (int) (COLS / 3);
     this->feedWindow = newwin(this->windowHeight, this->feedWindowWidth, 2, 0);
@@ -75,7 +75,7 @@ void UI::createFeedWindow()
 /**
  * Create's article window
  */
-void UI::createArticleWindow()
+void Application::createArticleWindow()
 {
     this->articleWindowWidth = (int) (COLS / 3) * 2;
     this->articleWindow = newwin(this->windowHeight, this->articleWindowWidth, 2, this->feedWindowWidth);
@@ -86,7 +86,7 @@ void UI::createArticleWindow()
 /**
  * Show's complete UI
  */
-void UI::show()
+void Application::show()
 {
     Feeds *feeds = Feeds::getInstance();
     mvprintw(0, 0, "Use vim keys to navigate through articles, Press enter to select a choice or press 'q' to quit.");
@@ -158,7 +158,7 @@ void UI::show()
 /**
  * Print UI windows
  */
-void UI::printWindows()
+void Application::printWindows()
 {
     this->printFeedsInWindow();
     this->printArticlesInWindow();
@@ -168,7 +168,7 @@ void UI::printWindows()
 /**
  * Print's feeds in window
  */
-void UI::printFeedsInWindow()
+void Application::printFeedsInWindow()
 {
     Feeds *feeds = Feeds::getInstance();
     int x = 2, y = 1, i;
@@ -196,7 +196,7 @@ void UI::printFeedsInWindow()
 /**
  * Print's articles in window
  */
-void UI::printArticlesInWindow()
+void Application::printArticlesInWindow()
 {
     Feeds *feeds = Feeds::getInstance();
     int x = 2, y = 1, i;
@@ -229,7 +229,7 @@ void UI::printArticlesInWindow()
  * @param   x           - X coordinate
  * @param   line        - Line to print
  */
-void UI::printLineInWindow(WINDOW *window, int y, int x, char *line)
+void Application::printLineInWindow(WINDOW *window, int y, int x, char *line)
 {
     mvwprintw(window, y, x, "%s", line);
 }
@@ -243,7 +243,7 @@ void UI::printLineInWindow(WINDOW *window, int y, int x, char *line)
  * @param   x           - X coordinate
  * @param   line        - Line to print
  */
-void UI::printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line)
+void Application::printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line)
 {
     wattron(window, A_REVERSE);
     this->printLineInWindow(window, y, x, line);
@@ -259,7 +259,7 @@ void UI::printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line)
  * @param   x           - X coordinate
  * @param   entry       - RSS item to print
  */
-void UI::printArticleInWindow(WINDOW *window, int y, int x, struct rssItem *entry)
+void Application::printArticleInWindow(WINDOW *window, int y, int x, struct rssItem *entry)
 {
     int xPos = x;
     char *readIcon = (char*)"[*]";
@@ -291,7 +291,7 @@ void UI::printArticleInWindow(WINDOW *window, int y, int x, struct rssItem *entr
  * @param   x           - X coordinate
  * @param   entry       - RSS item to print
  */
-void UI::printArticleHighlightedInWindow(WINDOW *window, int y, int x, struct rssItem *entry)
+void Application::printArticleHighlightedInWindow(WINDOW *window, int y, int x, struct rssItem *entry)
 {
     wattron(window, A_REVERSE);
     this->printArticleInWindow(window, y, x, entry);
@@ -306,7 +306,7 @@ void UI::printArticleHighlightedInWindow(WINDOW *window, int y, int x, struct rs
  * @param   count           - Count of feeds/article
  * @return  New choice index
  */
-int UI::increaseChoice(int new_choice, int count)
+int Application::increaseChoice(int new_choice, int count)
 {
     if (new_choice == count)
     {
@@ -328,7 +328,7 @@ int UI::increaseChoice(int new_choice, int count)
  * @param   count           - Count of feeds/article
  * @return  New choice index
  */
-int UI::decreaseChoice(int new_choice, int count)
+int Application::decreaseChoice(int new_choice, int count)
 {
     if (new_choice == 1)
     {
@@ -346,7 +346,7 @@ int UI::decreaseChoice(int new_choice, int count)
 /**
  * Open selected article in default browser
  */
-void UI::openArticle()
+void Application::openArticle()
 {
     Feeds *feeds = Feeds::getInstance();
     this->reading = true;
