@@ -56,6 +56,7 @@ namespace crss
         void printArticleHighlightedInWindow(WINDOW *window, int y, int x, struct rssItem *entry);
 
         void openArticle();
+        void openArticleLink();
     };
 }
 

@@ -15,6 +15,7 @@
 #define ENTER 10
 #define KEY_J 106
 #define KEY_K 107
+#define KEY_O 111
 #define KEY_Q 113
 
 #define KEY_UPPER_J 74

@@ -119,6 +119,10 @@ void Application::show()
                 this->choice = this->increaseChoice(this->choice, feeds->getCount());
                 break;
 
+            case KEY_O:
+                this->openArticleLink();
+                break;
+
             case ENTER:
                 this->openArticle();
                 break;
@@ -344,7 +348,7 @@ int Application::decreaseChoice(int new_choice, int count)
 
 
 /**
- * Open selected article in default browser
+ * Open selected article in terminal view
  */
 void Application::openArticle()
 {
@@ -372,4 +376,23 @@ void Application::openArticle()
 
     wrefresh(this->articleWindow);
 
+}
+
+
+/**
+ * Open current article link in browser
+ */
+void Application::openArticleLink()
+{
+    if (!this->reading)
+    {
+        return;
+    }
+
+    Feeds *feeds = Feeds::getInstance();
+    struct rssItem *article = feeds->getArticle(this->choice - 1, this->articleChoice - 1);
+    std::string openCmd("open ");
+    openCmd += article->url;
+
+    system(openCmd.c_str());
 }
