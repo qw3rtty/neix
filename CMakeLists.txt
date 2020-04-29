@@ -17,10 +17,12 @@ include_directories(
 
 FILE(GLOB src ${PROJECT_SOURCE_DIR}/src/*.cpp)
 FILE(GLOB feed ${PROJECT_SOURCE_DIR}/src/feed/*.cpp)
+FILE(GLOB parser ${PROJECT_SOURCE_DIR}/src/parser/*.cpp)
 
 add_executable(crss
     ${src}
     ${feed}
+    ${parser}
 )
 
 option(enable-tests "Enables test suite" YES)
@@ -28,7 +30,7 @@ if(enable-tests)
     enable_testing()
     add_subdirectory(test)
     add_test(FeedLoader /bin/test-feedloader)
-    add_test(FeedParser /bin/test-feedparser)
+    add_test(Parser /bin/test-parser)
     add_test(Feeds /bin/test-feeds)
 endif()
 

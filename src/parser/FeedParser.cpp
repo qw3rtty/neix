@@ -18,8 +18,8 @@
 #include <sstream>
 #include <regex>
 
-#include "../include/rapidxml/rapidxml.hpp"
-#include "feed/FeedParser.h"
+#include "rapidxml/rapidxml.hpp"
+#include "parser/FeedParser.h"
 
 using namespace rapidxml;
 using namespace crss;

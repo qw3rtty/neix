@@ -12,8 +12,8 @@
 #ifndef CRSS_FEEDPARSER_H
 #define CRSS_FEEDPARSER_H
 
-#include "../rapidxml/rapidxml.hpp"
-#include "FeedLoader.h"
+#include "rapidxml/rapidxml.hpp"
+#include "feed/FeedLoader.h"
 
 using namespace rapidxml;
 

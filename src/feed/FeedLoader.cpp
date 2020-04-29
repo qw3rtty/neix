@@ -22,7 +22,7 @@
 
 #include "feed/Feeds.h"
 #include "feed/FeedLoader.h"
-#include "feed/FeedParser.h"
+#include "parser/FeedParser.h"
 using namespace crss;
 
 
