@@ -129,6 +129,7 @@ char * Parser::convertHtmlToPlaintext(char *text)
  */
 char* Parser::formatTimeString(const char *timeString)
 {
+    // TODO: fix segmentation fault!
     std::stringstream date(timeString);
     std::ostringstream formattedTimeString;
     struct std::tm when;
