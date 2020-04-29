@@ -22,7 +22,7 @@
 
 #include "feed/Feeds.h"
 #include "feed/FeedLoader.h"
-#include "parser/FeedParser.h"
+#include "parser/Parser.h"
 using namespace crss;
 
 
@@ -116,7 +116,7 @@ bool FeedLoader::loadFeedsFromConfig()
 bool FeedLoader::loadArticlesOfFeeds()
 {
     Feeds *feeds = Feeds::getInstance();
-    FeedParser parser;
+    Parser parser;
 
     std::cout << feeds->getCount() << " Feeds to load" << std::endl;
     for (int i = 0; i < feeds->getCount(); i++)

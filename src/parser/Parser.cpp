@@ -19,7 +19,7 @@
 #include <regex>
 
 #include "rapidxml/rapidxml.hpp"
-#include "parser/FeedParser.h"
+#include "parser/Parser.h"
 
 using namespace rapidxml;
 using namespace crss;
@@ -27,14 +27,14 @@ using namespace crss;
 /**
  * Constructor
  */
-FeedParser::FeedParser()
+Parser::Parser()
 {}
 
 
 /**
  * Destructor
  */
-FeedParser::~FeedParser()
+Parser::~Parser()
 {}
 
 
@@ -43,7 +43,7 @@ FeedParser::~FeedParser()
  *
  * @param rawContent    - The loaded raw content
  */
-void FeedParser::setRawRss(struct rawRss rawContent)
+void Parser::setRawRss(struct rawRss rawContent)
 {
     this->rss = &rawContent;
 
@@ -62,7 +62,7 @@ void FeedParser::setRawRss(struct rawRss rawContent)
  *
  * @return  Item of feed
  */
-struct rssItem* FeedParser::getFeedItem()
+struct rssItem* Parser::getFeedItem()
 {
     struct rssItem *item = (struct rssItem*) malloc(sizeof(struct rssItem));
     item->read = 0;
@@ -108,7 +108,7 @@ struct rssItem* FeedParser::getFeedItem()
  * @param   text    - The text which should be parsed
  * @return
  */
-char * FeedParser::convertHtmlToPlaintext(char *text)
+char * Parser::convertHtmlToPlaintext(char *text)
 {
     char *plaintext;
     std::regex regex("<[^>]*>");
@@ -127,7 +127,7 @@ char * FeedParser::convertHtmlToPlaintext(char *text)
  * @param   timeString
  * @return  Formatted time string
  */
-char* FeedParser::formatTimeString(const char *timeString)
+char* Parser::formatTimeString(const char *timeString)
 {
     char *tmpTimeString = strdup(timeString);
     std::stringstream date(tmpTimeString);
