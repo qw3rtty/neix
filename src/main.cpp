@@ -18,8 +18,8 @@ int main()
         std::cout << "Error while loading articles from feeds!" << std::endl;
     }
 
-    Application ui;
-    ui.show();
+    Application app;
+    app.show();
 
     return 0;
 }
