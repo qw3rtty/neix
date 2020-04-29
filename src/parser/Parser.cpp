@@ -129,8 +129,7 @@ char * Parser::convertHtmlToPlaintext(char *text)
  */
 char* Parser::formatTimeString(const char *timeString)
 {
-    char *tmpTimeString = strdup(timeString);
-    std::stringstream date(tmpTimeString);
+    std::stringstream date(timeString);
     std::ostringstream formattedTimeString;
     struct std::tm when;
 
