@@ -94,8 +94,8 @@ struct rssItem* Parser::getFeedItem()
     item->url = strdup(url);
 
     char *date = this->entryNode->first_node("updated")->value();
-    char *formattedDate = this->formatTimeString(date);
-    item->date = strdup(formattedDate);
+    char *tmp = this->formatTimeString(date);
+    item->date = strdup(tmp);
 
     return item;
 }
@@ -129,14 +129,16 @@ char * Parser::convertHtmlToPlaintext(char *text)
  */
 char* Parser::formatTimeString(const char *timeString)
 {
-    // TODO: fix segmentation fault!
     std::stringstream date(timeString);
     std::ostringstream formattedTimeString;
-    struct std::tm when;
+    struct std::tm when{0};
+    memset(&when, 0, sizeof(when));
 
-    date >> std::get_time(&when,"%Y-%m-%dT%H:%M:%S+%Z");
+    date >> std::get_time(&when,"%Y-%m-%dT%H:%M:%S");
     formattedTimeString << std::put_time(&when, "%d.%m.%Y %H:%M"); // TODO: get format from config
 
-    char *formattedDate = strdup(formattedTimeString.str().c_str());
+    std::string tmp(formattedTimeString.str());
+    char *formattedDate = strdup(tmp.c_str());
+
     return formattedDate;
 }

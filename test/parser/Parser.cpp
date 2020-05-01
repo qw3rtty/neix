@@ -33,5 +33,8 @@ int main()
     char *timeString = parser.formatTimeString("2020-04-26T15:15:00+02:00");
     assert(strcmp(timeString, "26.04.2020 15:15") == 0);
 
+    timeString = parser.formatTimeString("2020-04-26T15:15:00.350+02:00");
+    assert(strcmp(timeString, "26.04.2020 15:15") == 0);
+
     return 0;
 }
