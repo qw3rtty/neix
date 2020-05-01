@@ -19,9 +19,7 @@ int main()
 {
     FeedLoader feedLoader;
     feedLoader.load("https://www.heise.de/developer/rss/news-atom.xml");
-
-    Parser parser;
-    parser.setRawRss(feedLoader.getFeed());
+    Parser parser(feedLoader.getFeed());
 
     struct rssItem *item = parser.getFeedItem();
     assert(item != nullptr);

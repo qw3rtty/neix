@@ -22,20 +22,19 @@ namespace crss
     class Parser
     {
     public:
-        Parser();
+        Parser(struct rawRss content);
         ~Parser();
 
-        void setRawRss(struct rawRss rawContent);
         struct rssItem* getFeedItem();
-
         char* convertHtmlToPlaintext(char *text);
         char* formatTimeString(const char *timeString);
 
     private:
         xml_document<> xmlDocument;
-        xml_node<> *rootNode;
-        xml_node<> *entryNode;
-        struct rawRss *rss;
+        xml_node<> *rootNode{};
+        xml_node<> *entryNode{};
+        struct rawRss *rss{};
+        void setRawRss(struct rawRss rawContent);
     };
 }
 

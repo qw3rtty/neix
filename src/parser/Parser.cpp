@@ -27,15 +27,16 @@ using namespace crss;
 /**
  * Constructor
  */
-Parser::Parser()
-{}
+Parser::Parser(struct rawRss content)
+{
+   this->setRawRss(content);
+}
 
 
 /**
  * Destructor
  */
-Parser::~Parser()
-{}
+Parser::~Parser() = default;
 
 
 /**

@@ -116,25 +116,25 @@ bool FeedLoader::loadFeedsFromConfig()
 bool FeedLoader::loadArticlesOfFeeds()
 {
     Feeds *feeds = Feeds::getInstance();
-    Parser parser;
 
     std::cout << feeds->getCount() << " Feeds to load" << std::endl;
     for (int i = 0; i < feeds->getCount(); i++)
     {
-        struct rss *feed = feeds->get(i);
-        std::cout << "Loading: " << feed->title << " | " << feed->url << std::endl;
+        struct rss *tmpFeed = feeds->get(i);
+        std::cout << "Loading: " << tmpFeed->title << " | " << tmpFeed->url << std::endl;
 
-        std::string url(feed->url);
-        this->load(url);
-        parser.setRawRss(this->getFeed());
+        std::string feedUrl(tmpFeed->url);
+        this->load(feedUrl);
+
+        Parser parser(this->getFeed());
 
         for (int j = 0; j < FEEDS_MAX; j++)
         {
             struct rssItem *newArticle = parser.getFeedItem();
             feeds->addArticle(i, j, newArticle);
 
-            feed->articleCount++;
-            feed->unreadCount++;
+            tmpFeed->articleCount++;
+            tmpFeed->unreadCount++;
         }
     }
 
