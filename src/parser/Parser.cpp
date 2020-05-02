@@ -58,6 +58,28 @@ void Parser::setRawRss(struct rawRss rawContent)
 }
 
 
+char * Parser::getNodeContent(std::string nodeName)
+{
+    char *nodeValue = nullptr;
+    char *content = (char*) malloc(sizeof(char));
+    xml_node<> *xmlNode = nullptr;
+    xmlNode = this->entryNode->first_node(nodeName.c_str());
+
+    if (xmlNode)
+    {
+        nodeValue = xmlNode->value();
+        content = (char*) malloc(strlen(nodeValue) * sizeof(char));
+        strcpy(content, nodeValue);
+    }
+    else
+    {
+        strcpy(content, "");
+    }
+
+    return content;
+}
+
+
 /**
  * Get an feed item of raw content
  *
@@ -76,27 +98,25 @@ struct rssItem* Parser::getFeedItem()
         this->entryNode = this->entryNode->next_sibling();
     }
 
-    char *title = this->entryNode->first_node("title")->value();
-    item->title = strdup(title);
+    // Get feed title
+    item->title = this->getNodeContent("title");
+    item->title = this->convertHtmlToPlaintext(item->title);
 
-    if (this->entryNode->first_node("summary"))
+    // Get feed content
+    item->description = this->getNodeContent("summary");
+    if (strlen(item->description) == 0)
     {
-        char *description = this->entryNode->first_node("summary")->value();
-        item->description = this->convertHtmlToPlaintext(description);
+        item->description = this->getNodeContent("content");
     }
+    item->description = this->convertHtmlToPlaintext(item->description);
 
-    if (this->entryNode->first_node("content"))
-    {
-        char *description = this->entryNode->first_node("content")->value();
-        item->description = this->convertHtmlToPlaintext(description);
-    }
-
+    // Get feed link
     char *url = this->entryNode->first_node("link")->first_attribute("href")->value();
     item->url = strdup(url);
 
-    char *date = this->entryNode->first_node("updated")->value();
-    char *tmp = this->formatTimeString(date);
-    item->date = strdup(tmp);
+    // Get feed date
+    item->date = this->getNodeContent("updated");
+    item->date = this->formatTimeString(item->date);
 
     return item;
 }
