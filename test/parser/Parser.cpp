@@ -12,6 +12,7 @@
 #include <cstring>
 
 #include "feed/FeedLoader.h"
+#include "parser/FactoryParser.h"
 #include "parser/Parser.h"
 using namespace crss;
 
@@ -19,19 +20,19 @@ int main()
 {
     FeedLoader feedLoader;
     feedLoader.load("https://www.heise.de/developer/rss/news-atom.xml");
-    Parser parser(feedLoader.getFeed());
+    Parser *parser = FactoryParser::getInstance(feedLoader.getFeed());
 
-    struct rssItem *item = parser.getFeedItem();
+    struct rssItem *item = parser->getFeedItem();
     assert(item != nullptr);
 
     char htmlText[] = "<p>Some text</p>";
-    char *plaintext = parser.convertHtmlToPlaintext(htmlText);
+    char *plaintext = parser->convertHtmlToPlaintext(htmlText);
     assert(strcmp(plaintext, "Some text") == 0);
 
-    char *timeString = parser.formatTimeString("2020-04-26T15:15:00+02:00");
+    char *timeString = parser->formatTimeString("2020-04-26T15:15:00+02:00");
     assert(strcmp(timeString, "26.04.2020 15:15") == 0);
 
-    timeString = parser.formatTimeString("2020-04-26T15:15:00.350+02:00");
+    timeString = parser->formatTimeString("2020-04-26T15:15:00.350+02:00");
     assert(strcmp(timeString, "26.04.2020 15:15") == 0);
 
     return 0;

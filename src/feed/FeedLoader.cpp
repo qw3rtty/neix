@@ -23,6 +23,7 @@
 #include "feed/Feeds.h"
 #include "feed/FeedLoader.h"
 #include "parser/Parser.h"
+#include "parser/FactoryParser.h"
 using namespace crss;
 
 
@@ -126,11 +127,10 @@ bool FeedLoader::loadArticlesOfFeeds()
         std::string feedUrl(tmpFeed->url);
         this->load(feedUrl);
 
-        Parser parser(this->getFeed());
-
+        Parser *parser = FactoryParser::getInstance(this->getFeed());
         for (int j = 0; j < FEEDS_MAX; j++)
         {
-            struct rssItem *newArticle = parser.getFeedItem();
+            struct rssItem *newArticle = parser->getFeedItem();
             feeds->addArticle(i, j, newArticle);
 
             tmpFeed->articleCount++;
