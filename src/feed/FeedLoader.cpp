@@ -51,8 +51,8 @@ FeedLoader::~FeedLoader()
  */
 void FeedLoader::resetFeed()
 {
-    this->feed = (struct rawRss*) malloc(sizeof(struct rawRss*));
-    this->feed->content = (char*) malloc(sizeof(char));
+    this->feed = (struct rawRss*) calloc(1, sizeof(struct rawRss*));
+    this->feed->content = (char*) calloc(1, sizeof(char));
     this->feed->size = 0;
 }
 
@@ -90,9 +90,9 @@ bool FeedLoader::loadFeedsFromConfig()
             continue;
         }
 
-        struct rss *newFeed = (struct rss*) malloc(sizeof(struct rss));
-        newFeed->title = (char*) malloc(sizeof(char) * name.length() + 1);
-        newFeed->url = (char*) malloc(sizeof(char) * link.length() + 1);
+        struct rss *newFeed = (struct rss*) calloc(1, sizeof(struct rss));
+        newFeed->title = (char*) calloc(name.length() + 1, sizeof(char));
+        newFeed->url = (char*) calloc(link.length() + 1, sizeof(char));
 
         strcpy(newFeed->title, name.c_str());
         strcpy(newFeed->url, link.c_str());

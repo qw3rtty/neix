@@ -25,7 +25,7 @@ int main()
     assert(feeds->getCount() == 0);
 
     // Create an feed to add
-    struct rss *newFeed = (struct rss*) malloc(sizeof(struct rss));
+    struct rss *newFeed = (struct rss*) calloc(1, sizeof(struct rss));
     newFeed->title = strdup("Title");
     newFeed->url = strdup("https://www.some-example-url.com");
 
@@ -42,7 +42,7 @@ int main()
     assert(!feeds->validIndex(3));
 
     // Create an article to add
-    struct rssItem *newArticle = (struct rssItem*) malloc(sizeof(struct rssItem));
+    struct rssItem *newArticle = (struct rssItem*) calloc(1, sizeof(struct rssItem));
     newArticle->title = strdup("Article title");
     newArticle->url = strdup("https://www.some-example-url.com");
 

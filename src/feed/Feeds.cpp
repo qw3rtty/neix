@@ -74,7 +74,7 @@ bool Feeds::validIndex(int index)
  */
 bool Feeds::add(struct rss *newFeed)
 {
-    this->rssFeeds[this->count] = (struct rss*) malloc(sizeof(struct rss));
+    this->rssFeeds[this->count] = (struct rss*) calloc(1, sizeof(struct rss));
     memcpy(&this->rssFeeds[this->count], &newFeed, sizeof(newFeed));
     this->count++;
 
@@ -97,7 +97,7 @@ bool Feeds::addArticle(int feedIndex, int articleIndex, struct rssItem *newArtic
         throw std::out_of_range("Index is out of range!");
     }
 
-    this->rssFeeds[feedIndex]->items[articleIndex] = (struct rssItem*) malloc(FEEDS_MAX * sizeof(struct rssItem));
+    this->rssFeeds[feedIndex]->items[articleIndex] = (struct rssItem*) calloc(FEEDS_MAX, sizeof(struct rssItem));
     this->rssFeeds[feedIndex]->items[articleIndex] = newArticle;
 
     return true;
@@ -162,7 +162,7 @@ char* Feeds::getFeedLineTitle(int feedIndex)
     struct rss *feed = feeds->get(feedIndex);
 
     char *line = feed->title;
-    char *lineWithCount = (char*) malloc(sizeof(char) * (strlen(line) + 10));
+    char *lineWithCount = (char*) calloc((strlen(line) + 10), sizeof(char));
     sprintf(lineWithCount, "%s [%d/%d]", line, feed->unreadCount, feed->articleCount);
 
     return lineWithCount;

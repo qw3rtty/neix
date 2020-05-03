@@ -61,14 +61,14 @@ void Parser::setRawRss(struct rawRss rawContent)
 char * Parser::getNodeContent(std::string nodeName)
 {
     char *nodeValue = nullptr;
-    char *content = (char*) malloc(sizeof(char));
+    char *content = (char*) calloc(1, sizeof(char));
     xml_node<> *xmlNode = nullptr;
     xmlNode = this->entryNode->first_node(nodeName.c_str());
 
     if (xmlNode)
     {
         nodeValue = xmlNode->value();
-        content = (char*) malloc(strlen(nodeValue) * sizeof(char));
+        content = (char*) calloc(strlen(nodeValue), sizeof(char));
         strcpy(content, nodeValue);
     }
     else
@@ -87,7 +87,7 @@ char * Parser::getNodeContent(std::string nodeName)
  */
 struct rssItem* Parser::getFeedItem()
 {
-    struct rssItem *item = (struct rssItem*) malloc(sizeof(struct rssItem));
+    struct rssItem *item = (struct rssItem*) calloc(1, sizeof(struct rssItem));
     item->read = 0;
     if (this->entryNode == nullptr)
     {
