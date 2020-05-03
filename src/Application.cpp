@@ -277,9 +277,11 @@ void Application::printArticleInWindow(WINDOW *window, int y, int x, struct rssI
     mvwprintw(window, y, xPos, "%s", entry->date); // TODO: Format date
 
     xPos += strlen(entry->date) + this->lineSpacer;
+    int titleWidth = this->articleWindowWidth - (this->lineSpacer * 3) - xPos;
+
     std::string fullTitle(entry->title);
-    std::string title = fullTitle.substr(0, 60);
-    if (fullTitle.length() > 60)
+    std::string title = fullTitle.substr(0, titleWidth);
+    if (fullTitle.length() > titleWidth)
     {
         title += "...";
     }
