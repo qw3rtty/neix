@@ -274,7 +274,7 @@ void Application::printArticleInWindow(WINDOW *window, int y, int x, struct rssI
     mvwprintw(window, y, xPos, "%s", readIcon);
 
     xPos += strlen(readIcon) + this->lineSpacer;
-    mvwprintw(window, y, xPos, "%s", entry->date); // TODO: Format date
+    mvwprintw(window, y, xPos, "%s", entry->date);
 
     xPos += strlen(entry->date) + this->lineSpacer;
     int titleWidth = this->articleWindowWidth - (this->lineSpacer * 3) - xPos;
