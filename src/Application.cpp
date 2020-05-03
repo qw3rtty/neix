@@ -110,11 +110,13 @@ void Application::show()
                 break;
 
             case KEY_UPPER_K:
+                wclear(this->articleWindow);
                 this->articleChoice = 1;
                 this->choice = this->decreaseChoice(this->choice, feeds->getCount());
                 break;
 
             case KEY_UPPER_J:
+                wclear(this->articleWindow);
                 this->articleChoice = 1;
                 this->choice = this->increaseChoice(this->choice, feeds->getCount());
                 break;
