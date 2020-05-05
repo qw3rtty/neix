@@ -94,12 +94,11 @@ bool FeedLoader::loadFeedsFromConfig()
         struct rss *newFeed = (struct rss*) calloc(1, sizeof(struct rss));
         newFeed->title = (char*) calloc(name.length() + 1, sizeof(char));
         newFeed->url = (char*) calloc(link.length() + 1, sizeof(char));
+        newFeed->articleCount = 0;
+        newFeed->unreadCount = 0;
 
         strcpy(newFeed->title, name.c_str());
         strcpy(newFeed->url, link.c_str());
-
-        newFeed->articleCount = 0;
-        newFeed->unreadCount = 0;
 
         feeds->addFeed(newFeed);
     }
@@ -132,9 +131,6 @@ bool FeedLoader::loadArticlesOfFeeds()
         {
             struct rssItem *newArticle = parser->getFeedItem();
             feeds->addArticle(i, j, newArticle);
-
-            tmpFeed->articleCount++;
-            tmpFeed->unreadCount++;
         }
     }
 

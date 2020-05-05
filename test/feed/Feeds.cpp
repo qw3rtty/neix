@@ -39,20 +39,34 @@ int main()
     assert(feeds->getCount() == 2);
     assert(feeds->validIndex(2));
 
+    // Check for some invalid index values
     assert(!feeds->validIndex(3));
+    assert(!feeds->validIndex(-1));
 
-    // Create an article to addFeed
+    // Create an article to add
     struct rssItem *newArticle = (struct rssItem*) calloc(1, sizeof(struct rssItem));
     newArticle->title = strdup("Article title");
     newArticle->url = strdup("https://www.some-example-url.com");
+    newArticle->description = strdup("This is a description just for test.");
+    newArticle->date = strdup("2003-12-13T18:30:02Z");
+    newArticle->read = 1;
 
     bool articleAdded = feeds->addArticle(1, 1, newArticle);
     assert(articleAdded);
 
+    articleAdded = feeds->addArticle(1, 2, newArticle);
+    assert(articleAdded);
+
+    // Check feed title
+    char *title = strdup(feeds->getFeedLineTitle(1));
+    std::cout << title << std::endl;
+    assert(strcmp(title, "Title [2/2]") == 0);
+    assert(strcmp(title, "Sub power title") != 0);
+
     try {
         feeds->addArticle(5, 5, newArticle);
     }
-    catch (std::out_of_range e) {
+    catch (std::out_of_range &e) {
         assert(strcmp(e.what(), "Index is out of range!") == 0);
     }
 

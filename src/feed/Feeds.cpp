@@ -100,6 +100,9 @@ bool Feeds::addArticle(int feedIndex, int articleIndex, struct rssItem *newArtic
     this->rssFeeds[feedIndex]->items[articleIndex] = (struct rssItem*) calloc(FEEDS_MAX, sizeof(struct rssItem));
     this->rssFeeds[feedIndex]->items[articleIndex] = newArticle;
 
+    this->rssFeeds[feedIndex]->articleCount++;
+    this->rssFeeds[feedIndex]->unreadCount++;
+
     return true;
 }
 
