@@ -359,7 +359,7 @@ void Application::openArticle()
     Feeds *feeds = Feeds::getInstance();
     this->reading = true;
 
-    struct rss *feed = feeds->get(this->choice - 1);
+    struct rss *feed = feeds->getFeed(this->choice - 1);
     feed->unreadCount--;
 
     struct rssItem *entry = feeds->getArticle(this->choice - 1, this->articleChoice - 1);

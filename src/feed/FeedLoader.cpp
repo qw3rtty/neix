@@ -121,7 +121,7 @@ bool FeedLoader::loadArticlesOfFeeds()
     std::cout << feeds->getCount() << " Feeds to load" << std::endl;
     for (int i = 0; i < feeds->getCount(); i++)
     {
-        struct rss *tmpFeed = feeds->get(i);
+        struct rss *tmpFeed = feeds->getFeed(i);
         std::cout << "Loading: " << tmpFeed->title << " | " << tmpFeed->url << std::endl;
 
         std::string feedUrl(tmpFeed->url);

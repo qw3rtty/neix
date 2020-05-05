@@ -37,7 +37,7 @@ namespace crss
     {
     public:
         static Feeds *getInstance();
-        struct rss *get(int index);
+        struct rss *getFeed(int index);
         struct rssItem *getArticle(int feedIndex, int articleIndex);
         int getCount();
         char* getFeedLineTitle(int feedIndex);

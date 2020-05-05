@@ -110,7 +110,7 @@ bool Feeds::addArticle(int feedIndex, int articleIndex, struct rssItem *newArtic
  * @param   index   - Index of feed which should be returned
  * @return  The RSS feed
  */
-struct rss *Feeds::get(int index)
+struct rss *Feeds::getFeed(int index)
 {
     if (!this->validIndex(index))
     {
@@ -159,7 +159,7 @@ int Feeds::getCount()
 char* Feeds::getFeedLineTitle(int feedIndex)
 {
     Feeds *feeds = Feeds::getInstance();
-    struct rss *feed = feeds->get(feedIndex);
+    struct rss *feed = feeds->getFeed(feedIndex);
 
     char *line = feed->title;
     char *lineWithCount = (char*) calloc((strlen(line) + 10), sizeof(char));
