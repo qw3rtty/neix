@@ -101,7 +101,7 @@ bool FeedLoader::loadFeedsFromConfig()
         newFeed->articleCount = 0;
         newFeed->unreadCount = 0;
 
-        feeds->add(newFeed);
+        feeds->addFeed(newFeed);
     }
     file.close();
 

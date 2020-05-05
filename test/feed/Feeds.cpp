@@ -24,24 +24,24 @@ int main()
     assert(feeds != nullptr);
     assert(feeds->getCount() == 0);
 
-    // Create an feed to add
+    // Create an feed to addFeed
     struct rss *newFeed = (struct rss*) calloc(1, sizeof(struct rss));
     newFeed->title = strdup("Title");
     newFeed->url = strdup("https://www.some-example-url.com");
 
     // Add new feed
-    feeds->add(newFeed);
+    feeds->addFeed(newFeed);
     assert(feeds->getCount() == 1);
     assert(feeds->validIndex(1));
 
     // Add new feed
-    feeds->add(newFeed);
+    feeds->addFeed(newFeed);
     assert(feeds->getCount() == 2);
     assert(feeds->validIndex(2));
 
     assert(!feeds->validIndex(3));
 
-    // Create an article to add
+    // Create an article to addFeed
     struct rssItem *newArticle = (struct rssItem*) calloc(1, sizeof(struct rssItem));
     newArticle->title = strdup("Article title");
     newArticle->url = strdup("https://www.some-example-url.com");

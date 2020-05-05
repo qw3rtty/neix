@@ -43,7 +43,7 @@ namespace crss
         char* getFeedLineTitle(int feedIndex);
 
         bool validIndex(int index);
-        bool add(struct rss *newFeed);
+        bool addFeed(struct rss *newFeed);
         bool addArticle(int feedIndex, int articleIndex, struct rssItem *newArticle);
 
     private:
