@@ -8,11 +8,9 @@
  * @since       Version 0.1.0
  * @filesource
  */
-#include <exception>
 #include <stdexcept>
 #include <iostream>
 #include <cstring>
-#include <sstream>
 #include <cstdlib>
 #include <cassert>
 #include "feed/Feeds.h"
