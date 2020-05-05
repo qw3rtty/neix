@@ -1,5 +1,5 @@
 # crss
-Lightweight RSS-Feed reader written in C/C++.
+Lightweight RSS-Feed reader written in C++.
 
 ## TODO
 * [x] Improve unit tests
