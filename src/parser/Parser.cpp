@@ -89,6 +89,12 @@ struct rssItem* Parser::getFeedItem()
 {
     struct rssItem *item = (struct rssItem*) calloc(1, sizeof(struct rssItem));
     item->read = 0;
+
+    if (this->rootNode == nullptr)
+    {
+        return item;
+    }
+
     if (this->entryNode == nullptr)
     {
         this->entryNode = this->rootNode->first_node("entry");
@@ -111,8 +117,11 @@ struct rssItem* Parser::getFeedItem()
     item->description = this->convertHtmlToPlaintext(item->description);
 
     // Get feed link
-    char *url = this->entryNode->first_node("link")->first_attribute("href")->value();
-    item->url = strdup(url);
+    if (this->entryNode->first_node("link"))
+    {
+        char *url = this->entryNode->first_node("link")->first_attribute("href")->value();
+        item->url = strdup(url);
+    }
 
     // Get feed date
     item->date = this->getNodeContent("updated");
