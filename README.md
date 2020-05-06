@@ -9,6 +9,6 @@ Lightweight RSS-Feed reader written in C++.
 	* [ ] Parser for RSS 0.92
 	* [ ] Parser for RSS 2.0
 	* [x] Parser for Atom 
-* [ ] Create factory for parser
+* [x] Create factory for parser
 * [ ] Add commands
 * [ ] Add config parser
