@@ -58,22 +58,34 @@ void Parser::setRawRss(struct rawRss rawContent)
 }
 
 
-char * Parser::getNodeContent(std::string nodeName)
+/**
+ * Get content of given node
+ *
+ * @param   node        - The node of which the content should get
+ * @return
+ */
+char * Parser::getNodeContent(xml_node<> *node)
 {
     char *nodeValue = nullptr;
     char *content = (char*) calloc(1, sizeof(char));
-    xml_node<> *xmlNode = nullptr;
-    xmlNode = this->entryNode->first_node(nodeName.c_str());
+    strcpy(content, "");
 
-    if (xmlNode)
+    if (node == nullptr)
     {
-        nodeValue = xmlNode->value();
+        return content;
+    }
+
+    xml_attribute<> *attr = node->first_attribute("type");
+    if (attr != nullptr && strcmp(attr->value(), "html") == 0)
+    {
+        node = node->first_node();
+    }
+
+    if (node != nullptr)
+    {
+        nodeValue = node->value();
         content = (char*) calloc(strlen(nodeValue), sizeof(char));
         strcpy(content, nodeValue);
-    }
-    else
-    {
-        strcpy(content, "");
     }
 
     return content;
@@ -105,26 +117,27 @@ struct rssItem* Parser::getFeedItem()
     }
 
     // Get feed title
-    item->title = this->getNodeContent("title");
+    item->title = this->getNodeContent(this->entryNode->first_node("title"));
     item->title = this->convertHtmlToPlaintext(item->title);
 
     // Get feed content
-    item->description = this->getNodeContent("summary");
+    item->description = this->getNodeContent(this->entryNode->first_node("summary"));
     if (strlen(item->description) == 0)
     {
-        item->description = this->getNodeContent("content");
+        item->description = this->getNodeContent(this->entryNode->first_node("content"));
     }
     item->description = this->convertHtmlToPlaintext(item->description);
 
     // Get feed link
     if (this->entryNode->first_node("link"))
     {
+        // TODO: add getNodeAttributeContent()
         char *url = this->entryNode->first_node("link")->first_attribute("href")->value();
         item->url = strdup(url);
     }
 
     // Get feed date
-    item->date = this->getNodeContent("updated");
+    item->date = this->getNodeContent(this->entryNode->first_node("updated"));
     item->date = this->formatTimeString(item->date);
 
     return item;
