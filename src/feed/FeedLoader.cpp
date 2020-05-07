@@ -20,6 +20,7 @@
 #include <cstring>
 #include <curl/curl.h>
 
+#include "config.h"
 #include "feed/Feeds.h"
 #include "feed/FeedLoader.h"
 #include "parser/Parser.h"
@@ -117,11 +118,11 @@ bool FeedLoader::loadArticlesOfFeeds()
 {
     Feeds *feeds = Feeds::getInstance();
 
-    std::cout << feeds->getCount() << " Feeds to load" << std::endl;
+    std::cout << prefix << feeds->getCount() << " feeds found ..." << std::endl;
     for (int i = 0; i < feeds->getCount(); i++)
     {
         struct rss *tmpFeed = feeds->getFeed(i);
-        std::cout << "Loading: " << tmpFeed->title << " | " << tmpFeed->url << std::endl;
+        std::cout << prefix << "Loading: " << tmpFeed->title << " | " << tmpFeed->url << std::endl;
 
         std::string feedUrl(tmpFeed->url);
         this->load(feedUrl);

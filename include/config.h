@@ -21,4 +21,6 @@
 #define KEY_UPPER_J 74
 #define KEY_UPPER_K 75
 
+const char prefix[] = "\033[0;33m[crss]\033[0m ";
+
 #endif //CRSS_CONFIG_H
