@@ -283,7 +283,7 @@ void Application::printArticleInWindow(WINDOW *window, int y, int x, struct rssI
 
     std::string fullTitle(entry->title);
     std::string title = fullTitle.substr(0, titleWidth);
-    if (fullTitle.length() > titleWidth)
+    if ((int)fullTitle.length() > titleWidth)
     {
         title += "...";
     }
