@@ -35,6 +35,7 @@ namespace crss
         xml_node<> *entryNode{};
         struct rawRss *rss{};
         char* getNodeContent(xml_node<> *node);
+        char* getNodeAttribute(xml_node<> *node, const char *attribute);
         void setRawRss(struct rawRss rawContent);
     };
 }

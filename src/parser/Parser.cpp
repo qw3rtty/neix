@@ -59,6 +59,32 @@ void Parser::setRawRss(struct rawRss rawContent)
 
 
 /**
+ * Get the attribute content of given node
+ *
+ * @param   node        - Node of which the attribute should be get
+ * @param   attribute   - Name of the attribute
+ * @return              - Content of the attribute
+ */
+char * Parser::getNodeAttribute(xml_node<> *node, const char *attribute)
+{
+    char *attributeValue = nullptr;
+    if (node == nullptr)
+    {
+        return attributeValue;
+    }
+
+    xml_attribute<> *nodeAttr = node->first_attribute(attribute);
+    if (nodeAttr == nullptr)
+    {
+        return attributeValue;
+    }
+
+    attributeValue = nodeAttr->value();
+    return attributeValue;
+}
+
+
+/**
  * Get content of given node
  *
  * @param   node        - The node of which the content should get
@@ -75,8 +101,8 @@ char * Parser::getNodeContent(xml_node<> *node)
         return content;
     }
 
-    xml_attribute<> *attr = node->first_attribute("type");
-    if (attr != nullptr && strcmp(attr->value(), "html") == 0)
+    char *attr = this->getNodeAttribute(node, "type");
+    if (attr != nullptr && strcmp(attr, "html") == 0)
     {
         node = node->first_node();
     }
@@ -131,8 +157,7 @@ struct rssItem* Parser::getFeedItem()
     // Get feed link
     if (this->entryNode->first_node("link"))
     {
-        // TODO: add getNodeAttributeContent()
-        char *url = this->entryNode->first_node("link")->first_attribute("href")->value();
+        char *url = this->getNodeAttribute(this->entryNode->first_node("link"), "href");
         item->url = strdup(url);
     }
 
