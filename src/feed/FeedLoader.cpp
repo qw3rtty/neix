@@ -96,11 +96,6 @@ bool FeedLoader::loadFeedsFromConfig()
         }
 
         struct rss *newFeed = (struct rss*) calloc(1, sizeof(struct rss));
-        if (newFeed == nullptr)
-        {
-            continue;
-        }
-
         newFeed->title = (char*) calloc(name.length() + 1, sizeof(char));
         newFeed->url = (char*) calloc(link.length() + 1, sizeof(char));
         newFeed->articleCount = 0;
