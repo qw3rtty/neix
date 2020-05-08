@@ -44,7 +44,10 @@ FeedLoader::FeedLoader()
  */
 FeedLoader::~FeedLoader()
 {
-    free(this->feed);
+    if (this->feed->content != nullptr)
+    {
+        free(this->feed->content);
+    }
 }
 
 
@@ -93,6 +96,11 @@ bool FeedLoader::loadFeedsFromConfig()
         }
 
         struct rss *newFeed = (struct rss*) calloc(1, sizeof(struct rss));
+        if (newFeed == nullptr)
+        {
+            continue;
+        }
+
         newFeed->title = (char*) calloc(name.length() + 1, sizeof(char));
         newFeed->url = (char*) calloc(link.length() + 1, sizeof(char));
         newFeed->articleCount = 0;
