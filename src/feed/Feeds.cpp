@@ -69,13 +69,18 @@ bool Feeds::validIndex(int index)
 
 /**
  * Add given feed
+ *
  * @param   newFeed     - New feed to addFeed
  * @return  true on success, false else
  */
 bool Feeds::addFeed(struct rss *newFeed)
 {
     this->rssFeeds[this->count] = (struct rss*) calloc(1, sizeof(struct rss));
-    memcpy(&this->rssFeeds[this->count], &newFeed, sizeof(newFeed));
+    this->rssFeeds[this->count]->articleCount = 0;
+    this->rssFeeds[this->count]->unreadCount = 0;
+
+    memcpy(&this->rssFeeds[this->count]->title, &newFeed->title, sizeof(newFeed->title));
+    memcpy(&this->rssFeeds[this->count]->url, &newFeed->url, sizeof(newFeed->url));
     this->count++;
 
     return true;

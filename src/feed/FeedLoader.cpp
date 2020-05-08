@@ -102,6 +102,7 @@ bool FeedLoader::loadFeedsFromConfig()
         strcpy(newFeed->url, link.c_str());
 
         feeds->addFeed(newFeed);
+        free(newFeed);
     }
     file.close();
 
