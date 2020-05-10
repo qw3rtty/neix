@@ -56,9 +56,7 @@ FeedLoader::~FeedLoader()
  */
 void FeedLoader::resetFeed()
 {
-    this->feed = (struct rawRss*) calloc(1, sizeof(struct rawRss*));
-    this->feed->content = (char*) calloc(1, sizeof(char));
-    this->feed->size = 0;
+    this->feed = (struct rawRss*) calloc(100, sizeof(struct rawRss*));
 }
 
 
