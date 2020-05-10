@@ -110,7 +110,7 @@ char * Parser::getNodeContent(xml_node<> *node)
     if (node != nullptr)
     {
         nodeValue = node->value();
-        content = (char*) calloc(strlen(nodeValue), sizeof(char));
+        content = (char*) calloc(strlen(nodeValue) + 1, sizeof(char));
         strcpy(content, nodeValue);
     }
 
