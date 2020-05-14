@@ -22,14 +22,14 @@ namespace crss
     class Parser
     {
     public:
-        Parser(struct rawRss content);
+        explicit Parser(struct rawRss content);
         ~Parser();
 
-        struct rssItem* getFeedItem();
+        virtual struct rssItem* getFeedItem() = 0;
         char* convertHtmlToPlaintext(char *text);
         char* formatTimeString(const char *timeString);
 
-    private:
+    protected:
         xml_document<> xmlDocument;
         xml_node<> *rootNode{};
         xml_node<> *entryNode{};

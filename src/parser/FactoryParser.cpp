@@ -10,6 +10,7 @@
  */
 
 #include "parser/Parser.h"
+#include "parser/ParserAtom.h"
 #include "parser/FactoryParser.h"
 using namespace crss;
 
@@ -36,7 +37,7 @@ Parser* FactoryParser::getInstance(struct rawRss content)
 {
     Parser *parser;
 
-    parser = new Parser(content);
+    parser = new ParserAtom(content);
 
     return parser;
 }
