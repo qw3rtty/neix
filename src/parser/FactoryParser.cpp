@@ -10,15 +10,13 @@
  */
 
 #include <regex>
-#include <iostream>
 #include <string>
-#include <cstring>
 
 #include "parser/Parser.h"
 #include "parser/ParserAtom.h"
 #include "parser/FactoryParser.h"
-using namespace crss;
 
+using namespace crss;
 
 /**
  * Constructor
