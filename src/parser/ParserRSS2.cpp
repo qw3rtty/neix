@@ -1,5 +1,5 @@
 /**
- * Atom parser class.
+ * RSS 2.0 parser class.
  *
  * @package     CRSS
  * @author      Thomas Schwarz
@@ -16,12 +16,11 @@
 #include <ctime>
 #include <iomanip>
 #include <sstream>
-#include <string>
 #include <regex>
 
 #include "rapidxml/rapidxml.hpp"
 #include "parser/Parser.h"
-#include "parser/ParserAtom.h"
+#include "parser/ParserRSS2.h"
 
 using namespace rapidxml;
 using namespace crss;
@@ -29,14 +28,14 @@ using namespace crss;
 /**
  * Constructor
  */
-ParserAtom::ParserAtom(struct rawRss content) : Parser(content)
+ParserRSS2::ParserRSS2(struct rawRss content) : Parser(content)
 {}
 
 
 /**
  * Destructor
  */
-ParserAtom::~ParserAtom() = default;
+ParserRSS2::~ParserRSS2() = default;
 
 
 /**
@@ -44,9 +43,9 @@ ParserAtom::~ParserAtom() = default;
  *
  * @return  Date format string
  */
-char* ParserAtom::getFeedDateFormat()
+char* ParserRSS2::getFeedDateFormat()
 {
-    return (char*) "%Y-%m-%dT%H:%M:%S";
+    return (char*) "%a, %d %b %Y %H:%M:%S %z";
 }
 
 
@@ -55,7 +54,7 @@ char* ParserAtom::getFeedDateFormat()
  *
  * @return  Item of feed
  */
-struct rssItem* ParserAtom::getFeedItem()
+struct rssItem* ParserRSS2::getFeedItem()
 {
     struct rssItem *item = (struct rssItem*) calloc(1, sizeof(struct rssItem));
     item->read = 0;
@@ -67,7 +66,7 @@ struct rssItem* ParserAtom::getFeedItem()
 
     if (this->entryNode == nullptr)
     {
-        this->entryNode = this->rootNode->first_node("entry");
+        this->entryNode = this->rootNode->first_node("channel")->first_node("item");
     }
     else
     {
@@ -79,22 +78,17 @@ struct rssItem* ParserAtom::getFeedItem()
     item->title = this->convertHtmlToPlaintext(item->title);
 
     // Get feed content
-    item->description = this->getNodeContent(this->entryNode->first_node("summary"));
-    if (strlen(item->description) == 0)
-    {
-        item->description = this->getNodeContent(this->entryNode->first_node("content"));
-    }
+    item->description = this->getNodeContent(this->entryNode->first_node("description"));
     item->description = this->convertHtmlToPlaintext(item->description);
 
     // Get feed link
     if (this->entryNode->first_node("link"))
     {
-        char *url = this->getNodeAttribute(this->entryNode->first_node("link"), "href");
-        item->url = strdup(url);
+        item->url = this->getNodeContent(this->entryNode->first_node("link"));
     }
 
     // Get feed date
-    item->date = this->getNodeContent(this->entryNode->first_node("updated"));
+    item->date = this->getNodeContent(this->entryNode->first_node("pubDate"));
     item->date = this->formatTimeString(item->date);
 
     return item;

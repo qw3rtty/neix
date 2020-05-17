@@ -151,7 +151,7 @@ char* Parser::formatTimeString(const char *timeString)
     struct std::tm when{0};
     memset(&when, 0, sizeof(when));
 
-    date >> std::get_time(&when,"%Y-%m-%dT%H:%M:%S");
+    date >> std::get_time(&when, this->getFeedDateFormat());
     formattedTimeString << std::put_time(&when, "%d.%m.%Y %H:%M"); // TODO: getFeed format from config
 
     std::string tmp(formattedTimeString.str());

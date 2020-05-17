@@ -34,6 +34,8 @@ namespace crss
         xml_node<> *rootNode{};
         xml_node<> *entryNode{};
         struct rawRss *rss{};
+
+        virtual char* getFeedDateFormat() = 0;
         char* getNodeContent(xml_node<> *node);
         char* getNodeAttribute(xml_node<> *node, const char *attribute);
         void setRawRss(struct rawRss rawContent);

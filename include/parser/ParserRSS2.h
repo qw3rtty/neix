@@ -1,5 +1,5 @@
 /**
- * Atom parser class.
+ * RSS 2.0 parser class.
  *
  * @package     CRSS
  * @author      Thomas Schwarz
@@ -9,8 +9,8 @@
  * @filesource
  */
 
-#ifndef CRSS_PARSERATOM_H
-#define CRSS_PARSERATOM_H
+#ifndef CRSS_PARSERRSS2_H
+#define CRSS_PARSERRSS2_H
 
 #include "rapidxml/rapidxml.hpp"
 #include "feed/FeedLoader.h"
@@ -20,12 +20,11 @@ using namespace rapidxml;
 
 namespace crss
 {
-    class ParserAtom : public Parser
+    class ParserRSS2 : public Parser
     {
     public:
-        explicit ParserAtom(struct rawRss content);
-        ~ParserAtom();
-
+        explicit ParserRSS2(struct rawRss content);
+        ~ParserRSS2();
         struct rssItem* getFeedItem() override;
 
     protected:
@@ -33,4 +32,4 @@ namespace crss
     };
 }
 
-#endif //CRSS_PARSERATOM_H
+#endif //CRSS_PARSERRSS2_H
