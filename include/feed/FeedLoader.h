@@ -40,6 +40,7 @@ namespace crss
         std::string url;
         struct rawRss *feed{};
 
+		struct rss* createNewFeed(const char* name, const char* link);
         void resetFeed();
         static size_t curlCalculateMemory(void *content, size_t size, size_t nmemb, void *userp);
         bool loadXml();

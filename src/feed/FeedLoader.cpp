@@ -61,6 +61,26 @@ void FeedLoader::resetFeed()
 
 
 /**
+ * Create new feed item
+ *
+ * @return	Pointer to the new feed item
+ */
+struct rss* FeedLoader::createNewFeed(const char* name, const char* link)
+{
+	struct rss *newFeed = (struct rss*) calloc(1, sizeof(struct rss));
+    newFeed->title = (char*) calloc(strlen(name) + 1, sizeof(char));
+    newFeed->url = (char*) calloc(strlen(link) + 1, sizeof(char));
+    newFeed->articleCount = 0;
+    newFeed->unreadCount = 0;
+
+    strcpy(newFeed->title, name);
+    strcpy(newFeed->url, link);
+
+	return newFeed;
+}
+
+
+/**
  * Load feeds from config file
  *
  * @return  true on success, false else
@@ -93,15 +113,7 @@ bool FeedLoader::loadFeedsFromConfig()
             continue;
         }
 
-        struct rss *newFeed = (struct rss*) calloc(1, sizeof(struct rss));
-        newFeed->title = (char*) calloc(name.length() + 1, sizeof(char));
-        newFeed->url = (char*) calloc(link.length() + 1, sizeof(char));
-        newFeed->articleCount = 0;
-        newFeed->unreadCount = 0;
-
-        strcpy(newFeed->title, name.c_str());
-        strcpy(newFeed->url, link.c_str());
-
+		struct rss* newFeed = this->createNewFeed(name.c_str(), link.c_str());
         feeds->addFeed(newFeed);
         free(newFeed);
     }
