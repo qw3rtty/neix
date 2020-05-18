@@ -110,10 +110,19 @@ char * Parser::getNodeContent(xml_node<> *node)
     if (node != nullptr)
     {
         nodeValue = node->value();
-        content = (char*) calloc(strlen(nodeValue) + 1, sizeof(char));
-        strcpy(content, nodeValue);
     }
 
+	if (node->first_node())
+	{
+		nodeValue = node->first_node()->value();
+	}
+
+	if (node != nullptr && nodeValue != nullptr)
+	{
+		content = (char*) calloc(strlen(nodeValue) + 1, sizeof(char));
+    	strcpy(content, nodeValue);
+	}	
+	
     return content;
 }
 
