@@ -102,7 +102,7 @@ char * Parser::getNodeContent(xml_node<> *node)
     }
 
     char *attr = this->getNodeAttribute(node, "type");
-    if (attr != nullptr && strcmp(attr, "html") == 0)
+    if ((attr != nullptr && strcmp(attr, "html") == 0) || node->first_node())
     {
         node = node->first_node();
     }
@@ -110,18 +110,9 @@ char * Parser::getNodeContent(xml_node<> *node)
     if (node != nullptr)
     {
         nodeValue = node->value();
-    }
-
-	if (node->first_node())
-	{
-		nodeValue = node->first_node()->value();
-	}
-
-	if (node != nullptr && nodeValue != nullptr)
-	{
 		content = (char*) calloc(strlen(nodeValue) + 1, sizeof(char));
     	strcpy(content, nodeValue);
-	}	
+    }
 	
     return content;
 }
