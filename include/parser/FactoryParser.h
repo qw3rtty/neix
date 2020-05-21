@@ -24,7 +24,7 @@ namespace crss
         ~FactoryParser();
 
         static Parser* getInstance(struct rawRss content);
-        static unsigned int getRssVersion(char* content);
+        static double getRssVersion(char* content);
     };
 }
 

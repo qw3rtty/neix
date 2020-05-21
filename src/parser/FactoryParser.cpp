@@ -39,17 +39,21 @@ FactoryParser::~FactoryParser() = default;
  */
 Parser* FactoryParser::getInstance(struct rawRss content)
 {
-    unsigned int version = FactoryParser::getRssVersion(content.content);
+    double version = FactoryParser::getRssVersion(content.content);
     Parser *parser;
 
-    if (version == 2)
-    {
-        parser = new ParserRSS2(content);
-    }
-    else
-    {
-        parser = new ParserAtom(content);
-    }
+	if (version == 2)
+	{
+		parser = new ParserRSS2(content);
+	}
+	else if (version == 0.91 || version == 0.92)
+	{
+		parser = new ParserRSS2(content);
+	}
+	else
+	{
+		parser = new ParserAtom(content);	
+	}
 
     return parser;
 }
@@ -60,9 +64,9 @@ Parser* FactoryParser::getInstance(struct rawRss content)
  * @param content
  * @return
  */
-unsigned int FactoryParser::getRssVersion(char* content)
+double FactoryParser::getRssVersion(char* content)
 {
-    unsigned int version = 0;
+	double version = 0.0;
 
     std::string str(content);
     std::regex regex(R"(<rss.+version="(\d+.\d+)\")");
@@ -70,7 +74,7 @@ unsigned int FactoryParser::getRssVersion(char* content)
 
     if (std::regex_search(str, match, regex))
     {
-        version = std::stoi(match.str(1));
+        version = std::stod(match.str(1));
     }
 
     return version;
