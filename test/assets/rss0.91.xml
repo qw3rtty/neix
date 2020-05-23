@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<rss version="0.91">
+<channel>
+  <title>RSS0.91 Example</title> 
+  <link>http://www.oreilly.com/example/index.html</link> 
+  <description>This is an example RSS0.91 feed</description> 
+  <language>en-gb</language> 
+  <copyright>Copyright 2002, Oreilly and Associates.</copyright> 
+  <managingEditor>editor@oreilly.com</managingEditor> 
+  <webMaster>webmaster@oreilly.com</webMaster> 
+<rating> <!-- See the text --> </rating>
+  <pubDate>03 Apr 02 1500 GMT</pubDate>
+  <lastBuildDate>03 Apr 02 1500 GMT</lastBuildDate>
+  <docs>http://backend.userland.com/rss091</docs>
+  <skipDays>
+    <day>Monday</day>
+  </skipDays>
+  <skipHours>
+    <hour>20</hour>
+  </skipHours>
+   
+  <image>
+    <title>RSS0.91 Example</title> 
+    <url>http://www.oreilly.com/example/images/logo.gif</url> 
+    <link>http://www.oreilly.com/example/index.html</link>
+    <width>88</width> 
+    <height>31</height> 
+    <description>The World's Leading Technical Publisher</description>
+  </image>
+   
+  <textInput>
+    <title>Search</title>
+    <description>Search the Archives</description>
+    <name>query</name>
+    <link>http://www.oreilly.com/example/search.cgi</link>
+  </textInput>
+   
+  <item>
+    <title>The First Item</title> 
+    <link>http://www.oreilly.com/example/001.html</link> 
+    <description>This is the first item.</description> 
+  </item>
+   
+  <item>
+    <title>The Second Item</title> 
+    <link>http://www.oreilly.com/example/002.html</link> 
+    <description>This is the second item.</description> 
+  </item>
+   
+  <item>
+    <title>The Third Item</title> 
+    <link>http://www.oreilly.com/example/003.html</link> 
+    <description>This is the third item.</description> 
+  </item>
+   
+</channel>
+</rss>

@@ -18,9 +18,9 @@
 
 using namespace crss;
 
-void testAtomParser()
+void testParser()
 {
-    std::ifstream atom("./test/assets/atom.xml");
+	std::ifstream atom("./test/assets/atom.xml");
     std::stringstream atomContent;
     atomContent << atom.rdbuf();
 
@@ -44,11 +44,27 @@ void testAtomParser()
     assert(strcmp(timeString, "26.04.2020 12:25") == 0);
 }
 
-void testRss20Parser()
+void testAtomParser()
 {
-    std::ifstream rss2("./test/assets/rss2.0.xml");
+    std::ifstream atom("./test/assets/atom.xml");
+    std::stringstream atomContent;
+    atomContent << atom.rdbuf();
+
+    struct rawRss rawFeed = {};
+    rawFeed.content = strdup(atomContent.str().c_str());
+    rawFeed.size = 1234;
+
+    Parser *parser = FactoryParser::getInstance(rawFeed);
+
+    struct rssItem *item = parser->getFeedItem();
+    assert(item != nullptr);
+}
+
+void testRss0x91Parser()
+{
+    std::ifstream rss("./test/assets/rss0.91.xml");
     std::stringstream rssContent;
-    rssContent << rss2.rdbuf();
+    rssContent << rss.rdbuf();
 
     struct rawRss rawFeed = {};
     rawFeed.content = strdup(rssContent.str().c_str());
@@ -58,21 +74,48 @@ void testRss20Parser()
 
     struct rssItem *item = parser->getFeedItem();
     assert(item != nullptr);
+}
 
-    char htmlText[] = "<p>Some text</p>";
-    char *plaintext = parser->convertHtmlToPlaintext(htmlText);
-    assert(strcmp(plaintext, "Some text") == 0);
 
-    char *timeString = parser->formatTimeString("Sun, 17 May 2020 03:45:56 +0200");
-    assert(strcmp(timeString, "17.05.2020 03:45") == 0);
+void testRss0x92Parser()
+{
+    std::ifstream rss("./test/assets/rss0.92.xml");
+    std::stringstream rssContent;
+    rssContent << rss.rdbuf();
 
-    timeString = parser->formatTimeString("Sat, 16 May 2020 23:20:16 +0200");
-    assert(strcmp(timeString, "16.05.2020 23:20") == 0);
+    struct rawRss rawFeed = {};
+    rawFeed.content = strdup(rssContent.str().c_str());
+    rawFeed.size = 1234;
+
+    Parser *parser = FactoryParser::getInstance(rawFeed);
+
+    struct rssItem *item = parser->getFeedItem();
+    assert(item != nullptr);
+}
+
+
+void testRss20Parser()
+{
+    std::ifstream rss("./test/assets/rss2.0.xml");
+    std::stringstream rssContent;
+    rssContent << rss.rdbuf();
+
+    struct rawRss rawFeed = {};
+    rawFeed.content = strdup(rssContent.str().c_str());
+    rawFeed.size = 1234;
+
+    Parser *parser = FactoryParser::getInstance(rawFeed);
+
+    struct rssItem *item = parser->getFeedItem();
+    assert(item != nullptr);
 }
 
 int main()
 {
+	testParser();
     testAtomParser();
+    testRss0x91Parser();
+    testRss0x92Parser();
     testRss20Parser();
 
     return 0;
