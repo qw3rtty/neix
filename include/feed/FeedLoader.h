@@ -30,8 +30,8 @@ namespace crss
         FeedLoader();
         ~FeedLoader();
 
-        bool loadFeedsFromConfig();
-        bool loadArticlesOfFeeds();
+        bool loadFeedsFromConfig(Feeds *feeds);
+        bool loadArticlesOfFeeds(Feeds *feeds);
         bool load(std::string feedUrl);
         struct rawRss getFeed();
         std::stringstream configPath;

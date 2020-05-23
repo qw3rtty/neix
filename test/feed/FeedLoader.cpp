@@ -11,20 +11,22 @@
 #include <sstream>
 #include <cstdlib>
 #include <cassert>
+#include "feed/Feeds.h"
 #include "feed/FeedLoader.h"
 
 using namespace crss;
 int main()
 {
+	Feeds *feeds = Feeds::getInstance();
     FeedLoader feedLoader;
     feedLoader.configPath.clear();
     feedLoader.configPath.str("");
     feedLoader.configPath << getenv("PWD") << "/test/testFeeds.conf";
 
-    bool feedsLoaded = feedLoader.loadFeedsFromConfig();
+    bool feedsLoaded = feedLoader.loadFeedsFromConfig(feeds);
     assert(feedsLoaded);
 
-    bool articleLoaded = feedLoader.loadArticlesOfFeeds();
+    bool articleLoaded = feedLoader.loadArticlesOfFeeds(feeds);
     assert(articleLoaded);
 
     bool xmlLoaded = feedLoader.load("https://www.heise.de/developer/rss/news-atom.xml");

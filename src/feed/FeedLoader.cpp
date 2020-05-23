@@ -83,9 +83,10 @@ struct rss* FeedLoader::createNewFeed(const char* name, const char* link)
 /**
  * Load feeds from config file
  *
+ * @param	feeds
  * @return  true on success, false else
  */
-bool FeedLoader::loadFeedsFromConfig()
+bool FeedLoader::loadFeedsFromConfig(Feeds *feeds)
 {
     std::ifstream file;
     std::string line;
@@ -101,7 +102,6 @@ bool FeedLoader::loadFeedsFromConfig()
         return false;
     }
 
-    Feeds *feeds = Feeds::getInstance();
     while (!file.eof())
     {
         getline(file, line);
@@ -126,12 +126,11 @@ bool FeedLoader::loadFeedsFromConfig()
 /**
  * Load articles of all feeds
  *
+ * @param	feeds:w
  * @return  true on success, false else
  */
-bool FeedLoader::loadArticlesOfFeeds()
+bool FeedLoader::loadArticlesOfFeeds(Feeds *feeds)
 {
-    Feeds *feeds = Feeds::getInstance();
-
     std::cout << prefix << feeds->getCount() << " feeds found ..." << std::endl;
     for (int i = 0; i < feeds->getCount(); i++)
     {
