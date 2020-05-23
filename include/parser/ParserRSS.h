@@ -9,8 +9,8 @@
  * @filesource
  */
 
-#ifndef CRSS_PARSERRSS2_H
-#define CRSS_PARSERRSS2_H
+#ifndef CRSS_PARSERRSS_H
+#define CRSS_PARSERRSS_H
 
 #include "rapidxml/rapidxml.hpp"
 #include "feed/FeedLoader.h"
@@ -20,11 +20,11 @@ using namespace rapidxml;
 
 namespace crss
 {
-    class ParserRSS2 : public Parser
+    class ParserRSS : public Parser
     {
     public:
-        explicit ParserRSS2(struct rawRss content);
-        ~ParserRSS2();
+        explicit ParserRSS(struct rawRss content);
+        ~ParserRSS();
         struct rssItem* getFeedItem() override;
 
     protected:
@@ -32,4 +32,4 @@ namespace crss
     };
 }
 
-#endif //CRSS_PARSERRSS2_H
+#endif //CRSS_PARSERRSS_H

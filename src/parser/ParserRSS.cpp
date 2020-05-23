@@ -20,7 +20,7 @@
 
 #include "rapidxml/rapidxml.hpp"
 #include "parser/Parser.h"
-#include "parser/ParserRSS2.h"
+#include "parser/ParserRSS.h"
 
 using namespace rapidxml;
 using namespace crss;
@@ -28,14 +28,14 @@ using namespace crss;
 /**
  * Constructor
  */
-ParserRSS2::ParserRSS2(struct rawRss content) : Parser(content)
+ParserRSS::ParserRSS(struct rawRss content) : Parser(content)
 {}
 
 
 /**
  * Destructor
  */
-ParserRSS2::~ParserRSS2() = default;
+ParserRSS::~ParserRSS() = default;
 
 
 /**
@@ -43,7 +43,7 @@ ParserRSS2::~ParserRSS2() = default;
  *
  * @return  Date format string
  */
-char* ParserRSS2::getFeedDateFormat()
+char* ParserRSS::getFeedDateFormat()
 {
     return (char*) "%a, %d %b %Y %H:%M:%S %z";
 }
@@ -54,7 +54,7 @@ char* ParserRSS2::getFeedDateFormat()
  *
  * @return  Item of feed
  */
-struct rssItem* ParserRSS2::getFeedItem()
+struct rssItem* ParserRSS::getFeedItem()
 {
     struct rssItem *item = (struct rssItem*) calloc(1, sizeof(struct rssItem));
     item->read = 0;

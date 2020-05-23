@@ -14,7 +14,7 @@
 
 #include "parser/Parser.h"
 #include "parser/ParserAtom.h"
-#include "parser/ParserRSS2.h"
+#include "parser/ParserRSS.h"
 #include "parser/FactoryParser.h"
 
 using namespace crss;
@@ -44,11 +44,11 @@ Parser* FactoryParser::getInstance(struct rawRss content)
 
 	if (version == 2)
 	{
-		parser = new ParserRSS2(content);
+		parser = new ParserRSS(content);
 	}
 	else if (version == 0.91 || version == 0.92)
 	{
-		parser = new ParserRSS2(content);
+		parser = new ParserRSS(content);
 	}
 	else
 	{
