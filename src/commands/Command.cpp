@@ -19,10 +19,10 @@ using namespace crss;
  */
 Command::Command(const char *arg)
 {
-	if (arg != nullptr)
-	{
-		this->argument = strdup(arg);
-	}
+    if (arg != nullptr)
+    {
+        this->argument = strdup(arg);
+    }
 }
 
 

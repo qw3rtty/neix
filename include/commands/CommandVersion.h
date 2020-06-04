@@ -22,10 +22,10 @@ namespace crss
         CommandVersion(const char *arg);
         ~CommandVersion();
 
-		void exec();
+        void exec() override;
 
     protected:
-		char *argument;
+        char *argument;
     };
 }
 

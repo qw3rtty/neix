@@ -21,8 +21,7 @@ using namespace crss;
  *
  * @param	arg		- Argument for command
  */
-CommandVersion::CommandVersion(const char *arg) : Command(arg)
-{}
+CommandVersion::CommandVersion(const char *arg) : Command(arg) {}
 
 
 /**
@@ -36,7 +35,7 @@ CommandVersion::~CommandVersion() = default;
  */
 void CommandVersion::exec()
 {
-	std::cout << "Version " << VERSION << std::endl;
+    std::cout << "Version " << VERSION << std::endl;
 }
 
 

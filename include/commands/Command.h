@@ -20,10 +20,10 @@ namespace crss
         Command(const char *arg);
         ~Command();
 
-		virtual void exec() = 0;
+        virtual void exec() = 0;
 
     protected:
-		char *argument;
+        char *argument;
     };
 }
 
