@@ -21,7 +21,7 @@
 using namespace crss;
 int main()
 {
-	std::string arg = "test";
+	std::string arg = "";
 	Command *cmd = new CommandVersion(arg.c_str());
 	cmd->exec();
 
