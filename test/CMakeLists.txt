@@ -2,11 +2,13 @@ FILE(GLOB src ${PROJECT_SOURCE_DIR}/src/*.cpp)
 LIST(REMOVE_ITEM src ${PROJECT_SOURCE_DIR}/src/main.cpp)
 FILE(GLOB feed ${PROJECT_SOURCE_DIR}/src/feed/*.cpp)
 FILE(GLOB parser ${PROJECT_SOURCE_DIR}/src/parser/*.cpp)
+FILE(GLOB commands ${PROJECT_SOURCE_DIR}/src/commands/*.cpp)
 
 FILE(GLOB tests ${PROJECT_SOURCE_DIR}/test/*.cpp)
 FILE(GLOB testParser ${PROJECT_SOURCE_DIR}/test/parser/Parser.cpp)
 FILE(GLOB testFeedLoader ${PROJECT_SOURCE_DIR}/test/feed/FeedLoader.cpp)
 FILE(GLOB testFeeds ${PROJECT_SOURCE_DIR}/test/feed/Feeds.cpp)
+FILE(GLOB testCommands ${PROJECT_SOURCE_DIR}/test/commands/Commands.cpp)
 
 add_executable(test-feedloader
     ${src}
@@ -28,3 +30,10 @@ add_executable(test-feeds
     ${parser}
     ${testFeeds}
 )
+
+add_executable(test-commands
+    ${commands}
+	${testCommands}
+)
+
+

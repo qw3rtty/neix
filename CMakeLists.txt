@@ -18,6 +18,7 @@ include_directories(
 FILE(GLOB src ${PROJECT_SOURCE_DIR}/src/*.cpp)
 FILE(GLOB feed ${PROJECT_SOURCE_DIR}/src/feed/*.cpp)
 FILE(GLOB parser ${PROJECT_SOURCE_DIR}/src/parser/*.cpp)
+FILE(GLOB commands ${PROJECT_SOURCE_DIR}/src/commands/*.cpp)
 
 add_executable(crss
     ${src}
@@ -32,6 +33,7 @@ if(enable-tests)
     add_test(FeedLoader /bin/test-feedloader)
     add_test(Parser /bin/test-parser)
     add_test(Feeds /bin/test-feeds)
+	add_test(Commands /bin/test-commands)
 endif()
 
 INSTALL(TARGETS crss RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
