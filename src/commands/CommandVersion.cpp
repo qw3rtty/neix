@@ -36,7 +36,7 @@ CommandVersion::~CommandVersion() = default;
  */
 void CommandVersion::exec()
 {
-	std::cout << "Version 0.1.0" << std::endl;
+	std::cout << "Version " << VERSION << std::endl;
 }
 
 
