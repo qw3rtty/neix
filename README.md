@@ -11,7 +11,7 @@ Lightweight RSS-Feed reader written in C++.
 	* [x] Parser for Atom 
 * [x] Create factory for parser
 * [ ] Add commands
-	* [ ] Create interface
+	* [x] Create interface
 * [ ] Add config parser
 
 <pre>
