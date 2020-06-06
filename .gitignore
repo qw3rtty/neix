@@ -56,6 +56,7 @@ dkms.conf
 
 # Project settings
 *.cmake
+*.cbp
 CMakeFiles
 CMakeCache.txt
 Makefile
