@@ -19,7 +19,6 @@ FILE(GLOB testConfig ${PROJECT_SOURCE_DIR}/test/config/ConfigReader.cpp)
 add_executable(test-feedloader
     ${src}
     ${feed}
-    ${parser}
     ${testFeedLoader}
 )
 
@@ -33,7 +32,6 @@ add_executable(test-parser
 add_executable(test-feeds
     ${src}
     ${feed}
-    ${parser}
     ${testFeeds}
 )
 
