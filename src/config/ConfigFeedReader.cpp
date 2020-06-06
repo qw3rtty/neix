@@ -63,8 +63,7 @@ std::map<std::string, std::string> ConfigFeedReader::read()
             continue;
         }
 
-        std::pair<std::string, std::string> pair = std::pair<std::string, std::string>(name.c_str(), link.c_str());
-        feedMap.insert(pair);
+        feedMap[name] = link;
     }
     file.close();
 
