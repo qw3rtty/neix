@@ -33,6 +33,7 @@ add_executable(crss
     ${src}
     ${feed}
     ${parser}
+    ${config}
 )
 
 option(enable-tests "Enables test suite" YES)

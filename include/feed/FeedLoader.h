@@ -30,17 +30,14 @@ namespace crss
         FeedLoader();
         ~FeedLoader();
 
-        bool loadFeedsFromConfig(Feeds *feeds);
-        bool loadArticlesOfFeeds(Feeds *feeds);
+        struct rss* createNewFeed(const char* name, const char* link);
         bool load(std::string feedUrl);
         struct rawRss getFeed();
-        std::stringstream configPath;
 
     private:
         std::string url;
         struct rawRss *feed{};
 
-		struct rss* createNewFeed(const char* name, const char* link);
         void resetFeed();
         static size_t curlCalculateMemory(void *content, size_t size, size_t nmemb, void *userp);
         bool loadXml();

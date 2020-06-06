@@ -11,8 +11,6 @@
 
 #include <iostream>
 #include <string>
-#include <fstream>
-#include <sstream>
 #include <utility>
 
 #include <cstdio>
@@ -20,11 +18,9 @@
 #include <cstring>
 #include <curl/curl.h>
 
-#include "config.h"
 #include "feed/Feeds.h"
 #include "feed/FeedLoader.h"
-#include "parser/Parser.h"
-#include "parser/FactoryParser.h"
+
 using namespace crss;
 
 
@@ -33,7 +29,6 @@ using namespace crss;
  */
 FeedLoader::FeedLoader()
 {
-    this->configPath << getenv("HOME") << "/.config/crss/feeds.conf";
     this->url = "";
     this->resetFeed();
 }
@@ -77,78 +72,6 @@ struct rss* FeedLoader::createNewFeed(const char* name, const char* link)
     strcpy(newFeed->url, link);
 
 	return newFeed;
-}
-
-
-/**
- * Load feeds from config file
- *
- * @param	feeds
- * @return  true on success, false else
- */
-bool FeedLoader::loadFeedsFromConfig(Feeds *feeds)
-{
-    std::ifstream file;
-    std::string line;
-
-    std::string delimiter = "=";
-    std::string name;
-    std::string link;
-
-    file.open(this->configPath.str());
-    if (!file.is_open())
-    {
-        std::cout << "Could not load config file!" << std::endl;
-        return false;
-    }
-
-    while (!file.eof())
-    {
-        getline(file, line);
-        name = line.substr(0, line.find(delimiter));
-        link = line.substr(line.find(delimiter) + 1, line.length());
-
-        if (name.empty() || link.empty())
-        {
-            continue;
-        }
-
-		struct rss* newFeed = this->createNewFeed(name.c_str(), link.c_str());
-        feeds->addFeed(newFeed);
-        free(newFeed);
-    }
-    file.close();
-
-    return true;
-}
-
-
-/**
- * Load articles of all feeds
- *
- * @param	feeds:w
- * @return  true on success, false else
- */
-bool FeedLoader::loadArticlesOfFeeds(Feeds *feeds)
-{
-    std::cout << prefix << feeds->getCount() << " feeds found ..." << std::endl;
-    for (int i = 0; i < feeds->getCount(); i++)
-    {
-        struct rss *tmpFeed = feeds->getFeed(i);
-        std::cout << prefix << "Loading: " << tmpFeed->title << " | " << tmpFeed->url << std::endl;
-
-        std::string feedUrl(tmpFeed->url);
-        this->load(feedUrl);
-
-        Parser *parser = FactoryParser::getInstance(this->getFeed());
-        for (int j = 0; j < FEEDS_MAX; j++)
-        {
-            struct rssItem *newArticle = parser->getFeedItem();
-            feeds->addArticle(i, j, newArticle);
-        }
-    }
-
-    return true;
 }
 
 

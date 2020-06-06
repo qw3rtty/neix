@@ -2,28 +2,41 @@
 #include "config.h"
 #include "Application.h"
 #include "feed/FeedLoader.h"
+#include "parser/Parser.h"
+#include "parser/FactoryParser.h"
+#include "config/ConfigFeedReader.h"
 
+using namespace std;
 using namespace crss;
 
 int main()
 {
-    std::cout << prefix << "Starting version 0.1.0 ..." << std::endl;
+    cout << prefix << "Starting version 0.1.0" << endl;
 
-	Feeds *feeds = Feeds::getInstance();
+    Feeds *feeds = Feeds::getInstance();
     FeedLoader loader;
+    ConfigFeedReader cfgFeedReader(FEED_CONFIG_PATH);
+    map<string, string> feedList = cfgFeedReader.read();
 
-    std::cout << prefix << "Loading feeds from config ..." << std::endl;
-    if (!loader.loadFeedsFromConfig(feeds))
+    cout << prefix << feedList.size() << " feeds found" << endl;
+    map<string, string>::iterator it;
+    for (it = feedList.begin(); it != feedList.end(); ++it)
     {
-        std::cout << "Error while loading feeds from config!" << std::endl;
+        cout << prefix << "Loading: " << it->first << endl;
+        struct rss *newFeed = loader.createNewFeed(it->first.c_str(), it->second.c_str());
+        feeds->addFeed(newFeed);
+        loader.load(it->second);
+
+        Parser *parser = FactoryParser::getInstance(loader.getFeed());
+        int index = distance(feedList.begin(), it);
+        for (int j = 0; j < FEEDS_MAX; j++)
+        {
+            struct rssItem *newArticle = parser->getFeedItem();
+            feeds->addArticle(index, j, newArticle);
+        }
     }
 
-    std::cout << prefix << "Load content of feeds ..." << std::endl;
-    if (!loader.loadArticlesOfFeeds(feeds))
-    {
-        std::cout << "Error while loading articles from feeds!" << std::endl;
-    }
-
+    cout << prefix << "Launch TUI" << endl;
     Application app;
     app.show();
 
