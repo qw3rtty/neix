@@ -2,9 +2,13 @@ cmake_minimum_required(VERSION 3.13)
 
 project(crss)
 
-
+# Version
 set(crssVersion "0.1.0")
 add_compile_definitions(VERSION="${crssVersion}")
+
+# Path for feed config file
+set(FeedConfigPath "$ENV{HOME}/.config/crss/feeds.conf")
+add_compile_definitions(FEED_CONFIG_PATH="${FeedConfigPath}")
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_EXTENSIONS OFF)
@@ -23,6 +27,7 @@ FILE(GLOB src ${PROJECT_SOURCE_DIR}/src/*.cpp)
 FILE(GLOB feed ${PROJECT_SOURCE_DIR}/src/feed/*.cpp)
 FILE(GLOB parser ${PROJECT_SOURCE_DIR}/src/parser/*.cpp)
 FILE(GLOB commands ${PROJECT_SOURCE_DIR}/src/commands/*.cpp)
+FILE(GLOB config ${PROJECT_SOURCE_DIR}/src/config/*.cpp)
 
 add_executable(crss
     ${src}
@@ -38,6 +43,7 @@ if(enable-tests)
     add_test(Parser /bin/test-parser)
     add_test(Feeds /bin/test-feeds)
 	add_test(Commands /bin/test-commands)
+	add_test(Config /bin/test-config)
 endif()
 
 INSTALL(TARGETS crss RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
