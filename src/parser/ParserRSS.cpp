@@ -8,16 +8,6 @@
  * @since       Version 0.1.0
  * @filesource
  */
-
-#include <iostream>
-#include <cstring>
-#include <cassert>
-#include <algorithm>
-#include <ctime>
-#include <iomanip>
-#include <sstream>
-#include <regex>
-
 #include "rapidxml/rapidxml.hpp"
 #include "parser/Parser.h"
 #include "parser/ParserRSS.h"
