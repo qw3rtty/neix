@@ -51,6 +51,10 @@ FeedLoader::~FeedLoader()
  */
 void FeedLoader::resetFeed()
 {
+    if (this->feed != nullptr)
+    {
+        free(this->feed);
+    }
     this->feed = (struct rawRss*) calloc(100, sizeof(struct rawRss*));
 }
 
