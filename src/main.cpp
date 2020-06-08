@@ -19,10 +19,11 @@ int main()
     map<string, string> feedList = cfgFeedReader.read();
 
     cout << prefix << feedList.size() << " feeds found" << endl;
+    cout << prefix << "Loading feeds " << flush;
     map<string, string>::iterator it;
     for (it = feedList.begin(); it != feedList.end(); ++it)
     {
-        cout << prefix << "Loading: " << it->first << endl;
+        cout << "." << flush;
         struct rss *newFeed = loader.createNewFeed(it->first.c_str(), it->second.c_str());
         feeds->addFeed(newFeed);
         loader.load(it->second);
@@ -35,6 +36,7 @@ int main()
             feeds->addArticle(index, j, newArticle);
         }
     }
+    cout << " Done" << endl;
 
     cout << prefix << "Launch TUI" << endl;
     Application app;
