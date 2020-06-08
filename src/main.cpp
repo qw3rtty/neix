@@ -11,7 +11,7 @@ using namespace crss;
 
 int main()
 {
-    cout << prefix << "Starting version 0.1.0" << endl;
+    cout << prefix << "Starting version " << VERSION << endl;
 
     Feeds *feeds = Feeds::getInstance();
     FeedLoader loader;
