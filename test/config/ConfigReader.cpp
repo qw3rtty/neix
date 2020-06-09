@@ -12,7 +12,7 @@
 #include <string>
 #include <cassert>
 
-#include "config/ConfigFeedReader.h"
+#include "config/ConfigReader.h"
 
 using namespace std;
 using namespace crss;
@@ -20,7 +20,7 @@ using namespace crss;
 int main()
 {
     map<string, string> feedMap;
-    ConfigFeedReader reader(FEED_CONFIG_PATH_TEST);
+    ConfigReader reader(FEED_CONFIG_PATH_TEST);
 
     feedMap = reader.read();
     assert(feedMap.size() == 1);

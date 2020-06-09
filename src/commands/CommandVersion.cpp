@@ -13,6 +13,7 @@
 #include "commands/Command.h"
 #include "commands/CommandVersion.h"
 
+using namespace std;
 using namespace crss;
 
 
@@ -35,7 +36,7 @@ CommandVersion::~CommandVersion() = default;
  */
 void CommandVersion::exec()
 {
-    std::cout << "Version " << VERSION << std::endl;
+    cout << "Version " << VERSION << endl;
 }
 
 

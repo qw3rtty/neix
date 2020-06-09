@@ -16,12 +16,13 @@
 #include "parser/FactoryParser.h"
 #include "parser/Parser.h"
 
+using namespace std;
 using namespace crss;
 
 void testParser()
 {
-	std::ifstream atom("./test/assets/atom.xml");
-    std::stringstream atomContent;
+	ifstream atom("./test/assets/atom.xml");
+    stringstream atomContent;
     atomContent << atom.rdbuf();
 
     struct rawRss rawFeed = {};
@@ -46,8 +47,8 @@ void testParser()
 
 void testAtomParser()
 {
-    std::ifstream atom("./test/assets/atom.xml");
-    std::stringstream atomContent;
+    ifstream atom("./test/assets/atom.xml");
+    stringstream atomContent;
     atomContent << atom.rdbuf();
 
     struct rawRss rawFeed = {};
@@ -62,8 +63,8 @@ void testAtomParser()
 
 void testRss0x91Parser()
 {
-    std::ifstream rss("./test/assets/rss0.91.xml");
-    std::stringstream rssContent;
+    ifstream rss("./test/assets/rss0.91.xml");
+    stringstream rssContent;
     rssContent << rss.rdbuf();
 
     struct rawRss rawFeed = {};
@@ -79,8 +80,8 @@ void testRss0x91Parser()
 
 void testRss0x92Parser()
 {
-    std::ifstream rss("./test/assets/rss0.92.xml");
-    std::stringstream rssContent;
+    ifstream rss("./test/assets/rss0.92.xml");
+    stringstream rssContent;
     rssContent << rss.rdbuf();
 
     struct rawRss rawFeed = {};
@@ -96,8 +97,8 @@ void testRss0x92Parser()
 
 void testRss20Parser()
 {
-    std::ifstream rss("./test/assets/rss2.0.xml");
-    std::stringstream rssContent;
+    ifstream rss("./test/assets/rss2.0.xml");
+    stringstream rssContent;
     rssContent << rss.rdbuf();
 
     struct rawRss rawFeed = {};

@@ -14,8 +14,8 @@
 #include <cstdio>
 #include "feed/Feeds.h"
 
+using namespace std;
 using namespace crss;
-
 
 /**
  * Instance
@@ -99,7 +99,7 @@ bool Feeds::addArticle(int feedIndex, int articleIndex, struct rssItem *newArtic
 {
     if (!this->validIndex(feedIndex))
     {
-        throw std::out_of_range("Index is out of range!");
+        throw out_of_range("Index is out of range!");
     }
 
     this->rssFeeds[feedIndex]->items[articleIndex] = (struct rssItem*) calloc(FEEDS_MAX, sizeof(struct rssItem));
@@ -122,7 +122,7 @@ struct rss *Feeds::getFeed(int index)
 {
     if (!this->validIndex(index))
     {
-        throw std::out_of_range("Index is out of range!");
+        throw out_of_range("Index is out of range!");
     }
 
     return this->rssFeeds[index];
@@ -140,7 +140,7 @@ struct rssItem * Feeds::getArticle(int feedIndex, int articleIndex)
 {
     if (!this->validIndex(feedIndex))
     {
-        throw std::out_of_range("Index is out of range!");
+        throw out_of_range("Index is out of range!");
     }
 
     return this->rssFeeds[feedIndex]->items[articleIndex];

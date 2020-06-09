@@ -17,6 +17,7 @@
 #include "parser/ParserRSS.h"
 #include "parser/FactoryParser.h"
 
+using namespace std;
 using namespace crss;
 
 /**
@@ -68,13 +69,13 @@ double FactoryParser::getRssVersion(char* content)
 {
 	double version = 0.0;
 
-    std::string str(content);
-    std::regex regex(R"(<rss.+version="(\d+.\d+)\")");
-    std::smatch match;
+    string str(content);
+    regex regex(R"(<rss.+version="(\d+.\d+)\")");
+    smatch match;
 
-    if (std::regex_search(str, match, regex))
+    if (regex_search(str, match, regex))
     {
-        version = std::stod(match.str(1));
+        version = stod(match.str(1));
     }
 
     return version;

@@ -15,7 +15,9 @@
 #include <cassert>
 #include "feed/Feeds.h"
 
+using namespace std;
 using namespace crss;
+
 int main()
 {
     Feeds *feeds = Feeds::getInstance();
@@ -57,14 +59,14 @@ int main()
 
     // Check feed title
     char *title = strdup(feeds->getFeedLineTitle(1));
-    std::cout << title << std::endl;
+    cout << title << endl;
     assert(strcmp(title, "Title [2/2]") == 0);
     assert(strcmp(title, "Sub power title") != 0);
 
     try {
         feeds->addArticle(5, 5, newArticle);
     }
-    catch (std::out_of_range &e) {
+    catch (out_of_range &e) {
         assert(strcmp(e.what(), "Index is out of range!") == 0);
     }
 

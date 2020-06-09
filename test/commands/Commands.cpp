@@ -14,10 +14,11 @@
 #include "commands/Command.h"
 #include "commands/CommandVersion.h"
 
+using namespace std;
 using namespace crss;
 
 int main() {
-    std::string arg;
+    string arg;
     Command *cmd = new CommandVersion(arg.c_str());
     cmd->exec();
 

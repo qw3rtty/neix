@@ -20,6 +20,7 @@
 #include "parser/Parser.h"
 
 using namespace rapidxml;
+using namespace std;
 using namespace crss;
 
 /**
@@ -46,8 +47,8 @@ void Parser::setRawRss(struct rawRss rawContent)
 {
     this->rss = &rawContent;
 
-    std::string s(this->rss->content);
-    s.erase(std::remove(s.begin(), s.end(), '\n'), s.end());
+    string s(this->rss->content);
+    s.erase(remove(s.begin(), s.end(), '\n'), s.end());
     char *temp = const_cast<char *>(s.c_str());
 
     this->xmlDocument.parse<0>(temp);
@@ -126,10 +127,10 @@ char * Parser::getNodeContent(xml_node<> *node)
 char * Parser::convertHtmlToPlaintext(char *text)
 {
     char *plaintext;
-    std::regex regex("<[^>]*>");
-    std::string convertedText;
+    regex regex("<[^>]*>");
+    string convertedText;
 
-    convertedText = std::regex_replace(text, regex, "");
+    convertedText = regex_replace(text, regex, "");
     plaintext = strdup(convertedText.c_str());
 
     return plaintext;
@@ -144,15 +145,15 @@ char * Parser::convertHtmlToPlaintext(char *text)
  */
 char* Parser::formatTimeString(const char *timeString)
 {
-    std::stringstream date(timeString);
-    std::ostringstream formattedTimeString;
-    struct std::tm when{0};
+    stringstream date(timeString);
+    ostringstream formattedTimeString;
+    struct tm when{0};
     memset(&when, 0, sizeof(when));
 
-    date >> std::get_time(&when, this->getFeedDateFormat());
-    formattedTimeString << std::put_time(&when, "%d.%m.%Y %H:%M"); // TODO: getFeed format from config
+    date >> get_time(&when, this->getFeedDateFormat());
+    formattedTimeString << put_time(&when, "%d.%m.%Y %H:%M"); // TODO: getFeed format from config
 
-    std::string tmp(formattedTimeString.str());
+    string tmp(formattedTimeString.str());
     char *formattedDate = strdup(tmp.c_str());
 
     return formattedDate;

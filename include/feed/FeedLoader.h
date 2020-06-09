@@ -22,6 +22,7 @@ struct rawRss
     size_t size;
 };
 
+using namespace std;
 namespace crss
 {
     class FeedLoader
@@ -31,11 +32,11 @@ namespace crss
         ~FeedLoader();
 
         struct rss* createNewFeed(const char* name, const char* link);
-        bool load(std::string feedUrl);
+        bool load(string feedUrl);
         struct rawRss getFeed();
 
     private:
-        std::string url;
+        string url;
         struct rawRss *feed{};
 
         void resetFeed();

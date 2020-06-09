@@ -4,7 +4,7 @@
 #include "feed/FeedLoader.h"
 #include "parser/Parser.h"
 #include "parser/FactoryParser.h"
-#include "config/ConfigFeedReader.h"
+#include "config/ConfigReader.h"
 
 using namespace std;
 using namespace crss;
@@ -15,8 +15,8 @@ int main()
 
     Feeds *feeds = Feeds::getInstance();
     FeedLoader loader;
-    ConfigFeedReader cfgFeedReader(FEED_CONFIG_PATH);
-    map<string, string> feedList = cfgFeedReader.read();
+    ConfigReader feedConfigReader(FEED_CONFIG_PATH);
+    map<string, string> feedList = feedConfigReader.read();
 
     cout << prefix << feedList.size() << " feeds found" << endl;
     cout << prefix << "Loading feeds " << flush;

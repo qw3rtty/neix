@@ -9,24 +9,25 @@
  * @filesource
  */
 
-#ifndef CRSS_CONFIGFEEDREADER_H
-#define CRSS_CONFIGFEEDREADER_H
+#ifndef CRSS_CONFIGREADER_H
+#define CRSS_CONFIGREADER_H
 
 #include <map>
 
+using namespace std;
 namespace crss
 {
-    class ConfigFeedReader
+    class ConfigReader
     {
     public:
-        ConfigFeedReader(const char *configPath);
-        ~ConfigFeedReader();
+        ConfigReader(const char *configPath);
+        ~ConfigReader();
 
-         std::map<std::string, std::string> read();
+         map<string, string> read();
 
     protected:
         char *path;
     };
 }
 
-#endif //CRSS_CONFIGFEEDREADER_H
+#endif //CRSS_CONFIGREADER_H

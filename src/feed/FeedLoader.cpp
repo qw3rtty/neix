@@ -10,7 +10,6 @@
  */
 
 #include <iostream>
-#include <string>
 #include <utility>
 
 #include <cstdio>
@@ -21,6 +20,7 @@
 #include "feed/Feeds.h"
 #include "feed/FeedLoader.h"
 
+using namespace std;
 using namespace crss;
 
 
@@ -85,9 +85,9 @@ struct rss* FeedLoader::createNewFeed(const char* name, const char* link)
  * @param   feedUrl     - URL which should be used for load the feed
  * @return  true on success, false else
  */
-bool FeedLoader::load(std::string feedUrl)
+bool FeedLoader::load(string feedUrl)
 {
-    this->url = std::move(feedUrl);
+    this->url = move(feedUrl);
     bool loaded = this->loadXml();
 
     return loaded;
@@ -166,11 +166,11 @@ bool FeedLoader::loadXml()
 
     if (res != CURLE_OK)
     {
-        std::cout << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+        cout << "curl_easy_perform() failed: " << curl_easy_strerror(res) << endl;
         return false;
     }
 
-    //std::cout << (unsigned long) this->feed->size << " bytes loaded" << std::endl;
+    //cout << (unsigned long) this->feed->size << " bytes loaded" << endl;
 
     return true;
 }

@@ -18,6 +18,7 @@
 #include "Application.h"
 #include "feed/Feeds.h"
 
+using namespace std;
 using namespace crss;
 
 /**
@@ -283,8 +284,8 @@ void Application::printArticleInWindow(WINDOW *window, int y, int x, struct rssI
     xPos += strlen(entry->date) + this->lineSpacer;
     int titleWidth = this->articleWindowWidth - (this->lineSpacer * 3) - xPos;
 
-    std::string fullTitle(entry->title);
-    std::string title = fullTitle.substr(0, titleWidth);
+    string fullTitle(entry->title);
+    string title = fullTitle.substr(0, titleWidth);
     if ((int)fullTitle.length() > titleWidth)
     {
         title += "...";
@@ -397,7 +398,7 @@ void Application::openArticleLink()
 
     Feeds *feeds = Feeds::getInstance();
     struct rssItem *article = feeds->getArticle(this->choice - 1, this->articleChoice - 1);
-    std::string openCmd("open ");
+    string openCmd("open ");
     openCmd += article->url;
 
     system(openCmd.c_str());

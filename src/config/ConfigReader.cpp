@@ -13,14 +13,15 @@
 #include <iostream>
 #include <map>
 #include <fstream>
-#include "config/ConfigFeedReader.h"
+#include "config/ConfigReader.h"
 
+using namespace std;
 using namespace crss;
 
 /**
  * Constructor
  */
-ConfigFeedReader::ConfigFeedReader(const char *configPath)
+ConfigReader::ConfigReader(const char *configPath)
 {
     this->path = strdup(configPath);
 }
@@ -29,22 +30,18 @@ ConfigFeedReader::ConfigFeedReader(const char *configPath)
 /**
  * Destructor
  */
-ConfigFeedReader::~ConfigFeedReader() = default;
+ConfigReader::~ConfigReader() = default;
 
 /**
  * Read given feed config file
  *
  * @return  Map with entries of configuration file
  */
-std::map<std::string, std::string> ConfigFeedReader::read()
+map<string, string> ConfigReader::read()
 {
-    std::map<std::string, std::string> feedMap;
-    std::ifstream file;
-    std::string line;
-
-    std::string delimiter = "=";
-    std::string name;
-    std::string link;
+    map<string, string> feedMap;
+    ifstream file;
+    string line, name, link, delimiter = "=";
 
     file.open(this->path);
     if (!file.is_open())
