@@ -58,9 +58,9 @@ Application::~Application()
  */
 void Application::initChoices()
 {
-    this->choice = 1;
-    this->articleChoice = 1;
-    this->quit = 0;
+    this->choice = 0;
+    this->articleChoice = 0;
+    this->quit = -1;
 }
 
 
@@ -104,23 +104,23 @@ void Application::show()
         {
             case KEY_UP:
             case KEY_K:
-                this->articleChoice = this->decreaseChoice(this->articleChoice, FEEDS_MAX);
+                this->articleChoice = this->decreaseChoice(this->articleChoice, feeds->getFeed(this->choice)->articleCount);
                 break;
 
             case KEY_DOWN:
             case KEY_J:
-                this->articleChoice = this->increaseChoice(this->articleChoice, FEEDS_MAX);
+                this->articleChoice = this->increaseChoice(this->articleChoice, feeds->getFeed(this->choice)->articleCount);
                 break;
 
             case KEY_UPPER_K:
                 wclear(this->articleWindow);
-                this->articleChoice = 1;
+                this->articleChoice = 0;
                 this->choice = this->decreaseChoice(this->choice, feeds->getCount());
                 break;
 
             case KEY_UPPER_J:
                 wclear(this->articleWindow);
-                this->articleChoice = 1;
+                this->articleChoice = 0;
                 this->choice = this->increaseChoice(this->choice, feeds->getCount());
                 break;
 
@@ -156,7 +156,7 @@ void Application::show()
             this->printWindows();
         }
 
-        if (this->quit != 0)
+        if (this->quit != -1)
         {
             break;
         }
@@ -184,7 +184,7 @@ void Application::printFeedsInWindow()
     for (i = 0; i < feeds->getCount(); ++i)
     {
         char *line = feeds->getFeedLineTitle(i);
-        if (this->choice == i + 1)
+        if (this->choice == i)
         {
             this->printLineHighlightedInWindow(this->feedWindow, y, x, line);
         }
@@ -209,10 +209,10 @@ void Application::printArticlesInWindow()
 {
     Feeds *feeds = Feeds::getInstance();
     int x = 2, y = 1, i;
-    int currentChoice = this->choice - 1;
-    for (i = 0; i < FEEDS_MAX; i++)
+    int currentChoice = this->choice;
+    for (i = 0; i < feeds->getFeed(currentChoice)->articleCount; i++)
     {
-        if (this->articleChoice == i + 1)
+        if (this->articleChoice == i)
         {
             this->printArticleHighlightedInWindow(this->articleWindow, y, x, feeds->getArticle(currentChoice, i));
         }
@@ -319,9 +319,9 @@ void Application::printArticleHighlightedInWindow(WINDOW *window, int y, int x, 
  */
 int Application::increaseChoice(int new_choice, int count)
 {
-    if (new_choice == count)
+    if (new_choice == count-1)
     {
-        new_choice = 1;
+        new_choice = 0;
     }
     else
     {
@@ -341,9 +341,9 @@ int Application::increaseChoice(int new_choice, int count)
  */
 int Application::decreaseChoice(int new_choice, int count)
 {
-    if (new_choice == 1)
+    if (new_choice == 0)
     {
-        new_choice = count;
+        new_choice = count-1;
     }
     else
     {
@@ -362,10 +362,10 @@ void Application::openArticle()
     Feeds *feeds = Feeds::getInstance();
     this->reading = true;
 
-    struct rss *feed = feeds->getFeed(this->choice - 1);
+    struct rss *feed = feeds->getFeed(this->choice);
     feed->unreadCount--;
 
-    struct rssItem *entry = feeds->getArticle(this->choice - 1, this->articleChoice - 1);
+    struct rssItem *entry = feeds->getArticle(this->choice, this->articleChoice);
     entry->read = 1;
 
     wclear(this->articleWindow);
@@ -397,7 +397,7 @@ void Application::openArticleLink()
     }
 
     Feeds *feeds = Feeds::getInstance();
-    struct rssItem *article = feeds->getArticle(this->choice - 1, this->articleChoice - 1);
+    struct rssItem *article = feeds->getArticle(this->choice, this->articleChoice);
     string openCmd("open ");
     openCmd += article->url;
 

@@ -51,16 +51,23 @@ struct rssItem* ParserRSS::getFeedItem()
 
     if (this->rootNode == nullptr)
     {
-        return item;
+        free(item);
+        return nullptr;
     }
 
-    if (this->entryNode == nullptr)
+    if (this->rootNode != nullptr && this->entryNode == nullptr)
     {
         this->entryNode = this->rootNode->first_node("channel")->first_node("item");
     }
     else
     {
         this->entryNode = this->entryNode->next_sibling();
+    }
+
+    if (this->entryNode == nullptr)
+    {
+        free(item);
+        return nullptr;
     }
 
     // Get feed title

@@ -30,10 +30,13 @@ int main()
 
         Parser *parser = FactoryParser::getInstance(loader.getFeed());
         int index = distance(feedList.begin(), it);
-        for (int j = 0; j < FEEDS_MAX; j++)
+
+        struct rssItem *newArticle = parser->getFeedItem();
+        int articleIndex = 0;
+        while (newArticle != nullptr)
         {
-            struct rssItem *newArticle = parser->getFeedItem();
-            feeds->addArticle(index, j, newArticle);
+            feeds->addArticle(index, articleIndex++, newArticle);
+            newArticle = parser->getFeedItem();
         }
     }
     cout << " Done" << endl;

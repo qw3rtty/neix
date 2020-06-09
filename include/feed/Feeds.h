@@ -12,7 +12,7 @@
 #ifndef CRSS_FEEDS_H
 #define CRSS_FEEDS_H
 
-#define FEEDS_MAX 15
+#define FEEDS_MAX 100
 
 struct rssItem
 {

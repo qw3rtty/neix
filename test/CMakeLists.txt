@@ -4,6 +4,7 @@ add_compile_definitions(FEED_CONFIG_PATH_TEST="${FeedConfigPathTest}")
 
 FILE(GLOB src ${PROJECT_SOURCE_DIR}/src/*.cpp)
 LIST(REMOVE_ITEM src ${PROJECT_SOURCE_DIR}/src/main.cpp)
+LIST(REMOVE_ITEM src ${PROJECT_SOURCE_DIR}/src/Application.cpp)
 FILE(GLOB feed ${PROJECT_SOURCE_DIR}/src/feed/*.cpp)
 FILE(GLOB parser ${PROJECT_SOURCE_DIR}/src/parser/*.cpp)
 FILE(GLOB commands ${PROJECT_SOURCE_DIR}/src/commands/*.cpp)
