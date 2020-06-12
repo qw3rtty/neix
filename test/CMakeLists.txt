@@ -11,6 +11,7 @@ FILE(GLOB commands ${PROJECT_SOURCE_DIR}/src/commands/*.cpp)
 FILE(GLOB config ${PROJECT_SOURCE_DIR}/src/config/*.cpp)
 
 FILE(GLOB tests ${PROJECT_SOURCE_DIR}/test/*.cpp)
+LIST(REMOVE_ITEM src ${PROJECT_SOURCE_DIR}/test/main.cpp)
 FILE(GLOB testParser ${PROJECT_SOURCE_DIR}/test/parser/Parser.cpp)
 FILE(GLOB testFeedLoader ${PROJECT_SOURCE_DIR}/test/feed/FeedLoader.cpp)
 FILE(GLOB testFeeds ${PROJECT_SOURCE_DIR}/test/feed/Feeds.cpp)
