@@ -12,7 +12,7 @@ Lightweight RSS-Feed reader written in C++.
 * [x] Create factory for parser
 * [ ] Add commands
 	* [x] Create interface
-* [ ] Add config parser
+* [x] Add config parser
 
 <pre>
   _____ _                      ___     _                       ___  __ 
