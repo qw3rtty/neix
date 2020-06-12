@@ -23,7 +23,7 @@ int main()
     ConfigReader reader(FEED_CONFIG_PATH_TEST);
 
     feedMap = reader.read();
-    assert(feedMap.size() == 1);
+    assert(feedMap.size() == 4);
 
     return 0;
 }
