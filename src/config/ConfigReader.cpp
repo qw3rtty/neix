@@ -52,6 +52,11 @@ map<string, string> ConfigReader::read()
     while (!file.eof())
     {
         getline(file, line);
+		if (line.rfind("#", 0) == 0)
+		{
+			continue;	
+		}
+
         name = line.substr(0, line.find(delimiter));
         link = line.substr(line.find(delimiter) + 1, line.length());
 
