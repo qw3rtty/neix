@@ -15,8 +15,29 @@ int main()
 
     Feeds *feeds = Feeds::getInstance();
     FeedLoader loader;
+
+    ConfigReader mainConfigReader(MAIN_CONFIG_PATH);
+    map <string, string> mainConfig;
+    try {
+        cout << prefix << "Loading main configuration" << endl;
+        mainConfig = mainConfigReader.read();
+    } catch (const char *msg) {
+        cout << prefix <<  msg << endl;
+        exit(0);
+    }
+
+    string locale = mainConfig.at("locale");
+    setlocale (LC_ALL, locale.c_str());
+
     ConfigReader feedConfigReader(FEED_CONFIG_PATH);
-    map<string, string> feedList = feedConfigReader.read();
+    map<string, string> feedList;
+    try {
+        cout << prefix << "Loading feeds configuration" << endl;
+        feedList = feedConfigReader.read();
+    } catch (const char *msg) {
+        cout << prefix << msg << endl;
+        exit(0);
+    }
 
     cout << prefix << feedList.size() << " feeds found" << endl;
     cout << prefix << "Loading feeds " << flush;

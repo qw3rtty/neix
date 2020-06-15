@@ -28,7 +28,6 @@ Application::Application()
 {
     this->initChoices();
 
-    setlocale (LC_ALL, "de_DE.UTF-8"); // TODO: Get locale from config
     initscr();
     clear();
     noecho();

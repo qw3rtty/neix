@@ -6,6 +6,10 @@ project(crss)
 set(crssVersion "0.1.0")
 add_compile_definitions(VERSION="${crssVersion}")
 
+# Path for main crss config file
+set(MainConfigPath "$ENV{HOME}/.config/crss/crss.conf")
+add_compile_definitions(MAIN_CONFIG_PATH="${MainConfigPath}")
+
 # Path for feed config file
 set(FeedConfigPath "$ENV{HOME}/.config/crss/feeds.conf")
 add_compile_definitions(FEED_CONFIG_PATH="${FeedConfigPath}")

@@ -47,7 +47,7 @@ map<string, string> ConfigReader::read()
     file.open(this->path);
     if (!file.is_open())
     {
-        throw "Configuration file for feeds not found!";
+        throw "Configuration file not found!";
     }
 
     while (!file.eof())
