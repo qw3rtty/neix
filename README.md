@@ -3,7 +3,7 @@ Lightweight RSS-Feed reader written in C++.
 
 ## TODO
 * [x] Improve unit tests
-* [ ] Add general config 
+* [x] Add general config 
 * [x] Add config for feeds
 * [ ] Create URL parser
 * [x] Create more parser
