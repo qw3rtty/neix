@@ -19,13 +19,13 @@ using namespace std;
 
 int main()
 {
-    string text = "   \t Hello World \t\v   ";
-    assert(trim(text) == "Hello World");
-
-    text = "   \t\tHello World";
-    assert(trim(text) == "Hello World");
+    string text = "   \t\tHello World";
+    assert(ltrim(text) == "Hello World");
 
     text = "Hello World\t\t\n    \t\n";
+    assert(rtrim(text) == "Hello World");
+
+    text = "   \t Hello World \t\v   ";
     assert(trim(text) == "Hello World");
 
     return 0;
