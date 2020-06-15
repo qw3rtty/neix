@@ -51,7 +51,8 @@ void Parser::setRawRss(struct rawRss rawContent)
     s.erase(remove(s.begin(), s.end(), '\n'), s.end());
     char *temp = const_cast<char *>(s.c_str());
 
-    this->xmlDocument.parse<0>(temp);
+    const int parseFlags = parse_trim_whitespace;
+    this->xmlDocument.parse<parseFlags>(temp);
     this->rootNode = this->xmlDocument.first_node();
     this->entryNode = nullptr;
 }
