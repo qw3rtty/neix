@@ -45,6 +45,7 @@ if(enable-tests)
     add_test(Feeds /bin/test-feeds)
 	add_test(Commands /bin/test-commands)
 	add_test(Config /bin/test-config)
+    add_test(Helper /bin/test-helper)
 endif()
 
 INSTALL(TARGETS crss RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")

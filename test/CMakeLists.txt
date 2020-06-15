@@ -9,6 +9,7 @@ FILE(GLOB feed ${PROJECT_SOURCE_DIR}/src/feed/*.cpp)
 FILE(GLOB parser ${PROJECT_SOURCE_DIR}/src/parser/*.cpp)
 FILE(GLOB commands ${PROJECT_SOURCE_DIR}/src/commands/*.cpp)
 FILE(GLOB config ${PROJECT_SOURCE_DIR}/src/config/*.cpp)
+FILE(GLOB helper ${PROJECT_SOURCE_DIR}/src/helper/*.cpp)
 
 FILE(GLOB tests ${PROJECT_SOURCE_DIR}/test/*.cpp)
 LIST(REMOVE_ITEM src ${PROJECT_SOURCE_DIR}/test/main.cpp)
@@ -17,6 +18,7 @@ FILE(GLOB testFeedLoader ${PROJECT_SOURCE_DIR}/test/feed/FeedLoader.cpp)
 FILE(GLOB testFeeds ${PROJECT_SOURCE_DIR}/test/feed/Feeds.cpp)
 FILE(GLOB testCommands ${PROJECT_SOURCE_DIR}/test/commands/Commands.cpp)
 FILE(GLOB testConfig ${PROJECT_SOURCE_DIR}/test/config/ConfigReader.cpp)
+FILE(GLOB testHelper ${PROJECT_SOURCE_DIR}/test/helper/helper.cpp)
 
 add_executable(test-feedloader
     ${src}
@@ -45,4 +47,9 @@ add_executable(test-commands
 add_executable(test-config
 	${config}
 	${testConfig}
+)
+
+add_executable(test-helper
+	${helper}
+	${testHelper}
 )

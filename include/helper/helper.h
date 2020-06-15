@@ -1,0 +1,23 @@
+/**
+ * Helper functions.
+ *
+ * @package     CRSS
+ * @author      Thomas Schwarz
+ * @copyright   Copyright (c) 2020, Thomas Schwarz
+ * @license     -
+ * @since       Version 0.1.0
+ * @filesource
+ */
+
+#ifndef CRSS_HELPER_H
+#define CRSS_HELPER_H
+
+using namespace std;
+
+const string WHITESPACE = " \n\r\t\f\v";
+
+string ltrim(const string& s);
+string rtrim(const string& s);
+string trim(const string& s);
+
+#endif //CRSS_HELPER_H
