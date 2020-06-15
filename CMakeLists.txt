@@ -28,9 +28,11 @@ FILE(GLOB feed ${PROJECT_SOURCE_DIR}/src/feed/*.cpp)
 FILE(GLOB parser ${PROJECT_SOURCE_DIR}/src/parser/*.cpp)
 FILE(GLOB commands ${PROJECT_SOURCE_DIR}/src/commands/*.cpp)
 FILE(GLOB config ${PROJECT_SOURCE_DIR}/src/config/*.cpp)
+FILE(GLOB helper ${PROJECT_SOURCE_DIR}/src/helper/*.cpp)
 
 add_executable(crss
     ${src}
+    ${helper}
     ${feed}
     ${parser}
     ${config}

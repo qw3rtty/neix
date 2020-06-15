@@ -13,6 +13,7 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include "helper/helper.h"
 #include "config/ConfigReader.h"
 
 using namespace std;
@@ -58,7 +59,10 @@ map<string, string> ConfigReader::read()
 		}
 
         name = line.substr(0, line.find(delimiter));
+		name = trim(name);
+
         link = line.substr(line.find(delimiter) + 1, line.length());
+        link = trim(link);
 
         if (name.empty() || link.empty())
         {

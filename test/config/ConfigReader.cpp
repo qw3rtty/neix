@@ -12,6 +12,7 @@
 #include <string>
 #include <cassert>
 
+#include "helper/helper.h"
 #include "config/ConfigReader.h"
 
 using namespace std;

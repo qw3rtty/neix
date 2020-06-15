@@ -46,6 +46,7 @@ add_executable(test-commands
 
 add_executable(test-config
 	${config}
+	${helper}
 	${testConfig}
 )
 
