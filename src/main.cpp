@@ -52,12 +52,11 @@ int main()
         Parser *parser = FactoryParser::getInstance(loader.getFeed());
         int index = distance(feedList.begin(), it);
 
-        struct rssItem *newArticle = parser->getFeedItem();
         int articleIndex = 0;
-        while (newArticle != nullptr)
+        struct rssItem *newArticle;
+        while ((newArticle = parser->getFeedItem()) != nullptr)
         {
             feeds->addArticle(index, articleIndex++, newArticle);
-            newArticle = parser->getFeedItem();
         }
     }
     cout << " Done" << endl;
