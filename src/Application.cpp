@@ -91,7 +91,15 @@ void Application::createArticleWindow()
 void Application::show()
 {
     Feeds *feeds = Feeds::getInstance();
-    mvprintw(0, 0, "Use vim keys to navigate through articles, Press enter to select a choice or press 'q' to quit.");
+
+    attron(A_REVERSE);
+    mvprintw(1, 0, " crss %s ", VERSION);
+    attroff(A_REVERSE);
+
+    attron(A_REVERSE);
+    mvprintw(LINES - 2, 0, " q:Quit/Close | ENTER:Open | j:Next | k:Previous | J:Next Feed | K:Previous Feed ");
+    attroff(A_REVERSE);
+
     refresh();
 
     this->printWindows();
