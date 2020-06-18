@@ -50,6 +50,7 @@ int main()
         loader.load(it->second);
 
         Parser *parser = FactoryParser::getInstance(loader.getFeed());
+        parser->setTimeFormatUI(mainConfig.at("dateFormat").c_str());
         int index = distance(feedList.begin(), it);
 
         int articleIndex = 0;

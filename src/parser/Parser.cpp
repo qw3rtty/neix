@@ -29,6 +29,7 @@ using namespace crss;
 Parser::Parser(struct rawRss content)
 {
    this->setRawRss(content);
+   this->timeFormatUI = nullptr;
 }
 
 
@@ -152,10 +153,35 @@ char* Parser::formatTimeString(const char *timeString)
     memset(&when, 0, sizeof(when));
 
     date >> get_time(&when, this->getFeedDateFormat());
-    formattedTimeString << put_time(&when, "%d.%m.%Y %H:%M"); // TODO: getFeed format from config
+    formattedTimeString << put_time(&when, this->getTimeFormatUI());
 
     string tmp(formattedTimeString.str());
     char *formattedDate = strdup(tmp.c_str());
 
     return formattedDate;
+}
+
+
+/**
+ * Get time format
+ *
+ * @return  Time format
+ */
+char * Parser::getTimeFormatUI()
+{
+    return this->timeFormatUI;
+}
+
+
+/**
+ * Set time format
+ *
+ * @param   format  - String which represents the time format
+ */
+void Parser::setTimeFormatUI(const char *format)
+{
+    if (format != nullptr)
+    {
+        this->timeFormatUI = strdup(format);
+    }
 }

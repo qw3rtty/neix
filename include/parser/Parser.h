@@ -28,12 +28,15 @@ namespace crss
         virtual struct rssItem* getFeedItem() = 0;
         char* convertHtmlToPlaintext(char *text);
         char* formatTimeString(const char *timeString);
+        void setTimeFormatUI(const char *format);
+        char* getTimeFormatUI();
 
     protected:
         xml_document<> xmlDocument;
         xml_node<> *rootNode{};
         xml_node<> *entryNode{};
         struct rawRss *rss{};
+        char* timeFormatUI;
 
         virtual char* getFeedDateFormat() = 0;
         char* getNodeContent(xml_node<> *node);

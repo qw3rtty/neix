@@ -30,6 +30,10 @@ void testParser()
     rawFeed.size = 1234;
 
     Parser *parser = FactoryParser::getInstance(rawFeed);
+    parser->setTimeFormatUI("%d.%m.%Y %H:%M");
+
+    char *dateFormat = parser->getTimeFormatUI();
+    assert(strcmp(dateFormat, "%d.%m.%Y %H:%M") == 0);
 
     struct rssItem *item = parser->getFeedItem();
     assert(item != nullptr);
@@ -41,8 +45,9 @@ void testParser()
     char *timeString = parser->formatTimeString("2020-04-26T15:15:00+02:00");
     assert(strcmp(timeString, "26.04.2020 15:15") == 0);
 
+    parser->setTimeFormatUI("%d.%m.%Y");
     timeString = parser->formatTimeString("2020-04-26T12:25:00.350+02:00");
-    assert(strcmp(timeString, "26.04.2020 12:25") == 0);
+    assert(strcmp(timeString, "26.04.2020") == 0);
 }
 
 void testAtomParser()
@@ -56,6 +61,7 @@ void testAtomParser()
     rawFeed.size = 1234;
 
     Parser *parser = FactoryParser::getInstance(rawFeed);
+    parser->setTimeFormatUI("%d.%m.%Y %H:%M");
 
     struct rssItem *item = parser->getFeedItem();
     assert(item != nullptr);
@@ -72,6 +78,7 @@ void testRss0x91Parser()
     rawFeed.size = 1234;
 
     Parser *parser = FactoryParser::getInstance(rawFeed);
+    parser->setTimeFormatUI("%d.%m.%Y %H:%M");
 
     struct rssItem *item = parser->getFeedItem();
     assert(item != nullptr);
@@ -89,6 +96,7 @@ void testRss0x92Parser()
     rawFeed.size = 1234;
 
     Parser *parser = FactoryParser::getInstance(rawFeed);
+    parser->setTimeFormatUI("%d.%m.%Y %H:%M");
 
     struct rssItem *item = parser->getFeedItem();
     assert(item != nullptr);
@@ -106,6 +114,7 @@ void testRss20Parser()
     rawFeed.size = 1234;
 
     Parser *parser = FactoryParser::getInstance(rawFeed);
+    parser->setTimeFormatUI("%d.%m.%Y %H:%M");
 
     struct rssItem *item = parser->getFeedItem();
     assert(item != nullptr);
