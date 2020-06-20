@@ -8,125 +8,113 @@
  * @since       Version 0.1.0
  * @filesource
  */
-#include <cassert>
 #include <cstring>
 #include <fstream>
 #include <string>
+#include <gtest/gtest.h>
 
 #include "parser/FactoryParser.h"
 #include "parser/Parser.h"
 
 using namespace std;
 using namespace crss;
+namespace {
+    TEST(Parser, main)
+    {
+        ifstream atom("./test/assets/atom.xml");
+        stringstream atomContent;
+        atomContent << atom.rdbuf();
 
-void testParser()
-{
-	ifstream atom("./test/assets/atom.xml");
-    stringstream atomContent;
-    atomContent << atom.rdbuf();
+        struct rawRss rawFeed = {};
+        rawFeed.content = strdup(atomContent.str().c_str());
+        rawFeed.size = 1234;
 
-    struct rawRss rawFeed = {};
-    rawFeed.content = strdup(atomContent.str().c_str());
-    rawFeed.size = 1234;
+        Parser *parser = FactoryParser::getInstance(rawFeed);
+        parser->setTimeFormatUI("%d.%m.%Y %H:%M");
 
-    Parser *parser = FactoryParser::getInstance(rawFeed);
-    parser->setTimeFormatUI("%d.%m.%Y %H:%M");
+        char *dateFormat = parser->getTimeFormatUI();
+        EXPECT_TRUE(strcmp(dateFormat, "%d.%m.%Y %H:%M") == 0);
 
-    char *dateFormat = parser->getTimeFormatUI();
-    assert(strcmp(dateFormat, "%d.%m.%Y %H:%M") == 0);
+        struct rssItem *item = parser->getFeedItem();
+        EXPECT_TRUE(item != nullptr);
 
-    struct rssItem *item = parser->getFeedItem();
-    assert(item != nullptr);
+        char htmlText[] = "<p>Some text</p>";
+        string plaintext = parser->convertHtmlToPlaintext(htmlText);
+        EXPECT_EQ(plaintext, "Some text");
 
-    char htmlText[] = "<p>Some text</p>";
-    char *plaintext = parser->convertHtmlToPlaintext(htmlText);
-    assert(strcmp(plaintext, "Some text") == 0);
+        string timeString = parser->formatTimeString("2020-04-26T15:15:00+02:00");
+        EXPECT_EQ(timeString, "26.04.2020 15:15");
 
-    char *timeString = parser->formatTimeString("2020-04-26T15:15:00+02:00");
-    assert(strcmp(timeString, "26.04.2020 15:15") == 0);
+        parser->setTimeFormatUI("%d.%m.%Y");
+        timeString = parser->formatTimeString("2020-04-26T12:25:00.350+02:00");
+        EXPECT_EQ(timeString, "26.04.2020");
+    }
 
-    parser->setTimeFormatUI("%d.%m.%Y");
-    timeString = parser->formatTimeString("2020-04-26T12:25:00.350+02:00");
-    assert(strcmp(timeString, "26.04.2020") == 0);
-}
+    TEST(Parser, atom)
+    {
+        ifstream atom("./test/assets/atom.xml");
+        stringstream atomContent;
+        atomContent << atom.rdbuf();
 
-void testAtomParser()
-{
-    ifstream atom("./test/assets/atom.xml");
-    stringstream atomContent;
-    atomContent << atom.rdbuf();
+        struct rawRss rawFeed = {};
+        rawFeed.content = strdup(atomContent.str().c_str());
+        rawFeed.size = 1234;
 
-    struct rawRss rawFeed = {};
-    rawFeed.content = strdup(atomContent.str().c_str());
-    rawFeed.size = 1234;
+        Parser *parser = FactoryParser::getInstance(rawFeed);
+        parser->setTimeFormatUI("%d.%m.%Y %H:%M");
 
-    Parser *parser = FactoryParser::getInstance(rawFeed);
-    parser->setTimeFormatUI("%d.%m.%Y %H:%M");
+        struct rssItem *item = parser->getFeedItem();
+        EXPECT_NE(item, nullptr);
+    }
 
-    struct rssItem *item = parser->getFeedItem();
-    assert(item != nullptr);
-}
+    TEST(Parser, rss0x91)
+    {
+        ifstream rss("./test/assets/rss0.91.xml");
+        stringstream rssContent;
+        rssContent << rss.rdbuf();
 
-void testRss0x91Parser()
-{
-    ifstream rss("./test/assets/rss0.91.xml");
-    stringstream rssContent;
-    rssContent << rss.rdbuf();
+        struct rawRss rawFeed = {};
+        rawFeed.content = strdup(rssContent.str().c_str());
+        rawFeed.size = 1234;
 
-    struct rawRss rawFeed = {};
-    rawFeed.content = strdup(rssContent.str().c_str());
-    rawFeed.size = 1234;
+        Parser *parser = FactoryParser::getInstance(rawFeed);
+        parser->setTimeFormatUI("%d.%m.%Y %H:%M");
 
-    Parser *parser = FactoryParser::getInstance(rawFeed);
-    parser->setTimeFormatUI("%d.%m.%Y %H:%M");
+        struct rssItem *item = parser->getFeedItem();
+        EXPECT_NE(item, nullptr);
+    }
 
-    struct rssItem *item = parser->getFeedItem();
-    assert(item != nullptr);
-}
+    TEST(Parser, rss0x92)
+    {
+        ifstream rss("./test/assets/rss0.92.xml");
+        stringstream rssContent;
+        rssContent << rss.rdbuf();
 
+        struct rawRss rawFeed = {};
+        rawFeed.content = strdup(rssContent.str().c_str());
+        rawFeed.size = 1234;
 
-void testRss0x92Parser()
-{
-    ifstream rss("./test/assets/rss0.92.xml");
-    stringstream rssContent;
-    rssContent << rss.rdbuf();
+        Parser *parser = FactoryParser::getInstance(rawFeed);
+        parser->setTimeFormatUI("%d.%m.%Y %H:%M");
 
-    struct rawRss rawFeed = {};
-    rawFeed.content = strdup(rssContent.str().c_str());
-    rawFeed.size = 1234;
+        struct rssItem *item = parser->getFeedItem();
+        EXPECT_NE(item, nullptr);
+    }
 
-    Parser *parser = FactoryParser::getInstance(rawFeed);
-    parser->setTimeFormatUI("%d.%m.%Y %H:%M");
+    TEST(Parser, rss2x0)
+    {
+        ifstream rss("./test/assets/rss2.0.xml");
+        stringstream rssContent;
+        rssContent << rss.rdbuf();
 
-    struct rssItem *item = parser->getFeedItem();
-    assert(item != nullptr);
-}
+        struct rawRss rawFeed = {};
+        rawFeed.content = strdup(rssContent.str().c_str());
+        rawFeed.size = 1234;
 
+        Parser *parser = FactoryParser::getInstance(rawFeed);
+        parser->setTimeFormatUI("%d.%m.%Y %H:%M");
 
-void testRss20Parser()
-{
-    ifstream rss("./test/assets/rss2.0.xml");
-    stringstream rssContent;
-    rssContent << rss.rdbuf();
-
-    struct rawRss rawFeed = {};
-    rawFeed.content = strdup(rssContent.str().c_str());
-    rawFeed.size = 1234;
-
-    Parser *parser = FactoryParser::getInstance(rawFeed);
-    parser->setTimeFormatUI("%d.%m.%Y %H:%M");
-
-    struct rssItem *item = parser->getFeedItem();
-    assert(item != nullptr);
-}
-
-int main()
-{
-	testParser();
-    testAtomParser();
-    testRss0x91Parser();
-    testRss0x92Parser();
-    testRss20Parser();
-
-    return 0;
+        struct rssItem *item = parser->getFeedItem();
+        EXPECT_NE(item, nullptr);
+    }
 }

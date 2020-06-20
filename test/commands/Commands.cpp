@@ -9,18 +9,19 @@
  * @filesource
  */
 #include <string>
-#include <cassert>
+#include <gtest/gtest.h>
 
 #include "commands/Command.h"
 #include "commands/CommandVersion.h"
 
 using namespace std;
 using namespace crss;
+namespace {
+    TEST(commands, version)
+    {
+        string arg;
+        Command *cmd = new CommandVersion(arg.c_str());
 
-int main() {
-    string arg;
-    Command *cmd = new CommandVersion(arg.c_str());
-    cmd->exec();
-
-    return 0;
+        EXPECT_FALSE(cmd == nullptr);
+    }
 }

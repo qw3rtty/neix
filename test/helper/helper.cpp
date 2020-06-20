@@ -8,25 +8,29 @@
  * @since       Version 0.1.0
  * @filesource
  */
-#include <iostream>
 #include <string>
 #include <algorithm>
-#include <cassert>
+#include <gtest/gtest.h>
 
 #include "helper/helper.h"
 
 using namespace std;
+namespace {
+    TEST(helper, ltrim)
+    {
+        string text = "   \t\tHello World";
+        EXPECT_EQ(ltrim(text), "Hello World");
+    }
 
-int main()
-{
-    string text = "   \t\tHello World";
-    assert(ltrim(text) == "Hello World");
+    TEST(helper, rtrim)
+    {
+        string text = "Hello World\t\t\n    \t\n";
+        EXPECT_EQ(rtrim(text), "Hello World");
+    }
 
-    text = "Hello World\t\t\n    \t\n";
-    assert(rtrim(text) == "Hello World");
-
-    text = "   \t Hello World \t\v   ";
-    assert(trim(text) == "Hello World");
-
-    return 0;
+    TEST(helper, trim)
+    {
+        string text = "   \t Hello World \t\v   ";
+        EXPECT_EQ(trim(text), "Hello World");
+    }
 }

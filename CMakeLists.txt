@@ -54,16 +54,12 @@ add_executable(crss
     ${config}
 )
 
+# Download and configure google test
+include(CMake/CMakeLists.googletest.txt)
+
 option(enable-tests "Enables test suite" YES)
 if(enable-tests)
-    enable_testing()
     add_subdirectory(test)
-    add_test(FeedLoader /bin/test-feedloader)
-    add_test(Parser /bin/test-parser)
-    add_test(Feeds /bin/test-feeds)
-	add_test(Commands /bin/test-commands)
-	add_test(Config /bin/test-config)
-    add_test(Helper /bin/test-helper)
 endif()
 
 INSTALL(TARGETS crss RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")

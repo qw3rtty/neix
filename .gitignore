@@ -57,6 +57,7 @@ dkms.conf
 # Project settings
 *.cmake
 *.cbp
+googletest*
 CMakeFiles
 CMakeCache.txt
 Makefile
