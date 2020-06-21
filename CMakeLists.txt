@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.13)
 project(crss)
 
+# Check if 'curl' is installed
+find_package(CURL REQUIRED)
+
+# Check if 'ncurses' is installed
+find_package(Curses REQUIRED)
+
 # Prepare filesystem for installation
 file(MAKE_DIRECTORY $ENV{HOME}/.config/crss/)
 
