@@ -23,12 +23,6 @@ add_executable(tests
     ${src}
     ${tests}
 
-    ${commands}
-    ${helper}
-    ${config}
-    ${feed}
-    ${parser}
-
     ${testConfig}
     ${testHelper}
     ${testCommands}
@@ -37,3 +31,8 @@ add_executable(tests
     ${testParser}
 )
 target_link_libraries(tests gtest)
+target_link_libraries(tests crssFeed)
+target_link_libraries(tests crssParser)
+target_link_libraries(tests crssCommands)
+target_link_libraries(tests crssConfig)
+target_link_libraries(tests crssHelper)
