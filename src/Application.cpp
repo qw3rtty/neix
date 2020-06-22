@@ -97,7 +97,7 @@ void Application::show()
     attroff(A_REVERSE);
 
     attron(A_REVERSE);
-    mvprintw(LINES - 2, 0, " q:Quit/Close | ENTER:Open | j:Next | k:Previous | J:Next Feed | K:Previous Feed ");
+    mvprintw(LINES - 2, 0, " q:Quit/Close | ENTER:Open | o:Open Browser | j:Next | k:Previous | J:Next Feed | K:Previous Feed ");
     attroff(A_REVERSE);
 
     refresh();
