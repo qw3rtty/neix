@@ -48,20 +48,17 @@ include_directories(
 FILE(GLOB main ${PROJECT_SOURCE_DIR}/src/*.cpp)
 FILE(GLOB feed ${PROJECT_SOURCE_DIR}/src/feed/*.cpp)
 FILE(GLOB parser ${PROJECT_SOURCE_DIR}/src/parser/*.cpp)
-FILE(GLOB commands ${PROJECT_SOURCE_DIR}/src/commands/*.cpp)
 FILE(GLOB config ${PROJECT_SOURCE_DIR}/src/config/*.cpp)
 FILE(GLOB helper ${PROJECT_SOURCE_DIR}/src/helper/*.cpp)
 
 add_library(crssFeed STATIC ${feed})
 add_library(crssParser STATIC ${parser})
-add_library(crssCommands STATIC ${commands})
 add_library(crssConfig STATIC ${config})
 add_library(crssHelper STATIC ${helper})
 
 add_executable(crss ${main})
 target_link_libraries(crss crssFeed)
 target_link_libraries(crss crssParser)
-target_link_libraries(crss crssCommands)
 target_link_libraries(crss crssConfig)
 target_link_libraries(crss crssHelper)
 
