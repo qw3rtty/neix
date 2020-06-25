@@ -398,13 +398,10 @@ void Application::openArticle()
  */
 void Application::openArticleLink()
 {
-    if (!this->reading)
-    {
-        return;
-    }
-
     Feeds *feeds = Feeds::getInstance();
     struct rssItem *article = feeds->getArticle(this->choice, this->articleChoice);
+    article->read = 1;
+
     string openCmd("open ");
     openCmd += article->url;
 
