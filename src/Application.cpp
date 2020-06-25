@@ -32,6 +32,7 @@ Application::Application()
     clear();
     noecho();
     cbreak();
+    curs_set(0);
 
     this->reading = false;
     this->lineSpacer = 4;
