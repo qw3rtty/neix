@@ -38,55 +38,66 @@ char* ParserRSS::getFeedDateFormat()
     return (char*) "%a, %d %b %Y %H:%M:%S %z";
 }
 
+/**
+ * Get first feed node
+ *
+ * @return  First node
+ */
+xml_node<> * ParserRSS::getFirstNode()
+{
+    return this->rootNode->first_node("channel")->first_node("item");
+}
+
 
 /**
- * Get an feed item of raw content
+ * Get title
  *
- * @return  Item of feed
+ * @return  The title
  */
-struct rssItem* ParserRSS::getFeedItem()
+char * ParserRSS::getFeedTitle()
 {
-    struct rssItem *item = (struct rssItem*) calloc(1, sizeof(struct rssItem));
-    item->read = 0;
+    char *title = this->getNodeContent(this->entryNode->first_node("title"));
+    return this->convertHtmlToPlaintext(title);
+}
 
-    if (this->rootNode == nullptr)
-    {
-        free(item);
-        return nullptr;
-    }
 
-    if (this->rootNode != nullptr && this->entryNode == nullptr)
-    {
-        this->entryNode = this->rootNode->first_node("channel")->first_node("item");
-    }
-    else
-    {
-        this->entryNode = this->entryNode->next_sibling();
-    }
+/**
+ * Get content
+ *
+ * @return  The content
+ */
+char * ParserRSS::getFeedContent()
+{
+    char *content = this->getNodeContent(this->entryNode->first_node("description"));
+    return this->convertHtmlToPlaintext(content);
+}
 
-    if (this->entryNode == nullptr)
-    {
-        free(item);
-        return nullptr;
-    }
 
-    // Get feed title
-    item->title = this->getNodeContent(this->entryNode->first_node("title"));
-    item->title = this->convertHtmlToPlaintext(item->title);
-
-    // Get feed content
-    item->description = this->getNodeContent(this->entryNode->first_node("description"));
-    item->description = this->convertHtmlToPlaintext(item->description);
-
-    // Get feed link
+/**
+ * Get link
+ *
+ * @return  The link
+ */
+char * ParserRSS::getFeedLink()
+{
+    char *url = nullptr;
     if (this->entryNode->first_node("link"))
     {
-        item->url = this->getNodeContent(this->entryNode->first_node("link"));
+        url = this->getNodeContent(this->entryNode->first_node("link"));
     }
 
-    // Get feed date
-    item->date = this->getNodeContent(this->entryNode->first_node("pubDate"));
-    item->date = this->formatTimeString(item->date);
-
-    return item;
+    return url;
 }
+
+
+/**
+ * Get date
+ *
+ * @return  The date
+ */
+char * ParserRSS::getFeedDate()
+{
+    char *date = this->getNodeContent(this->entryNode->first_node("pubDate"));
+    return this->formatTimeString(date);
+}
+

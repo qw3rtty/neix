@@ -38,6 +38,18 @@ namespace {
         struct rssItem *item = parser->getFeedItem();
         EXPECT_TRUE(item != nullptr);
 
+        string title = parser->getFeedTitle();
+        EXPECT_EQ(title, "Atom-Powered Robots Run Amok");
+
+        string content = parser->getFeedContent();
+        EXPECT_EQ(content, "Some text.");
+
+        string link = parser->getFeedLink();
+        EXPECT_EQ(link, "http://example.org/2003/12/13/atom03");
+
+        string date = parser->getFeedDate();
+        EXPECT_EQ(date, "13.12.2003 18:30");
+
         char htmlText[] = "<p>Some text</p>";
         string plaintext = parser->convertHtmlToPlaintext(htmlText);
         EXPECT_EQ(plaintext, "Some text");

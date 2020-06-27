@@ -4,7 +4,8 @@ Lightweight RSS-Feed reader written in C++.
 ## TODO
 * [ ] Make UI scrollable
 * [ ] Create reload functionality
-* [ ] Improve parser
+* [x] Improve parser
+* [ ] Fix parser with reddit feeds
 * [x] Improve unit tests
 * [x] Add general config 
 * [x] Add config for feeds

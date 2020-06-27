@@ -120,6 +120,61 @@ char * Parser::getNodeContent(xml_node<> *node)
 
 
 /**
+ * Get next feed node
+ *
+ * @return  Next node
+ */
+xml_node<> * Parser::getNextNode()
+{
+    xml_node<> *node = nullptr;
+
+//    if (this->rootNode == nullptr)
+//    {
+//        return nullptr;
+//    }
+
+    if (this->rootNode != nullptr && this->entryNode == nullptr)
+    {
+        node = this->getFirstNode();
+    }
+    else
+    {
+        node = this->entryNode->next_sibling();
+    }
+
+//    if (this->entryNode == nullptr)
+//    {
+//        return nullptr;
+//    }
+
+    return this->entryNode = node;
+}
+
+
+/**
+ * Get an feed item of raw content
+ *
+ * @return  Item of feed
+ */
+struct rssItem * Parser::getFeedItem()
+{
+    if (this->getNextNode() == nullptr)
+    {
+        return nullptr;
+    }
+
+    struct rssItem *item = (struct rssItem*) calloc(1, sizeof(struct rssItem));
+    item->read = 0;
+    item->title = this->getFeedTitle();
+    item->description = this->getFeedContent();
+    item->url = this->getFeedLink();
+    item->date = this->getFeedDate();
+
+    return item;
+}
+
+
+/**
  * Convert given text to plaintext
  * > removes html tags
  *

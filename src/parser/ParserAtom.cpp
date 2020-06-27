@@ -41,58 +41,71 @@ char* ParserAtom::getFeedDateFormat()
 
 
 /**
- * Get an feed item of raw content
+ * Get first feed node
  *
- * @return  Item of feed
+ * @return  First node
  */
-struct rssItem* ParserAtom::getFeedItem()
+xml_node<> * ParserAtom::getFirstNode()
 {
-    struct rssItem *item = (struct rssItem*) calloc(1, sizeof(struct rssItem));
-    item->read = 0;
+   return this->rootNode->first_node("entry");
+}
 
-    if (this->rootNode == nullptr)
+
+/**
+ * Get title
+ *
+ * @return  The title
+ */
+char * ParserAtom::getFeedTitle()
+{
+    char *title = this->getNodeContent(this->entryNode->first_node("title"));
+    return this->convertHtmlToPlaintext(title);
+}
+
+
+/**
+ * Get content
+ *
+ * @return  The content
+ */
+char * ParserAtom::getFeedContent()
+{
+    char *content = this->getNodeContent(this->entryNode->first_node("summary"));
+    if (strlen(content) == 0)
     {
-        free(item);
-        return nullptr;
+        content = this->getNodeContent(this->entryNode->first_node("content"));
     }
 
-    if (this->rootNode != nullptr && this->entryNode == nullptr)
-    {
-        this->entryNode = this->rootNode->first_node("entry");
-    }
-    else
-    {
-        this->entryNode = this->entryNode->next_sibling();
-    }
+    return this->convertHtmlToPlaintext(content);
+}
 
-    if (this->entryNode == nullptr)
-    {
-        free(item);
-        return nullptr;
-    }
 
-    // Get feed title
-    item->title = this->getNodeContent(this->entryNode->first_node("title"));
-    item->title = this->convertHtmlToPlaintext(item->title);
-
-    // Get feed content
-    item->description = this->getNodeContent(this->entryNode->first_node("summary"));
-    if (strlen(item->description) == 0)
-    {
-        item->description = this->getNodeContent(this->entryNode->first_node("content"));
-    }
-    item->description = this->convertHtmlToPlaintext(item->description);
-
-    // Get feed link
+/**
+ * Get link
+ *
+ * @return  The link
+ */
+char * ParserAtom::getFeedLink()
+{
+    char *url = nullptr;
     if (this->entryNode->first_node("link"))
     {
-        char *url = this->getNodeAttribute(this->entryNode->first_node("link"), "href");
-        item->url = strdup(url);
+        url = this->getNodeAttribute(this->entryNode->first_node("link"), "href");
+        url = strdup(url);
     }
 
-    // Get feed date
-    item->date = this->getNodeContent(this->entryNode->first_node("updated"));
-    item->date = this->formatTimeString(item->date);
-
-    return item;
+    return url;
 }
+
+
+/**
+ * Get date
+ *
+ * @return  The date
+ */
+char * ParserAtom::getFeedDate()
+{
+    char *date = this->getNodeContent(this->entryNode->first_node("updated"));
+    return this->formatTimeString(date);
+}
+

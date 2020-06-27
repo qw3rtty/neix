@@ -25,7 +25,12 @@ namespace crss
     public:
         explicit ParserRSS(struct rawRss content);
         ~ParserRSS();
-        struct rssItem* getFeedItem() override;
+
+        xml_node<>* getFirstNode() override;
+        char* getFeedTitle() override;
+        char* getFeedContent() override;
+        char* getFeedLink() override;
+        char* getFeedDate() override;
 
     protected:
         char* getFeedDateFormat() override;

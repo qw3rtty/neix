@@ -25,7 +25,14 @@ namespace crss
         explicit Parser(struct rawRss content);
         ~Parser();
 
-        virtual struct rssItem* getFeedItem() = 0;
+        virtual xml_node<>* getFirstNode() = 0;
+        xml_node<>* getNextNode();
+        virtual char* getFeedTitle() = 0;
+        virtual char* getFeedContent() = 0;
+        virtual char* getFeedLink() = 0;
+        virtual char* getFeedDate() = 0;
+        struct rssItem* getFeedItem();
+
         char* convertHtmlToPlaintext(char *text);
         char* formatTimeString(const char *timeString);
         void setTimeFormatUI(const char *format);
