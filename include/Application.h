@@ -24,13 +24,22 @@ namespace crss
         ~Application();
 
         void show();
+        void printPads();
         void printWindows();
+
         int increaseChoice(int new_choice, int count);
         int decreaseChoice(int new_choice, int count);
+        int increasePadOffset(int offset, int choice);
+        int decreasePadOffset(int offset, int choice, int count);
 
     private:
         WINDOW *feedWindow;
+        WINDOW *feedPad;
+        int feedPadOffsetTop;
+
         WINDOW *articleWindow;
+        WINDOW *articlePad;
+        int articlePadOffsetTop;
 
         bool reading;
         int lineSpacer;
@@ -40,6 +49,7 @@ namespace crss
         int c;
 
         int windowHeight;
+        int windowInnerHeight;
         int feedWindowWidth;
         int articleWindowWidth;
 
@@ -49,6 +59,8 @@ namespace crss
 
         void printFeedsInWindow();
         void printArticlesInWindow();
+        void refreshFeedPad();
+        void refreshArticlePad();
 
         void printLineInWindow(WINDOW *window, int y, int x, char *line);
         void printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line);

@@ -12,7 +12,6 @@
 #include <cstdlib>
 #include <string>
 #include <cstring>
-#include <locale>
 
 #include "config.h"
 #include "Application.h"
@@ -37,6 +36,7 @@ Application::Application()
     this->reading = false;
     this->lineSpacer = 4;
     this->windowHeight = LINES - 4;
+    this->windowInnerHeight = this->windowHeight - 2;
     this->createFeedWindow();
     this->createArticleWindow();
 }
@@ -72,6 +72,10 @@ void Application::createFeedWindow()
     this->feedWindowWidth = (int) (COLS / 3);
     this->feedWindow = newwin(this->windowHeight, this->feedWindowWidth, 2, 0);
     keypad(this->feedWindow, TRUE);
+
+    this->feedPadOffsetTop = 0;
+    this->feedPad = newpad(200, this->feedWindowWidth-4);
+    keypad(this->feedPad, TRUE);
 }
 
 
@@ -83,6 +87,10 @@ void Application::createArticleWindow()
     this->articleWindowWidth = (int) (COLS / 3) * 2;
     this->articleWindow = newwin(this->windowHeight, this->articleWindowWidth, 2, this->feedWindowWidth);
     keypad(this->articleWindow, TRUE);
+
+    this->articlePadOffsetTop = 0;
+    this->articlePad = newpad(200, this->articleWindowWidth-4);
+    keypad(this->articlePad, TRUE);
 }
 
 
@@ -102,34 +110,42 @@ void Application::show()
     attroff(A_REVERSE);
 
     refresh();
-
     this->printWindows();
+    this->printPads();
 
     while (true)
     {
         this->c = wgetch(this->feedWindow);
+        int feedCount = feeds->getCount();
+        int articleCount = feeds->getFeed(this->choice)->articleCount;
         switch (this->c)
         {
             case KEY_UP:
             case KEY_K:
-                this->articleChoice = this->decreaseChoice(this->articleChoice, feeds->getFeed(this->choice)->articleCount);
+                this->articleChoice = this->decreaseChoice(this->articleChoice, articleCount);
+                this->articlePadOffsetTop = this->decreasePadOffset(this->articlePadOffsetTop, this->articleChoice, articleCount);
                 break;
 
             case KEY_DOWN:
             case KEY_J:
-                this->articleChoice = this->increaseChoice(this->articleChoice, feeds->getFeed(this->choice)->articleCount);
+                this->articleChoice = this->increaseChoice(this->articleChoice, articleCount);
+                this->articlePadOffsetTop = this->increasePadOffset(this->articlePadOffsetTop, this->articleChoice);
                 break;
 
             case KEY_UPPER_K:
-                wclear(this->articleWindow);
+                wclear(this->articlePad);
                 this->articleChoice = 0;
-                this->choice = this->decreaseChoice(this->choice, feeds->getCount());
+                this->articlePadOffsetTop = 0;
+                this->choice = this->decreaseChoice(this->choice, feedCount);
+                this->feedPadOffsetTop = this->decreasePadOffset(this->feedPadOffsetTop, this->choice, feedCount);
                 break;
 
             case KEY_UPPER_J:
-                wclear(this->articleWindow);
+                wclear(this->articlePad);
                 this->articleChoice = 0;
-                this->choice = this->increaseChoice(this->choice, feeds->getCount());
+                this->articlePadOffsetTop = 0;
+                this->choice = this->increaseChoice(this->choice, feedCount);
+                this->feedPadOffsetTop = this->increasePadOffset(this->feedPadOffsetTop, this->choice);
                 break;
 
             case KEY_O:
@@ -144,8 +160,7 @@ void Application::show()
                 if (this->reading)
                 {
                     this->reading = false;
-                    wclear(this->feedWindow);
-                    wclear(this->articleWindow);
+                    this->printWindows();
                 }
                 else
                 {
@@ -161,7 +176,7 @@ void Application::show()
 
         if (!this->reading)
         {
-            this->printWindows();
+            this->printPads();
         }
 
         if (this->quit != -1)
@@ -173,9 +188,24 @@ void Application::show()
 
 
 /**
- * Print UI windows
+ * Print all main window's to the screen
  */
 void Application::printWindows()
+{
+    wclear(this->feedWindow);
+    box(this->feedWindow, 0, 0);
+    wrefresh(this->feedWindow);
+
+    wclear(this->articleWindow);
+    box(this->articleWindow, 0, 0);
+    wrefresh(this->articleWindow);
+}
+
+
+/**
+ * Print's all pad's to the screen
+ */
+void Application::printPads()
 {
     this->printFeedsInWindow();
     this->printArticlesInWindow();
@@ -188,25 +218,31 @@ void Application::printWindows()
 void Application::printFeedsInWindow()
 {
     Feeds *feeds = Feeds::getInstance();
-    int x = 2, y = 1, i;
+    int x = 0, y = 0, i;
     for (i = 0; i < feeds->getCount(); ++i)
     {
         char *line = feeds->getFeedLineTitle(i);
         if (this->choice == i)
         {
-            this->printLineHighlightedInWindow(this->feedWindow, y, x, line);
+            this->printLineHighlightedInWindow(this->feedPad, y, x, line);
         }
         else
         {
-            this->printLineInWindow(this->feedWindow, y, x, line);
+            this->printLineInWindow(this->feedPad, y, x, line);
         }
-
-        wclrtoeol(this->feedWindow);
         ++y;
     }
 
-    box(this->feedWindow, 0, 0);
-    wrefresh(this->feedWindow);
+    this->refreshFeedPad();
+}
+
+
+/**
+ * Refresh's the feed pad
+ */
+void Application::refreshFeedPad()
+{
+    prefresh(this->feedPad, this->feedPadOffsetTop, 0, 3, 2, this->windowHeight, COLS);
 }
 
 
@@ -216,25 +252,31 @@ void Application::printFeedsInWindow()
 void Application::printArticlesInWindow()
 {
     Feeds *feeds = Feeds::getInstance();
-    int x = 2, y = 1, i;
+    int x = 0, y = 0, i;
     int currentChoice = this->choice;
     for (i = 0; i < feeds->getFeed(currentChoice)->articleCount; i++)
     {
         if (this->articleChoice == i)
         {
-            this->printArticleHighlightedInWindow(this->articleWindow, y, x, feeds->getArticle(currentChoice, i));
+            this->printArticleHighlightedInWindow(this->articlePad, y, x, feeds->getArticle(currentChoice, i));
         }
         else
         {
-            this->printArticleInWindow(this->articleWindow, y, x, feeds->getArticle(currentChoice, i));
+            this->printArticleInWindow(this->articlePad, y, x, feeds->getArticle(currentChoice, i));
         }
-
-        wclrtoeol(this->articleWindow);
         ++y;
     }
 
-    box(this->articleWindow, 0, 0);
-    wrefresh(this->articleWindow);
+    this->refreshArticlePad();
+}
+
+
+/**
+ * Refresh's the article pad
+ */
+void Application::refreshArticlePad()
+{
+    prefresh(this->articlePad, this->articlePadOffsetTop, 0, 3, this->feedWindowWidth+2, this->windowHeight, COLS);
 }
 
 
@@ -359,6 +401,51 @@ int Application::decreaseChoice(int new_choice, int count)
     }
 
     return new_choice;
+}
+
+
+/**
+ * Increase pad offset
+ *
+ * @param   offset      - Current feed/article offset
+ * @param   choice      - Current feed/article choice
+ * @return  New calculated offset
+ */
+int Application::increasePadOffset(int offset, int choice)
+{
+    if (choice == 0)
+    {
+        offset = 0;
+    }
+    else if (choice >= this->windowInnerHeight)
+    {
+        offset++;
+    }
+
+    return offset;
+}
+
+
+/**
+ * Increase pad offset
+ *
+ * @param   offset      - Current feed/article offset
+ * @param   choice      - Current feed/article choice
+ * @param   count       - Current feed/article count
+ * @return  New calculated offset
+ */
+int Application::decreasePadOffset(int offset, int choice, int count)
+{
+    if (choice == count-1)
+    {
+        offset = count - this->windowInnerHeight;
+    }
+    else if (offset > 0)
+    {
+        offset--;
+    }
+
+    return offset;
 }
 
 
