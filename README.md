@@ -2,6 +2,7 @@
 Lightweight RSS-Feed reader written in C++.
 
 ## TODO
+* [ ] Add man page
 * [ ] Make UI scrollable
     * [x] Make feed list scrollable
     * [x] Make article list scrollable
