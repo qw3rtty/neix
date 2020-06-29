@@ -458,7 +458,10 @@ void Application::openArticle()
     this->reading = true;
 
     struct rss *feed = feeds->getFeed(this->choice);
-    feed->unreadCount--;
+    if (feed->unreadCount > 0)
+    {
+        feed->unreadCount--;
+    }
 
     struct rssItem *entry = feeds->getArticle(this->choice, this->articleChoice);
     entry->read = 1;
