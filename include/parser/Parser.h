@@ -42,13 +42,12 @@ namespace crss
         xml_document<> xmlDocument;
         xml_node<> *rootNode{};
         xml_node<> *entryNode{};
-        struct rawRss *rss{};
         char* timeFormatUI;
 
         virtual char* getFeedDateFormat() = 0;
         char* getNodeContent(xml_node<> *node);
         char* getNodeAttribute(xml_node<> *node, const char *attribute);
-        void setRawRss(struct rawRss rawContent);
+        void loadXml(struct rawRss rawContent);
     };
 }
 

@@ -57,12 +57,6 @@ int main()
         struct rssItem *newArticle;
         while ((newArticle = parser->getFeedItem()) != nullptr)
         {
-            // TODO: create isValidArticle()!!
-            if (newArticle->url == NULL)
-            {
-                continue;
-            }
-
             feeds->addArticle(index, articleIndex++, newArticle);
         }
     }

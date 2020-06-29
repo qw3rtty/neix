@@ -8,8 +8,6 @@
  * @since       Version 0.1.0
  * @filesource
  */
-
-#include <iostream>
 #include <cstring>
 #include <algorithm>
 #include <ctime>
@@ -28,8 +26,8 @@ using namespace crss;
  */
 Parser::Parser(struct rawRss content)
 {
-   this->setRawRss(content);
-   this->timeFormatUI = nullptr;
+    this->loadXml(content);
+    this->timeFormatUI = nullptr;
 }
 
 
@@ -44,16 +42,10 @@ Parser::~Parser() = default;
  *
  * @param rawContent    - The loaded raw content
  */
-void Parser::setRawRss(struct rawRss rawContent)
+void Parser::loadXml(struct rawRss rawContent)
 {
-    this->rss = &rawContent;
-
-    string s(this->rss->content);
-    s.erase(remove(s.begin(), s.end(), '\n'), s.end());
-    char *temp = const_cast<char *>(s.c_str());
-
     const int parseFlags = parse_trim_whitespace;
-    this->xmlDocument.parse<parseFlags>(temp);
+    this->xmlDocument.parse<parseFlags>(rawContent.content);
     this->rootNode = this->xmlDocument.first_node();
     this->entryNode = nullptr;
 }
@@ -66,7 +58,7 @@ void Parser::setRawRss(struct rawRss rawContent)
  * @param   attribute   - Name of the attribute
  * @return              - Content of the attribute
  */
-char * Parser::getNodeAttribute(xml_node<> *node, const char *attribute)
+char *Parser::getNodeAttribute(xml_node<> *node, const char *attribute)
 {
     char *attributeValue = nullptr;
     if (node == nullptr)
@@ -91,10 +83,10 @@ char * Parser::getNodeAttribute(xml_node<> *node, const char *attribute)
  * @param   node        - The node of which the content should get
  * @return
  */
-char * Parser::getNodeContent(xml_node<> *node)
+char *Parser::getNodeContent(xml_node<> *node)
 {
     char *nodeValue = nullptr;
-    char *content = (char*) calloc(1, sizeof(char));
+    char *content = (char *) calloc(1, sizeof(char));
     strcpy(content, "");
 
     if (node == nullptr)
@@ -111,10 +103,10 @@ char * Parser::getNodeContent(xml_node<> *node)
     if (node != nullptr)
     {
         nodeValue = node->value();
-		content = (char*) calloc(strlen(nodeValue) + 1, sizeof(char));
-    	strcpy(content, nodeValue);
+        content = (char *) calloc(strlen(nodeValue) + 1, sizeof(char));
+        strcpy(content, nodeValue);
     }
-	
+
     return content;
 }
 
@@ -124,14 +116,14 @@ char * Parser::getNodeContent(xml_node<> *node)
  *
  * @return  Next node
  */
-xml_node<> * Parser::getNextNode()
+xml_node<> *Parser::getNextNode()
 {
     xml_node<> *node = nullptr;
 
-//    if (this->rootNode == nullptr)
-//    {
-//        return nullptr;
-//    }
+    if (this->rootNode == nullptr)
+    {
+        return node;
+    }
 
     if (this->rootNode != nullptr && this->entryNode == nullptr)
     {
@@ -142,11 +134,6 @@ xml_node<> * Parser::getNextNode()
         node = this->entryNode->next_sibling();
     }
 
-//    if (this->entryNode == nullptr)
-//    {
-//        return nullptr;
-//    }
-
     return this->entryNode = node;
 }
 
@@ -156,14 +143,14 @@ xml_node<> * Parser::getNextNode()
  *
  * @return  Item of feed
  */
-struct rssItem * Parser::getFeedItem()
+struct rssItem *Parser::getFeedItem()
 {
     if (this->getNextNode() == nullptr)
     {
         return nullptr;
     }
 
-    struct rssItem *item = (struct rssItem*) calloc(1, sizeof(struct rssItem));
+    struct rssItem *item = (struct rssItem *) calloc(1, sizeof(struct rssItem));
     item->read = 0;
     item->title = this->getFeedTitle();
     item->description = this->getFeedContent();
@@ -181,7 +168,7 @@ struct rssItem * Parser::getFeedItem()
  * @param   text    - The text which should be parsed
  * @return
  */
-char * Parser::convertHtmlToPlaintext(char *text)
+char *Parser::convertHtmlToPlaintext(char *text)
 {
     char *plaintext;
     regex regex("<[^>]*>");
@@ -200,7 +187,7 @@ char * Parser::convertHtmlToPlaintext(char *text)
  * @param   timeString
  * @return  Formatted time string
  */
-char* Parser::formatTimeString(const char *timeString)
+char *Parser::formatTimeString(const char *timeString)
 {
     stringstream date(timeString);
     ostringstream formattedTimeString;
@@ -222,7 +209,7 @@ char* Parser::formatTimeString(const char *timeString)
  *
  * @return  Time format
  */
-char * Parser::getTimeFormatUI()
+char *Parser::getTimeFormatUI()
 {
     return this->timeFormatUI;
 }

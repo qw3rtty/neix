@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
+    <category term="commandline" label="r/commandline"/>
+    <updated>2020-06-29T18:26:27+00:00</updated>
+    <icon>https://www.redditstatic.com/icon.png/</icon>
+    <id>/r/commandline.rss</id>
+    <link rel="self" href="https://www.reddit.com/r/commandline.rss" type="application/atom+xml"/>
+    <link rel="alternate" href="https://www.reddit.com/r/commandline" type="text/html"/>
+    <subtitle>This is for anything regarding the command line, in any operating system. All questions (including dumb
+        ones), tips, and interesting programs/console applications you've found or made yourself are welcome. Linux /
+        BSD / OSX / Windows CLI apps or questions or comments, we're happy to take them all!
+    </subtitle>
+    <title>Command Line</title>
+    <entry>
+        <author>
+            <name>/u/Destruktotron</name>
+            <uri>https://www.reddit.com/user/Destruktotron</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I&amp;#39;ve got around
+            17,000 photos (~52gb) of all kinds of random stuff -- family, whiteboard drawings,, landscapes, etc. I&amp;#39;m
+            looking for some linux command-line magic to pull out just those photos that contain pictures of people.&lt;/p&gt;
+            &lt;p&gt;I&amp;#39;m OK with running an intermediate-step tool that&amp;#39;ll analyze the photos and add in
+            metadata about the contents (if such sorcery exists), or just one that&amp;#39;s super slow and will take
+            days. Not looking for any kind of cloud based solution or service, however.&lt;/p&gt; &lt;p&gt;Anyone tried
+            anything like this before?&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a
+            href=&quot;https://www.reddit.com/user/Destruktotron&quot;&gt; /u/Destruktotron &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a
+            href=&quot;https://www.reddit.com/r/commandline/comments/hi1544/sorting_photos_that_contain_pictures_of_people/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hi1544/sorting_photos_that_contain_pictures_of_people/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hi1544</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hi1544/sorting_photos_that_contain_pictures_of_people/"/>
+        <updated>2020-06-29T14:45:04+00:00</updated>
+        <title>Sorting photos that contain pictures of people?</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/thomasbbbb</name>
+            <uri>https://www.reddit.com/user/thomasbbbb</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;The command &lt;code&gt;tldr
+            tldr&lt;/code&gt; returns &lt;/p&gt; &lt;pre&gt;&lt;code&gt;documentation is not available. &lt;/code&gt;&lt;/pre&gt;
+            &lt;p&gt;how can I get it?&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a
+            href=&quot;https://www.reddit.com/user/thomasbbbb&quot;&gt; /u/thomasbbbb &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a
+            href=&quot;https://www.reddit.com/r/commandline/comments/hhm3qb/how_to_get_the_documentation_for_tldr/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhm3qb/how_to_get_the_documentation_for_tldr/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hhm3qb</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hhm3qb/how_to_get_the_documentation_for_tldr/"/>
+        <updated>2020-06-28T20:46:50+00:00</updated>
+        <title>How to get the documentation for tldr?</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/0x7CF</name>
+            <uri>https://www.reddit.com/user/0x7CF</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhb6kr/dnswatch_watch_for_changes_of_aaaaa_records/&quot;&gt;
+            &lt;img src=&quot;https://b.thumbs.redditmedia.com/S70YZDpX1m-86trumhvLV1MAVtC9qmP-B1t7Ljfflmc.jpg&quot;
+            alt=&quot;dnswatch: watch for changes of A/AAAA records&quot; title=&quot;dnswatch: watch for changes of
+            A/AAAA records&quot; /&gt; &lt;/a&gt; &lt;/td&gt;&lt;td&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/0x7CF&quot;&gt;
+            /u/0x7CF &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://github.com/daschr/dnswatch&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhb6kr/dnswatch_watch_for_changes_of_aaaaa_records/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        </content>
+        <id>t3_hhb6kr</id>
+        <media:thumbnail url="https://b.thumbs.redditmedia.com/S70YZDpX1m-86trumhvLV1MAVtC9qmP-B1t7Ljfflmc.jpg"/>
+        <link href="https://www.reddit.com/r/commandline/comments/hhb6kr/dnswatch_watch_for_changes_of_aaaaa_records/"/>
+        <updated>2020-06-28T08:53:55+00:00</updated>
+        <title>dnswatch: watch for changes of A/AAAA records</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/forbesmyester</name>
+            <uri>https://www.reddit.com/user/forbesmyester</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhjly2/wv_linewise_put_htmlcssjs_interactivity_in_middle/&quot;&gt;
+            &lt;img src=&quot;https://b.thumbs.redditmedia.com/hPoBxl-i3yeZ_j0TfZ-A0kFv_5G979SYq3gDXd48oDU.jpg&quot;
+            alt=&quot;WV Linewise: Put HTML/CSS/JS interactivity in middle of UNIX Pipeline&quot; title=&quot;WV
+            Linewise: Put HTML/CSS/JS interactivity in middle of UNIX Pipeline&quot; /&gt; &lt;/a&gt; &lt;/td&gt;&lt;td&gt;
+            &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/forbesmyester&quot;&gt;
+            /u/forbesmyester &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://github.com/forbesmyester/wv-linewise&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhjly2/wv_linewise_put_htmlcssjs_interactivity_in_middle/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        </content>
+        <id>t3_hhjly2</id>
+        <media:thumbnail url="https://b.thumbs.redditmedia.com/hPoBxl-i3yeZ_j0TfZ-A0kFv_5G979SYq3gDXd48oDU.jpg"/>
+        <link href="https://www.reddit.com/r/commandline/comments/hhjly2/wv_linewise_put_htmlcssjs_interactivity_in_middle/"/>
+        <updated>2020-06-28T18:31:34+00:00</updated>
+        <title>WV Linewise: Put HTML/CSS/JS interactivity in middle of UNIX Pipeline</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/okayboooooooomer</name>
+            <uri>https://www.reddit.com/user/okayboooooooomer</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhblgb/gomu_golang_music_player/&quot;&gt;
+            &lt;img src=&quot;https://b.thumbs.redditmedia.com/jF1S098nWY06DkAZAUb_CdgsYlbBz1EEzrOVN9f59KE.jpg&quot;
+            alt=&quot;Gomu (Golang Music Player)&quot; title=&quot;Gomu (Golang Music Player)&quot; /&gt; &lt;/a&gt;
+            &lt;/td&gt;&lt;td&gt; &lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/issadarkthing/gomu&quot;&gt;Gomu&lt;/a&gt;
+            is a simple &lt;strong&gt;TUI&lt;/strong&gt; Music Player that manages your local mp3 files. It also has
+            &lt;a href=&quot;https://youtube-dl.org/&quot;&gt;youtube-dl&lt;/a&gt; integration that lets you download
+            audio files from youtube.&lt;/p&gt; &lt;p&gt;&lt;a href=&quot;https://reddit.com/link/hhblgb/video/cmh05ckr4m751/player&quot;&gt;https://reddit.com/link/hhblgb/video/cmh05ckr4m751/player&lt;/a&gt;&lt;/p&gt;
+            &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/okayboooooooomer&quot;&gt;
+            /u/okayboooooooomer &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhblgb/gomu_golang_music_player/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhblgb/gomu_golang_music_player/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        </content>
+        <id>t3_hhblgb</id>
+        <media:thumbnail url="https://b.thumbs.redditmedia.com/jF1S098nWY06DkAZAUb_CdgsYlbBz1EEzrOVN9f59KE.jpg"/>
+        <link href="https://www.reddit.com/r/commandline/comments/hhblgb/gomu_golang_music_player/"/>
+        <updated>2020-06-28T09:33:50+00:00</updated>
+        <title>Gomu (Golang Music Player)</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/spite77</name>
+            <uri>https://www.reddit.com/user/spite77</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhaesd/5_modern_alternatives_to_essential_linux/&quot;&gt;
+            &lt;img src=&quot;https://b.thumbs.redditmedia.com/6XP8gNEws_fMZpSbrsqr0voYbXuzJcrYyijgxM1yCtE.jpg&quot;
+            alt=&quot;5 modern alternatives to essential Linux command-line tools&quot; title=&quot;5 modern
+            alternatives to essential Linux command-line tools&quot; /&gt; &lt;/a&gt; &lt;/td&gt;&lt;td&gt; &amp;#32;
+            submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/spite77&quot;&gt; /u/spite77 &lt;/a&gt;
+            &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://opensource.com/article/20/6/modern-linux-command-line-tools&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhaesd/5_modern_alternatives_to_essential_linux/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        </content>
+        <id>t3_hhaesd</id>
+        <media:thumbnail url="https://b.thumbs.redditmedia.com/6XP8gNEws_fMZpSbrsqr0voYbXuzJcrYyijgxM1yCtE.jpg"/>
+        <link href="https://www.reddit.com/r/commandline/comments/hhaesd/5_modern_alternatives_to_essential_linux/"/>
+        <updated>2020-06-28T07:35:18+00:00</updated>
+        <title>5 modern alternatives to essential Linux command-line tools</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/dodiehun</name>
+            <uri>https://www.reddit.com/user/dodiehun</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I&amp;#39;ve created a script
+            &lt;a href=&quot;https://github.com/dodie/bash-preprocessor&quot;&gt;https://github.com/dodie/bash-preprocessor&lt;/a&gt;
+            to replace certain snippets in a script file with their output. It&amp;#39;s just Bash, there&amp;#39;s no
+            custom template language involved.&lt;/p&gt; &lt;p&gt;It was useful for me to bake a version string to a
+            script file based on the current timestamp (or git commit ID). Also, it can also be used to do various stuff
+            at &amp;quot;compile&amp;quot; time, like statically importing contents from other script files.&lt;/p&gt;
+            &lt;p&gt;I hope it will be useful for others! Feedback is appreciated!&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON
+            --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/dodiehun&quot;&gt;
+            /u/dodiehun &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhfp7g/bash_preprocessor_replace_snippets_with_their/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhfp7g/bash_preprocessor_replace_snippets_with_their/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hhfp7g</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hhfp7g/bash_preprocessor_replace_snippets_with_their/"/>
+        <updated>2020-06-28T14:52:50+00:00</updated>
+        <title>Bash Preprocessor: replace snippets with their output</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/gottziehtalles</name>
+            <uri>https://www.reddit.com/user/gottziehtalles</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhilz2/browse_interactively_through_files_and/&quot;&gt;
+            &lt;img src=&quot;https://b.thumbs.redditmedia.com/f-AXTlVGPApWDP7PmLgOOhdmL7_A8Az7IND_Vek0G7U.jpg&quot;
+            alt=&quot;Browse interactively through files and directories of git repository and download them&quot;
+            title=&quot;Browse interactively through files and directories of git repository and download them&quot; /&gt;
+            &lt;/a&gt; &lt;/td&gt;&lt;td&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/gottziehtalles&quot;&gt;
+            /u/gottziehtalles &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://github.com/FalcoSuessgott/gitget&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhilz2/browse_interactively_through_files_and/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        </content>
+        <id>t3_hhilz2</id>
+        <media:thumbnail url="https://b.thumbs.redditmedia.com/f-AXTlVGPApWDP7PmLgOOhdmL7_A8Az7IND_Vek0G7U.jpg"/>
+        <link href="https://www.reddit.com/r/commandline/comments/hhilz2/browse_interactively_through_files_and/"/>
+        <updated>2020-06-28T17:37:18+00:00</updated>
+        <title>Browse interactively through files and directories of git repository and download them</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/Siorapaluk</name>
+            <uri>https://www.reddit.com/user/Siorapaluk</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/Siorapaluk&quot;&gt;
+            /u/Siorapaluk &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;/r/Atom/comments/hhiv5a/question_after_setup_beginner/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hhkbzt/confusion_inside_the_mac_terminal_regarding/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hhkbzt</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hhkbzt/confusion_inside_the_mac_terminal_regarding/"/>
+        <updated>2020-06-28T19:09:50+00:00</updated>
+        <title>Confusion inside the Mac Terminal regarding Python versions. Any help is appreciated!</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/JoshuaRLi</name>
+            <uri>https://www.reddit.com/user/JoshuaRLi</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hh2i6r/ydiff_sidebyside_characterlevel_diffs_in_the/&quot;&gt;
+            &lt;img src=&quot;https://b.thumbs.redditmedia.com/LBjsjnA6_orsG6xhz4m7YOihOrrZ_n1UjEM6X6I5ejQ.jpg&quot;
+            alt=&quot;ydiff: side-by-side, character-level diffs in the terminal&quot; title=&quot;ydiff: side-by-side,
+            character-level diffs in the terminal&quot; /&gt; &lt;/a&gt; &lt;/td&gt;&lt;td&gt; &amp;#32; submitted by
+            &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/JoshuaRLi&quot;&gt; /u/JoshuaRLi &lt;/a&gt; &lt;br/&gt;
+            &lt;span&gt;&lt;a href=&quot;https://github.com/joshuarli/ydiff&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt; &amp;#32;
+            &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hh2i6r/ydiff_sidebyside_characterlevel_diffs_in_the/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        </content>
+        <id>t3_hh2i6r</id>
+        <media:thumbnail url="https://b.thumbs.redditmedia.com/LBjsjnA6_orsG6xhz4m7YOihOrrZ_n1UjEM6X6I5ejQ.jpg"/>
+        <link href="https://www.reddit.com/r/commandline/comments/hh2i6r/ydiff_sidebyside_characterlevel_diffs_in_the/"/>
+        <updated>2020-06-27T22:01:59+00:00</updated>
+        <title>ydiff: side-by-side, character-level diffs in the terminal</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/lucasepe</name>
+            <uri>https://www.reddit.com/user/lucasepe</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hgr0vf/draft_v070_is_out/&quot;&gt;
+            &lt;img src=&quot;https://b.thumbs.redditmedia.com/SicDR_DD7D9ZNtdTcaVnNnSM5kT_RWek_btoYPtCI_w.jpg&quot;
+            alt=&quot;Draft v0.7.0 is out!&quot; title=&quot;Draft v0.7.0 is out!&quot; /&gt; &lt;/a&gt; &lt;/td&gt;&lt;td&gt;
+            &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/lucasepe&quot;&gt; /u/lucasepe
+            &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://i.redd.it/4kiqqelbgf751.jpg&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hgr0vf/draft_v070_is_out/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        </content>
+        <id>t3_hgr0vf</id>
+        <media:thumbnail url="https://b.thumbs.redditmedia.com/SicDR_DD7D9ZNtdTcaVnNnSM5kT_RWek_btoYPtCI_w.jpg"/>
+        <link href="https://www.reddit.com/r/commandline/comments/hgr0vf/draft_v070_is_out/"/>
+        <updated>2020-06-27T10:11:42+00:00</updated>
+        <title>Draft v0.7.0 is out!</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/bluebox72</name>
+            <uri>https://www.reddit.com/user/bluebox72</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hgu0uj/meditation_timer_shell_script/&quot;&gt;
+            &lt;img src=&quot;https://b.thumbs.redditmedia.com/wA8fLH_xRfiOUcQmAJzL_5uJFgCuv-l1VncYWLK8-TY.jpg&quot;
+            alt=&quot;Meditation Timer Shell Script&quot; title=&quot;Meditation Timer Shell Script&quot; /&gt; &lt;/a&gt;
+            &lt;/td&gt;&lt;td&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/bluebox72&quot;&gt;
+            /u/bluebox72 &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://codebox.net/pages/meditation-timer&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hgu0uj/meditation_timer_shell_script/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        </content>
+        <id>t3_hgu0uj</id>
+        <media:thumbnail url="https://b.thumbs.redditmedia.com/wA8fLH_xRfiOUcQmAJzL_5uJFgCuv-l1VncYWLK8-TY.jpg"/>
+        <link href="https://www.reddit.com/r/commandline/comments/hgu0uj/meditation_timer_shell_script/"/>
+        <updated>2020-06-27T14:02:08+00:00</updated>
+        <title>Meditation Timer Shell Script</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/TTN281kb</name>
+            <uri>https://www.reddit.com/user/TTN281kb</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;Megatools is a collection of
+            programs for accessing Mega service ( &lt;a href=&quot;https://mega.nz/&quot;&gt;https://mega.nz/&lt;/a&gt;
+            ) from a command line interface&lt;/p&gt; &lt;p&gt;TOOLS OVERVIEW:&lt;/p&gt; &lt;p&gt;megareg Register and
+            verify a new mega account&lt;/p&gt; &lt;p&gt;megadf Show your cloud storage space usage/quota&lt;/p&gt; &lt;p&gt;megals
+            List all remote files&lt;/p&gt; &lt;p&gt;megamkdir Create remote directory&lt;/p&gt; &lt;p&gt;megarm Remove
+            remote file or directory&lt;/p&gt; &lt;p&gt;megamv Move and rename remote files&lt;/p&gt; &lt;p&gt;megaput
+            Upload individual files&lt;/p&gt; &lt;p&gt;megaget Download individual files&lt;/p&gt; &lt;p&gt;megadl
+            Download file from a &amp;quot;public&amp;quot; Mega link (doesn&amp;#39;t require login)&lt;/p&gt; &lt;p&gt;megasync
+            Upload or download a directory tree&lt;/p&gt; &lt;p&gt;megafs Mount remote filesystem locally.&lt;/p&gt;
+            &lt;p&gt;WHERE TO GET MEGATOOLS: &lt;a href=&quot;http://megatools.megous.com&quot;&gt;http://megatools.megous.com&lt;/a&gt;
+            &lt;a href=&quot;https://packages.debian.org/buster/utils/megatools&quot;&gt;https://packages.debian.org/buster/utils/megatools&lt;/a&gt;&lt;/p&gt;
+            &lt;pre&gt;&lt;code&gt; Article partially taken from SysTutorials &lt;/code&gt;&lt;/pre&gt; &lt;/div&gt;&lt;!--
+            SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/TTN281kb&quot;&gt;
+            /u/TTN281kb &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hh2y9g/using_mega_from_the_command_line_with_megatools/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hh2y9g/using_mega_from_the_command_line_with_megatools/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hh2y9g</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hh2y9g/using_mega_from_the_command_line_with_megatools/"/>
+        <updated>2020-06-27T22:26:35+00:00</updated>
+        <title>Using MEGA from the command line with MEGATOOLS</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/Mhalter3378</name>
+            <uri>https://www.reddit.com/user/Mhalter3378</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hgayn8/stumbled_across_a_recipe_scraping_website_and/&quot;&gt;
+            &lt;img src=&quot;https://b.thumbs.redditmedia.com/ewF83P0AbVe51PDzMROIf2jK1BdDkKWC-fMoWQxvozY.jpg&quot;
+            alt=&quot;Stumbled across a recipe scraping website and found that pairing it with pandoc makes a pretty
+            nice and simple command line recipe fetcher (https://plainoldrecipe.com/)&quot; title=&quot;Stumbled across
+            a recipe scraping website and found that pairing it with pandoc makes a pretty nice and simple command line
+            recipe fetcher (https://plainoldrecipe.com/)&quot; /&gt; &lt;/a&gt; &lt;/td&gt;&lt;td&gt; &amp;#32;
+            submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/Mhalter3378&quot;&gt; /u/Mhalter3378
+            &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://i.redd.it/8igiqa2d8a751.png&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hgayn8/stumbled_across_a_recipe_scraping_website_and/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        </content>
+        <id>t3_hgayn8</id>
+        <media:thumbnail url="https://b.thumbs.redditmedia.com/ewF83P0AbVe51PDzMROIf2jK1BdDkKWC-fMoWQxvozY.jpg"/>
+        <link href="https://www.reddit.com/r/commandline/comments/hgayn8/stumbled_across_a_recipe_scraping_website_and/"/>
+        <updated>2020-06-26T16:37:08+00:00</updated>
+        <title>Stumbled across a recipe scraping website and found that pairing it with pandoc makes a pretty nice and
+            simple command line recipe fetcher (https://plainoldrecipe.com/)
+        </title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/speckz</name>
+            <uri>https://www.reddit.com/user/speckz</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/speckz&quot;&gt;
+            /u/speckz &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://adventurist.me/posts/00301&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hgzetd/command_line_bug_hunting_in_freebsd/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hgzetd</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hgzetd/command_line_bug_hunting_in_freebsd/"/>
+        <updated>2020-06-27T19:07:51+00:00</updated>
+        <title>Command Line Bug Hunting in FreeBSD</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/Fine-Bat-6270</name>
+            <uri>https://www.reddit.com/user/Fine-Bat-6270</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I was trying to use &lt;a
+            href=&quot;https://townhall.com/&quot;&gt;https://townhall.com/&lt;/a&gt; in curl over Tor. It redirects to
+            cloudflare.&lt;/p&gt; &lt;p&gt;But when I use &lt;a href=&quot;https://townhall.com/&quot;&gt;https://townhall.com/&lt;/a&gt;
+            in cloudflare(without JavaScript) it works fine. Cloudflare doesn&amp;#39;t asks for captchas. I have tired
+            some CLI browsers like w3m, elinks but same for all. Cloudflare always asks for captchas if you are using
+            Tor&amp;#39;s IP but it don&amp;#39;t ask for captchas when you use Tor Browser.&lt;/p&gt; &lt;p&gt;So I
+            tried &lt;a href=&quot;https://wtfismyip.com/headers&quot;&gt;copying Tor browser&amp;#39;s headers&lt;/a&gt;
+            and use -H in curl. But it didn&amp;#39;t worked. I have even tried -A for user-agent, but still it is
+            asking for captchas. Please help&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32;
+            &lt;a href=&quot;https://www.reddit.com/user/Fine-Bat-6270&quot;&gt; /u/Fine-Bat-6270 &lt;/a&gt; &lt;br/&gt;
+            &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hgv9dv/how_to_use_tor_browsers_header_in_curl_to_bypass/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hgv9dv/how_to_use_tor_browsers_header_in_curl_to_bypass/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hgv9dv</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hgv9dv/how_to_use_tor_browsers_header_in_curl_to_bypass/"/>
+        <updated>2020-06-27T15:15:07+00:00</updated>
+        <title>How to use Tor browser's header in curl to bypass some cloudflare captchas?</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/speckz</name>
+            <uri>https://www.reddit.com/user/speckz</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;table&gt; &lt;tr&gt;&lt;td&gt; &lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hg5i1d/aviarysh_minimal_distributed_configuration/&quot;&gt;
+            &lt;img src=&quot;https://b.thumbs.redditmedia.com/rLVt4dhzaUwVe9iEkLkR6KxmB44TQ1weRdsrxIkinZY.jpg&quot;
+            alt=&quot;aviary.sh - Minimal distributed configuration management in bash. Tiny alternative to ansible /
+            chef / puppet / etc.&quot; title=&quot;aviary.sh - Minimal distributed configuration management in bash.
+            Tiny alternative to ansible / chef / puppet / etc.&quot; /&gt; &lt;/a&gt; &lt;/td&gt;&lt;td&gt; &amp;#32;
+            submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/speckz&quot;&gt; /u/speckz &lt;/a&gt;
+            &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://github.com/team-video/aviary.sh&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hg5i1d/aviarysh_minimal_distributed_configuration/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+            &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+        </content>
+        <id>t3_hg5i1d</id>
+        <media:thumbnail url="https://b.thumbs.redditmedia.com/rLVt4dhzaUwVe9iEkLkR6KxmB44TQ1weRdsrxIkinZY.jpg"/>
+        <link href="https://www.reddit.com/r/commandline/comments/hg5i1d/aviarysh_minimal_distributed_configuration/"/>
+        <updated>2020-06-26T11:08:00+00:00</updated>
+        <title>aviary.sh - Minimal distributed configuration management in bash. Tiny alternative to ansible / chef /
+            puppet / etc.
+        </title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/Blackstonewasright</name>
+            <uri>https://www.reddit.com/user/Blackstonewasright</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I have been running a .cmd
+            file and it has been working fine. I used CURL in a shell and now my files won’t open. I was just using the
+            local file names. So I would say filename.htm. It was just going to localfolder/filename.htm. Now it’s going
+            somewhere else. Can someone else help me figure out how to get it back to going into the local folder?
+            Please&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/Blackstonewasright&quot;&gt;
+            /u/Blackstonewasright &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hgilcd/command_prompt_shorthand/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hgilcd/command_prompt_shorthand/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hgilcd</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hgilcd/command_prompt_shorthand/"/>
+        <updated>2020-06-26T23:28:48+00:00</updated>
+        <title>Command Prompt Shorthand</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/yonni_mezoomaneem</name>
+            <uri>https://www.reddit.com/user/yonni_mezoomaneem</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;Hello! Just like the title
+            says, I am new to Windows batch file coding, and I need a little help with a code I made. It goes like this
+            @echo off set /a num=1:Repeat echo %num% set /a num=%num%+1 goto Repeat&lt;/p&gt; &lt;p&gt;I of course saved
+            it as a batch file and made sure of it, but, when I try to activate it, it won’t open in the CMD. Can
+            someone help me to understand my mistake? Thank you!&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32;
+            submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/yonni_mezoomaneem&quot;&gt;
+            /u/yonni_mezoomaneem &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hgcwgv/need_some_help_please_be_gentle_im_new_to_batch/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hgcwgv/need_some_help_please_be_gentle_im_new_to_batch/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hgcwgv</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hgcwgv/need_some_help_please_be_gentle_im_new_to_batch/"/>
+        <updated>2020-06-26T18:19:38+00:00</updated>
+        <title>Need some help, please be gentle, I’m new to batch coding</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/14u2ponder</name>
+            <uri>https://www.reddit.com/user/14u2ponder</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I am building a script that
+            requires a date command being declared as a variable with a strftime conversation. Strftime likes %. So when
+            I use xargs -l %, there is an interference. My question is what is the best alternative to % that I can use.
+            Is it possible to make the xargs wildcard into a two-key string, etc etc. Possibly ? mark&lt;/p&gt; &lt;/div&gt;&lt;!--
+            SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/14u2ponder&quot;&gt;
+            /u/14u2ponder &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hfog9s/what_is_a_good_alternative_wildcard_to_in_xargs_l/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hfog9s/what_is_a_good_alternative_wildcard_to_in_xargs_l/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hfog9s</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hfog9s/what_is_a_good_alternative_wildcard_to_in_xargs_l/"/>
+        <updated>2020-06-25T15:50:25+00:00</updated>
+        <title>What is a good alternative wildcard to %: in xargs -l</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/v4rgr</name>
+            <uri>https://www.reddit.com/user/v4rgr</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;Alright, I&amp;#39;m at my
+            wits end troubleshooting this, hoping maybe someone here knows what is going on because I&amp;#39;m about to
+            lose it...&lt;/p&gt; &lt;p&gt;At work we have a batch file that uses the findstr command to compare two .csv
+            files looking for lines present in one file that are missing in the other to produce a changelog to send to
+            a vendor. Its been working mostly fine up until recently although now I&amp;#39;m seeing it indicate a
+            certain record as being absent in one file despite the fact that I know for a fact the record is in both
+            files.&lt;/p&gt; &lt;p&gt;In my quest to troubleshoot the issue I chopped down both csv files to two very
+            small txt files containing the following (and only the following):&lt;/p&gt; &lt;pre&gt;&lt;code&gt;A2G AA
+            &lt;/code&gt;&lt;/pre&gt; &lt;p&gt;That&amp;#39;s it, that&amp;#39;s all they contain. I&amp;#39;m then
+            running the following command on them from command prompt:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;findstr /v /g:&amp;quot;C:\test1.txt&amp;quot;
+            &amp;quot;C:\test2.txt&amp;quot; &lt;/code&gt;&lt;/pre&gt; &lt;p&gt;That returns a result of AA.&lt;/p&gt;
+            &lt;p&gt;If I remove any characters at all (being careful to ensure that both files remain identical, I&amp;#39;m
+            using the Notepad++ compare plugin for that) it doesn&amp;#39;t return any results.&lt;/p&gt; &lt;p&gt;Anyone
+            have any idea what&amp;#39;s going on here? I swear this is about to give me an ulcer...&lt;/p&gt; &lt;/div&gt;&lt;!--
+            SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/v4rgr&quot;&gt;
+            /u/v4rgr &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hfwp6n/possible_bug_with_findstr_command_in_windows/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hfwp6n/possible_bug_with_findstr_command_in_windows/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hfwp6n</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hfwp6n/possible_bug_with_findstr_command_in_windows/"/>
+        <updated>2020-06-25T23:32:40+00:00</updated>
+        <title>Possible Bug With FINDSTR Command In Windows</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/TrekkiMonstr</name>
+            <uri>https://www.reddit.com/user/TrekkiMonstr</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;I was talking to a buddy of
+            mine today about &lt;a href=&quot;https://en.wikipedia.org/wiki/Scratch_(programming_language)&quot;&gt;Scratch&lt;/a&gt;,
+            how it was our first exposure to programming (which it seems to still be, since my 11-year-old godsister had
+            the same experience). I then also considered the fact that &lt;strong&gt;no one&lt;/strong&gt; seems to know
+            how to do anything in a terminal. What does &lt;a href=&quot;/r/commandline&quot;&gt;/r/commandline&lt;/a&gt;
+            think is the solution to this, to get people an actual basic understanding of how their computer works? If
+            there were something like Scratch for the command line, what would that look like? I personally find it cool
+            to be able to use a terminal, but I have no idea how to make it appealing to a child. What are y&amp;#39;all&amp;#39;s
+            thoughts?&lt;/p&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/TrekkiMonstr&quot;&gt;
+            /u/TrekkiMonstr &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hfi5ha/what_are_your_thoughts_on_a_program_to_teach_kids/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hfi5ha/what_are_your_thoughts_on_a_program_to_teach_kids/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hfi5ha</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hfi5ha/what_are_your_thoughts_on_a_program_to_teach_kids/"/>
+        <updated>2020-06-25T07:54:09+00:00</updated>
+        <title>What are your thoughts on a program to teach kids how to use a terminal?</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/Here-Is-TheEnd</name>
+            <uri>https://www.reddit.com/user/Here-Is-TheEnd</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;Hello all,&lt;/p&gt; &lt;p&gt;I
+            am working on a MERN stack application on my local machine and I find myself opening 3 terminal windows to
+            start things up.&lt;/p&gt; &lt;p&gt;I have decided to write a shell script to automate the process of
+            opening all my terminal windows, having them go to the appropriate directory, and run the necessary command.&lt;/p&gt;
+            &lt;p&gt;here is what I want the script to do:&lt;/p&gt; &lt;ol&gt; &lt;li&gt;I open a terminal, type an
+            alias to run the shell script (which I have set up).&lt;/li&gt; &lt;li&gt;open terminal, navigate to backend
+            directory, run &amp;#39;node index.js&amp;#39;&lt;/li&gt; &lt;li&gt;open second terminal, navigate to front
+            end directory, run &amp;#39;npm start&amp;#39;&lt;/li&gt; &lt;li&gt;open 3rd terminal, because I always seem
+            to need one.&lt;/li&gt; &lt;li&gt;close the terminal that ran the alias command ( which is also done).&lt;/li&gt;
+            &lt;/ol&gt; &lt;p&gt;The problem I&amp;#39;m having is that I cant seem to give arguments to the new
+            terminal window I open.&lt;/p&gt; &lt;p&gt;I have this line&lt;/p&gt; &lt;pre&gt;&lt;code&gt;open -a
+            Terminal &amp;quot;$HOME/PATH/backend&amp;quot; &lt;/code&gt;&lt;/pre&gt; &lt;p&gt;which will open the new
+            terminal in the directory I want but I cannot tell it to run any commands.&lt;/p&gt; &lt;p&gt;I have tried
+            to use the -e flag like so&lt;/p&gt; &lt;pre&gt;&lt;code&gt;open -a Terminal &amp;quot;$HOME/PATH/backend&amp;quot;
+            -e &amp;quot;node index.js&amp;quot; &lt;/code&gt;&lt;/pre&gt; &lt;p&gt;but this does not do what I need.&lt;/p&gt;
+            &lt;p&gt;I have tried&lt;/p&gt; &lt;pre&gt;&lt;code&gt;open -a Terminal &amp;quot;$HOME/PATH/backend &amp;amp;&amp;amp;
+            node index.js&amp;quot; &lt;/code&gt;&lt;/pre&gt; &lt;p&gt;and no dice.&lt;/p&gt; &lt;p&gt;&amp;#x200B;&lt;/p&gt;
+            &lt;p&gt;&amp;#x200B;&lt;/p&gt; &lt;p&gt;what can I do?&lt;/p&gt; &lt;p&gt;&amp;#x200B;&lt;/p&gt; &lt;p&gt;&amp;#x200B;&lt;/p&gt;
+            &lt;p&gt;**update**&lt;/p&gt; &lt;p&gt;I seem to have turned on inverted directions for my external mouse.
+            systems settings do not reflect this change of events. send help.&lt;/p&gt; &lt;p&gt;&amp;#x200B;&lt;/p&gt;
+            &lt;p&gt;**update 2**&lt;/p&gt; &lt;p&gt;this is what I have that works:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;#!/bin/bash
+            osascript -e &amp;#39;tell application &amp;quot;Terminal&amp;quot; to do script &amp;quot;cd
+            /Users/PATH/backend &amp;amp;&amp;amp; node index.js&amp;quot;&amp;#39; osascript -e &amp;#39;tell
+            application &amp;quot;Terminal&amp;quot; to do script &amp;quot;cd /Users/PATH/frontend &amp;amp;&amp;amp;
+            npm start&amp;quot;&amp;#39; &lt;/code&gt;&lt;/pre&gt; &lt;p&gt;&amp;#x200B;&lt;/p&gt; &lt;p&gt;I have also
+            resorted to using my mouse upside down until I can address that issue. Big sad..&lt;/p&gt; &lt;/div&gt;&lt;!--
+            SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/Here-Is-TheEnd&quot;&gt;
+            /u/Here-Is-TheEnd &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hfyr7x/help_with_a_bash_script/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hfyr7x/help_with_a_bash_script/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hfyr7x</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hfyr7x/help_with_a_bash_script/"/>
+        <updated>2020-06-26T01:48:34+00:00</updated>
+        <title>help with a bash script</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/14u2ponder</name>
+            <uri>https://www.reddit.com/user/14u2ponder</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;p&gt;Is it bad form to run a shell
+            script twice to achieve the desired outcome? I have a shell script that uses the find command to locate all
+            my .mdoc files. I pipe that through xargs -l. Then I run an if command through the shell command: ksh -c The
+            if statement basically says that if the file does not exist for the results of the find command in my backup
+            folder, create the file to it. The next command says that if the file does exist, is is newer than the file
+            in the backup folder. If yes, then mv the backup folder copy to a_date.filename. This is the end of the
+            script. The one thing I left out of this script is that I did not replace the archived file with the new
+            version. in this case I think I ran out of my if then statements to be able to do that. I also didn&amp;#39;t
+            want to just copy The directory over to the backup directory either. I needed everything to stay logical. So
+            the solution seems to be to rerun the same script. When I do that, my first if statement applies to my
+            current doc, since it is no longer in the backup directory. So it gets copied over. nothing else changes and
+            the entire incremental backup process works perfectly.&lt;/p&gt; &lt;p&gt;but then I have a question is it
+            bad for him to run the same script twice to achieve your results?&lt;/p&gt; &lt;p&gt;Here is my code:&lt;/p&gt;
+            &lt;pre&gt;&lt;code&gt;#!/bin/ksh if test -f /mnt/Is_mounted then unmount /dev/sd1c fi mount -o noperm
+            /dev/sd1c /mnt find /home/kevin/w -type f -name &amp;quot;*.mdoc&amp;quot; -exec basename \{} \; | xargs -n
+            1. -I {} ksh-c &amp;#39; DAY=$(date +%a) if [[ ! -f /mnt/files/{} ]] then cp -p /home/kevin/w/{}
+            /mnt/files/{} else test /home/kevin/w/{} -nt /mnt/files/{} &amp;amp;&amp;amp; mv /mnt/files/{}
+            /mnt/files/$DAY.{} fi&amp;#39; &lt;/code&gt;&lt;/pre&gt; &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32;
+            submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/14u2ponder&quot;&gt; /u/14u2ponder &lt;/a&gt;
+            &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hftngf/running_a_script_twice_bad_form/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hftngf/running_a_script_twice_bad_form/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hftngf</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hftngf/running_a_script_twice_bad_form/"/>
+        <updated>2020-06-25T20:36:38+00:00</updated>
+        <title>Running a script twice: bad form?</title>
+    </entry>
+    <entry>
+        <author>
+            <name>/u/nivaddo</name>
+            <uri>https://www.reddit.com/user/nivaddo</uri>
+        </author>
+        <category term="commandline" label="r/commandline"/>
+        <content type="html">&lt;!-- SC_OFF --&gt;&lt;div class=&quot;md&quot;&gt;&lt;pre&gt;&lt;code&gt;read -r up _
+            &amp;lt; /proc/uptime days=$(( ${up%.*} / 86400 )) hours=$(( (${up%.*} % 86400) / 3600 )) &lt;/code&gt;&lt;/pre&gt;
+            &lt;/div&gt;&lt;!-- SC_ON --&gt; &amp;#32; submitted by &amp;#32; &lt;a href=&quot;https://www.reddit.com/user/nivaddo&quot;&gt;
+            /u/nivaddo &lt;/a&gt; &lt;br/&gt; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hf7bl4/help_with_procuptime_converting_to_minutes/&quot;&gt;[link]&lt;/a&gt;&lt;/span&gt;
+            &amp;#32; &lt;span&gt;&lt;a href=&quot;https://www.reddit.com/r/commandline/comments/hf7bl4/help_with_procuptime_converting_to_minutes/&quot;&gt;[Kommentare]&lt;/a&gt;&lt;/span&gt;
+        </content>
+        <id>t3_hf7bl4</id>
+        <link href="https://www.reddit.com/r/commandline/comments/hf7bl4/help_with_procuptime_converting_to_minutes/"/>
+        <updated>2020-06-24T19:13:40+00:00</updated>
+        <title>help with /proc/uptime converting to minutes.</title>
+    </entry>
+</feed>
