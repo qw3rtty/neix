@@ -22,7 +22,7 @@ namespace
 {
     TEST(Parser, main)
     {
-        ifstream atom("./test/assets/reddit.xml");
+        ifstream atom(TEST_ASSET_REDDIT);
         stringstream atomContent;
         atomContent << atom.rdbuf();
 
@@ -45,7 +45,7 @@ namespace
 
     TEST(Parser, atom)
     {
-        ifstream atom("./test/assets/atom.xml");
+        ifstream atom(TEST_ASSET_ATOM);
         stringstream atomContent;
         atomContent << atom.rdbuf();
 
@@ -85,7 +85,7 @@ namespace
 
     TEST(Parser, rss0x91)
     {
-        ifstream rss("./test/assets/rss0.91.xml");
+        ifstream rss(TEST_ASSET_RSS091);
         stringstream rssContent;
         rssContent << rss.rdbuf();
 
@@ -102,7 +102,7 @@ namespace
 
     TEST(Parser, rss0x92)
     {
-        ifstream rss("./test/assets/rss0.92.xml");
+        ifstream rss(TEST_ASSET_RSS092);
         stringstream rssContent;
         rssContent << rss.rdbuf();
 
@@ -119,7 +119,7 @@ namespace
 
     TEST(Parser, rss2x0)
     {
-        ifstream rss("./test/assets/rss2.0.xml");
+        ifstream rss(TEST_ASSET_RSS2);
         stringstream rssContent;
         rssContent << rss.rdbuf();
 
