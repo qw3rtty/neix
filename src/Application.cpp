@@ -196,6 +196,7 @@ void Application::printWindows()
     box(this->feedWindow, 0, 0);
     wrefresh(this->feedWindow);
 
+    wclear(this->articlePad);
     wclear(this->articleWindow);
     box(this->articleWindow, 0, 0);
     wrefresh(this->articleWindow);
@@ -469,18 +470,19 @@ void Application::openArticle()
     wclear(this->articleWindow);
     box(this->articleWindow, 0, 0);
     wrefresh(this->articleWindow);
-    mvwprintw(this->articleWindow, 1, 2, "Feed:     %s", feed->title);
-    mvwprintw(this->articleWindow, 2, 2, "Article:  %s", entry->title);
-    mvwprintw(this->articleWindow, 3, 2, "Date:     %s", entry->date);
-    mvwprintw(this->articleWindow, 4, 2, "--------");
+
+    wclear(this->articlePad);
+    mvwprintw(this->articlePad, 1, 2, "Feed:     %s", feed->title);
+    mvwprintw(this->articlePad, 2, 2, "Article:  %s", entry->title);
+    mvwprintw(this->articlePad, 3, 2, "Date:     %s", entry->date);
+    mvwprintw(this->articlePad, 4, 2, "--------");
 
     if (strlen(entry->description) > 0)
     {
-        mvwprintw(this->articleWindow, 6, 2, "%s", entry->description);
+        mvwprintw(this->articlePad, 6, 2, "%s", entry->description);
     }
 
-    wrefresh(this->articleWindow);
-
+    this->refreshArticlePad();
 }
 
 
