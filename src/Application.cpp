@@ -472,14 +472,14 @@ void Application::openArticle()
     wrefresh(this->articleWindow);
 
     wclear(this->articlePad);
-    mvwprintw(this->articlePad, 1, 2, "Feed:     %s", feed->title);
-    mvwprintw(this->articlePad, 2, 2, "Article:  %s", entry->title);
-    mvwprintw(this->articlePad, 3, 2, "Date:     %s", entry->date);
-    mvwprintw(this->articlePad, 4, 2, "--------");
+    mvwprintw(this->articlePad, 0, 0, "Feed:     %s", feed->title);
+    mvwprintw(this->articlePad, 1, 0, "Article:  %s", entry->title);
+    mvwprintw(this->articlePad, 2, 0, "Date:     %s", entry->date);
+    mvwprintw(this->articlePad, 3, 0, "--------");
 
     if (strlen(entry->description) > 0)
     {
-        mvwprintw(this->articlePad, 6, 2, "%s", entry->description);
+        mvwprintw(this->articlePad, 5, 0, "%s", entry->description);
     }
 
     this->refreshArticlePad();
