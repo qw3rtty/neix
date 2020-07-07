@@ -14,7 +14,7 @@
 #include <cstring>
 
 #include "config.h"
-#include "Application.h"
+#include "application/Application.h"
 #include "feed/Feeds.h"
 
 using namespace std;

@@ -1,6 +1,6 @@
 #include <iostream>
 #include "config.h"
-#include "Application.h"
+#include "application/Application.h"
 #include "feed/FeedLoader.h"
 #include "parser/Parser.h"
 #include "parser/FactoryParser.h"
