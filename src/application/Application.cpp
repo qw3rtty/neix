@@ -482,7 +482,8 @@ void Application::openArticle()
         mvwprintw(this->articlePad, 5, 0, "%s", entry->description);
     }
 
-    this->refreshArticlePad();
+    int padOffsetTop = 0;
+    prefresh(this->articlePad, padOffsetTop, 0, 3, this->feedWindowWidth+2, this->windowHeight, COLS);
 }
 
 
