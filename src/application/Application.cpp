@@ -89,6 +89,7 @@ void Application::createArticleWindow()
     keypad(this->articleWindow, TRUE);
 
     this->articlePadOffsetTop = 0;
+    this->articlePadOffsetTopDetail = 0;
     this->articlePad = newpad(200, this->articleWindowWidth-4);
     keypad(this->articlePad, TRUE);
 }
@@ -166,14 +167,30 @@ void Application::show()
 
             case KEY_UP:
             case KEY_K:
-                this->articleChoice = this->decreaseChoice(this->articleChoice, articleCount);
-                this->articlePadOffsetTop = this->decreasePadOffset(this->articlePadOffsetTop, this->articleChoice, articleCount);
+                if (this->reading)
+                {
+                    this->articlePadOffsetTopDetail--;
+                    this->printArticleDetailPad();
+                }
+                else
+                {
+                    this->articleChoice = this->decreaseChoice(this->articleChoice, articleCount);
+                    this->articlePadOffsetTop = this->decreasePadOffset(this->articlePadOffsetTop, this->articleChoice, articleCount);
+                }
                 break;
 
             case KEY_DOWN:
             case KEY_J:
-                this->articleChoice = this->increaseChoice(this->articleChoice, articleCount);
-                this->articlePadOffsetTop = this->increasePadOffset(this->articlePadOffsetTop, this->articleChoice);
+                if (this->reading)
+                {
+                    this->articlePadOffsetTopDetail++;
+                    this->printArticleDetailPad();
+                }
+                else
+                {
+                    this->articleChoice = this->increaseChoice(this->articleChoice, articleCount);
+                    this->articlePadOffsetTop = this->increasePadOffset(this->articlePadOffsetTop, this->articleChoice);
+                }
                 break;
 
             case KEY_UPPER_K:
@@ -197,6 +214,7 @@ void Application::show()
                 break;
 
             case ENTER:
+                this->articlePadOffsetTopDetail = 0;
                 this->openArticle();
                 break;
 
@@ -495,6 +513,15 @@ int Application::decreasePadOffset(int offset, int choice, int count)
 
 
 /**
+ * Print article detail pad with scrolled top offset
+ */
+void Application::printArticleDetailPad()
+{
+    prefresh(this->articlePad, this->articlePadOffsetTopDetail, 0, 3, this->feedWindowWidth+2, this->windowHeight, COLS);
+}
+
+
+/**
  * Open selected article in terminal view
  */
 void Application::openArticle()
@@ -526,8 +553,7 @@ void Application::openArticle()
         mvwprintw(this->articlePad, 5, 0, "%s", entry->description);
     }
 
-    int padOffsetTop = 0;
-    prefresh(this->articlePad, padOffsetTop, 0, 3, this->feedWindowWidth+2, this->windowHeight, COLS);
+    this->printArticleDetailPad();
 }
 
 

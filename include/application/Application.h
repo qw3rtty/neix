@@ -27,6 +27,7 @@ namespace crss
         void printPads();
         void printWindows();
         void resize();
+        void printArticleDetailPad();
 
         int increaseChoice(int new_choice, int count);
         int decreaseChoice(int new_choice, int count);
@@ -41,6 +42,7 @@ namespace crss
         WINDOW *articleWindow;
         WINDOW *articlePad;
         int articlePadOffsetTop;
+        int articlePadOffsetTopDetail;
 
         bool reading;
         int lineSpacer;
