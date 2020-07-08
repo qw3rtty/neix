@@ -26,6 +26,7 @@ namespace crss
         void show();
         void printPads();
         void printWindows();
+        void resize();
 
         int increaseChoice(int new_choice, int count);
         int decreaseChoice(int new_choice, int count);
@@ -54,6 +55,8 @@ namespace crss
         int articleWindowWidth;
 
         void initChoices();
+        void printVersion();
+        void printControlHints();
         void createFeedWindow();
         void createArticleWindow();
 

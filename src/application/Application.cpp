@@ -95,19 +95,59 @@ void Application::createArticleWindow()
 
 
 /**
+ * Resize complete application
+ */
+void Application::resize()
+{
+    endwin();
+    refresh();
+    clear();
+
+    this->printVersion();
+    this->printControlHints();
+
+    this->createFeedWindow();
+    this->createArticleWindow();
+    this->printWindows();
+    this->printPads();
+
+    if (this->reading)
+    {
+        this->openArticle();
+    }
+}
+
+
+/**
+ * Print current version line
+ */
+void Application::printVersion()
+{
+    attron(A_REVERSE);
+    mvprintw(1, 0, " crss %s ", VERSION);
+    attroff(A_REVERSE);
+}
+
+
+/**
+ * Print control hints
+ */
+void Application::printControlHints()
+{
+    attron(A_REVERSE);
+    mvprintw(LINES - 2, 0, " q:Quit/Close | ENTER:Open | o:Open Browser | j:Down | k:Up | J:Next Feed | K:Prev Feed ");
+    attroff(A_REVERSE);
+}
+
+
+/**
  * Show's complete UI
  */
 void Application::show()
 {
     Feeds *feeds = Feeds::getInstance();
-
-    attron(A_REVERSE);
-    mvprintw(1, 0, " crss %s ", VERSION);
-    attroff(A_REVERSE);
-
-    attron(A_REVERSE);
-    mvprintw(LINES - 2, 0, " q:Quit/Close | ENTER:Open | o:Open Browser | j:Down | k:Up | J:Next Feed | K:Prev Feed ");
-    attroff(A_REVERSE);
+    this->printVersion();
+    this->printControlHints();
 
     refresh();
     this->printWindows();
@@ -120,6 +160,10 @@ void Application::show()
         int articleCount = feeds->getFeed(this->choice)->articleCount;
         switch (this->c)
         {
+            case KEY_RESIZE:
+                this->resize();
+                break;
+
             case KEY_UP:
             case KEY_K:
                 this->articleChoice = this->decreaseChoice(this->articleChoice, articleCount);
