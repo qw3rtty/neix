@@ -12,13 +12,13 @@ add_compile_definitions(TEST_ASSET_RSS2="${TestAssetsPath}/rss2.0.xml")
 
 FILE(GLOB src ${PROJECT_SOURCE_DIR}/src/*.cpp)
 LIST(REMOVE_ITEM src ${PROJECT_SOURCE_DIR}/src/main.cpp)
-LIST(REMOVE_ITEM src ${PROJECT_SOURCE_DIR}/src/Application.cpp)
 FILE(GLOB feed ${PROJECT_SOURCE_DIR}/src/feed/*.cpp)
 FILE(GLOB parser ${PROJECT_SOURCE_DIR}/src/parser/*.cpp)
 FILE(GLOB config ${PROJECT_SOURCE_DIR}/src/config/*.cpp)
 FILE(GLOB helper ${PROJECT_SOURCE_DIR}/src/helper/*.cpp)
 
 FILE(GLOB tests ${PROJECT_SOURCE_DIR}/test/*.cpp)
+FILE(GLOB testApplication ${PROJECT_SOURCE_DIR}/test/application/ApplicationWindow.cpp)
 FILE(GLOB testParser ${PROJECT_SOURCE_DIR}/test/parser/Parser.cpp)
 FILE(GLOB testFeedLoader ${PROJECT_SOURCE_DIR}/test/feed/FeedLoader.cpp)
 FILE(GLOB testFeeds ${PROJECT_SOURCE_DIR}/test/feed/Feeds.cpp)
@@ -34,9 +34,11 @@ add_executable(tests
     ${testFeedLoader}
     ${testFeeds}
     ${testParser}
+    ${testApplication}
 )
 target_link_libraries(tests gtest)
 target_link_libraries(tests crssFeed)
 target_link_libraries(tests crssParser)
 target_link_libraries(tests crssConfig)
 target_link_libraries(tests crssHelper)
+target_link_libraries(tests crssApplication)
