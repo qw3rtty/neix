@@ -21,6 +21,7 @@ using namespace crss;
 ApplicationWindow::ApplicationWindow()
 {
     this->enableHighlight = true;
+    this->scrollAlways = false;
     this->created = false;
     this->y = 0;
     this->x = 0;
@@ -153,13 +154,20 @@ void ApplicationWindow::resetHighlight()
  */
 void ApplicationWindow::scrollDown()
 {
-    if (this->highlight == 0)
-    {
-        this->offsetTop = 0;
-    }
-    else if (this->highlight >= this->height-2)
+    if (this->scrollAlways)
     {
         this->offsetTop++;
+    }
+    else
+    {
+        if (this->highlight == 0)
+        {
+            this->offsetTop = 0;
+        }
+        else if (this->highlight >= this->height-2)
+        {
+            this->offsetTop++;
+        }
     }
 
     this->_printPad();
@@ -171,15 +179,23 @@ void ApplicationWindow::scrollDown()
  */
 void ApplicationWindow::scrollUp()
 {
-    int count = this->content.size();
-    if (this->highlight == count-1)
-    {
-        this->offsetTop = count - (this->height - 2);
-    }
-    else if (this->offsetTop > 0)
+    if (this->scrollAlways)
     {
         this->offsetTop--;
     }
+    else
+    {
+        int count = this->content.size();
+        if (this->highlight == count-1)
+        {
+            this->offsetTop = count - (this->height - 2);
+        }
+        else if (this->offsetTop > 0)
+        {
+            this->offsetTop--;
+        }
+    }
+
 
     this->_printPad();
 }

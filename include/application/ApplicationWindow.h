@@ -26,6 +26,7 @@ namespace crss
         ~ApplicationWindow();
 
         bool enableHighlight;
+        bool scrollAlways;
 
         void show();
         void update();
