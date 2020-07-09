@@ -25,6 +25,8 @@ namespace crss
         ApplicationWindow();
         ~ApplicationWindow();
 
+        bool enableHighlight;
+
         void show();
         void update();
         void clear();

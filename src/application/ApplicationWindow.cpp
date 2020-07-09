@@ -20,6 +20,7 @@ using namespace crss;
  */
 ApplicationWindow::ApplicationWindow()
 {
+    this->enableHighlight = true;
     this->created = false;
     this->y = 0;
     this->x = 0;
@@ -69,7 +70,7 @@ void ApplicationWindow::_printContent()
     int x = 0, y = 0, counter = 0;
     for (auto & line: this->content)
     {
-        if (this->highlight == counter)
+        if (this->enableHighlight && this->highlight == counter)
         {
             wattron(this->pad, A_REVERSE);
             mvwprintw(this->pad, y, x, "%s", line.c_str());
