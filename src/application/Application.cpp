@@ -15,6 +15,7 @@
 
 #include "config.h"
 #include "application/Application.h"
+#include "application/ApplicationWindow.h"
 #include "feed/Feeds.h"
 
 using namespace std;
@@ -34,9 +35,7 @@ Application::Application()
     curs_set(0);
 
     this->reading = false;
-    this->lineSpacer = 4;
     this->windowHeight = LINES - 4;
-    this->windowInnerHeight = this->windowHeight - 2;
     this->createFeedWindow();
     this->createArticleWindow();
 }
@@ -70,12 +69,9 @@ void Application::initChoices()
 void Application::createFeedWindow()
 {
     this->feedWindowWidth = (int) (COLS / 3);
-    this->feedWindow = newwin(this->windowHeight, this->feedWindowWidth, 2, 0);
-    keypad(this->feedWindow, TRUE);
 
-    this->feedPadOffsetTop = 0;
-    this->feedPad = newpad(200, this->feedWindowWidth-4);
-    keypad(this->feedPad, TRUE);
+    this->fw.setDimensions(this->windowHeight, this->feedWindowWidth);
+    this->fw.setPosition(2, 0);
 }
 
 
@@ -85,13 +81,9 @@ void Application::createFeedWindow()
 void Application::createArticleWindow()
 {
     this->articleWindowWidth = (int) (COLS / 3) * 2;
-    this->articleWindow = newwin(this->windowHeight, this->articleWindowWidth, 2, this->feedWindowWidth);
-    keypad(this->articleWindow, TRUE);
 
-    this->articlePadOffsetTop = 0;
-    this->articlePadOffsetTopDetail = 0;
-    this->articlePad = newpad(200, this->articleWindowWidth-4);
-    keypad(this->articlePad, TRUE);
+    this->aw.setDimensions(this->windowHeight, this->articleWindowWidth);
+    this->aw.setPosition(2, this->feedWindowWidth);
 }
 
 
@@ -110,7 +102,6 @@ void Application::resize()
     this->createFeedWindow();
     this->createArticleWindow();
     this->printWindows();
-    this->printPads();
 
     if (this->reading)
     {
@@ -151,12 +142,12 @@ void Application::show()
     this->printControlHints();
 
     refresh();
+    this->fillWindowsWithContent();
     this->printWindows();
-    this->printPads();
 
     while (true)
     {
-        this->c = wgetch(this->feedWindow);
+        this->c = wgetch(this->fw.getWindow());
         int feedCount = feeds->getCount();
         int articleCount = feeds->getFeed(this->choice)->articleCount;
         switch (this->c)
@@ -169,13 +160,15 @@ void Application::show()
             case KEY_K:
                 if (this->reading)
                 {
-                    this->articlePadOffsetTopDetail--;
-                    this->printArticleDetailPad();
+                    this->aw.scrollUp();
+                    this->aw.update();
                 }
                 else
                 {
+                    this->aw.decreaseHighlight(this->articleChoice, articleCount);
+                    this->aw.update();
+                    this->aw.scrollUp();
                     this->articleChoice = this->decreaseChoice(this->articleChoice, articleCount);
-                    this->articlePadOffsetTop = this->decreasePadOffset(this->articlePadOffsetTop, this->articleChoice, articleCount);
                 }
                 break;
 
@@ -183,30 +176,40 @@ void Application::show()
             case KEY_J:
                 if (this->reading)
                 {
-                    this->articlePadOffsetTopDetail++;
-                    this->printArticleDetailPad();
+                    this->aw.scrollDown();
+                    this->aw.update();
                 }
                 else
                 {
+                    this->aw.increaseHighlight(this->articleChoice, articleCount);
+                    this->aw.update();
+                    this->aw.scrollDown();
                     this->articleChoice = this->increaseChoice(this->articleChoice, articleCount);
-                    this->articlePadOffsetTop = this->increasePadOffset(this->articlePadOffsetTop, this->articleChoice);
                 }
                 break;
 
             case KEY_UPPER_K:
-                wclear(this->articlePad);
                 this->articleChoice = 0;
-                this->articlePadOffsetTop = 0;
+                this->fw.decreaseHighlight(this->choice, feedCount);
+                this->fw.update();
                 this->choice = this->decreaseChoice(this->choice, feedCount);
-                this->feedPadOffsetTop = this->decreasePadOffset(this->feedPadOffsetTop, this->choice, feedCount);
+
+                this->aw.clear();
+                this->aw.resetHighlight();
+                this->printArticlesInWindow();
+                this->aw.update();
                 break;
 
             case KEY_UPPER_J:
-                wclear(this->articlePad);
                 this->articleChoice = 0;
-                this->articlePadOffsetTop = 0;
+                this->fw.increaseHighlight(this->choice, feedCount);
+                this->fw.update();
                 this->choice = this->increaseChoice(this->choice, feedCount);
-                this->feedPadOffsetTop = this->increasePadOffset(this->feedPadOffsetTop, this->choice);
+
+                this->aw.clear();
+                this->aw.resetHighlight();
+                this->printArticlesInWindow();
+                this->aw.update();
                 break;
 
             case KEY_O:
@@ -214,15 +217,28 @@ void Application::show()
                 break;
 
             case ENTER:
-                this->articlePadOffsetTopDetail = 0;
+                this->aw.enableHighlight = false;
+                this->aw.scrollAlways = true;
                 this->openArticle();
+
+                this->fw.clear();
+                this->printFeedsInWindow();
+                this->fw.update();
                 break;
 
             case KEY_Q:
                 if (this->reading)
                 {
                     this->reading = false;
-                    this->printWindows();
+                    this->aw.enableHighlight = true;
+                    this->aw.scrollAlways = false;
+                    this->aw.clear();
+                    this->printArticlesInWindow();
+                    this->aw.update();
+
+                    this->fw.clear();
+                    this->printFeedsInWindow();
+                    this->fw.update();
                 }
                 else
                 {
@@ -234,11 +250,6 @@ void Application::show()
                 mvprintw(LINES - 1, 0, "Charcter pressed is = %3d Hopefully it can be printed as '%c'", c, c);
                 refresh();
                 break;
-        }
-
-        if (!this->reading)
-        {
-            this->printPads();
         }
 
         if (this->quit != -1)
@@ -254,21 +265,15 @@ void Application::show()
  */
 void Application::printWindows()
 {
-    wclear(this->feedWindow);
-    box(this->feedWindow, 0, 0);
-    wrefresh(this->feedWindow);
-
-    wclear(this->articlePad);
-    wclear(this->articleWindow);
-    box(this->articleWindow, 0, 0);
-    wrefresh(this->articleWindow);
+    this->fw.show();
+    this->aw.show();
 }
 
 
 /**
  * Print's all pad's to the screen
  */
-void Application::printPads()
+void Application::fillWindowsWithContent()
 {
     this->printFeedsInWindow();
     this->printArticlesInWindow();
@@ -281,31 +286,11 @@ void Application::printPads()
 void Application::printFeedsInWindow()
 {
     Feeds *feeds = Feeds::getInstance();
-    int x = 0, y = 0, i;
-    for (i = 0; i < feeds->getCount(); ++i)
+    for (int i = 0; i < feeds->getCount(); ++i)
     {
         char *line = feeds->getFeedLineTitle(i);
-        if (this->choice == i)
-        {
-            this->printLineHighlightedInWindow(this->feedPad, y, x, line);
-        }
-        else
-        {
-            this->printLineInWindow(this->feedPad, y, x, line);
-        }
-        ++y;
+        this->fw.pushContent(line);
     }
-
-    this->refreshFeedPad();
-}
-
-
-/**
- * Refresh's the feed pad
- */
-void Application::refreshFeedPad()
-{
-    prefresh(this->feedPad, this->feedPadOffsetTop, 0, 3, 2, this->windowHeight, COLS);
 }
 
 
@@ -315,61 +300,12 @@ void Application::refreshFeedPad()
 void Application::printArticlesInWindow()
 {
     Feeds *feeds = Feeds::getInstance();
-    int x = 0, y = 0, i;
     int currentChoice = this->choice;
-    for (i = 0; i < feeds->getFeed(currentChoice)->articleCount; i++)
+    for (int i = 0; i < feeds->getFeed(currentChoice)->articleCount; i++)
     {
-        if (this->articleChoice == i)
-        {
-            this->printArticleHighlightedInWindow(this->articlePad, y, x, feeds->getArticle(currentChoice, i));
-        }
-        else
-        {
-            this->printArticleInWindow(this->articlePad, y, x, feeds->getArticle(currentChoice, i));
-        }
-        ++y;
+        string line = this->printArticleInWindow(feeds->getArticle(currentChoice, i));
+        this->aw.pushContent(line);
     }
-
-    this->refreshArticlePad();
-}
-
-
-/**
- * Refresh's the article pad
- */
-void Application::refreshArticlePad()
-{
-    prefresh(this->articlePad, this->articlePadOffsetTop, 0, 3, this->feedWindowWidth+2, this->windowHeight, COLS);
-}
-
-
-/**
- * Print standard line
- *
- * @param   window      - The window to print
- * @param   y           - Y coordinate
- * @param   x           - X coordinate
- * @param   line        - Line to print
- */
-void Application::printLineInWindow(WINDOW *window, int y, int x, char *line)
-{
-    mvwprintw(window, y, x, "%s", line);
-}
-
-
-/**
- * Print highlighted line
- *
- * @param   window      - The window to print
- * @param   y           - Y coordinate
- * @param   x           - X coordinate
- * @param   line        - Line to print
- */
-void Application::printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line)
-{
-    wattron(window, A_REVERSE);
-    this->printLineInWindow(window, y, x, line);
-    wattroff(window, A_REVERSE);
 }
 
 
@@ -381,46 +317,26 @@ void Application::printLineHighlightedInWindow(WINDOW *window, int y, int x, cha
  * @param   x           - X coordinate
  * @param   entry       - RSS item to print
  */
-void Application::printArticleInWindow(WINDOW *window, int y, int x, struct rssItem *entry)
+string Application::printArticleInWindow(struct rssItem *entry)
 {
-    int xPos = x;
+    string line;
     char *readIcon = (char*)"[*]";
     if (entry->read)
     {
         readIcon = (char*)"[ ]";
     }
-    mvwprintw(window, y, xPos, "%s", readIcon);
+    line = readIcon;
 
-    xPos += strlen(readIcon) + this->lineSpacer;
-    mvwprintw(window, y, xPos, "%s", entry->date);
+    line += "    ";
+    line += entry->date;
 
-    xPos += strlen(entry->date) + this->lineSpacer;
-    int titleWidth = this->articleWindowWidth - (this->lineSpacer * 3) - xPos;
+    string title(entry->title);
+    line += "    ";
+    line += title;
 
-    string fullTitle(entry->title);
-    string title = fullTitle.substr(0, titleWidth);
-    if ((int)fullTitle.length() > titleWidth)
-    {
-        title += "...";
-    }
-    mvwprintw(window, y, xPos, "%s", title.c_str());
+    return line;
 }
 
-
-/**
- * Print highlighted feed article
- *
- * @param   window      - The window to print
- * @param   y           - Y coordinate
- * @param   x           - X coordinate
- * @param   entry       - RSS item to print
- */
-void Application::printArticleHighlightedInWindow(WINDOW *window, int y, int x, struct rssItem *entry)
-{
-    wattron(window, A_REVERSE);
-    this->printArticleInWindow(window, y, x, entry);
-    wattroff(window, A_REVERSE);
-}
 
 
 /**
@@ -468,60 +384,6 @@ int Application::decreaseChoice(int new_choice, int count)
 
 
 /**
- * Increase pad offset
- *
- * @param   offset      - Current feed/article offset
- * @param   choice      - Current feed/article choice
- * @return  New calculated offset
- */
-int Application::increasePadOffset(int offset, int choice)
-{
-    if (choice == 0)
-    {
-        offset = 0;
-    }
-    else if (choice >= this->windowInnerHeight)
-    {
-        offset++;
-    }
-
-    return offset;
-}
-
-
-/**
- * Increase pad offset
- *
- * @param   offset      - Current feed/article offset
- * @param   choice      - Current feed/article choice
- * @param   count       - Current feed/article count
- * @return  New calculated offset
- */
-int Application::decreasePadOffset(int offset, int choice, int count)
-{
-    if (choice == count-1)
-    {
-        offset = count - this->windowInnerHeight;
-    }
-    else if (offset > 0)
-    {
-        offset--;
-    }
-
-    return offset;
-}
-
-
-/**
- * Print article detail pad with scrolled top offset
- */
-void Application::printArticleDetailPad()
-{
-    prefresh(this->articlePad, this->articlePadOffsetTopDetail, 0, 3, this->feedWindowWidth+2, this->windowHeight, COLS);
-}
-
-
-/**
  * Open selected article in terminal view
  */
 void Application::openArticle()
@@ -538,22 +400,27 @@ void Application::openArticle()
     struct rssItem *entry = feeds->getArticle(this->choice, this->articleChoice);
     entry->read = 1;
 
-    wclear(this->articleWindow);
-    box(this->articleWindow, 0, 0);
-    wrefresh(this->articleWindow);
+    this->aw.clear();
 
-    wclear(this->articlePad);
-    mvwprintw(this->articlePad, 0, 0, "Feed:     %s", feed->title);
-    mvwprintw(this->articlePad, 1, 0, "Article:  %s", entry->title);
-    mvwprintw(this->articlePad, 2, 0, "Date:     %s", entry->date);
-    mvwprintw(this->articlePad, 3, 0, "--------");
+    string line = "Feed:      ";
+    line += feed->title;
+    this->aw.pushContent(line);
+
+    line = "Article:   ";
+    line += entry->title;
+    this->aw.pushContent(line);
+
+    line = "Date:      ";
+    line += entry->date;
+    this->aw.pushContent(line);
+    this->aw.pushContent("--------");
 
     if (strlen(entry->description) > 0)
     {
-        mvwprintw(this->articlePad, 5, 0, "%s", entry->description);
+        this->aw.pushContent(entry->description);
     }
 
-    this->printArticleDetailPad();
+    this->aw.update();
 }
 
 

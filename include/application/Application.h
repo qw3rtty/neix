@@ -12,9 +12,12 @@
 #ifndef CRSS_APPLICATION_H
 #define CRSS_APPLICATION_H
 
+#include <string>
 #include <ncurses.h>
+#include "application/ApplicationWindow.h"
 #include "feed/Feeds.h"
 
+using namespace std;
 namespace crss
 {
     class Application
@@ -24,35 +27,24 @@ namespace crss
         ~Application();
 
         void show();
-        void printPads();
+        void fillWindowsWithContent();
         void printWindows();
         void resize();
-        void printArticleDetailPad();
 
         int increaseChoice(int new_choice, int count);
         int decreaseChoice(int new_choice, int count);
-        int increasePadOffset(int offset, int choice);
-        int decreasePadOffset(int offset, int choice, int count);
 
     private:
-        WINDOW *feedWindow;
-        WINDOW *feedPad;
-        int feedPadOffsetTop;
-
-        WINDOW *articleWindow;
-        WINDOW *articlePad;
-        int articlePadOffsetTop;
-        int articlePadOffsetTopDetail;
+        ApplicationWindow fw;
+        ApplicationWindow aw;
 
         bool reading;
-        int lineSpacer;
         int choice;
         int articleChoice;
         int quit;
         int c;
 
         int windowHeight;
-        int windowInnerHeight;
         int feedWindowWidth;
         int articleWindowWidth;
 
@@ -64,13 +56,7 @@ namespace crss
 
         void printFeedsInWindow();
         void printArticlesInWindow();
-        void refreshFeedPad();
-        void refreshArticlePad();
-
-        void printLineInWindow(WINDOW *window, int y, int x, char *line);
-        void printLineHighlightedInWindow(WINDOW *window, int y, int x, char *line);
-        void printArticleInWindow(WINDOW *window, int y, int x, struct rssItem *entry);
-        void printArticleHighlightedInWindow(WINDOW *window, int y, int x, struct rssItem *entry);
+        string printArticleInWindow(struct rssItem *entry);
 
         void openArticle();
         void openArticleLink();
