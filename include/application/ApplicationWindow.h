@@ -28,6 +28,7 @@ namespace crss
         void show();
         void update();
         void clear();
+        void resetHighlight();
         void scrollDown();
         void scrollUp();
 

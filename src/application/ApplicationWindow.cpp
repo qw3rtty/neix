@@ -133,10 +133,18 @@ void ApplicationWindow::update()
  */
 void ApplicationWindow::clear()
 {
-    this->highlight = 0;
     this->offsetTop = 0;
     this->content.clear();
     wclear(this->pad);
+}
+
+
+/**
+ * Reset highlight
+ */
+void ApplicationWindow::resetHighlight()
+{
+    this->highlight = 0;
 }
 
 /**
