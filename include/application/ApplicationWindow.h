@@ -26,6 +26,8 @@ namespace crss
         ~ApplicationWindow();
 
         void show();
+        void update();
+        void clear();
         void scrollDown();
         void scrollUp();
 
@@ -35,6 +37,8 @@ namespace crss
 
         void increaseHighlight(int choice, int count);
         void decreaseHighlight(int choice, int count);
+
+        WINDOW *getWindow();
 
     private:
         bool created;

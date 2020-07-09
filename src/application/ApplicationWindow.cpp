@@ -65,6 +65,7 @@ void ApplicationWindow::_printPad()
  */
 void ApplicationWindow::_printContent()
 {
+    wclear(this->pad);
     int x = 0, y = 0, counter = 0;
     for (auto & line: this->content)
     {
@@ -93,10 +94,10 @@ void ApplicationWindow::_printContent()
 bool ApplicationWindow::_create()
 {
     this->win = newwin(this->height, this->width, this->y, this->x);
-    keypad(this->win, true);
+    keypad(this->win, TRUE);
 
-    this->pad = newpad(this->height-4, this->width-4);
-    keypad(this->pad, true);
+    this->pad = newpad(200, this->width-4);
+    keypad(this->pad, TRUE);
 
     return this->win != nullptr && this->pad != nullptr;
 }
@@ -118,11 +119,40 @@ void ApplicationWindow::show()
 
 
 /**
+ * Update window
+ */
+void ApplicationWindow::update()
+{
+    this->_printContent();
+    this->_printPad();
+}
+
+
+/**
+ * Clear window
+ */
+void ApplicationWindow::clear()
+{
+    this->highlight = 0;
+    this->offsetTop = 0;
+    this->content.clear();
+    wclear(this->pad);
+}
+
+/**
  * Scroll window down
  */
 void ApplicationWindow::scrollDown()
 {
-    this->offsetTop++;
+    if (this->highlight == 0)
+    {
+        this->offsetTop = 0;
+    }
+    else if (this->highlight >= this->height-2)
+    {
+        this->offsetTop++;
+    }
+
     this->_printPad();
 }
 
@@ -132,10 +162,14 @@ void ApplicationWindow::scrollDown()
  */
 void ApplicationWindow::scrollUp()
 {
-    this->offsetTop--;
-    if (this->offsetTop < 0)
+    int count = this->content.size();
+    if (this->highlight == count-1)
     {
-        this->offsetTop = 0;
+        this->offsetTop = count - (this->height - 2);
+    }
+    else if (this->offsetTop > 0)
+    {
+        this->offsetTop--;
     }
 
     this->_printPad();
@@ -221,3 +255,10 @@ void ApplicationWindow::decreaseHighlight(int choice, int count)
 }
 
 
+/**
+ * Get ncurses window
+ */
+WINDOW *ApplicationWindow::getWindow()
+{
+    return this->win;
+}
