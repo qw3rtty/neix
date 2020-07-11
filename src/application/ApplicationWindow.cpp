@@ -149,6 +149,29 @@ void ApplicationWindow::resetHighlight()
     this->highlight = 0;
 }
 
+
+/**
+ * Increase top offset
+ */
+void ApplicationWindow::_increaseOffsetTop()
+{
+    this->offsetTop++;
+}
+
+
+/**
+ * Decrease top offset
+ */
+void ApplicationWindow::_decreaseOffsetTop()
+{
+    this->offsetTop--;
+    if (this->offsetTop < 0)
+    {
+        this->offsetTop = 0;
+    }
+}
+
+
 /**
  * Scroll window down
  */
@@ -156,7 +179,7 @@ void ApplicationWindow::scrollDown()
 {
     if (this->scrollAlways)
     {
-        this->offsetTop++;
+        this->_increaseOffsetTop();
     }
     else
     {
@@ -166,7 +189,7 @@ void ApplicationWindow::scrollDown()
         }
         else if (this->highlight >= this->height-2)
         {
-            this->offsetTop++;
+            this->_increaseOffsetTop();
         }
     }
 
@@ -181,7 +204,7 @@ void ApplicationWindow::scrollUp()
 {
     if (this->scrollAlways)
     {
-        this->offsetTop--;
+        this->_decreaseOffsetTop();
     }
     else
     {
@@ -192,7 +215,7 @@ void ApplicationWindow::scrollUp()
         }
         else if (this->offsetTop > 0)
         {
-            this->offsetTop--;
+            this->_decreaseOffsetTop();
         }
     }
 
