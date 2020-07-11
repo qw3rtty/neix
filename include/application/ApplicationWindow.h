@@ -39,8 +39,8 @@ namespace crss
         void setDimensions(int height, int width);
         void pushContent(string c);
 
-        void increaseHighlight(int choice, int count);
-        void decreaseHighlight(int choice, int count);
+        void increaseHighlight();
+        void decreaseHighlight();
 
         WINDOW *getWindow();
 

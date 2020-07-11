@@ -165,7 +165,7 @@ void Application::show()
                 }
                 else
                 {
-                    this->aw.decreaseHighlight(this->articleChoice, articleCount);
+                    this->aw.decreaseHighlight();
                     this->aw.update();
                     this->aw.scrollUp();
                     this->articleChoice = this->decreaseChoice(this->articleChoice, articleCount);
@@ -181,7 +181,7 @@ void Application::show()
                 }
                 else
                 {
-                    this->aw.increaseHighlight(this->articleChoice, articleCount);
+                    this->aw.increaseHighlight();
                     this->aw.update();
                     this->aw.scrollDown();
                     this->articleChoice = this->increaseChoice(this->articleChoice, articleCount);
@@ -190,7 +190,7 @@ void Application::show()
 
             case KEY_UPPER_K:
                 this->articleChoice = 0;
-                this->fw.decreaseHighlight(this->choice, feedCount);
+                this->fw.decreaseHighlight();
                 this->fw.update();
                 this->choice = this->decreaseChoice(this->choice, feedCount);
 
@@ -202,7 +202,7 @@ void Application::show()
 
             case KEY_UPPER_J:
                 this->articleChoice = 0;
-                this->fw.increaseHighlight(this->choice, feedCount);
+                this->fw.increaseHighlight();
                 this->fw.update();
                 this->choice = this->increaseChoice(this->choice, feedCount);
 

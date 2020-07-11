@@ -281,43 +281,35 @@ void ApplicationWindow::pushContent(string c)
 
 /**
  * Increase choice
- *
- * @param   new_choice      - The new choice index
- * @param   count           - Count of feeds/article
  */
-void ApplicationWindow::increaseHighlight(int choice, int count)
+void ApplicationWindow::increaseHighlight()
 {
-    if (choice == count-1)
+    int count = this->content.size();
+    if (this->highlight == count-1)
     {
-        choice = 0;
+        this->highlight = 0;
     }
     else
     {
-        choice++;
+        this->highlight++;
     }
-
-    this->highlight = choice;
 }
 
 
 /**
  * Decrease choice
- *
- * @param   new_choice      - The new choice index
- * @param   count           - Count of feeds/article
  */
-void ApplicationWindow::decreaseHighlight(int choice, int count)
+void ApplicationWindow::decreaseHighlight()
 {
-    if (choice == 0)
+    int count = this->content.size();
+    if (this->highlight == 0)
     {
-        choice = count-1;
+        this->highlight = count-1;
     }
     else
     {
-        choice--;
+        this->highlight--;
     }
-
-    this->highlight = choice;
 }
 
 
