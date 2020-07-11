@@ -44,7 +44,7 @@ namespace crss
 
         WINDOW *getWindow();
 
-    private:
+    protected:
         bool created;
         int y, x;
         int height, width;
