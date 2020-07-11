@@ -173,6 +173,39 @@ void ApplicationWindow::_decreaseOffsetTop()
 
 
 /**
+ * Scroll down depending on pushed content elements
+ */
+void ApplicationWindow::_scrollDownDependingOnContentSize()
+{
+    if (this->highlight == 0)
+    {
+        this->offsetTop = 0;
+    }
+    else if (this->highlight >= this->height-2)
+    {
+        this->_increaseOffsetTop();
+    }
+}
+
+
+/**
+ * Scroll up depending on pushed content elements
+ */
+void ApplicationWindow::_scrollUpDependingOnContentSize()
+{
+    int count = this->content.size();
+    if (this->highlight == count-1)
+    {
+        this->offsetTop = count - (this->height - 2);
+    }
+    else if (this->offsetTop > 0)
+    {
+        this->_decreaseOffsetTop();
+    }
+}
+
+
+/**
  * Scroll window down
  */
 void ApplicationWindow::scrollDown()
@@ -183,14 +216,7 @@ void ApplicationWindow::scrollDown()
     }
     else
     {
-        if (this->highlight == 0)
-        {
-            this->offsetTop = 0;
-        }
-        else if (this->highlight >= this->height-2)
-        {
-            this->_increaseOffsetTop();
-        }
+        this->_scrollDownDependingOnContentSize();
     }
 
     this->_printPad();
@@ -208,15 +234,7 @@ void ApplicationWindow::scrollUp()
     }
     else
     {
-        int count = this->content.size();
-        if (this->highlight == count-1)
-        {
-            this->offsetTop = count - (this->height - 2);
-        }
-        else if (this->offsetTop > 0)
-        {
-            this->_decreaseOffsetTop();
-        }
+        this->_scrollUpDependingOnContentSize();
     }
 
 

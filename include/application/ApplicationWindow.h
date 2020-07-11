@@ -56,6 +56,8 @@ namespace crss
         bool _create();
         void _increaseOffsetTop();
         void _decreaseOffsetTop();
+        void _scrollUpDependingOnContentSize();
+        void _scrollDownDependingOnContentSize();
         void _printWindow();
         void _printPad();
         void _printContent();
