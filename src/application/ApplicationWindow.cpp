@@ -252,6 +252,12 @@ void ApplicationWindow::setPosition(int y, int x)
 {
     this->y = y;
     this->x = x;
+
+    if (this->created)
+    {
+        mvwin(this->win, this->y, this->x);
+        mvwin(this->pad, this->y+1, this->x+2);
+    }
 }
 
 
@@ -265,6 +271,12 @@ void ApplicationWindow::setDimensions(int height, int width)
 {
     this->height = height;
     this->width = width;
+
+    if (this->created)
+    {
+        wresize(this->win, this->height, this->width);
+        wresize(this->pad, 200, this->width-4);
+    }
 }
 
 
