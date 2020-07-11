@@ -147,7 +147,7 @@ void Application::show()
 
     while (true)
     {
-        this->c = wgetch(this->fw.getWindow());
+        this->c = getch();
         int feedCount = feeds->getCount();
         int articleCount = feeds->getFeed(this->choice)->articleCount;
         switch (this->c)
