@@ -189,6 +189,11 @@ void Application::show()
                 break;
 
             case KEY_UPPER_K:
+				if (this->reading)
+				{
+					break;	
+				}
+
                 this->articleChoice = 0;
                 this->fw.decreaseHighlight();
                 this->fw.update();
@@ -201,6 +206,11 @@ void Application::show()
                 break;
 
             case KEY_UPPER_J:
+				if (this->reading)
+				{
+					break;	
+				}
+
                 this->articleChoice = 0;
                 this->fw.increaseHighlight();
                 this->fw.update();
