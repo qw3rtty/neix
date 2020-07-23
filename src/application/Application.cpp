@@ -199,7 +199,7 @@ void Application::show()
                 this->fw.update();
                 this->choice = this->decreaseChoice(this->choice, feedCount);
 
-                this->aw.clear();
+                this->aw.reset();
                 this->aw.resetHighlight();
                 this->printArticlesInWindow();
                 this->aw.update();
@@ -216,7 +216,7 @@ void Application::show()
                 this->fw.update();
                 this->choice = this->increaseChoice(this->choice, feedCount);
 
-                this->aw.clear();
+                this->aw.reset();
                 this->aw.resetHighlight();
                 this->printArticlesInWindow();
                 this->aw.update();
@@ -231,7 +231,7 @@ void Application::show()
                 this->aw.scrollAlways = true;
                 this->openArticle();
 
-                this->fw.clear();
+                this->fw.reset();
                 this->printFeedsInWindow();
                 this->fw.update();
                 break;
@@ -242,11 +242,11 @@ void Application::show()
                     this->reading = false;
                     this->aw.enableHighlight = true;
                     this->aw.scrollAlways = false;
-                    this->aw.clear();
+                    this->aw.reset();
                     this->printArticlesInWindow();
                     this->aw.update();
 
-                    this->fw.clear();
+                    this->fw.reset();
                     this->printFeedsInWindow();
                     this->fw.update();
                 }
@@ -410,7 +410,7 @@ void Application::openArticle()
     struct rssItem *entry = feeds->getArticle(this->choice, this->articleChoice);
     entry->read = 1;
 
-    this->aw.clear();
+    this->aw.reset();
 
     string line = "Feed:      ";
     line += feed->title;

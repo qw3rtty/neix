@@ -45,9 +45,7 @@ ApplicationWindow::~ApplicationWindow() = default;
  */
 void ApplicationWindow::_printWindow()
 {
-    refresh();
-    wclear(this->pad);
-    wclear(this->win);
+    this->hide();
 
     box(this->win, 0, 0);
     wrefresh(this->win);
@@ -119,6 +117,16 @@ void ApplicationWindow::show()
     this->_printPad();
 }
 
+/**
+ * Hide application window
+ */
+void ApplicationWindow::hide()
+{
+    refresh();
+    wclear(this->pad);
+    wclear(this->win);
+}
+
 
 /**
  * Update window
@@ -131,13 +139,18 @@ void ApplicationWindow::update()
 
 
 /**
- * Clear window
+ * Reset window
  */
-void ApplicationWindow::clear()
+void ApplicationWindow::reset()
 {
     this->offsetTop = 0;
-    this->content.clear();
+    this->resetContent();
     wclear(this->pad);
+}
+
+void ApplicationWindow::resetContent()
+{
+    this->content.clear();
 }
 
 

@@ -97,7 +97,7 @@ namespace {
         WINDOW *win = aw.getWindow();
         ASSERT_EQ(win, nullptr);
 
-        aw.clear();
+        aw.reset();
         ASSERT_EQ(aw.getOffsetTop(), 0);
         ASSERT_EQ(aw.getContentSize(), 0);
     }
@@ -116,6 +116,9 @@ namespace {
 
         aw.pushXContentLines(14);
         ASSERT_EQ(aw.getContentSize(), 16);
+
+        aw.resetContent();
+        ASSERT_EQ(aw.getContentSize(), 0);
     }
 
     TEST(ApplicationWindow, scroll_always)

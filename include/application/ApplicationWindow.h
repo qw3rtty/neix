@@ -29,8 +29,10 @@ namespace crss
         bool scrollAlways;
 
         void show();
+        void hide();
         void update();
-        void clear();
+        void reset();
+        void resetContent();
         void resetHighlight();
         void scrollDown();
         void scrollUp();
