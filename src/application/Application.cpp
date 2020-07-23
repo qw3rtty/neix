@@ -38,6 +38,7 @@ Application::Application()
     this->windowHeight = LINES - 4;
     this->createFeedWindow();
     this->createArticleWindow();
+    this->createReadWindow();
 }
 
 
@@ -86,6 +87,18 @@ void Application::createArticleWindow()
     this->aw.setPosition(2, this->feedWindowWidth);
 }
 
+/**
+ * Create's read window
+ */
+void Application::createReadWindow()
+{
+    this->rw.setDimensions(this->windowHeight, this->articleWindowWidth);
+    this->rw.setPosition(2, this->feedWindowWidth);
+
+    this->rw.enableHighlight = false;
+    this->rw.scrollAlways = true;
+}
+
 
 /**
  * Resize complete application
@@ -101,6 +114,7 @@ void Application::resize()
 
     this->createFeedWindow();
     this->createArticleWindow();
+    this->createReadWindow();
     this->printWindows();
 
     if (this->reading)
@@ -160,8 +174,8 @@ void Application::show()
             case KEY_K:
                 if (this->reading)
                 {
-                    this->aw.scrollUp();
-                    this->aw.update();
+                    this->rw.scrollUp();
+                    this->rw.update();
                 }
                 else
                 {
@@ -176,8 +190,8 @@ void Application::show()
             case KEY_J:
                 if (this->reading)
                 {
-                    this->aw.scrollDown();
-                    this->aw.update();
+                    this->rw.scrollDown();
+                    this->rw.update();
                 }
                 else
                 {
@@ -227,8 +241,7 @@ void Application::show()
                 break;
 
             case ENTER:
-                this->aw.enableHighlight = false;
-                this->aw.scrollAlways = true;
+                this->aw.hide();
                 this->openArticle();
 
                 this->fw.reset();
@@ -240,15 +253,12 @@ void Application::show()
                 if (this->reading)
                 {
                     this->reading = false;
-                    this->aw.enableHighlight = true;
-                    this->aw.scrollAlways = false;
-                    this->aw.reset();
-                    this->printArticlesInWindow();
-                    this->aw.update();
+                    this->rw.reset();
+                    this->rw.hide();
 
-                    this->fw.reset();
-                    this->printFeedsInWindow();
-                    this->fw.update();
+                    this->aw.resetContent();
+                    this->printArticlesInWindow();
+                    this->aw.show();
                 }
                 else
                 {
@@ -410,27 +420,27 @@ void Application::openArticle()
     struct rssItem *entry = feeds->getArticle(this->choice, this->articleChoice);
     entry->read = 1;
 
-    this->aw.reset();
+    this->rw.reset();
 
     string line = "Feed:      ";
     line += feed->title;
-    this->aw.pushContent(line);
+    this->rw.pushContent(line);
 
     line = "Article:   ";
     line += entry->title;
-    this->aw.pushContent(line);
+    this->rw.pushContent(line);
 
     line = "Date:      ";
     line += entry->date;
-    this->aw.pushContent(line);
-    this->aw.pushContent("--------");
+    this->rw.pushContent(line);
+    this->rw.pushContent("--------");
 
     if (strlen(entry->description) > 0)
     {
-        this->aw.pushContent(entry->description);
+        this->rw.pushContent(entry->description);
     }
 
-    this->aw.update();
+    this->rw.show();
 }
 
 

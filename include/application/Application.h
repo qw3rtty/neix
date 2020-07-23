@@ -37,6 +37,7 @@ namespace crss
     private:
         ApplicationWindow fw;
         ApplicationWindow aw;
+        ApplicationWindow rw;
 
         bool reading;
         int choice;
@@ -53,6 +54,7 @@ namespace crss
         void printControlHints();
         void createFeedWindow();
         void createArticleWindow();
+        void createReadWindow();
 
         void printFeedsInWindow();
         void printArticlesInWindow();
