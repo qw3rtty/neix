@@ -20,4 +20,6 @@ string ltrim(const string& s);
 string rtrim(const string& s);
 string trim(const string& s);
 
+string subStrWithEndingDots(const string& s, const unsigned int length);
+
 #endif //CRSS_HELPER_H

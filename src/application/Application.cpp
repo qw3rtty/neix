@@ -14,6 +14,7 @@
 #include <cstring>
 
 #include "config.h"
+#include "helper/helper.h"
 #include "application/Application.h"
 #include "application/ApplicationWindow.h"
 #include "feed/Feeds.h"
@@ -308,7 +309,7 @@ void Application::printFeedsInWindow()
     Feeds *feeds = Feeds::getInstance();
     for (int i = 0; i < feeds->getCount(); ++i)
     {
-        char *line = feeds->getFeedLineTitle(i);
+        char *line = feeds->getFeedLineTitle(i, this->feedWindowWidth-12);
         this->fw.pushContent(line);
     }
 }
@@ -324,7 +325,7 @@ void Application::printArticlesInWindow()
     for (int i = 0; i < feeds->getFeed(currentChoice)->articleCount; i++)
     {
         string line = this->printArticleInWindow(feeds->getArticle(currentChoice, i));
-        this->aw.pushContent(line);
+        this->aw.pushContent(subStrWithEndingDots(line, this->articleWindowWidth-4));
     }
 }
 
@@ -354,7 +355,7 @@ string Application::printArticleInWindow(struct rssItem *entry)
     line += "    ";
     line += title;
 
-    return line;
+    return subStrWithEndingDots(line, this->articleWindowWidth-4);
 }
 
 
@@ -409,6 +410,7 @@ int Application::decreaseChoice(int new_choice, int count)
 void Application::openArticle()
 {
     Feeds *feeds = Feeds::getInstance();
+    int length = this->articleWindowWidth-4;
     this->reading = true;
 
     struct rss *feed = feeds->getFeed(this->choice);
@@ -424,15 +426,15 @@ void Application::openArticle()
 
     string line = "Feed:      ";
     line += feed->title;
-    this->rw.pushContent(line);
+    this->rw.pushContent(subStrWithEndingDots(line, length));
 
     line = "Article:   ";
     line += entry->title;
-    this->rw.pushContent(line);
+    this->rw.pushContent(subStrWithEndingDots(line, length));
 
     line = "Date:      ";
     line += entry->date;
-    this->rw.pushContent(line);
+    this->rw.pushContent(subStrWithEndingDots(line, length));
     this->rw.pushContent("--------");
 
     if (strlen(entry->description) > 0)

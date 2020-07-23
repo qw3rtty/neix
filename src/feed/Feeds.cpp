@@ -12,6 +12,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <cstdio>
+#include "helper/helper.h"
 #include "feed/Feeds.h"
 
 using namespace std;
@@ -161,17 +162,23 @@ int Feeds::getCount()
 /**
  * Create feed line with unread/item count
  *
- * @param   feedIndex   Index of feed
+ * @param   feedIndex
+ * @param   length
  * @return  Title line of feed
  */
-char* Feeds::getFeedLineTitle(int feedIndex)
+char* Feeds::getFeedLineTitle(int feedIndex, unsigned int length)
 {
     Feeds *feeds = Feeds::getInstance();
     struct rss *feed = feeds->getFeed(feedIndex);
 
-    char *line = feed->title;
-    char *lineWithCount = (char*) calloc((strlen(line) + 10), sizeof(char));
-    sprintf(lineWithCount, "%s [%d/%d]", line, feed->unreadCount, feed->articleCount);
+    string line = feed->title;
+    if (length)
+    {
+        line = subStrWithEndingDots(feed->title, length);
+    }
+
+    char *lineWithCount = (char*) calloc((line.length() + 10), sizeof(char));
+    sprintf(lineWithCount, "%s [%d/%d]", line.c_str(), feed->unreadCount, feed->articleCount);
 
     return lineWithCount;
 }

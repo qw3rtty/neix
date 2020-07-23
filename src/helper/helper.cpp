@@ -16,19 +16,38 @@
 
 using namespace std;
 
-std::string ltrim(const std::string& s)
+string ltrim(const string& s)
 {
     size_t start = s.find_first_not_of(WHITESPACE);
-    return (start == std::string::npos) ? "" : s.substr(start);
+    return (start == string::npos) ? "" : s.substr(start);
 }
 
-std::string rtrim(const std::string& s)
+string rtrim(const string& s)
 {
     size_t end = s.find_last_not_of(WHITESPACE);
-    return (end == std::string::npos) ? "" : s.substr(0, end + 1);
+    return (end == string::npos) ? "" : s.substr(0, end + 1);
 }
 
-std::string trim(const std::string& s)
+string trim(const string& s)
 {
     return rtrim(ltrim(s));
+}
+
+/**
+ * Cut string after x characters and add ending '...'
+ *
+ * @param s
+ * @param length
+ * @return
+ */
+string subStrWithEndingDots(const string& s, const unsigned int length)
+{
+    string tmp = s;
+    if (s.length() > length)
+    {
+        tmp = s.substr(0, length-3);
+        tmp += "...";
+    }
+
+    return tmp;
 }

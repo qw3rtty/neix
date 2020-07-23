@@ -40,7 +40,7 @@ namespace crss
         struct rss *getFeed(int index);
         struct rssItem *getArticle(int feedIndex, int articleIndex);
         int getCount();
-        char* getFeedLineTitle(int feedIndex);
+        char* getFeedLineTitle(int feedIndex, unsigned int length = 0);
 
         bool validIndex(int index);
         bool addFeed(struct rss *newFeed);
