@@ -12,6 +12,7 @@
 #ifndef CRSS_HELPER_H
 #define CRSS_HELPER_H
 
+#include <string>
 using namespace std;
 
 const string WHITESPACE = " \n\r\t\f\v";
