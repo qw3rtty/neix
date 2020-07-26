@@ -440,7 +440,7 @@ void Application::openArticle()
 
     if (strlen(entry->description) > 0)
     {
-        this->rw.pushContent(entry->description);
+        this->rw.pushContent(trim(entry->description));
     }
 
     this->rw.show();

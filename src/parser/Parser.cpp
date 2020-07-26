@@ -9,7 +9,6 @@
  * @filesource
  */
 #include <cstring>
-#include <algorithm>
 #include <ctime>
 #include <iomanip>
 #include <regex>
