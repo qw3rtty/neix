@@ -64,6 +64,7 @@ int main()
 
     cout << prefix << "Launch TUI" << endl;
     Application app;
+    app.openCommand = mainConfig.at("openCommand");
     app.show();
 
     return 0;

@@ -35,6 +35,7 @@ Application::Application()
     cbreak();
     curs_set(0);
 
+    this->openCommand = "";
     this->reading = false;
     this->windowHeight = LINES - 4;
     this->createFeedWindow();
@@ -455,8 +456,9 @@ void Application::openArticleLink()
     struct rssItem *article = feeds->getArticle(this->choice, this->articleChoice);
     article->read = 1;
 
-    string openCmd("open ");
-    openCmd += article->url;
+    string openCmd = this->openCommand;
+    openCmd += " ";
+    openCmd += trim(article->url);
 
     system(openCmd.c_str());
 }

@@ -34,6 +34,8 @@ namespace neix
         int increaseChoice(int new_choice, int count);
         int decreaseChoice(int new_choice, int count);
 
+        string openCommand;
+
     private:
         ApplicationWindow fw;
         ApplicationWindow aw;
