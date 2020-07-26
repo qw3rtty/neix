@@ -1,7 +1,7 @@
 /**
  * TEST Helper function.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -

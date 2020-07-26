@@ -1,7 +1,7 @@
 /**
  * TEST Config reader.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -14,7 +14,7 @@
 #include "config/ConfigReader.h"
 
 using namespace std;
-using namespace crss;
+using namespace neix;
 namespace {
     TEST(ConfigReader, read)
     {

@@ -7,7 +7,7 @@
 #include "config/ConfigReader.h"
 
 using namespace std;
-using namespace crss;
+using namespace neix;
 
 int main()
 {

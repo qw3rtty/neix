@@ -1,7 +1,7 @@
 /**
  * Helper functions.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -9,8 +9,8 @@
  * @filesource
  */
 
-#ifndef CRSS_HELPER_H
-#define CRSS_HELPER_H
+#ifndef neix_HELPER_H
+#define neix_HELPER_H
 
 #include <string>
 using namespace std;
@@ -23,4 +23,4 @@ string trim(const string& s);
 
 string subStrWithEndingDots(const string& s, const unsigned int length);
 
-#endif //CRSS_HELPER_H
+#endif //neix_HELPER_H

@@ -1,7 +1,7 @@
 /**
  * Terminal UI class.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -9,8 +9,8 @@
  * @filesource
  */
 
-#ifndef CRSS_APPLICATION_H
-#define CRSS_APPLICATION_H
+#ifndef neix_APPLICATION_H
+#define neix_APPLICATION_H
 
 #include <string>
 #include <ncurses.h>
@@ -18,7 +18,7 @@
 #include "feed/Feeds.h"
 
 using namespace std;
-namespace crss
+namespace neix
 {
     class Application
     {
@@ -65,4 +65,4 @@ namespace crss
     };
 }
 
-#endif //CRSS_APPLICATION_H
+#endif //neix_APPLICATION_H

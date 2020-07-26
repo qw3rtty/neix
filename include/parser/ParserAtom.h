@@ -1,7 +1,7 @@
 /**
  * Atom parser class.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -9,8 +9,8 @@
  * @filesource
  */
 
-#ifndef CRSS_PARSERATOM_H
-#define CRSS_PARSERATOM_H
+#ifndef neix_PARSERATOM_H
+#define neix_PARSERATOM_H
 
 #include "rapidxml/rapidxml.hpp"
 #include "feed/FeedLoader.h"
@@ -18,7 +18,7 @@
 
 using namespace rapidxml;
 
-namespace crss
+namespace neix
 {
     class ParserAtom : public Parser
     {
@@ -37,4 +37,4 @@ namespace crss
     };
 }
 
-#endif //CRSS_PARSERATOM_H
+#endif //neix_PARSERATOM_H

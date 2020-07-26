@@ -1,7 +1,7 @@
 /**
  * Feeds singleton class.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -9,8 +9,8 @@
  * @filesource
  */
 
-#ifndef CRSS_FEEDS_H
-#define CRSS_FEEDS_H
+#ifndef neix_FEEDS_H
+#define neix_FEEDS_H
 
 #define FEEDS_MAX 100
 
@@ -31,7 +31,7 @@ struct rss
     struct rssItem *items[FEEDS_MAX];
 };
 
-namespace crss
+namespace neix
 {
     class Feeds
     {
@@ -55,4 +55,4 @@ namespace crss
     };
 }
 
-#endif //CRSS_FEEDS_H
+#endif //neix_FEEDS_H

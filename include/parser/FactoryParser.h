@@ -1,7 +1,7 @@
 /**
  * Factory parser class.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -9,13 +9,13 @@
  * @filesource
  */
 
-#ifndef CRSS_FACTORYPARSER_H
-#define CRSS_FACTORYPARSER_H
+#ifndef neix_FACTORYPARSER_H
+#define neix_FACTORYPARSER_H
 
 #include "Parser.h"
 #include "feed/FeedLoader.h"
 
-namespace crss
+namespace neix
 {
     class FactoryParser
     {
@@ -28,4 +28,4 @@ namespace crss
     };
 }
 
-#endif //CRSS_FACTORYPARSER_H
+#endif //neix_FACTORYPARSER_H

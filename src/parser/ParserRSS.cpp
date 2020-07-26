@@ -1,7 +1,7 @@
 /**
  * RSS 2.0 parser class.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -13,7 +13,7 @@
 #include "parser/ParserRSS.h"
 
 using namespace rapidxml;
-using namespace crss;
+using namespace neix;
 
 /**
  * Constructor

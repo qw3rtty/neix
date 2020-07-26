@@ -1,7 +1,7 @@
 /**
- * Configurations for crss.
+ * Configurations for neix.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -9,8 +9,8 @@
  * @filesource
  */
 
-#ifndef CRSS_CONFIG_H
-#define CRSS_CONFIG_H
+#ifndef neix_CONFIG_H
+#define neix_CONFIG_H
 
 #define ENTER 10
 #define KEY_J 106
@@ -21,6 +21,6 @@
 #define KEY_UPPER_J 74
 #define KEY_UPPER_K 75
 
-const char prefix[] = "\033[0;33m[crss]\033[0m ";
+const char prefix[] = "\033[0;33m[neix]\033[0m ";
 
-#endif //CRSS_CONFIG_H
+#endif //neix_CONFIG_H

@@ -1,7 +1,7 @@
 /**
  * Feed parser class.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -9,15 +9,15 @@
  * @filesource
  */
 
-#ifndef CRSS_PARSER_H
-#define CRSS_PARSER_H
+#ifndef neix_PARSER_H
+#define neix_PARSER_H
 
 #include "rapidxml/rapidxml.hpp"
 #include "feed/FeedLoader.h"
 
 using namespace rapidxml;
 
-namespace crss
+namespace neix
 {
     class Parser
     {
@@ -51,4 +51,4 @@ namespace crss
     };
 }
 
-#endif //CRSS_PARSER_H
+#endif //neix_PARSER_H

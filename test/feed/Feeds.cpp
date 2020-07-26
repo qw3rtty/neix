@@ -1,7 +1,7 @@
 /**
  * TEST Feeds.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -15,7 +15,7 @@
 #include "feed/Feeds.h"
 
 using namespace std;
-using namespace crss;
+using namespace neix;
 namespace {
     TEST(Feeds, instance)
     {

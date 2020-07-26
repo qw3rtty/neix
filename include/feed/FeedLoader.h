@@ -1,7 +1,7 @@
 /**
  * Feed loader class.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -9,8 +9,8 @@
  * @filesource
  */
 
-#ifndef CRSS_FEEDLOADER_H
-#define CRSS_FEEDLOADER_H
+#ifndef neix_FEEDLOADER_H
+#define neix_FEEDLOADER_H
 
 #include <string>
 #include <sstream>
@@ -23,7 +23,7 @@ struct rawRss
 };
 
 using namespace std;
-namespace crss
+namespace neix
 {
     class FeedLoader
     {
@@ -45,4 +45,4 @@ namespace crss
     };
 }
 
-#endif //CRSS_FEEDLOADER_H
+#endif //neix_FEEDLOADER_H

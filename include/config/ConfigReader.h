@@ -1,7 +1,7 @@
 /**
  * Config feed reader.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -9,13 +9,13 @@
  * @filesource
  */
 
-#ifndef CRSS_CONFIGREADER_H
-#define CRSS_CONFIGREADER_H
+#ifndef neix_CONFIGREADER_H
+#define neix_CONFIGREADER_H
 
 #include <map>
 
 using namespace std;
-namespace crss
+namespace neix
 {
     class ConfigReader
     {
@@ -30,4 +30,4 @@ namespace crss
     };
 }
 
-#endif //CRSS_CONFIGREADER_H
+#endif //neix_CONFIGREADER_H

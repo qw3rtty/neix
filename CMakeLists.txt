@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.13)
-project(crss)
+project(neix)
 
 # Check if 'curl' is installed
 find_package(CURL REQUIRED)
@@ -8,28 +8,28 @@ find_package(CURL REQUIRED)
 find_package(Curses REQUIRED)
 
 # Prepare filesystem for installation
-file(MAKE_DIRECTORY $ENV{HOME}/.config/crss/)
+file(MAKE_DIRECTORY $ENV{HOME}/.config/neix/)
 
 # Check for main config file
-if(NOT EXISTS "$ENV{HOME}/.config/crss/crss.conf")
-    configure_file(./config/crss.conf $ENV{HOME}/.config/crss/crss.conf)
+if(NOT EXISTS "$ENV{HOME}/.config/neix/neix.conf")
+    configure_file(./config/neix.conf $ENV{HOME}/.config/neix/neix.conf)
 endif()
 
 # Check for feed config file
-if(NOT EXISTS "$ENV{HOME}/.config/crss/feeds.conf")
-    configure_file(./config/feeds.conf $ENV{HOME}/.config/crss/feeds.conf)
+if(NOT EXISTS "$ENV{HOME}/.config/neix/feeds.conf")
+    configure_file(./config/feeds.conf $ENV{HOME}/.config/neix/feeds.conf)
 endif()
 
 # Version
-set(crssVersion "0.1.0")
-add_compile_definitions(VERSION="${crssVersion}")
+set(neixVersion "0.1.0")
+add_compile_definitions(VERSION="${neixVersion}")
 
-# Path for main crss config file
-set(MainConfigPath "$ENV{HOME}/.config/crss/crss.conf")
+# Path for main neix config file
+set(MainConfigPath "$ENV{HOME}/.config/neix/neix.conf")
 add_compile_definitions(MAIN_CONFIG_PATH="${MainConfigPath}")
 
 # Path for feed config file
-set(FeedConfigPath "$ENV{HOME}/.config/crss/feeds.conf")
+set(FeedConfigPath "$ENV{HOME}/.config/neix/feeds.conf")
 add_compile_definitions(FEED_CONFIG_PATH="${FeedConfigPath}")
 
 set(CMAKE_CXX_STANDARD 11)
@@ -53,18 +53,18 @@ FILE(GLOB parser ${PROJECT_SOURCE_DIR}/src/parser/*.cpp)
 FILE(GLOB config ${PROJECT_SOURCE_DIR}/src/config/*.cpp)
 FILE(GLOB helper ${PROJECT_SOURCE_DIR}/src/helper/*.cpp)
 
-add_library(crssApplication STATIC ${application})
-add_library(crssFeed STATIC ${feed})
-add_library(crssParser STATIC ${parser})
-add_library(crssConfig STATIC ${config})
-add_library(crssHelper STATIC ${helper})
+add_library(neixApplication STATIC ${application})
+add_library(neixFeed STATIC ${feed})
+add_library(neixParser STATIC ${parser})
+add_library(neixConfig STATIC ${config})
+add_library(neixHelper STATIC ${helper})
 
-add_executable(crss ${main})
-target_link_libraries(crss crssApplication)
-target_link_libraries(crss crssFeed)
-target_link_libraries(crss crssParser)
-target_link_libraries(crss crssConfig)
-target_link_libraries(crss crssHelper)
+add_executable(neix ${main})
+target_link_libraries(neix neixApplication)
+target_link_libraries(neix neixFeed)
+target_link_libraries(neix neixParser)
+target_link_libraries(neix neixConfig)
+target_link_libraries(neix neixHelper)
 
 # Download and configure google test
 include(CMake/CMakeLists.googletest.txt)
@@ -74,4 +74,4 @@ if(enable-tests)
     add_subdirectory(test)
 endif()
 
-INSTALL(TARGETS crss RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
+INSTALL(TARGETS neix RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")

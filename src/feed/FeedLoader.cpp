@@ -1,7 +1,7 @@
 /**
  * Feed loader class.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -21,7 +21,7 @@
 #include "feed/FeedLoader.h"
 
 using namespace std;
-using namespace crss;
+using namespace neix;
 
 
 /**

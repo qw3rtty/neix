@@ -1,7 +1,7 @@
 /**
  * Terminal UI class.
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -20,7 +20,7 @@
 #include "feed/Feeds.h"
 
 using namespace std;
-using namespace crss;
+using namespace neix;
 
 /**
  * Constructor
@@ -131,7 +131,7 @@ void Application::resize()
 void Application::printVersion()
 {
     attron(A_REVERSE);
-    mvprintw(1, 0, " crss %s ", VERSION);
+    mvprintw(1, 0, " neix %s ", VERSION);
     attroff(A_REVERSE);
 }
 

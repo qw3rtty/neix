@@ -1,4 +1,4 @@
-# crss
+# neix
 Lightweight RSS-Feed reader written in C++.
 
 ## TODO

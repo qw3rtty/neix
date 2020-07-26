@@ -1,7 +1,7 @@
 /**
  * Application Window class
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -12,7 +12,7 @@
 #include <ncurses.h>
 #include "application/ApplicationWindow.h"
 
-using namespace crss;
+using namespace neix;
 
 
 /**

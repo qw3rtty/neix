@@ -1,7 +1,7 @@
 /**
  * Application Window class
  *
- * @package     CRSS
+ * @package     neix
  * @author      Thomas Schwarz
  * @copyright   Copyright (c) 2020, Thomas Schwarz
  * @license     -
@@ -13,11 +13,11 @@
 #include <vector>
 #include <ncurses.h>
 
-#ifndef CRSS_APPLICATIONWINDOW_H
-#define CRSS_APPLICATIONWINDOW_H
+#ifndef neix_APPLICATIONWINDOW_H
+#define neix_APPLICATIONWINDOW_H
 
 using namespace std;
-namespace crss
+namespace neix
 {
     class ApplicationWindow
     {
@@ -66,4 +66,4 @@ namespace crss
     };
 }
 
-#endif //CCRSS_APPLICATIONWINDOW_H
+#endif //Cneix_APPLICATIONWINDOW_H
