@@ -9,6 +9,30 @@
 using namespace std;
 using namespace neix;
 
+
+/**
+ * Helper to read config files
+ *
+ * @param   path    - Path to the config file which should be read
+ * @return  config map
+ */
+map<string, string> getConfigByPath(string path)
+{
+    ConfigReader reader(path.c_str());
+    map <string, string> config;
+
+    try {
+        cout << prefix << "Load config: " << path << endl;
+        config = reader.read();
+    } catch (const char *msg) {
+        cout << prefix <<  msg << endl;
+        exit(0);
+    }
+
+    return config;
+}
+
+
 int main()
 {
     cout << prefix << "Starting version " << VERSION << endl;
@@ -16,30 +40,13 @@ int main()
     Feeds *feeds = Feeds::getInstance();
     FeedLoader loader;
 
-    ConfigReader mainConfigReader(MAIN_CONFIG_PATH);
-    map <string, string> mainConfig;
-    try {
-        cout << prefix << "Loading main configuration" << endl;
-        mainConfig = mainConfigReader.read();
-    } catch (const char *msg) {
-        cout << prefix <<  msg << endl;
-        exit(0);
-    }
-
+    map <string, string> mainConfig = getConfigByPath(MAIN_CONFIG_PATH);
     string locale = mainConfig.at("locale");
     setlocale (LC_ALL, locale.c_str());
 
-    ConfigReader feedConfigReader(FEED_CONFIG_PATH);
-    map<string, string> feedList;
-    try {
-        cout << prefix << "Loading feeds configuration" << endl;
-        feedList = feedConfigReader.read();
-    } catch (const char *msg) {
-        cout << prefix << msg << endl;
-        exit(0);
-    }
-
+    map<string, string> feedList = getConfigByPath(FEED_CONFIG_PATH);
     cout << prefix << feedList.size() << " feeds found" << endl;
+
     cout << prefix << "Loading feeds " << flush;
     map<string, string>::iterator it;
     for (it = feedList.begin(); it != feedList.end(); ++it)
