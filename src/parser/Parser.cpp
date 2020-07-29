@@ -151,10 +151,10 @@ struct rssItem *Parser::getFeedItem()
 
     struct rssItem *item = (struct rssItem *) calloc(1, sizeof(struct rssItem));
     item->read = 0;
-    item->title = this->getFeedTitle();
-    item->description = this->getFeedContent();
-    item->url = this->getFeedLink();
-    item->date = this->getFeedDate();
+    item->title = this->getFeedTitle(); // TODO: trim  title
+    item->description = this->getFeedContent(); // TODO: trim content
+    item->url = this->getFeedLink(); // TODO: trim link
+    item->date = this->getFeedDate(); // TODO: trim date
 
     return item;
 }
