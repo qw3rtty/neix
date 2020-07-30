@@ -52,6 +52,7 @@ $ neix
 
 ## :wrench: Configuration
 Default path of the config files: **~/.config/neix/**   
+There are two configuration files. One for neix itself and one for the feeds.  
 
 ## :memo: Contributing
 If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschwarz/neix/blob/master/.github/CONTRIBUTING.md)
@@ -60,6 +61,7 @@ If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschw
 * [ ] Add SQLite
 * [ ] Add tags to feeds
 * [ ] Add rendering for content
+* [ ] Add logging
 
 ## :bug: Known bugs
 Currently are no bugs known/reported.  
@@ -71,7 +73,7 @@ If you find any bugs, don't hesitate and open an issue :)
 ## :heart_eyes: Supported by  
 I can proudly say, that I get support from:  
 
-- JetBrains => CLion license
+- JetBrains: CLion open-source license
 
 ## :scroll: License
 ?? © [Tom Schwarz](https://github.com/tomschwarz)
