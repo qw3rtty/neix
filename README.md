@@ -1,5 +1,6 @@
 # neix - News reader for your terminal
-Lightweight RSS-Feed reader written in C++.
+**neix** is an terminal feed reader for all common RSS/Atom feeds on the web out there.  
+It will protect your privacy with a nice looking TUI and with an nice performance.
 
 ## :page_facing_up: Table of Contents
 - [Installation](#pager-installation)
