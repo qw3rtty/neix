@@ -22,9 +22,9 @@ map<string, string> getConfigByPath(string path)
     map <string, string> config;
 
     try {
-        cout << prefix << "Load config: " << path << endl;
         config = reader.read();
     } catch (const char *msg) {
+        cout << prefix << "Failed to load: " << path << endl;
         cout << prefix <<  msg << endl;
         exit(0);
     }
@@ -40,6 +40,7 @@ int main()
     Feeds *feeds = Feeds::getInstance();
     FeedLoader loader;
 
+    cout << prefix << "Loading configuration files" << endl;
     map <string, string> mainConfig = getConfigByPath(MAIN_CONFIG_PATH);
     string locale = mainConfig.at("locale");
     setlocale (LC_ALL, locale.c_str());
