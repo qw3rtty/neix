@@ -42,11 +42,11 @@ int main()
 
     cout << prefix << "Loading configuration files" << endl;
     map <string, string> mainConfig = getConfigByPath(MAIN_CONFIG_PATH);
+    map<string, string> feedList = getConfigByPath(FEED_CONFIG_PATH);
+    
+    // Set locale for application
     string locale = mainConfig.at("locale");
     setlocale (LC_ALL, locale.c_str());
-
-    map<string, string> feedList = getConfigByPath(FEED_CONFIG_PATH);
-    cout << prefix << feedList.size() << " feeds found" << endl;
 
     cout << prefix << "Loading feeds " << flush;
     map<string, string>::iterator it;
