@@ -74,7 +74,7 @@ If you find any bugs, don't hesitate and open an issue :)
 ## Supported by  
 I can proudly say, that I get support from:  
 
-- JetBrains: CLion open-source license
+- [JetBrains](https://www.jetbrains.com/) with an [CLion](https://www.jetbrains.com/clion/) open-source license
 
 ## License
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/) © [Tom Schwarz](https://github.com/tomschwarz)
