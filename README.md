@@ -77,4 +77,4 @@ I can proudly say, that I get support from:
 - JetBrains: CLion open-source license
 
 ## :scroll: License
-?? © [Tom Schwarz](https://github.com/tomschwarz)
+[GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/) © [Tom Schwarz](https://github.com/tomschwarz)
