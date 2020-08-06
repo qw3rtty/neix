@@ -2,20 +2,20 @@
 **neix** is free software. It is an terminal feed reader for all common RSS/Atom feeds on the web out there.  
 It will protect your privacy with a nice looking TUI and with an nice performance.
 
-## Table of Contents
-- [Installation](#installation)
-- [Uninstall](#uninstall)
-- [Unit tests](#unit-tests)
-- [Usage](#usage)
-- [Configuration](#configuration)
-- [Contributing](#contributing)
-- [Roadmap](#roadmap)
-- [Known bugs](#known-bugs)
-- [Libaries in usage](#libaries-in-usage)
-- [Supported by](#supported-by)
-- [License](#license)
+## :page_facing_up: Table of Contents
+- [Installation](#pager-installation)
+- [Uninstall](#pager-uninstall)
+- [Unit tests](#heavy_check_mark-unit-tests)
+- [Usage](#clipboard-usage)
+- [Configuration](#wrench-configuration)
+- [Contributing](#memo-contributing)
+- [Roadmap](#car-roadmap)
+- [Known bugs](#bug-known-bugs)
+- [Libaries in usage](#books-libaries-in-usage)
+- [Supported by](#heart_eyes-supported-by)
+- [License](#scroll-license)
 
-## Installation
+## :pager: Installation
 Follow the steps below for installing:  
 ```bash
 $ git clone https://github.com/tomschwarz/neix.git  
@@ -25,7 +25,7 @@ $ make
 $ sudo make install
 ```
 
-## Uninstall
+## :pager: Uninstall
 Follow the steps below for uninstalling:  
 ```bash
 $ cd neix # should be the same directory where the repository was cloned into  
@@ -39,42 +39,42 @@ $ locate neix # $ locate neix | grep /usr - if the output is to large
 $ sudo rm {PATH}/neix # where {PATH} is the full path to the binary  
 ```
 
-## Unit tests
+## :heavy_check_mark: Unit tests
 Follow the steps below for unit testing after the installation guide:  
 ```bas
 $ ./bin/tests    
 ```
 Hint: you have to be in the main directory of neix!
 
-## Usage
+## :clipboard: Usage
 ```bash
 $ neix
 ```
 
-## Configuration
+## :wrench: Configuration
 Default path of the config files: **~/.config/neix/**   
 There are two configuration files. One for neix itself and one for the feeds.  
 
-## Contributing
+## :memo: Contributing
 If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschwarz/neix/blob/master/.github/CONTRIBUTING.md)
 
-## Roadmap
+## :car: Roadmap
 * [ ] Add SQLite
 * [ ] Add tags to feeds
 * [ ] Add rendering for content
 * [ ] Add logging
 
-## Known bugs
+## :bug: Known bugs
 Currently are no bugs known/reported.  
 If you find any bugs, don't hesitate and open an issue :)
 
-## Libaries in usage
+## :books: Libaries in usage
 - [rapidXML](http://rapidxml.sourceforge.net/) is used for XML parsing
 
-## Supported by  
+## :heart_eyes: Supported by  
 I can proudly say, that I get support from:  
 
 - [JetBrains](https://www.jetbrains.com/) with an [CLion](https://www.jetbrains.com/clion/) open-source license
 
-## License
+## :scroll: License
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/) © [Tom Schwarz](https://github.com/tomschwarz)
