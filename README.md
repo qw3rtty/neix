@@ -63,7 +63,7 @@ If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschw
 * [ ] Add tags to feeds
 * [ ] Add rendering for content
 * [ ] Add logging
-* [ ] ?? Use libxmlpp ??
+* [ ] ?? Use libxml++ ??
 
 ## :bug: Known bugs
 Currently are no bugs known/reported.  
