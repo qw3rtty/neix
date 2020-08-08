@@ -8,6 +8,8 @@ You got the full control of your news you want to read!
 - [Unit tests](#heavy_check_mark-unit-tests)
 - [Usage](#clipboard-usage)
 - [Configuration](#wrench-configuration)
+	- [neix.conf](#neix.conf)
+	- [feeds.conf](#feeds.conf)
 - [Contributing](#memo-contributing)
 - [Roadmap](#car-roadmap)
 - [Known bugs](#bug-known-bugs)
