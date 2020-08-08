@@ -92,9 +92,9 @@ If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschw
 ## :car: Roadmap
 * [ ] Add SQLite
 * [ ] Add tags to feeds
+* [ ] Add logging ([spdlog](https://github.com/gabime/spdlog))
 * [ ] Add rendering for content
-* [ ] Add logging
-* [ ] ?? Use libxml++ ??
+* [ ] ?? Change to libxml++ ??
 
 ## :bug: Known bugs
 Currently are no bugs known/reported.  
