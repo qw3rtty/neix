@@ -1,6 +1,5 @@
 # neix - a news reader for your terminal
-**neix** is free software. It is an terminal feed reader for all common RSS/Atom feeds on the web out there.  
-It will protect your privacy with a nice looking TUI and with an nice performance.
+**neix** is free/libre software which protects your freedom. It is an terminal feed reader for all common RSS/Atom feeds on the web out there.  
 
 ## :page_facing_up: Table of Contents
 - [Installation](#pager-installation)
