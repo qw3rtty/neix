@@ -73,7 +73,7 @@ This is the main config file of **neix**.
 
 ### :nut_and_bolt: feeds.conf
 This file contains the list of feeds you want to read.  
-This is the required format of an single entry:  
+This is the required format of an single entry (every entry should be in a seperate line):  
 ```bash
 TITLE = PROTOCOL://[username[:password]@]DOMAIN.TOP-LEVEL-DOMAIN   
 ```
