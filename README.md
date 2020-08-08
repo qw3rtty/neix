@@ -76,7 +76,7 @@ This is the main config file of **neix**.
 | Option      | Value                                                                                                                                                                  |
 |-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | dateFormat  | String which represents the format for the feed date. Here are all possible [formats](http://www.cplusplus.com/reference/iomanip/put_time/).                           |
-| locale      | Here you can set the locale for your language ([See Here](http://cplusplus.com/reference/clocale/setlocale/)). Run **locale -a** to see all locales you got installed. |
+| locale      | Here you can set the locale for your language ([see here](http://cplusplus.com/reference/clocale/setlocale/)). Run **locale -a** to see all locales you got installed. |
 | openCommand | Here you can which programm should be used to open the article link. Default is **xdg-open**. You can use what you want.                                               |
 
 ### :nut_and_bolt: feeds.conf
@@ -102,6 +102,7 @@ If you find any bugs, don't hesitate and open an issue :)
 
 ## :books: Libaries in usage
 - [rapidXML](http://rapidxml.sourceforge.net/) is used for XML parsing
+- [GoogleTest](https://github.com/google/googletest) is used for TDD
 
 ## :heart_eyes: Supported by  
 I can proudly say, that I get support from:  
