@@ -52,8 +52,29 @@ $ neix
 ```
 
 ## :wrench: Configuration
-Default path of the config files: **~/.config/neix/**   
-There are two configuration files. One for neix itself and one for the feeds.  
+Default directory of the config files: **~/.config/neix/**   
+During the installtion process, **neix** create's the default directory with the needed configuration files.  
+
+**neix** needs two configuration files. One for itself and one for the feeds which should be loaded.  
+| File       | Description                                                                                |
+|------------|--------------------------------------------------------------------------------------------|
+| neix.conf  | This is the main configuration. It include's the date format, locale and the open command. |
+| feeds.conf | This is the feed list. An entry represents a single news feed.                             |
+
+### neix.conf
+This is the main config file of **neix**.
+| Option      | Value                                                                                                                                                                  |
+|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| dateFormat  | String which represents the format for the feed date. Here are all possible [formats](http://www.cplusplus.com/reference/iomanip/put_time/).                           |
+| locale      | Here you can set the locale for your language ([See Here](http://cplusplus.com/reference/clocale/setlocale/)). Run **locale -a** to see all locales you got installed. |
+| openCommand | Here you can which programm should be used to open the article link. Default is **xdg-open**. You can use what you want.                                               |
+
+### feeds.conf
+This file contains the list of feeds you want to read.  
+This is the required format of an single entry:  
+```bash
+TITLE = PROTOCOL://[username[:password]@]DOMAIN.TOP-LEVEL-DOMAIN   
+```
 
 ## :memo: Contributing
 If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschwarz/neix/blob/master/.github/CONTRIBUTING.md)
