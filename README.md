@@ -46,7 +46,7 @@ Follow the steps below for unit testing after the installation guide:
 ```bash
 $ ./bin/tests    
 ```
-Hint: you have to be in the main directory of neix! 
+**Hint:** you have to be in the main directory of neix! 
 
 To run only a specific test follow the steps below:  
 ```bash
