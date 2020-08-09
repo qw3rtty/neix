@@ -1,4 +1,3 @@
-# neix - a news reader for your terminal
 **neix** is an terminal feed reader for all common RSS/Atom feeds on the web out there.
 It is free/libre software which protects your freedom. You got the full control of your news you want to read!  
 
@@ -65,15 +64,15 @@ For more informations see [GoogleTest](https://github.com/google/googletest).
 $ neix
 ```
 If **neix** is completely launched you got the following key's to navigate:  
-| Key              | Function                                                                                               | 
-|------------------|--------------------------------------------------------------------------------------------------------|
-| <kbd>q</kbd>     | Close the current opened article or quit **neix** when you on the not reading an article.              | 
-| <kbd>ENTER</kbd> | Open the selected article to read.                                                                     | 
-| <kbd>o</kbd>     | Open the current article in the browser (or with the programm you configured in the main config file). | 
-| <kbd>j</kbd>     | Select the next article in the current feed list.                                                      | 
-| <kbd>k</kbd>     | Select the previous article in the current feed list.                                                  | 
-| <kbd>J</kbd>     | Select the next feed of the loaded feed list.                                                          | 
-| <kbd>K</kbd>     | Select the previous feed of the loaded feed list.                                                      |
+| Key                             | Function                                                                                               | 
+|---------------------------------|--------------------------------------------------------------------------------------------------------|
+| <kbd>q</kbd>                    | Close the current opened article or quit **neix** when you on the not reading an article.              | 
+| <kbd>ENTER</kbd>                | Open the selected article to read.                                                                     | 
+| <kbd>o</kbd>                    | Open the current article in the browser (or with the programm you configured in the main config file). | 
+| <kbd>j</kbd>                    | Select the next article in the current feed list.                                                      | 
+| <kbd>k</kbd>                    | Select the previous article in the current feed list.                                                  | 
+| <kbd>Shift</kbd> + <kbd>j</kbd> | Select the next feed of the loaded feed list.                                                          | 
+| <kbd>Shift</kbd> + <kbd>k</kbd> | Select the previous feed of the loaded feed list.                                                      |
 
 ## :wrench: Configuration
 Default directory of the config files: **~/.config/neix/**   
