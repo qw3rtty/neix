@@ -21,7 +21,7 @@ Follow the steps below for installing:
 ```bash
 $ git clone https://github.com/tomschwarz/neix.git  
 $ cd neix  
-$ cmake .  
+$ cmake . # to enable unit-tests: cmake -DENABLE-TESTS=ON  
 $ make  
 $ sudo make install
 ```
