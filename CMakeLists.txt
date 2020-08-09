@@ -66,8 +66,8 @@ target_link_libraries(neix neixParser)
 target_link_libraries(neix neixConfig)
 target_link_libraries(neix neixHelper)
 
-option(enable-tests "Enables test suite" ON)
-if(enable-tests MATCHES ON)
+option(ENABLE-TESTS "Enables test suite" OFF)
+if(ENABLE-TESTS MATCHES ON)
 	# Download and configure google test
 	include(CMake/CMakeLists.googletest.txt)
 
