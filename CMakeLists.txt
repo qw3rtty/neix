@@ -66,11 +66,11 @@ target_link_libraries(neix neixParser)
 target_link_libraries(neix neixConfig)
 target_link_libraries(neix neixHelper)
 
-# Download and configure google test
-include(CMake/CMakeLists.googletest.txt)
+option(enable-tests "Enables test suite" ON)
+if(enable-tests MATCHES ON)
+	# Download and configure google test
+	include(CMake/CMakeLists.googletest.txt)
 
-option(enable-tests "Enables test suite" YES)
-if(enable-tests)
     add_subdirectory(test)
 endif()
 
