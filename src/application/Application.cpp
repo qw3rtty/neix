@@ -212,6 +212,7 @@ void Application::show()
 
                 this->articleChoice = 0;
                 this->fw.decreaseHighlight();
+		this->fw.scrollUp();
                 this->fw.update();
                 this->choice = this->decreaseChoice(this->choice, feedCount);
 
@@ -229,6 +230,7 @@ void Application::show()
 
                 this->articleChoice = 0;
                 this->fw.increaseHighlight();
+		this->fw.scrollDown();
                 this->fw.update();
                 this->choice = this->increaseChoice(this->choice, feedCount);
 
