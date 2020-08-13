@@ -60,6 +60,7 @@ dkms.conf
 googletest*
 CMakeFiles
 CMakeCache.txt
+install_manifest.txt
 Makefile
 bin
 Testing

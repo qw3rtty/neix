@@ -75,3 +75,12 @@ if(ENABLE-TESTS MATCHES ON)
 endif()
 
 INSTALL(TARGETS neix RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
+
+# Install definitons
+install(TARGETS neix DESTINATION /usr/local/bin/)
+
+# Uninstall definitins
+add_custom_target(uninstall
+    "${CMAKE_COMMAND}" -P "CMake/uninstall.cmake"
+)
+
