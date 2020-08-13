@@ -104,7 +104,6 @@ TITLE = PROTOCOL://[username[:password]@]DOMAIN.TOP-LEVEL-DOMAIN
 If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschwarz/neix/blob/master/.github/CONTRIBUTING.md)
 
 ## :camera: Screenshots
-<img src="screenshots/screenshot-1.png" width"50%" />
 ![Screenshot 1](screenshots/screenshot-1.png)
 ![Screenshot 2](screenshots/screenshot-2.png)
 ![Screenshot 3](screenshots/screenshot-3.png)
