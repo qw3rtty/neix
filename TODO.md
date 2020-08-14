@@ -5,7 +5,7 @@
 * [ ] Add rendering for content
 
 ## :chart_with_downwards_trend: Low priority
-* [ ] Add man-page on install
+* [x] Add man-page on install
 
 ## :question: Maybe
 * [ ] ?? Change to libxml++ ??
