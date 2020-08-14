@@ -1,6 +1,3 @@
-cmake_minimum_required(VERSION 3.13)
-project(neix)
-
 # Check if 'curl' is installed
 find_package(CURL REQUIRED)
 
@@ -78,6 +75,7 @@ INSTALL(TARGETS neix RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
 
 # Install definitons
 install(TARGETS neix DESTINATION /usr/local/bin/)
+install(FILES ./doc/neix.1 DESTINATION /usr/local/man/man1/)
 
 # Uninstall definitins
 add_custom_target(uninstall
