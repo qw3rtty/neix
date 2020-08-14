@@ -11,7 +11,7 @@ It is free/libre software which protects your freedom. You got the full control 
 	- [neix.conf](#nut_and_bolt-neixconf)
 	- [feeds.conf](#nut_and_bolt-feedsconf)
 - [Contributing](#memo-contributing)
-- [Roadmap](#car-roadmap)
+- [Roadmap](https://github.com/tomschwarz/neix/blob/master/TODO.md)
 - [Issues/Bugs](https://github.com/tomschwarz/neix/issues)
 - [Libaries in usage](#books-libaries-in-usage)
 - [Supported by](#heart_eyes-supported-by)
@@ -103,14 +103,6 @@ TITLE = PROTOCOL://[username[:password]@]DOMAIN.TOP-LEVEL-DOMAIN
 
 ## :memo: Contributing
 If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschwarz/neix/blob/master/.github/CONTRIBUTING.md)
-
-## :car: Roadmap
-* [ ] Add SQLite
-* [ ] Add tags to feeds
-* [ ] Add logging ([spdlog](https://github.com/gabime/spdlog))
-* [ ] Add rendering for content
-* [ ] Add man-page on install
-* [ ] ?? Change to libxml++ ??
 
 ## :books: Libaries in usage
 - [rapidXML](http://rapidxml.sourceforge.net/) is used for XML parsing
