@@ -12,7 +12,7 @@ It is free/libre software which protects your freedom. You got the full control 
 	- [feeds.conf](#nut_and_bolt-feedsconf)
 - [Contributing](#memo-contributing)
 - [Roadmap](#car-roadmap)
-- [Known bugs](#bug-known-bugs)
+- [Issues/Bugs](https://github.com/tomschwarz/neix/issues)
 - [Libaries in usage](#books-libaries-in-usage)
 - [Supported by](#heart_eyes-supported-by)
 - [Screenshots](#camera-screenshots)
@@ -111,10 +111,6 @@ If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschw
 * [ ] Add rendering for content
 * [ ] Add man-page on install
 * [ ] ?? Change to libxml++ ??
-
-## :bug: Known bugs
-Currently are no bugs known/reported.  
-If you find any bugs, don't hesitate and open an issue :)
 
 ## :books: Libaries in usage
 - [rapidXML](http://rapidxml.sourceforge.net/) is used for XML parsing
