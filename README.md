@@ -109,6 +109,7 @@ If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschw
 * [ ] Add tags to feeds
 * [ ] Add logging ([spdlog](https://github.com/gabime/spdlog))
 * [ ] Add rendering for content
+* [ ] Add man-page on install
 * [ ] ?? Change to libxml++ ??
 
 ## :bug: Known bugs
