@@ -79,6 +79,11 @@ If **neix** is completely launched you got the following key's to navigate:
 | <kbd>Shift</kbd> + <kbd>j</kbd> | Select the next feed of the loaded feed list.                                                          | 
 | <kbd>Shift</kbd> + <kbd>k</kbd> | Select the previous feed of the loaded feed list.                                                      |
 
+For more informations see the man-page:  
+```bash
+$ man neix
+```
+
 ## :wrench: Configuration
 Default directory of the config files: **~/.config/neix/**   
 During the installtion process, **neix** create's the default directory with the needed configuration files.  
