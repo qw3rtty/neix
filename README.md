@@ -27,6 +27,9 @@ $ cmake . # to enable unit-tests: cmake -DENABLE-TESTS=ON
 $ make  
 $ sudo make install
 ```
+After the successful installation you have to configure the **feeds.conf** file with the feeds you want to read.  
+[Here](#nut_and_bolt-feedsconf) you can see the proper format.
+
 
 ## :pager: Uninstall
 Follow the steps below for uninstalling:  
