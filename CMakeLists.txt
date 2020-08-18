@@ -1,3 +1,6 @@
+cmake_minimum_required(VERSION 3.13)
+project(neix)
+
 # Check if 'curl' is installed
 find_package(CURL REQUIRED)
 
