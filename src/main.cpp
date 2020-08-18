@@ -14,12 +14,12 @@ using namespace neix;
  * Helper to read config files
  *
  * @param   path    - Path to the config file which should be read
- * @return  config map
+ * @return  config vector list
  */
-map<string, string> getConfigByPath(string path)
+vector<pair<string, string>> getConfigByPath(const string& path)
 {
     ConfigReader reader(path.c_str());
-    map <string, string> config;
+    vector<pair<string, string>> config;
 
     try {
         config = reader.read();
@@ -41,15 +41,15 @@ int main()
     FeedLoader loader;
 
     cout << prefix << "Loading configuration files" << endl;
-    map <string, string> mainConfig = getConfigByPath(MAIN_CONFIG_PATH);
-    map<string, string> feedList = getConfigByPath(FEED_CONFIG_PATH);
+    vector<pair<string, string>> mainConfig = getConfigByPath(MAIN_CONFIG_PATH);
+    vector<pair<string, string>> feedList = getConfigByPath(FEED_CONFIG_PATH);
     
     // Set locale for application
-    string locale = mainConfig.at("locale");
-    setlocale (LC_ALL, locale.c_str());
+    pair<string, string>locale = mainConfig.at(1);
+    setlocale (LC_ALL, locale.second.c_str());
 
     cout << prefix << "Loading feeds " << flush;
-    map<string, string>::iterator it;
+    vector<pair<string, string>>::iterator it;
     for (it = feedList.begin(); it != feedList.end(); ++it)
     {
         cout << "." << flush;
@@ -58,7 +58,7 @@ int main()
         loader.load(it->second);
 
         Parser *parser = FactoryParser::getInstance(loader.getFeed());
-        parser->setTimeFormatUI(mainConfig.at("dateFormat").c_str());
+        parser->setTimeFormatUI(mainConfig.at(0).second.c_str());
         int index = distance(feedList.begin(), it);
 
         int articleIndex = 0;
@@ -72,7 +72,7 @@ int main()
 
     cout << prefix << "Launch TUI" << endl;
     Application app;
-    app.openCommand = mainConfig.at("openCommand");
+    app.openCommand = mainConfig.at(2).second;
     app.show();
 
     return 0;

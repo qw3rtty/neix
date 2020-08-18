@@ -20,9 +20,9 @@ namespace {
     {
         ConfigReader reader(FEED_CONFIG_PATH_TEST);
 
-        map<string, string> feedMap;
-        feedMap = reader.read();
+        vector<pair<string, string>> feedList;
+        feedList = reader.read();
 
-        EXPECT_EQ(feedMap.size(), 4);
+        EXPECT_EQ(feedList.size(), 4);
     }
 }

@@ -12,7 +12,7 @@
 #ifndef neix_CONFIGREADER_H
 #define neix_CONFIGREADER_H
 
-#include <map>
+#include <vector>
 
 using namespace std;
 namespace neix
@@ -23,7 +23,7 @@ namespace neix
         ConfigReader(const char *configPath);
         ~ConfigReader();
 
-         map<string, string> read();
+         vector<pair<string, string>> read();
 
     protected:
         char *path;

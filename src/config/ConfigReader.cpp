@@ -9,7 +9,7 @@
  * @filesource
  */
 
-#include <string.h>
+#include <cstring>
 #include <iostream>
 #include <map>
 #include <fstream>
@@ -36,11 +36,11 @@ ConfigReader::~ConfigReader() = default;
 /**
  * Read given feed config file
  *
- * @return  Map with entries of configuration file
+ * @return  Vector with entries of configuration file
  */
-map<string, string> ConfigReader::read()
+vector<pair<string, string>> ConfigReader::read()
 {
-    map<string, string> feedMap;
+    vector<pair<string, string>> feedList;
     ifstream file;
     string line, name, link, delimiter = "=";
 
@@ -69,9 +69,10 @@ map<string, string> ConfigReader::read()
             continue;
         }
 
-        feedMap[name] = link;
+        pair<string, string> pair = make_pair(name, link);
+        feedList.push_back(pair);
     }
     file.close();
 
-    return feedMap;
+    return feedList;
 }
