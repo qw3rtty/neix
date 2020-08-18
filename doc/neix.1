@@ -52,13 +52,29 @@ Select the previous feed of the loaded feed list.
 .TP
 .I
 ~/.config/neix/neix.conf
-This is the main config file of neix.
+This is the main config file of neix. Below you can see all available options.
+
+.
+.RS 1.2i
+.TS
+tab(@), left, box;
+l | l 
+lB | l.
+OPTION@Value
+_
+dateFormat@String which represents the format for the feed date.
+locale@Here you can set the locale for your language.
+openCommand@Here you can set which programm should be used to open the article link.
+.TE
+.RE
 
 .TP
 .I
 ~/.config/neix/feeds.conf
 This file contains the list of feeds you want to read.
-This is the required format of an single entry (every entry should be in a seperate line):
+Below you can see the required format of an single entry.
+
+.B
 TITLE = PROTOCOL://[username[:password]@]DOMAIN.TOP-LEVEL-DOMAIN
 
 .SH AUTHORS
