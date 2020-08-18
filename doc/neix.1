@@ -1,4 +1,4 @@
-.TH neix 1 "22nd July 2020" "v0.1.0" "neix man page"
+.TH neix 1 "18th August 2020" "v0.1.0-alpha" "neix man page"
 
 .SH NAME
 .B neix
@@ -9,13 +9,57 @@
 is an terminal feed reader for all common RSS/Atom feeds on the web out there.
 
 .SH DESCRIPTION
-.B neix
-is an terminal feed reader for all common RSS/Atom feeds on the web out there.
-It will protect your privacy with a nice looking TUI and with an nice performance.
+.B neix 
+is an terminal feed reader for all common RSS/Atom feeds on the web out there. 
+It is free/libre software which protects your freedom. 
+You got the full control of your news you want to read!
 
 .SH OPTIONS
+.TP
 .B -v
-	Prints the installed version of *neix* and exits.
+Prints the installed version of *neix* and exits.
+
+.SH KEYS
+.TP
+.B q
+Close the current opened article or quit neix when you on the not reading an article.
+
+.TP
+.B ENTER
+Open the selected article to read.
+
+.TP
+.B o 
+Open the current article in the browser (or with the programm you configured in the main config file).
+
+.TP
+.B j
+Select the next article in the current feed list.
+
+.TP
+.B k
+Select the previous article in the current feed list.
+
+.TP
+.B Shift + j
+Select the next feed of the loaded feed list.
+
+.TP
+.B Shift + k
+Select the previous feed of the loaded feed list.
+
+.SH FILES
+.TP
+.I
+~/.config/neix/neix.conf
+This is the main config file of neix.
+
+.TP
+.I
+~/.config/neix/feeds.conf
+This file contains the list of feeds you want to read.
+This is the required format of an single entry (every entry should be in a seperate line):
+TITLE = PROTOCOL://[username[:password]@]DOMAIN.TOP-LEVEL-DOMAIN
 
 .SH AUTHORS
 Maintained by Tom Schwarz<thomasschwarz96@web.de>, who is assisted by
@@ -26,4 +70,3 @@ development see https://github.com/tomschwarz/neix.
 .SH SEE ALSO
 .B ncurses(1),
 .B curl(1)
-
