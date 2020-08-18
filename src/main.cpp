@@ -32,6 +32,22 @@ vector<pair<string, string>> getConfigByPath(const string& path)
     return config;
 }
 
+/**
+ * Applies config to parser
+ *
+ * @param   p               - Parser to configure
+ * @param   configList      - Config to apply
+ */
+void applyConfigToParser (Parser* p, const vector<pair<string, string>>& configList)
+{
+    p->setTimeFormatUI(configList.at(0).second.c_str());
+
+    if (configList.size() >= 4)
+    {
+        p->setRenderCommand(configList.at(3).second.c_str());
+    }
+}
+
 
 int main()
 {
@@ -58,7 +74,7 @@ int main()
         loader.load(it->second);
 
         Parser *parser = FactoryParser::getInstance(loader.getFeed());
-        parser->setTimeFormatUI(mainConfig.at(0).second.c_str());
+        applyConfigToParser(parser, mainConfig);
         int index = distance(feedList.begin(), it);
 
         int articleIndex = 0;

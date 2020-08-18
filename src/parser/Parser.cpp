@@ -8,6 +8,10 @@
  * @since       Version 0.1.0
  * @filesource
  */
+#include <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <string>
 #include <cstring>
 #include <ctime>
 #include <iomanip>
@@ -15,6 +19,7 @@
 
 #include "rapidxml/rapidxml.hpp"
 #include "parser/Parser.h"
+#include "helper/helper.h"
 
 using namespace rapidxml;
 using namespace std;
@@ -27,6 +32,7 @@ Parser::Parser(struct rawRss content)
 {
     this->loadXml(content);
     this->timeFormatUI = nullptr;
+    this->renderCommand = nullptr;
 }
 
 
@@ -167,7 +173,7 @@ struct rssItem *Parser::getFeedItem()
  * @param   text    - The text which should be parsed
  * @return
  */
-char *Parser::convertHtmlToPlaintext(char *text)
+char *Parser::convertHtmlToPlaintext(const char *text)
 {
     char *plaintext;
     regex regex("<[^>]*>");
@@ -177,6 +183,47 @@ char *Parser::convertHtmlToPlaintext(char *text)
     plaintext = strdup(convertedText.c_str());
 
     return plaintext;
+}
+
+char * Parser::renderTextToPlaintext(const char *text)
+{
+    if (this->renderCommand == nullptr)
+    {
+        return this->convertHtmlToPlaintext(text);
+    }
+
+    // TODO: !! refactor !!
+    string rawFilePath = getenv("HOME");
+    rawFilePath += "/.config/neix/tmp-raw.txt";
+    ofstream rawFile;
+    rawFile.open (rawFilePath);
+    rawFile << text;
+    rawFile.close();
+
+    string renderedFilePath = getenv("HOME");
+    renderedFilePath += "/.config/neix/tmp-rendered.txt";
+    string renderCmd = this->renderCommand;
+    renderCmd += " ";
+    renderCmd += rawFilePath;
+    renderCmd += " > ";
+    renderCmd += renderedFilePath;
+    system(renderCmd.c_str());
+
+    string renderedText;
+    string line;
+    ifstream renderedFile(renderedFilePath);
+    if (renderedFile.is_open())
+    {
+        while ( getline (renderedFile,line) )
+        {
+            renderedText += line;
+            renderedText += "\n";
+        }
+        renderedFile.close();
+    }
+    renderedText = trim(renderedText);
+
+    return strdup(renderedText.c_str());
 }
 
 
@@ -224,5 +271,18 @@ void Parser::setTimeFormatUI(const char *format)
     if (format != nullptr)
     {
         this->timeFormatUI = strdup(format);
+    }
+}
+
+/**
+ * Set the render command
+ *
+ * @param   command     - String which contains the system command for rendering an text
+ */
+void Parser::setRenderCommand(const char *command)
+{
+    if (command != nullptr)
+    {
+        this->renderCommand = strdup(command);
     }
 }

@@ -76,7 +76,7 @@ char * ParserAtom::getFeedContent()
         content = this->getNodeContent(this->entryNode->first_node("content"));
     }
 
-    return this->convertHtmlToPlaintext(content);
+    return this->renderTextToPlaintext(content);
 }
 
 

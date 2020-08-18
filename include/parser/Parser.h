@@ -33,9 +33,11 @@ namespace neix
         virtual char* getFeedDate() = 0;
         struct rssItem* getFeedItem();
 
-        char* convertHtmlToPlaintext(char *text);
+        char* convertHtmlToPlaintext(const char *text);
+        char* renderTextToPlaintext(const char *text);
         char* formatTimeString(const char *timeString);
         void setTimeFormatUI(const char *format);
+        void setRenderCommand(const char *command);
         char* getTimeFormatUI();
 
     protected:
@@ -43,6 +45,7 @@ namespace neix
         xml_node<> *rootNode{};
         xml_node<> *entryNode{};
         char* timeFormatUI;
+        char* renderCommand;
 
         virtual char* getFeedDateFormat() = 0;
         char* getNodeContent(xml_node<> *node);
