@@ -1,7 +1,7 @@
 # :page_with_curl: TODO / Roadmap
 * [ ] Add SQLite
 * [ ] Add tags to feeds
-* [ ] Add rendering for content
+* [x] Add rendering for content
 * [x] Load feeds with correct order
 
 ## :chart_with_downwards_trend: Low priority
