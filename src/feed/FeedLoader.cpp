@@ -155,9 +155,9 @@ bool FeedLoader::loadXml()
         curl_easy_setopt(curl, CURLOPT_URL, this->url.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, FeedLoader::curlCalculateMemory);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *) this->feed);
+	    
+	// TODO: add verification and security options!
     }
-
-    // maybe do some verification checks ?!
 
     res = curl_easy_perform(curl);
 
