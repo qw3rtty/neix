@@ -14,7 +14,6 @@ It is free/libre software which protects your freedom. You got the full control 
 - [TODO / Roadmap](https://github.com/tomschwarz/neix/blob/master/TODO.md)
 - [Issues / Bugs](https://github.com/tomschwarz/neix/issues)
 - [Libaries in usage](#books-libaries-in-usage)
-- [Supported by](#heart_eyes-supported-by)
 - [License](#scroll-license)
 - [Screenshots](#camera-screenshots)
 
@@ -116,11 +115,6 @@ If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschw
 ## :books: Libaries in usage
 - [rapidXML](http://rapidxml.sourceforge.net/) is used for XML parsing
 - [GoogleTest](https://github.com/google/googletest) is used for TDD
-
-## :heart_eyes: Supported by  
-I can proudly say, that I get support from:  
-
-- [JetBrains](https://www.jetbrains.com/) with an [CLion](https://www.jetbrains.com/clion/) open-source license
 
 ## :scroll: License
 [GNU GPLv3](https://choosealicense.com/licenses/gpl-3.0/) © [Tom Schwarz](https://github.com/tomschwarz)
