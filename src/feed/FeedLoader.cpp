@@ -170,8 +170,6 @@ bool FeedLoader::loadXml()
         return false;
     }
 
-    //cout << (unsigned long) this->feed->size << " bytes loaded" << endl;
-
     return true;
 }
 
