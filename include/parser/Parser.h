@@ -15,6 +15,7 @@
 #include "rapidxml/rapidxml.hpp"
 #include "feed/FeedLoader.h"
 
+using namespace std;
 using namespace rapidxml;
 
 namespace neix
@@ -46,6 +47,11 @@ namespace neix
         xml_node<> *entryNode{};
         char* timeFormatUI;
         char* renderCommand;
+
+        string buildFullRenderCommand(const string& rawFilePath, const string& renderedFilePath);
+        bool prepareRawText(const string& rawFilePath, const char *text);
+        int renderText(const string& command);
+        string getRenderedText(const string& filePath);
 
         virtual char* getFeedDateFormat() = 0;
         char* getNodeContent(xml_node<> *node);
