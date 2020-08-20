@@ -59,6 +59,11 @@ int main()
     cout << prefix << "Loading configuration files" << endl;
     vector<pair<string, string>> mainConfig = getConfigByPath(MAIN_CONFIG_PATH);
     vector<pair<string, string>> feedList = getConfigByPath(FEED_CONFIG_PATH);
+    if (feedList.empty())
+    {
+        cout << prefix << "No feeds configured! Take a look into your feeds.conf file." << endl;
+        return 0;
+    }
     
     // Set locale for application
     pair<string, string>locale = mainConfig.at(1);
