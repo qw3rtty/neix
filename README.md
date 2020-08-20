@@ -88,10 +88,10 @@ Default directory of the config files: **~/.config/neix/**
 During the installtion process, **neix** create's the default directory with the needed configuration files.  
 
 **neix** needs two configuration files. One for itself and one for the feeds which should be loaded.  
-| File       | Description                                                                                |
-|------------|--------------------------------------------------------------------------------------------|
-| neix.conf  | This is the main configuration. It include's the date format, locale and the open command. |
-| feeds.conf | This is the feed list. An entry represents a single news feed.                             |
+| File       | Description                                                                            |
+|------------|----------------------------------------------------------------------------------------|
+| neix.conf  | This is the main configuration. It include's the date format, locale and more options. |
+| feeds.conf | This is the feed list. An entry represents a single news feed.                         |
 
 ### :nut_and_bolt: neix.conf
 This is the main config file of **neix**.
