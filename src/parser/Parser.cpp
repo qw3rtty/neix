@@ -157,10 +157,10 @@ struct rssItem *Parser::getFeedItem()
 
     struct rssItem *item = (struct rssItem *) calloc(1, sizeof(struct rssItem));
     item->read = 0;
-    item->title = this->getFeedTitle(); // TODO: trim  title
-    item->description = this->getFeedContent(); // TODO: trim content
-    item->url = this->getFeedLink(); // TODO: trim link
-    item->date = this->getFeedDate(); // TODO: trim date
+    item->title = this->getFeedTitle();
+    item->description = this->getFeedContent();
+    item->url = this->getFeedLink();
+    item->date = this->getFeedDate();
 
     return item;
 }
@@ -180,6 +180,7 @@ char *Parser::convertHtmlToPlaintext(const char *text)
     string convertedText;
 
     convertedText = regex_replace(text, regex, "");
+    convertedText = trim(convertedText);
     plaintext = strdup(convertedText.c_str());
 
     return plaintext;
@@ -307,6 +308,7 @@ char *Parser::formatTimeString(const char *timeString)
     formattedTimeString << put_time(&when, this->getTimeFormatUI());
 
     string tmp(formattedTimeString.str());
+    tmp = trim(tmp);
     char *formattedDate = strdup(tmp.c_str());
 
     return formattedDate;
