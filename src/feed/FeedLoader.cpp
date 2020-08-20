@@ -155,8 +155,12 @@ bool FeedLoader::loadXml()
         curl_easy_setopt(curl, CURLOPT_URL, this->url.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, FeedLoader::curlCalculateMemory);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *) this->feed);
-	    
-	// TODO: add verification and security options!
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1);
+        curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);
+        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
+        curl_easy_setopt(curl, CURLOPT_MAXREDIRS, 10);
+        curl_easy_setopt(curl, CURLOPT_FAILONERROR, 1);
+        curl_easy_setopt(curl, CURLOPT_ACCEPT_ENCODING, "gzip, deflate");
     }
 
     res = curl_easy_perform(curl);
