@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 #include "config.h"
 #include "application/Application.h"
 #include "feed/FeedLoader.h"
@@ -48,9 +49,36 @@ void applyConfigToParser (Parser* p, const vector<pair<string, string>>& configL
     }
 }
 
-
-int main()
+/**
+ * Process command line arguments
+ * @param   argc
+ * @param   argv
+ */
+void processArguments(int argc, char **argv)
 {
+    int option;
+    while ((option = getopt(argc, argv, "v")) != -1)
+    {
+        switch (option)
+        {
+            case 'v':
+                cout << prefix << "Installed version: " << VERSION << endl;
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    if (argc > 1)
+    {
+        exit(0);
+    }
+}
+
+int main(int argc, char* argv[])
+{
+    processArguments(argc, argv);
     cout << prefix << "Starting version " << VERSION << endl;
 
     Feeds *feeds = Feeds::getInstance();
