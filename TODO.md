@@ -3,6 +3,7 @@
 * [ ] Add tags to feeds
 * [x] Add rendering for content
 * [x] Load feeds with correct order
+* [ ] Add variables for main config entries
 
 ## :chart_with_downwards_trend: Low priority
 * [x] Add man-page on install
