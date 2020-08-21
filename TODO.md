@@ -1,6 +1,7 @@
 # :page_with_curl: TODO / Roadmap
-* [ ] Add SQLite
+* [ ] Add SQLite (save read/unread and more)
 * [ ] Add tags to feeds
+* [ ] Add search
 * [x] Add rendering for content
 * [x] Load feeds with correct order
 * [ ] Add variables for main config entries
