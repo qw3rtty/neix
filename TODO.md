@@ -4,6 +4,9 @@
 * [x] Add rendering for content
 * [x] Load feeds with correct order
 * [ ] Add variables for main config entries
+* [ ] Add OPML support
+  * [ ] OPML Import
+  * [ ] OPML Export
 
 ## :chart_with_downwards_trend: Low priority
 * [x] Add man-page on install
