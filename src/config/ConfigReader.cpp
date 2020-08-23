@@ -54,7 +54,7 @@ vector<pair<string, string>> ConfigReader::read()
     while (!file.eof())
     {
         getline(file, line);
-		if (line.rfind("#", 0) == 0)
+		if (line.rfind('#', 0) == 0)
 		{
 			continue;	
 		}
@@ -65,13 +65,11 @@ vector<pair<string, string>> ConfigReader::read()
         link = line.substr(line.find(delimiter) + 1, line.length());
         link = trim(link);
 
-        if (name.empty() || link.empty())
+        if (!name.empty() && !link.empty())
         {
-            continue;
+            pair<string, string> pair = make_pair(name, link);
+            feedList.push_back(pair);
         }
-
-        pair<string, string> pair = make_pair(name, link);
-        feedList.push_back(pair);
     }
     file.close();
 

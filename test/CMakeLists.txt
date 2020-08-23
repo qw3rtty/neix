@@ -1,9 +1,7 @@
-# Path for feed config file tests
-set(FeedConfigPathTest "${PROJECT_SOURCE_DIR}/test/testFeeds.conf")
-add_compile_definitions(FEED_CONFIG_PATH_TEST="${FeedConfigPathTest}")
-
 # Assets for testing
 set(TestAssetsPath "${PROJECT_SOURCE_DIR}/test/assets")
+add_compile_definitions(MAIN_CONFIG_PATH_TEST="${TestAssetsPath}/testNeix.conf")
+add_compile_definitions(FEED_CONFIG_PATH_TEST="${TestAssetsPath}/testFeeds.conf")
 add_compile_definitions(TEST_ASSET_ATOM="${TestAssetsPath}/atom.xml")
 add_compile_definitions(TEST_ASSET_REDDIT="${TestAssetsPath}/reddit.xml")
 add_compile_definitions(TEST_ASSET_RSS091="${TestAssetsPath}/rss0.91.xml")

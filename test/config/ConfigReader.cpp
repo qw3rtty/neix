@@ -26,6 +26,15 @@ namespace {
         EXPECT_EQ(feedList.size(), 4);
     }
 
+    TEST(ConfigReader, validEntries)
+    {
+        ConfigReader reader(MAIN_CONFIG_PATH_TEST);
+        vector<pair<string, string>> config;
+        config = reader.read();
+
+        EXPECT_EQ(config.size(), 4);
+    }
+
     TEST(ConfigReader, getConfigByPath)
     {
         vector<pair<string, string>> config = ConfigReader::getByPath(FEED_CONFIG_PATH_TEST);
