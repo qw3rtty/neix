@@ -47,6 +47,12 @@ int main(int argc, char* argv[])
 
     cout << prefix << "Loading configuration files" << endl;
     vector<pair<string, string>> mainConfig = ConfigReader::getByPath(MAIN_CONFIG_PATH);
+    if (mainConfig.empty() || mainConfig.size() < 3)
+    {
+        cout << prefix << "It looks like there are some errors in neix.conf. Take a look on the README.md." << endl;
+        return 0;
+    }
+
     vector<pair<string, string>> feedList = ConfigReader::getByPath(FEED_CONFIG_PATH);
     if (feedList.empty())
     {

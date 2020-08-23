@@ -95,12 +95,12 @@ During the installtion process, **neix** create's the default directory with the
 
 ### :nut_and_bolt: neix.conf
 This is the main config file of **neix**.
-| Option      | Value                                                                                                                                                                  |
-|-------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| dateFormat  | String which represents the format for the feed date. Here are all possible [formats](http://www.cplusplus.com/reference/iomanip/put_time/).                           |
-| locale      | Here you can set the locale for your language ([see here](http://cplusplus.com/reference/clocale/setlocale/)). Run **locale -a** to see all locales you got installed. |
-| openCommand | Here you can set which programm should be used to open the article link. Default is **xdg-open**. You can use what you want.                                           |
-| renderText  | This option is optional. You can set here how the text should be formatted. Default is **w3m -dump -T text/html**. You can use **elinks** or others.                   |
+| Option      | Value                                                                                                                                                                             |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| dateFormat  | String which represents the format for the feed date. Here are all possible [formats](http://www.cplusplus.com/reference/iomanip/put_time/). [REQUIRED]                           |
+| locale      | Here you can set the locale for your language ([see here](http://cplusplus.com/reference/clocale/setlocale/)). Run **locale -a** to see all locales you got installed. [REQUIRED] |
+| openCommand | Here you can set which programm should be used to open the article link. Default is **xdg-open**. You can use what you want. [REQUIRED]                                           |
+| renderText  | You can set here how the text should be formatted. Default is **w3m -dump -T text/html**. You can use **elinks** or others. [OPTIONAL]                                            |
 
 ### :nut_and_bolt: feeds.conf
 This file contains the list of feeds you want to read.  
