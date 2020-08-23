@@ -20,10 +20,11 @@ namespace neix
     class ConfigReader
     {
     public:
-        ConfigReader(const char *configPath);
+        ConfigReader(const char* configPath);
         ~ConfigReader();
 
          vector<pair<string, string>> read();
+         static vector<pair<string, string>> getByPath(const char* path);
 
     protected:
         char *path;

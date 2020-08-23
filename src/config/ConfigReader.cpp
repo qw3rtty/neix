@@ -13,6 +13,7 @@
 #include <iostream>
 #include <map>
 #include <fstream>
+#include "config.h"
 #include "helper/helper.h"
 #include "config/ConfigReader.h"
 
@@ -75,4 +76,27 @@ vector<pair<string, string>> ConfigReader::read()
     file.close();
 
     return feedList;
+}
+
+
+/**
+ * Get config by given path
+ *
+ * @param   path    - Path where the config file is located
+ * @return
+ */
+vector<pair<string, string>> ConfigReader::getByPath(const char *path)
+{
+    ConfigReader reader(path);
+    vector<pair<string, string>> config;
+
+    try {
+        config = reader.read();
+    } catch (const char *msg) {
+        cout << prefix << "Failed to load: " << path << endl;
+        cout << prefix <<  msg << endl;
+        exit(0);
+    }
+
+    return config;
 }

@@ -10,29 +10,6 @@
 using namespace std;
 using namespace neix;
 
-
-/**
- * Helper to read config files
- *
- * @param   path    - Path to the config file which should be read
- * @return  config vector list
- */
-vector<pair<string, string>> getConfigByPath(const string& path)
-{
-    ConfigReader reader(path.c_str());
-    vector<pair<string, string>> config;
-
-    try {
-        config = reader.read();
-    } catch (const char *msg) {
-        cout << prefix << "Failed to load: " << path << endl;
-        cout << prefix <<  msg << endl;
-        exit(0);
-    }
-
-    return config;
-}
-
 /**
  * Process command line arguments
  * @param   argc
@@ -69,8 +46,8 @@ int main(int argc, char* argv[])
     FeedLoader loader;
 
     cout << prefix << "Loading configuration files" << endl;
-    vector<pair<string, string>> mainConfig = getConfigByPath(MAIN_CONFIG_PATH);
-    vector<pair<string, string>> feedList = getConfigByPath(FEED_CONFIG_PATH);
+    vector<pair<string, string>> mainConfig = ConfigReader::getByPath(MAIN_CONFIG_PATH);
+    vector<pair<string, string>> feedList = ConfigReader::getByPath(FEED_CONFIG_PATH);
     if (feedList.empty())
     {
         cout << prefix << "No feeds configured! Take a look into your feeds.conf file." << endl;
