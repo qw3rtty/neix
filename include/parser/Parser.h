@@ -12,6 +12,7 @@
 #ifndef neix_PARSER_H
 #define neix_PARSER_H
 
+#include <vector>
 #include "rapidxml/rapidxml.hpp"
 #include "feed/FeedLoader.h"
 
@@ -40,6 +41,7 @@ namespace neix
         void setTimeFormatUI(const char *format);
         void setRenderCommand(const char *command);
         char* getTimeFormatUI();
+        void applyConfig(const vector<pair<string, string>> config);
 
     protected:
         xml_document<> xmlDocument;

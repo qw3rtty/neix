@@ -325,6 +325,25 @@ char *Parser::getTimeFormatUI()
     return this->timeFormatUI;
 }
 
+/**
+ * Applies given config
+ *
+ * @param   config  - Config which should be applied
+ */
+void Parser::applyConfig(const vector<pair<string, string>> config)
+{
+    this->setTimeFormatUI(config.at(0).second.c_str());
+
+    if (config.size() >= 4)
+    {
+        pair<string, string> renderCmd = config.at(3);
+        if (!renderCmd.second.empty())
+        {
+            this->setRenderCommand(renderCmd.second.c_str());
+        }
+    }
+}
+
 
 /**
  * Set time format

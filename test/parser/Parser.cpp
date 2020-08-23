@@ -31,7 +31,14 @@ namespace
         rawFeed.size = 1234;
 
         Parser *parser = FactoryParser::getInstance(rawFeed);
-        parser->setTimeFormatUI("%d.%m.%Y %H:%M");
+        string configName = "dateFormat";
+        string configValue = "%d.%m.%Y %H:%M";
+        vector<pair<string, string>> config;
+        config.emplace_back(configName, configValue);
+        parser->applyConfig(config);
+
+        char *dateFormat = parser->getTimeFormatUI();
+        EXPECT_TRUE(strcmp(dateFormat, "%d.%m.%Y %H:%M") == 0);
 
         string htmlText = "<h1>Text</h1> <p>and words</p>";
         string renderedText = parser->renderTextToPlaintext(htmlText.c_str());
@@ -40,9 +47,6 @@ namespace
         parser->setRenderCommand("w3m -dump -T text/html");
         renderedText = parser->renderTextToPlaintext(htmlText.c_str());
         EXPECT_TRUE(strcmp(renderedText.c_str(), "Text\n\nand words") == 0);
-
-        char *dateFormat = parser->getTimeFormatUI();
-        EXPECT_TRUE(strcmp(dateFormat, "%d.%m.%Y %H:%M") == 0);
 
         struct rssItem *item = nullptr;
         while ((item = parser->getFeedItem()) != nullptr)
