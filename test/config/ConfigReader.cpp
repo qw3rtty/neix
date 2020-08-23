@@ -35,7 +35,7 @@ namespace {
         EXPECT_EQ(config.size(), 4);
     }
 
-    TEST(ConfigReader, getConfigByPath)
+    TEST(ConfigReader, getByPath)
     {
         vector<pair<string, string>> config = ConfigReader::getByPath(FEED_CONFIG_PATH_TEST);
         EXPECT_EQ(config.size(), 4);
