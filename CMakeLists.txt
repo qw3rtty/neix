@@ -60,7 +60,7 @@ add_library(neixConfig STATIC ${config})
 add_library(neixHelper STATIC ${helper})
 
 add_executable(neix ${main})
-target_link_libraries(neix ${CURSES_LIBRARY})
+target_link_libraries(neix ${CURSES_LIBRARY} ${CURL_LIBRARY})
 target_link_libraries(neix neixApplication)
 target_link_libraries(neix neixFeed)
 target_link_libraries(neix neixParser)
