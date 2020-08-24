@@ -75,11 +75,9 @@ if(ENABLE-TESTS MATCHES ON)
     add_subdirectory(test)
 endif()
 
-INSTALL(TARGETS neix RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
-
 # Install definitons
-install(TARGETS neix DESTINATION /usr/local/bin/)
-install(FILES ./doc/neix.1 DESTINATION /usr/local/man/man1/)
+install(TARGETS neix RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
+install(FILES ./doc/neix.1 DESTINATION "${CMAKE_INSTALL_PREFIX}/share/man/man1"
 
 # Uninstall definitins
 add_custom_target(uninstall
