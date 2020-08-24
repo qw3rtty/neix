@@ -22,7 +22,7 @@ if(NOT EXISTS "$ENV{HOME}/.config/neix/feeds.conf")
 endif()
 
 # Version
-set(neixVersion "0.1.1")
+set(neixVersion "0.1.2")
 add_compile_definitions(VERSION="${neixVersion}")
 
 # Path for main neix config file
