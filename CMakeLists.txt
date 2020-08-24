@@ -76,7 +76,7 @@ endif()
 
 # Install definitons
 install(TARGETS neix RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
-install(FILES ./doc/neix.1 DESTINATION "${CMAKE_INSTALL_PREFIX}/share/man/man1"
+install(FILES ./doc/neix.1 DESTINATION "${CMAKE_INSTALL_PREFIX}/share/man/man1")
 
 # Uninstall definitins
 add_custom_target(uninstall
