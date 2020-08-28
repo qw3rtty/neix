@@ -30,6 +30,7 @@ Application::Application()
     this->initChoices();
 
     initscr();
+	keypad(stdscr, TRUE);
     clear();
     noecho();
     cbreak();
