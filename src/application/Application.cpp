@@ -454,6 +454,11 @@ void Application::openArticle()
  */
 void Application::openArticleLink()
 {
+	if (this->openCommand.empty())
+	{
+		return;	
+	}
+
     Feeds *feeds = Feeds::getInstance();
     struct rssItem *article = feeds->getArticle(this->choice, this->articleChoice);
     article->read = 1;
