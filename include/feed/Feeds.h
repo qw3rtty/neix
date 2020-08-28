@@ -12,7 +12,7 @@
 #ifndef neix_FEEDS_H
 #define neix_FEEDS_H
 
-#define FEEDS_MAX 100
+#define FEEDS_MAX 250
 
 struct rssItem
 {
