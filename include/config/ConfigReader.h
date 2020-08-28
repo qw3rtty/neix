@@ -23,11 +23,16 @@ namespace neix
         ConfigReader(const char* configPath);
         ~ConfigReader();
 
-         vector<pair<string, string>> read();
-         static vector<pair<string, string>> getByPath(const char* path);
+		void parse();
+		int count();
+       	bool hasEntry(const char* entryName);
+	   	string getEntryByName(const char* entryName);
+		vector<pair<string, string>> getList();
+		static ConfigReader create(const char* path);
 
     protected:
         char *path;
+		vector<pair<string, string>> list;
     };
 }
 

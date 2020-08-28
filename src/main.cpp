@@ -46,25 +46,33 @@ int main(int argc, char* argv[])
     FeedLoader loader;
 
     cout << prefix << "Loading configuration files" << endl;
-    vector<pair<string, string>> mainConfig = ConfigReader::getByPath(MAIN_CONFIG_PATH);
-    if (mainConfig.empty() || mainConfig.size() < 3)
+    ConfigReader mainConfig = ConfigReader::create(MAIN_CONFIG_PATH);
+    if (mainConfig.count() == 0)
     {
-        cout << prefix << "It looks like there are some errors in neix.conf. Take a look on the README.md." << endl;
+        cout << prefix << "It looks like there are no entries in your neix.conf. Take a look on the README.md." << endl;
         return 0;
     }
 
-    vector<pair<string, string>> feedList = ConfigReader::getByPath(FEED_CONFIG_PATH);
-    if (feedList.empty())
+    ConfigReader feedConfig = ConfigReader::create(FEED_CONFIG_PATH);
+    if (feedConfig.count() == 0)
     {
         cout << prefix << "No feeds configured! Take a look into your feeds.conf file." << endl;
         return 0;
     }
     
     // Set locale for application
-    pair<string, string>locale = mainConfig.at(1);
-    setlocale (LC_ALL, locale.second.c_str());
+	if (mainConfig.hasEntry("locale"))
+	{
+		string locale = mainConfig.getEntryByName("locale");
+    	setlocale (LC_ALL, locale.c_str());
+	}
+	else
+	{
+		cout << prefix << "! Could not set 'locale', no entry found in config." << endl;	
+	}
 
     cout << prefix << "Loading feeds " << flush;
+	vector<pair<string, string>> feedList = feedConfig.getList();
     vector<pair<string, string>>::iterator it;
     for (it = feedList.begin(); it != feedList.end(); ++it)
     {
@@ -74,7 +82,7 @@ int main(int argc, char* argv[])
         loader.load(it->second);
 
         Parser *parser = FactoryParser::getInstance(loader.getFeed());
-        parser->applyConfig(mainConfig);
+        parser->applyConfig(mainConfig.getList());
         int index = distance(feedList.begin(), it);
 
         int articleIndex = 0;
@@ -85,10 +93,15 @@ int main(int argc, char* argv[])
         }
     }
     cout << " Done" << endl;
+	
+	if (!mainConfig.hasEntry("openCommand"))
+	{
+		cout << prefix << "! Will not set 'openCommand', no entry found in config." << endl;
+	}
 
     cout << prefix << "Launch TUI" << endl;
     Application app;
-    app.openCommand = mainConfig.at(2).second;
+   	app.openCommand = mainConfig.getEntryByName("openCommand");
     app.show();
 
     return 0;

@@ -16,28 +16,31 @@
 using namespace std;
 using namespace neix;
 namespace {
-    TEST(ConfigReader, read)
+	TEST(ConfigReader, create)
     {
-        ConfigReader reader(FEED_CONFIG_PATH_TEST);
+        ConfigReader cr = ConfigReader::create(MAIN_CONFIG_PATH_TEST);
+        EXPECT_EQ(cr.count(), 4);
 
-        vector<pair<string, string>> feedList;
-        feedList = reader.read();
-
-        EXPECT_EQ(feedList.size(), 4);
+		vector<pair<string, string>> list = cr.getList();
+		EXPECT_EQ(list.size(), 4);
     }
 
-    TEST(ConfigReader, validEntries)
+    TEST(ConfigReader, hasEntry)
     {
-        ConfigReader reader(MAIN_CONFIG_PATH_TEST);
-        vector<pair<string, string>> config;
-        config = reader.read();
+        ConfigReader reader = ConfigReader::create(MAIN_CONFIG_PATH_TEST);
 
-        EXPECT_EQ(config.size(), 4);
+        EXPECT_TRUE(reader.hasEntry("locale"));
+		EXPECT_FALSE(reader.hasEntry("test"));
     }
 
-    TEST(ConfigReader, getByPath)
+    TEST(ConfigReader, getEntryByName)
     {
-        vector<pair<string, string>> config = ConfigReader::getByPath(FEED_CONFIG_PATH_TEST);
-        EXPECT_EQ(config.size(), 4);
+        ConfigReader reader = ConfigReader::create(MAIN_CONFIG_PATH_TEST);
+
+		string configValue = reader.getEntryByName("openCommand");
+        EXPECT_TRUE(strcmp(configValue.c_str(), "xdg-open") == 0);
+
+		configValue = reader.getEntryByName("test");
+		EXPECT_TRUE(configValue.empty());
     }
 }
