@@ -8,7 +8,7 @@
 * [ ] Add OPML support
   * [ ] OPML Import
   * [ ] OPML Export
-* [ ] Add GIF to README
+* [x] Add GIF to README
 
 ## :chart_with_downwards_trend: Low priority
 * [x] Add man-page on install
