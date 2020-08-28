@@ -112,7 +112,7 @@ TITLE = PROTOCOL://[username[:password]@]DOMAIN.TOP-LEVEL-DOMAIN
 ```
 
 ## :memo: Contributing
-If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschwarz/neix/blob/master/.github/CONTRIBUTING.md)
+If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschwarz/neix/blob/master/.github/CONTRIBUTING.md)  
 
 ## :books: Libaries in usage
 - [rapidXML](http://rapidxml.sourceforge.net/) is used for XML parsing
