@@ -2,6 +2,8 @@
 **neix** is a **work in progress** terminal feed reader for all common RSS/Atom feeds on the web out there.
 It is free/libre software which protects your freedom. You got the full control of your news you want to read!  
 
+![neix 0.1.2 GIF](screenshots/neix-0.1.2.gif)
+
 ## :page_facing_up: Table of Contents
 - [Installation](#pager-installation)
 - [Uninstall](#pager-uninstall)
