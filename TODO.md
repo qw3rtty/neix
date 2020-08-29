@@ -9,7 +9,7 @@
   * [ ] OPML Import
   * [ ] OPML Export
 * [x] Add GIF to README
-* [ ] Add install dependencies to README
+* [x] Add install dependencies to README
 
 ## :chart_with_downwards_trend: Low priority
 * [x] Add man-page on install
