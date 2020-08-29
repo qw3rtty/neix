@@ -68,5 +68,7 @@ namespace {
 
         unsigned int importCount = getConfigLineCount(IMPORT_CONFIG_PATH_TEST);
         EXPECT_EQ(importCount, 13);
+        
+        cleanupTestImportConfig(IMPORT_CONFIG_PATH_TEST);
 	}
 }
