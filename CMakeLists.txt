@@ -3,6 +3,7 @@ project(neix)
 
 # Check if 'curl' is installed
 find_package(CURL REQUIRED)
+include_directories(${CURL_INCLUDE_DIR})
 
 # Check if 'ncurses' is installed
 find_package(Curses REQUIRED)
@@ -59,9 +60,8 @@ add_library(neixConfig STATIC ${config})
 add_library(neixHelper STATIC ${helper})
 
 add_executable(neix ${main})
-target_link_libraries(neix ${CURSES_LIBRARY} ${CURL_LIBRARY})
-target_link_libraries(neix neixApplication)
-target_link_libraries(neix neixFeed)
+target_link_libraries(neix neixApplication ${CURSES_LIBRARY})
+target_link_libraries(neix neixFeed ${CURL_LIBRARY})
 target_link_libraries(neix neixParser)
 target_link_libraries(neix neixConfig)
 target_link_libraries(neix neixHelper)

@@ -35,9 +35,8 @@ add_executable(tests
     ${testApplication}
 )
 target_link_libraries(tests gtest)
-target_link_libraries(tests ${CURSES_LIBRARY} ${CURL_LIBRARY})
-target_link_libraries(tests neixFeed)
+target_link_libraries(tests neixApplication ${CURSES_LIBRARY})
+target_link_libraries(tests neixFeed ${CURL_LIBRARY})
 target_link_libraries(tests neixParser)
 target_link_libraries(tests neixConfig)
 target_link_libraries(tests neixHelper)
-target_link_libraries(tests neixApplication)
