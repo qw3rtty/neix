@@ -6,6 +6,9 @@ It is free/libre software which protects your freedom. You got the full control 
 
 ## :page_facing_up: Table of Contents
 - [Installation](#pager-installation)
+	- [Manual installation](#pager-manual-installation)
+	- [Requirements](#bookmark_tabs-requirements)
+	- [Package manager](#computer-package-manager)
 - [Uninstall](#pager-uninstall)
 - [Unit tests](#heavy_check_mark-unit-tests)
 - [Usage](#clipboard-usage)
@@ -20,6 +23,12 @@ It is free/libre software which protects your freedom. You got the full control 
 - [Screenshots](#camera-screenshots)
 
 ## :pager: Installation
+Before you can install **neix** make sure you have installed all [required](#bookmark_tabs-requirements) packages.  
+After the successful installation you have to configure the **feeds.conf** 
+file with the feeds you want to read.  
+[Here](#nut_and_bolt-feedsconf) you can see the proper format.
+
+### :pager: Manual installation 
 Follow the steps below for installing:  
 ```bash
 $ git clone https://github.com/tomschwarz/neix.git  
@@ -28,9 +37,17 @@ $ cmake . # to enable unit-tests: cmake -DENABLE-TESTS=ON
 $ make  
 $ sudo make install
 ```
-After the successful installation you have to configure the **feeds.conf** file with the feeds you want to read.  
-[Here](#nut_and_bolt-feedsconf) you can see the proper format.
 
+### :bookmark_tabs: Requirements
+- [libcurl (version 7.64.0 or newer)](http://curl.haxx.se/download.html)
+- [ncurses (version 5 or newer)](https://invisible-island.net/ncurses/#downloads)
+
+### :computer: Package manager
+Available package managers:
+`Right now, there are no package manager available.`  
+
+Soon available package managers:
+- openSuse: `zypper install neix`
 
 ## :pager: Uninstall
 Follow the steps below for uninstalling:  
@@ -39,7 +56,8 @@ $ cd neix # should be the same directory where the repository was cloned into
 $ sudo make uninstall
 ```
 
-If there is an error during the uninstall process or you don't have the directory anymore following the steps below:  
+If there is an error during the uninstall process or you don't have the 
+directory anymore following the steps below:  
 ```bash
 $ sudo updatedb  
 $ locate neix # $ locate neix | grep /usr - if the output is to large  
