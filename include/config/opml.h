@@ -21,7 +21,8 @@ namespace neix
         opml();
         ~opml();
 
-        static bool import(const string& importPath, const string& configPath);
+        static unsigned int import(const string& importPath, 
+                const string& configPath);
     };
 }
 

@@ -28,46 +28,15 @@ void cleanupTestImportConfig(const string& path)
     system(cleanupCommand.c_str());
 }
 
-/**
- * Get line count of given file path.
- *
- * @return  count
- */
-unsigned int getConfigLineCount(const string& path)
-{
-    unsigned int count = 0;
-    ifstream file;
-    file.open(path);
-    if (!file.is_open())
-    {
-        return count; 
-    }
-
-    string line;
-    while (!file.eof())
-    {
-        getline(file, line); 
-
-        if (!line.empty())
-        {
-            count++;
-        }
-    }
-    file.close();
-
-    return count;
-}
-
 namespace {
 	TEST(OPML, import)
 	{
         cleanupTestImportConfig(IMPORT_CONFIG_PATH_TEST);
 		
-        bool imported = opml::import(TEST_ASSET_OPML, IMPORT_CONFIG_PATH_TEST);
-		EXPECT_TRUE(imported);
-
-        unsigned int importCount = getConfigLineCount(IMPORT_CONFIG_PATH_TEST);
-        EXPECT_EQ(importCount, 13);
+        unsigned int imported = opml::import(TEST_ASSET_OPML, 
+                IMPORT_CONFIG_PATH_TEST);
+		EXPECT_TRUE(imported != 0);
+        EXPECT_EQ(imported, 13);
         
         cleanupTestImportConfig(IMPORT_CONFIG_PATH_TEST);
 	}

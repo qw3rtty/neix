@@ -41,14 +41,15 @@ opml::~opml() = default;
  *
  * @param   importPath      - Path to the OPML file which should be imported
  * @param   configPath      - Path to the config file
- * @return  true on success, false else
+ * @return  The count of imported feeds
  */
-bool opml::import(const string& importPath, const string& configPath)
+unsigned int opml::import(const string& importPath, const string& configPath)
 {
     // TODO: cleanup mess!!
+    unsigned int count = 0;
     if (importPath.empty())
     {
-        return false; 
+        return count; 
     }
 
     ifstream file;
@@ -77,21 +78,25 @@ bool opml::import(const string& importPath, const string& configPath)
     configFile.open(configPath);
     if (!configFile.is_open())
     {
-        return false; 
+        return count; 
     }
 
     while (outline != 0)
     {
         xml_attribute<> *title = outline->first_attribute("title");
         xml_attribute<> *link = outline->first_attribute("xmlUrl");
-    
-        configFile << title->value() << "=" << link->value() << endl;   
+   
+        if (title && link)
+        {
+            configFile << title->value() << "=" << link->value() << endl;
+            count++;
+        } 
 
         outline = outline->next_sibling();
     }
     configFile.close();
 
-    return true;
+    return count;
 }
 
 
