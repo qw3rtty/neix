@@ -104,7 +104,7 @@ If **neix** is completely launched you got the following key's to navigate:
 
 ### :clipboard: Command line options
 **neix** has some command line options you can use. 
-See below the all available options:
+See below the available options:
 
 | Option | Argument | Description                                                                  |
 |--------|----------|------------------------------------------------------------------------------|
