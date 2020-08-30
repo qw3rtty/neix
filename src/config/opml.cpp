@@ -83,15 +83,20 @@ unsigned int opml::import(const string& importPath, const string& configPath)
 
     while (outline != 0)
     {
-        xml_attribute<> *title = outline->first_attribute("title");
-        xml_attribute<> *link = outline->first_attribute("xmlUrl");
-   
-        if (title && link)
+        xml_attribute<> *type = outline->first_attribute("type");
+        if (type && (strcmp(type->value(), "rss") == 0 || 
+                    strcmp(type->value(), "atom") == 0))
         {
-            configFile << title->value() << "=" << link->value() << endl;
-            count++;
-        } 
-
+            xml_attribute<> *title = outline->first_attribute("title");
+            xml_attribute<> *link = outline->first_attribute("xmlUrl");
+       
+            if (title && link)
+            {
+                configFile << title->value() << "=" << link->value() << endl;
+                count++;
+            } 
+        }
+        
         outline = outline->next_sibling();
     }
     configFile.close();
