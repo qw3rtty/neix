@@ -6,8 +6,9 @@ find_package(CURL REQUIRED)
 include_directories(${CURL_INCLUDE_DIR})
 
 # Check if 'ncurses' is installed
+SET(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED)
-include_directories(${CURSES_INCLUDE_DIR})
+include_directories(${CURSES_INCLUDE_DIRS})
 
 # Prepare filesystem for installation
 file(MAKE_DIRECTORY $ENV{HOME}/.config/neix/)
@@ -60,7 +61,7 @@ add_library(neixConfig STATIC ${config})
 add_library(neixHelper STATIC ${helper})
 
 add_executable(neix ${main})
-target_link_libraries(neix neixApplication ${CURSES_LIBRARY})
+target_link_libraries(neix neixApplication ${CURSES_LIBRARIES})
 target_link_libraries(neix neixFeed ${CURL_LIBRARY})
 target_link_libraries(neix neixParser)
 target_link_libraries(neix neixConfig)
