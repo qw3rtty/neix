@@ -40,7 +40,7 @@ $ sudo make install
 ```
 
 ### :bookmark_tabs: Requirements
-- [cmake (version 3.13 or newer)](https://cmake.org/download/)
+- [cmake (version 3.12 or newer)](https://cmake.org/download/)
 - [libcurl (version 7.64.0 or newer)](http://curl.haxx.se/download.html)
 - [ncurses (version 5 or newer)](https://invisible-island.net/ncurses/#downloads)
 
