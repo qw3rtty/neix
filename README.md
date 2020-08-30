@@ -106,10 +106,10 @@ If **neix** is completely launched you got the following key's to navigate:
 **neix** has some command line options you can use. 
 See below the available options:
 
-| Option | Argument | Description                                                                  |
-|--------|----------|------------------------------------------------------------------------------|
-| -v     | -        | Prints the installed version of **neix** and exits.                          | 
-| -i     | <path>   | Import feeds of given OPML file and exits. Path can be absolute or relative. |
+| Option        | Argument | Description                                                                  |
+|---------------|----------|------------------------------------------------------------------------------|
+| <kbd>-v</kbd> | `-`      | Prints the installed version of **neix** and exits.                          | 
+| <kbd>-i</kbd> | `<path>` | Import feeds of given OPML file and exits. Path can be absolute or relative. |
 
 Usage of option `-v`:
 ```bash
