@@ -98,10 +98,14 @@ If **neix** is completely launched you got the following key's to navigate:
 | <kbd>Shift</kbd> + <kbd>j</kbd> | Select the next feed of the loaded feed list.                                                          | 
 | <kbd>Shift</kbd> + <kbd>k</kbd> | Select the previous feed of the loaded feed list.                                                      |
 
+---
+
 To see which version is installed add the `-v` option to neix:
 ```bash
 $ neix -v
 ```
+
+---
 
 For more informations see the man-page:  
 ```bash
