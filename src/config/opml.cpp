@@ -56,7 +56,7 @@ unsigned int opml::import(const string& importPath, const string& configPath)
     file.open(importPath);
     if (!file.is_open())
     {
-       throw "Could not found opml file to import!"; 
+        return count;
     }
 
     string line;
@@ -75,7 +75,7 @@ unsigned int opml::import(const string& importPath, const string& configPath)
     xml_node<> *outline = body->first_node("outline");
   
     ofstream configFile; 
-    configFile.open(configPath);
+    configFile.open(configPath, ios_base::app);
     if (!configFile.is_open())
     {
         return count; 

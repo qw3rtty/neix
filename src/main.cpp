@@ -1,11 +1,15 @@
 #include <iostream>
 #include <unistd.h>
+#include <stdio.h>
+#include <string.h>
+
 #include "config.h"
 #include "application/Application.h"
 #include "feed/FeedLoader.h"
 #include "parser/Parser.h"
 #include "parser/FactoryParser.h"
 #include "config/ConfigReader.h"
+#include "config/opml.h"
 
 using namespace std;
 using namespace neix;
@@ -18,12 +22,20 @@ using namespace neix;
 void processArguments(int argc, char **argv)
 {
     int option;
-    while ((option = getopt(argc, argv, "v")) != -1)
+    unsigned int imported = 0;
+
+    while ((option = getopt(argc, argv, "vi:")) != -1)
     {
         switch (option)
         {
             case 'v':
                 cout << prefix << "Installed version: " << VERSION << endl;
+                break;
+
+            case 'i':
+                cout << prefix << "Import feeds from: " << optarg << endl;
+                imported = opml::import(optarg, FEED_CONFIG_PATH);
+                cout << prefix << imported << " feed(s) was imported" << endl;
                 break;
 
             default:
