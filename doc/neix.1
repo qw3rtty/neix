@@ -19,6 +19,13 @@ You got the full control of your news you want to read!
 .B -v
 Prints the installed version of *neix* and exits.
 
+.TP
+.B -i <path>
+Import feeds of given OPML file and exits.
+Path can be absolute or relative. The OPML file has to be a valid!
+See OPML specification: http://dev.opml.org/spec2.html
+
+
 .SH RUNTIME COMMANDS
 .TP
 .B q
@@ -76,7 +83,7 @@ This file contains the list of feeds you want to read.
 Below you can see the required format of an single entry.
 
 .B
-TITLE = PROTOCOL://[username[:password]@]DOMAIN.TOP-LEVEL-DOMAIN
+TITLE = PROTOCOL://[username[:password]@]DOMAIN.TOP-LEVEL-DOMAIN[/DIRECTORIES[/FILE]]
 
 .SH AUTHORS
 Maintained by Tom Schwarz<thomasschwarz96@web.de>, who is assisted by

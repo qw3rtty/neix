@@ -12,6 +12,7 @@ It is free/libre software which protects your freedom. You got the full control 
 - [Uninstall](#pager-uninstall)
 - [Unit tests](#heavy_check_mark-unit-tests)
 - [Usage](#clipboard-usage)
+    - [Command line options](#clipboard-command-line-options)
 - [Configuration](#wrench-configuration)
 	- [neix.conf](#nut_and_bolt-neixconf)
 	- [feeds.conf](#nut_and_bolt-feedsconf)
@@ -39,6 +40,7 @@ $ sudo make install
 ```
 
 ### :bookmark_tabs: Requirements
+- [cmake (version 3.13 or newer)](https://cmake.org/download/)
 - [libcurl (version 7.64.0 or newer)](http://curl.haxx.se/download.html)
 - [ncurses (version 5 or newer)](https://invisible-island.net/ncurses/#downloads)
 
@@ -100,9 +102,23 @@ If **neix** is completely launched you got the following key's to navigate:
 
 ---
 
-To see which version is installed add the `-v` option to neix:
+### :clipboard: Command line options
+**neix** has some command line options you can use. 
+See below the all available options:
+
+| Option | Argument | Description                                                                  |
+|--------|----------|------------------------------------------------------------------------------|
+| -v     | -        | Prints the installed version of **neix** and exits.                          | 
+| -i     | <path>   | Import feeds of given OPML file and exits. Path can be absolute or relative. |
+
+Usage of option `-v`:
 ```bash
 $ neix -v
+```
+
+Usage of option `-i`:
+```bash
+$ neix -i ~/Downloads/import.xml
 ```
 
 ---
@@ -135,7 +151,7 @@ This is the main config file of **neix**.
 This file contains the list of feeds you want to read.  
 This is the required format of an single entry (every entry should be in a seperate line):  
 ```bash
-TITLE = PROTOCOL://[username[:password]@]DOMAIN.TOP-LEVEL-DOMAIN   
+TITLE = PROTOCOL://[username[:password]@]DOMAIN.TOP-LEVEL-DOMAIN[/DIRECTORIES[/FILE]]   
 ```
 
 ## :memo: Contributing

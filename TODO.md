@@ -6,7 +6,7 @@
 * [x] Load feeds with correct order
 * [ ] Add variables for main config entries
 * [ ] Add OPML support
-  * [ ] OPML Import
+  * [x] OPML Import
   * [ ] OPML Export
 * [x] Add GIF to README
 * [x] Add install dependencies to README
