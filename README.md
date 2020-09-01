@@ -1,6 +1,10 @@
 # neix - a news reader for your terminal
-**neix** is a **work in progress** terminal feed reader for all common RSS/Atom feeds on the web out there.
-It is free/libre software which protects your freedom. You got the full control of your news you want to read!  
+**neix** is a simple, **work in progress** terminal feed reader for all common RSS/Atom feeds on the web out there.
+So you can read your news without advertisments or other annoying stuff. Just the informations you need. 
+You can import your existing collection of feeds from an OPML file or just configure them manually. 
+You also have the ability to render the text with w3m, elinks or which program you want. 
+How to configure neix, take a look into the [configuration](#wrench-configuration) section.
+You got the full control of your news you want to read! 
 
 ![neix 0.1.2 GIF](screenshots/neix-0.1.2.gif)
 
