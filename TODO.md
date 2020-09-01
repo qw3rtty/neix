@@ -2,6 +2,7 @@
 * [ ] Add SQLite (save read/unread and more)
 * [ ] Add tags to feeds
 * [ ] Add search
+* [ ] Add native HTML rendering
 * [x] Add rendering for content
 * [x] Load feeds with correct order
 * [ ] Add variables for main config entries
