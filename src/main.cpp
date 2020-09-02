@@ -88,10 +88,18 @@ int main(int argc, char* argv[])
     vector<pair<string, string>>::iterator it;
     for (it = feedList.begin(); it != feedList.end(); ++it)
     {
-        cout << "." << flush;
         struct rss *newFeed = loader.createNewFeed(it->first.c_str(), it->second.c_str());
         feeds->addFeed(newFeed);
-        loader.load(it->second);
+        
+        if (!loader.load(it->second))
+        {
+            cout << "\x1B[31m" << "." << "\033[0m" << flush;
+            continue;
+        }
+        else
+        {
+            cout << "\x1B[32m" << "." << "\033[0m" << flush;
+        }
 
         int index = distance(feedList.begin(), it);
         try 

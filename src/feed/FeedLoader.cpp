@@ -171,7 +171,7 @@ bool FeedLoader::loadXml()
 
     if (res != CURLE_OK)
     {
-        cout << "curl_easy_perform() failed: " << curl_easy_strerror(res) << endl;
+        // cout << "curl_easy_perform() failed: " << curl_easy_strerror(res) << endl;
         return false;
     }
 
