@@ -25,7 +25,11 @@ endif()
 
 # Version
 set(neixVersion "0.1.2")
-add_compile_definitions(VERSION="${neixVersion}")
+add_compile_definitions(VERSION="v${neixVersion}")
+
+# User Agent for CURL
+set(neixUserAgent "neix/${neixVersion}")
+add_compile_definitions(NEIX_USER_AGENT="${neixUserAgent}")
 
 # Path for main neix config file
 set(MainConfigPath "$ENV{HOME}/.config/neix/neix.conf")

@@ -154,6 +154,7 @@ bool FeedLoader::loadXml()
         this->resetFeed();
 
         curl_easy_setopt(curl, CURLOPT_URL, this->url.c_str());
+        curl_easy_setopt(curl, CURLOPT_USERAGENT, NEIX_USER_AGENT);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, FeedLoader::curlCalculateMemory);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *) this->feed);
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 1);
