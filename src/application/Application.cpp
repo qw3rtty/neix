@@ -324,9 +324,16 @@ void Application::printFeedsInWindow()
  */
 void Application::printArticlesInWindow()
 {
-    Feeds *feeds = Feeds::getInstance();
     int currentChoice = this->choice;
-    for (int i = 0; i < feeds->getFeed(currentChoice)->articleCount; i++)
+    Feeds *feeds = Feeds::getInstance();
+    struct rss* feed = feeds->getFeed(currentChoice);
+    if (feed->error)
+    {
+        this->aw.pushContent(" Could not parse feed! ");
+        return; 
+    }
+
+    for (int i = 0; i < feed->articleCount; i++)
     {
         string line = this->printArticleInWindow(feeds->getArticle(currentChoice, i));
         this->aw.pushContent(subStrWithEndingDots(line, this->articleWindowWidth-4));

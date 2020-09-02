@@ -93,15 +93,21 @@ int main(int argc, char* argv[])
         feeds->addFeed(newFeed);
         loader.load(it->second);
 
-        Parser *parser = FactoryParser::getInstance(loader.getFeed());
-        parser->applyConfig(mainConfig.getList());
         int index = distance(feedList.begin(), it);
-
-        int articleIndex = 0;
-        struct rssItem *newArticle;
-        while ((newArticle = parser->getFeedItem()) != nullptr)
+        try 
         {
-            feeds->addArticle(index, articleIndex++, newArticle);
+            Parser *parser = FactoryParser::getInstance(loader.getFeed());
+            parser->applyConfig(mainConfig.getList());
+
+            int articleIndex = 0;
+            struct rssItem *newArticle;
+            while ((newArticle = parser->getFeedItem()) != nullptr)
+            {
+                feeds->addArticle(index, articleIndex++, newArticle);
+            }
+        } catch(exception& e) {
+            struct rss* errorFeed = feeds->getFeed(index);
+            errorFeed->error = true;
         }
     }
     cout << " Done" << endl;

@@ -79,6 +79,7 @@ bool Feeds::addFeed(struct rss *newFeed)
     this->rssFeeds[this->count] = (struct rss*) calloc(1, sizeof(struct rss));
     this->rssFeeds[this->count]->articleCount = newFeed->articleCount;
     this->rssFeeds[this->count]->unreadCount = newFeed->unreadCount;
+    this->rssFeeds[this->count]->error = newFeed->error;
 
     memcpy(&this->rssFeeds[this->count]->title, &newFeed->title, sizeof(newFeed->title));
     memcpy(&this->rssFeeds[this->count]->url, &newFeed->url, sizeof(newFeed->url));
