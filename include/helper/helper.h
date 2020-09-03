@@ -23,4 +23,9 @@ string trim(const string& s);
 
 string subStrWithEndingDots(const string& s, const unsigned int length);
 
+string getConfigHomePath();
+string getConfigPathByName(const string& name);
+string getMainConfigPath();
+string getFeedConfigPath();
+
 #endif //neix_HELPER_H

@@ -10,6 +10,7 @@
 #include "parser/FactoryParser.h"
 #include "config/ConfigReader.h"
 #include "config/opml.h"
+#include "helper/helper.h"
 
 using namespace std;
 using namespace neix;
@@ -58,14 +59,16 @@ int main(int argc, char* argv[])
     FeedLoader loader;
 
     cout << prefix << "Loading configuration files" << endl;
-    ConfigReader mainConfig = ConfigReader::create(MAIN_CONFIG_PATH);
+    string mainConfigPath = getMainConfigPath();
+    ConfigReader mainConfig = ConfigReader::create(mainConfigPath.c_str());
     if (mainConfig.count() == 0)
     {
         cout << prefix << "It looks like there are no entries in your neix.conf. Take a look on the README.md." << endl;
         return 0;
     }
 
-    ConfigReader feedConfig = ConfigReader::create(FEED_CONFIG_PATH);
+    string feedConfigPath = getFeedConfigPath();
+    ConfigReader feedConfig = ConfigReader::create(feedConfigPath.c_str());
     if (feedConfig.count() == 0)
     {
         cout << prefix << "No feeds configured! Take a look into your feeds.conf file." << endl;

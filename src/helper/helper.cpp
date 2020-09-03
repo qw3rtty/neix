@@ -51,3 +51,55 @@ string subStrWithEndingDots(const string& s, const unsigned int length)
 
     return tmp;
 }
+
+/**
+ * Get the config home path of neix 
+ * > from current executing user
+ *
+ * @return  path
+ */
+string getConfigHomePath()
+{
+    string path = getenv("HOME");
+    path += "/.config/neix/";
+
+    return path;
+}
+
+/**
+ * Get the config path of the home path of neix
+ * > from executing user
+ *
+ * @return  path
+ */
+string getConfigPathByName(const string& name)
+{
+    string path = getConfigHomePath();
+    path += name;
+
+    return path;
+}
+
+
+/**
+ * Get the main config path of neix 
+ * > from current executing user
+ *
+ * @return  path
+ */
+string getMainConfigPath()
+{
+    return getConfigPathByName("neix.conf");
+}
+
+/**
+ * Get the feed config path of neix 
+ * > from current executing user
+ *
+ * @return  path
+ */
+string getFeedConfigPath()
+{
+    return getConfigPathByName("feeds.conf");
+}
+
