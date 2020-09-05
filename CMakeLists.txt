@@ -32,8 +32,8 @@ set(neixUserAgent "neix/${neixVersion}")
 add_compile_definitions(NEIX_USER_AGENT="${neixUserAgent}")
 
 # Add default config URL's
-add_compile_definitions(DEFAULT_MAIN_CONFIG="${CMAKE_INSTALL_DATAROOTDIR}/neix/neix.conf")
-add_compile_definitions(DEFAULT_FEEDS_CONFIG="${CMAKE_INSTALL_DATAROOTDIR}/neix/feeds.conf")
+add_compile_definitions(DEFAULT_MAIN_CONFIG="${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/neix/neix.conf")
+add_compile_definitions(DEFAULT_FEEDS_CONFIG="${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/neix/feeds.conf")
 
 # Path for main neix config file
 set(MainConfigPath "$ENV{HOME}/.config/neix/neix.conf")
