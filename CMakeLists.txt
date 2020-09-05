@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.12)
 project(neix)
 
+include(GNUInstallDirs)
+
 # Check if 'curl' is installed
 find_package(CURL REQUIRED)
 include_directories(${CURL_INCLUDE_DIR})
