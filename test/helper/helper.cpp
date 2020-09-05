@@ -76,11 +76,4 @@ namespace {
         bool exists = configFilesExists();
         EXPECT_TRUE(exists);
     }
-
-    TEST(helper, copyDefaultConfigFiles)
-    {
-        bool copied = copyDefaultConfigFiles();
-        EXPECT_TRUE(copied);
-    }
-
 }
