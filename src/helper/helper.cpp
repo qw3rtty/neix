@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
 #include <algorithm>
 #include "helper/helper.h"
 
@@ -103,3 +104,39 @@ string getFeedConfigPath()
     return getConfigPathByName("feeds.conf");
 }
 
+/**
+ * Check's if config files exists
+ *
+ * @return true if they exists, false else
+ */
+bool configFilesExists()
+{
+    ifstream mainConfig(getMainConfigPath().c_str());
+    ifstream feedConfig(getFeedConfigPath().c_str());
+
+    return mainConfig.good() && feedConfig.good();
+}
+
+/**
+ * Copy default config files to 'neix' home config directory
+ */
+bool copyDefaultConfigFiles()
+{
+    // Copy main config
+    std::ifstream defaultMainConfig(DEFAULT_MAIN_CONFIG, std::ios::binary);
+    std::ofstream mainConfig(getMainConfigPath().c_str(), std::ios::binary);
+
+    mainConfig << defaultMainConfig.rdbuf(); 
+    defaultMainConfig.close();
+    mainConfig.close();
+
+    // Copy feeds config
+    std::ifstream defaultFeedsConfig(DEFAULT_FEEDS_CONFIG, std::ios::binary);
+    std::ofstream feedsConfig(getFeedConfigPath().c_str(), std::ios::binary);
+
+    feedsConfig << defaultFeedsConfig.rdbuf(); 
+    defaultFeedsConfig.close();
+    feedsConfig.close();
+
+    return true;
+}

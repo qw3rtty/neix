@@ -31,6 +31,10 @@ add_compile_definitions(VERSION="v${neixVersion}")
 set(neixUserAgent "neix/${neixVersion}")
 add_compile_definitions(NEIX_USER_AGENT="${neixUserAgent}")
 
+# Add default config URL's
+add_compile_definitions(DEFAULT_MAIN_CONFIG="${CMAKE_INSTALL_DATAROOTDIR}/neix/neix.conf")
+add_compile_definitions(DEFAULT_FEEDS_CONFIG="${CMAKE_INSTALL_DATAROOTDIR}/neix/feeds.conf")
+
 # Path for main neix config file
 set(MainConfigPath "$ENV{HOME}/.config/neix/neix.conf")
 add_compile_definitions(MAIN_CONFIG_PATH="${MainConfigPath}")
@@ -82,6 +86,9 @@ endif()
 # Install definitons
 install(TARGETS neix RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin")
 install(FILES ./doc/neix.1 DESTINATION "${CMAKE_INSTALL_PREFIX}/share/man/man1")
+
+install(FILES ./config/neix.conf DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/neix")
+install(FILES ./config/feeds.conf DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/neix")
 
 # Uninstall definitins
 add_custom_target(uninstall

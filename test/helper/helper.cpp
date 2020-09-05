@@ -71,4 +71,16 @@ namespace {
         EXPECT_TRUE(strcmp(path.c_str(), expectedPath.c_str()) == 0);
     }
 
+    TEST(helper, configFilesExists)
+    {
+        bool exists = configFilesExists();
+        EXPECT_TRUE(exists);
+    }
+
+    TEST(helper, copyDefaultConfigFiles)
+    {
+        bool copied = copyDefaultConfigFiles();
+        EXPECT_TRUE(copied);
+    }
+
 }

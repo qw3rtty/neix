@@ -53,8 +53,13 @@ void processArguments(int argc, char **argv)
 int main(int argc, char* argv[])
 {
     processArguments(argc, argv);
-    cout << prefix << "Starting version " << VERSION << endl;
+    if (!configFilesExists())
+    {
+        copyDefaultConfigFiles();
+        cout << prefix << "No config files found. Copied default config files!" << endl;
+    }
 
+    cout << prefix << "Starting version " << VERSION << endl;
     Feeds *feeds = Feeds::getInstance();
     FeedLoader loader;
 

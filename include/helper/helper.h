@@ -28,4 +28,7 @@ string getConfigPathByName(const string& name);
 string getMainConfigPath();
 string getFeedConfigPath();
 
+bool configFilesExists();
+bool copyDefaultConfigFiles();
+
 #endif //neix_HELPER_H
