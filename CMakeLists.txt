@@ -9,6 +9,16 @@ include_directories(${CURL_INCLUDE_DIR})
 
 # Check if 'ncurses' is installed
 SET(CURSES_NEED_NCURSES TRUE)
+SET(CURSES_NEED_WIDE TRUE)
+find_package(Curses)
+if (NOT CURSES_FOUND)
+    MESSAGE(STATUS "ncursesw not found. Include only ncurses.")
+    SET(CURSES_NEED_WIDE FALSE)
+    find_package(Curses REQUIRED)
+endif()
+ include_directories(${CURSES_INCLUDE_DIRS})
+
+SET(CURSES_NEED_NCURSES TRUE)
 find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIRS})
 
