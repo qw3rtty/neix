@@ -52,6 +52,8 @@ void processArguments(int argc, char **argv)
 
 int main(int argc, char* argv[])
 {
+    // Set default configured environment, ncurses unicode support
+    setlocale(LC_ALL, "");
     processArguments(argc, argv);
     if (!configFilesExists())
     {
