@@ -72,8 +72,8 @@ namespace {
         }
     }
 
-	TEST(OPML, import)
-	{
+    TEST(OPML, import)
+    {
         cleanupTestImportConfig(IMPORT_CONFIG_PATH_TEST);
 		
         unsigned int imported = opml::import(TEST_ASSET_OPML, 
@@ -82,5 +82,5 @@ namespace {
         EXPECT_EQ(imported, 13);
         
         cleanupTestImportConfig(IMPORT_CONFIG_PATH_TEST);
-	}
+    }
 }
