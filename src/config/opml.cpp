@@ -36,6 +36,64 @@ opml::~opml() = default;
 
 
 /**
+ * Reset 
+ */
+void opml::_reset()
+{
+    this->_list.clear();
+}
+
+
+/**
+ * Set list
+ *
+ * @param   list    - List to set
+ */
+void opml::setList(vector<pair<string, string>> list)
+{
+    this->_reset();
+    this->_list = list;
+}
+
+
+/**
+ * Get list
+ */
+vector<pair<string, string>> opml::getList()
+{
+    return this->_list;
+}
+
+
+/**
+ * Create the OPML document
+ *
+ * @throw
+ */
+void opml::create()
+{
+    // TODO: create XML document
+}
+
+
+/**
+ * Export OPML to file
+ * > location given
+ *
+ * @param   path    - Path to export
+ * @throw   invalid_argument 
+ */
+void opml::exportFeeds(const string& path)
+{
+    if (path.empty())
+    {
+        throw invalid_argument("No path given!");
+    }
+
+    // TODO: export
+}
+
+/**
  * Import OPML file which contains feeds
  * > new feeds will be append 
  *
