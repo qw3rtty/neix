@@ -55,6 +55,10 @@ Available package managers:
 Soon available package managers:
 - openSuse: `zypper install neix`
 
+---
+
+For some custom build packages or scripts see the [packages](https://github.com/tomschwarz/neix/wiki/Install-packages) section on the wiki.
+
 ## :pager: Uninstall
 Follow the steps below for uninstalling:  
 ```bash
