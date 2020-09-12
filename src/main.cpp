@@ -25,7 +25,11 @@ void processArguments(int argc, char **argv)
     int option;
     unsigned int imported = 0;
 
-    while ((option = getopt(argc, argv, "vi:")) != -1)
+    string path;
+    ConfigReader fc("");
+    opml opmlExporter;
+
+    while ((option = getopt(argc, argv, "vi:e:")) != -1)
     {
         switch (option)
         {
@@ -37,6 +41,16 @@ void processArguments(int argc, char **argv)
                 cout << prefix << "Import feeds from: " << optarg << endl;
                 imported = opml::import(optarg, FEED_CONFIG_PATH);
                 cout << prefix << imported << " feed(s) was imported" << endl;
+                break;
+
+            case 'e':
+                cout << prefix << "Export feeds to: " << optarg << endl;
+                path = getFeedConfigPath();
+                fc = ConfigReader::create(path.c_str());
+                
+                opmlExporter.setList(fc.getList());
+                opmlExporter.create();
+                opmlExporter.exportFeeds(optarg);
                 break;
 
             default:
