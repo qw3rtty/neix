@@ -47,9 +47,22 @@ namespace {
     }
 
     TEST(OPML, create)
-    {}
+    {
+        vector<pair<string, string>> list;
+        list.push_back(make_pair("name", "link"));
+        list.push_back(make_pair("name", "link"));
+    
+        opml o;
+        o.setList(list);
+        o.create();
 
-    TEST(OPML, export)
+        string expected = R"(<?xml version="1.0" encoding="utf-8"?><opml version="2.0"><head><title>neix - news reader for your terminal</title></head><body><outline text="name" title="name" xmlUrl="link" type="rss"/><outline text="name" title="name" xmlUrl="link" type="rss"/></body></opml>)";
+        string content = o.getContent();
+
+        EXPECT_TRUE(strcmp(content.c_str(), expected.c_str()) == 0);
+    }
+
+    TEST(OPML, exporting)
     {
         opml o;
 
