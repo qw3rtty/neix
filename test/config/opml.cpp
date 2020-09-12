@@ -72,8 +72,12 @@ namespace {
         o.setList(list);
         
         o.create(); 
-        string path = "~/.config/neix/export.xml";
+        string path = getenv("HOME");
+        path += "/.config/neix/export.xml";
         o.exportFeeds(path);
+
+        ifstream exportFile(path.c_str());
+        EXPECT_TRUE(exportFile.good());
 
         try 
         {

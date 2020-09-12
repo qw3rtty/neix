@@ -191,7 +191,9 @@ void opml::exportFeeds(const string& path)
         throw invalid_argument("No path given!");
     }
 
-    // TODO: export opml
+    ofstream exportFile(path.c_str());
+    exportFile<< this->getContent() << endl;
+    exportFile.close();
 }
 
 /**
