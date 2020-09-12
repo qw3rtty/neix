@@ -6,9 +6,9 @@
 * [x] Add rendering for content
 * [x] Load feeds with correct order
 * [ ] Add variables for main config entries
-* [ ] Add OPML support
+* [x] Add OPML support
   * [x] OPML Import
-  * [ ] OPML Export
+  * [x] OPML Export
 * [x] Add GIF to README
 * [x] Add install dependencies to README
 
