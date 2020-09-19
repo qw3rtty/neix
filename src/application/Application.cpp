@@ -291,7 +291,10 @@ void Application::show()
 void Application::printWindows()
 {
     this->fw.show();
-    this->aw.show();
+    if (!this->reading)
+    {
+        this->aw.show();
+    }
 }
 
 
@@ -310,6 +313,7 @@ void Application::fillWindowsWithContent()
  */
 void Application::printFeedsInWindow()
 {
+    this->fw.resetContent();
     Feeds *feeds = Feeds::getInstance();
     for (int i = 0; i < feeds->getCount(); ++i)
     {
@@ -324,9 +328,25 @@ void Application::printFeedsInWindow()
  */
 void Application::printArticlesInWindow()
 {
-    int currentChoice = this->choice;
+    if (this->reading)
+    {
+        return; 
+    }
+
+    this->aw.resetContent();
     Feeds *feeds = Feeds::getInstance();
-    struct rss* feed = feeds->getFeed(currentChoice);
+    struct rss* feed = feeds->getFeed(this->choice);
+  
+    if (feed->loading && feed->articleCount == 0) 
+    {
+        this->aw.pushContent(" Feeds loading ... ");
+        return; 
+    }
+    else if (feed->loading && feed->articleCount > 0)
+    {
+        feed->loading = false;
+    }
+    
     if (feed->error)
     {
         this->aw.pushContent(" Could not parse feed! ");
@@ -335,8 +355,10 @@ void Application::printArticlesInWindow()
 
     for (int i = 0; i < feed->articleCount; i++)
     {
-        string line = this->printArticleInWindow(feeds->getArticle(currentChoice, i));
-        this->aw.pushContent(subStrWithEndingDots(line, this->articleWindowWidth-4));
+        string line = this->printArticleInWindow(
+            feeds->getArticle(this->choice, i));
+        this->aw.pushContent(
+            subStrWithEndingDots(line, this->articleWindowWidth-4));
     }
 }
 

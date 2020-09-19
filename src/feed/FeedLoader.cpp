@@ -72,6 +72,7 @@ struct rss* FeedLoader::createNewFeed(const char* name, const char* link)
     newFeed->articleCount = 0;
     newFeed->unreadCount = 0;
     newFeed->error = false;
+    newFeed->loading = true;
 
     strcpy(newFeed->title, name);
     strcpy(newFeed->url, link);

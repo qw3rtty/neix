@@ -57,7 +57,8 @@ void ApplicationWindow::_printWindow()
  */
 void ApplicationWindow::_printPad()
 {
-    prefresh(this->pad, this->offsetTop, 0, this->y+1, this->x+2, this->height, COLS);
+    prefresh(this->pad, this->offsetTop, 0, 
+        this->y+1, this->x+2, this->height, COLS);
 }
 
 /**

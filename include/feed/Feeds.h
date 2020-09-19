@@ -29,6 +29,7 @@ struct rss
     int articleCount;
     int unreadCount;
     bool error;
+    bool loading;
     struct rssItem *items[FEEDS_MAX];
 };
 

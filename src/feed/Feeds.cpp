@@ -80,6 +80,7 @@ bool Feeds::addFeed(struct rss *newFeed)
     this->rssFeeds[this->count]->articleCount = newFeed->articleCount;
     this->rssFeeds[this->count]->unreadCount = newFeed->unreadCount;
     this->rssFeeds[this->count]->error = newFeed->error;
+    this->rssFeeds[this->count]->loading = newFeed->loading;
 
     memcpy(&this->rssFeeds[this->count]->title, &newFeed->title, sizeof(newFeed->title));
     memcpy(&this->rssFeeds[this->count]->url, &newFeed->url, sizeof(newFeed->url));

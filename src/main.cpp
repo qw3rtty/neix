@@ -1,4 +1,5 @@
 #include <iostream>
+#include <thread>
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
@@ -107,22 +108,33 @@ int main(int argc, char* argv[])
 		cout << prefix << "! Could not set 'locale', no entry found in config." << endl;	
 	}
 
-    cout << prefix << "Loading feeds " << flush;
+    if (!mainConfig.hasEntry("openCommand"))
+	{
+		cout << prefix << "! Will not set 'openCommand', no entry found in config." << endl;
+	}
+
+    cout << prefix << "Loading feeds " << endl;
 	vector<pair<string, string>> feedList = feedConfig.getList();
     vector<pair<string, string>>::iterator it;
+    
+    // Fill feeds  
     for (it = feedList.begin(); it != feedList.end(); ++it)
     {
         struct rss *newFeed = loader.createNewFeed(it->first.c_str(), it->second.c_str());
         feeds->addFeed(newFeed);
-        
+    }
+
+    cout << prefix << "Launch TUI" << endl;
+    Application app;
+   	app.openCommand = mainConfig.getEntryByName("openCommand");
+    thread asyncThread(&Application::show, &app);
+
+    // Load and fill articles
+    for (it = feedList.begin(); it != feedList.end(); ++it)
+    {
         if (!loader.load(it->second))
         {
-            cout << "\x1B[31m" << "." << "\033[0m" << flush;
             continue;
-        }
-        else
-        {
-            cout << "\x1B[32m" << "." << "\033[0m" << flush;
         }
 
         int index = distance(feedList.begin(), it);
@@ -141,18 +153,11 @@ int main(int argc, char* argv[])
             struct rss* errorFeed = feeds->getFeed(index);
             errorFeed->error = true;
         }
+
+        app.fillWindowsWithContent();
+        app.printWindows();
     }
-    cout << " Done" << endl;
+    asyncThread.join();
 	
-	if (!mainConfig.hasEntry("openCommand"))
-	{
-		cout << prefix << "! Will not set 'openCommand', no entry found in config." << endl;
-	}
-
-    cout << prefix << "Launch TUI" << endl;
-    Application app;
-   	app.openCommand = mainConfig.getEntryByName("openCommand");
-    app.show();
-
     return 0;
 }
