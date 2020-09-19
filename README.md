@@ -6,7 +6,7 @@ You also have the ability to render the text with w3m, elinks or which program y
 How to configure neix, take a look into the [configuration](#wrench-configuration) section.
 You got the full control of your news you want to read! 
 
-![neix 0.1.2 GIF](screenshots/neix-0.1.2.gif)
+![neix v0.1.3 GIF](screenshots/neix-v0.1.3.gif)
 
 ## :page_facing_up: Table of Contents
 - [Installation](#pager-installation)
