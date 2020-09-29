@@ -1,5 +1,10 @@
 # :page_with_curl: TODO / Roadmap
 * [ ] Add SQLite (save read/unread and more)
+  * [ ] Mixed list of feeds, sorted by date
+  * [ ] List feeds by tags, sorted by date 
+* [ ] Add commands 
+  * [ ] Add interface 
+  * [ ] Add custom commands 
 * [ ] Add tags to feeds
 * [ ] Add search
 * [ ] Add native HTML rendering
