@@ -144,7 +144,7 @@ void Application::printVersion()
 void Application::printControlHints()
 {
     attron(A_REVERSE);
-    mvprintw(LINES - 2, 0, " q:Quit/Close | ENTER:Open | o:Open Browser | j/J:Down | k/K:Up");
+    mvprintw(LINES - 2, 0, " q:Quit/Close | ENTER:Open | o:Open Browser | j/J:Down | k/K:Up ");
     attroff(A_REVERSE);
 }
 
