@@ -98,23 +98,23 @@ int main(int argc, char* argv[])
     }
     
     // Set locale for application
-	if (mainConfig.hasEntry("locale"))
-	{
-		string locale = mainConfig.getEntryByName("locale");
-    	setlocale (LC_ALL, locale.c_str());
-	}
-	else
-	{
-		cout << prefix << "! Could not set 'locale', no entry found in config." << endl;	
-	}
+    if (mainConfig.hasEntry("locale"))
+    {
+        string locale = mainConfig.getEntryByName("locale");
+        setlocale (LC_ALL, locale.c_str());
+    }
+    else
+    {
+        cout << prefix << "! Could not set 'locale', no entry found in config." << endl;	
+    }
 
     if (!mainConfig.hasEntry("openCommand"))
-	{
-		cout << prefix << "! Will not set 'openCommand', no entry found in config." << endl;
-	}
+    {
+        cout << prefix << "! Will not set 'openCommand', no entry found in config." << endl;
+    }
 
     cout << prefix << "Loading feeds " << endl;
-	vector<pair<string, string>> feedList = feedConfig.getList();
+    vector<pair<string, string>> feedList = feedConfig.getList();
     vector<pair<string, string>>::iterator it;
     
     // Fill feeds  
@@ -126,7 +126,7 @@ int main(int argc, char* argv[])
 
     cout << prefix << "Launch TUI" << endl;
     Application app;
-   	app.openCommand = mainConfig.getEntryByName("openCommand");
+    app.openCommand = mainConfig.getEntryByName("openCommand");
     thread asyncThread(&Application::show, &app);
 
     // Load and fill articles
@@ -161,4 +161,3 @@ int main(int argc, char* argv[])
 	
     return 0;
 }
-
