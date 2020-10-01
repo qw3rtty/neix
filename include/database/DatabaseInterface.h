@@ -37,7 +37,7 @@ namespace neix
         virtual struct rss* getFeedById(int feedID) = 0;
 
         virtual struct rssItem** getArticles() = 0;
-        virtual struct rssItem* getArticleById(int feedID) = 0;
+        virtual struct rssItem* getArticleById(int articleID) = 0;
     }
 }
 
