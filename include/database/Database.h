@@ -9,19 +9,19 @@
  * @filesource
  */
 
-#ifndef NEIX_DATABASEINTERFACE_H
-#define NEIX_DATABASEINTERFACE_H
+#ifndef NEIX_DATABASE_H
+#define NEIX_DATABASE_H
 
 #include <string>
 
 using namespace std;
 namespace neix
 {
-    class DatabaseInterface
+    class Database
     {
     public:
-        virtual DatabaseInterface() = default;
-        virtual ~DatabaseInterface() = default;
+        virtual Database() = default;
+        virtual ~Database() = default;
 
         virtual void connect() = 0;
         virtual void disconnect() = 0;
@@ -41,4 +41,4 @@ namespace neix
     }
 }
 
-#endif //NEIX_DATABASEINTERFACE_H
+#endif //NEIX_DATABASE_H
