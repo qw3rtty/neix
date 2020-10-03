@@ -183,3 +183,14 @@ If you want to contribute check the [CONTRIBUTING.md](https://github.com/tomschw
 ![Screenshot 5](screenshots/screenshot-2.png)
 ![Screenshot 6](screenshots/screenshot-3.png)
 ![Screenshot 7](screenshots/screenshot-4.png)
+
+----
+
+#### Free Software Foundation
+
+<img src="https://static.fsf.org/nosvn/associate/crm/5002414.png" />
+
+I'm a member of the Free Software Foundation. Without GNU/Linux and all the great work from people all over the world producing free software, this project would not have been possible.
+
+Consider joining the FSF, [here is why](https://my.fsf.org/join?referrer=5002414).
+
