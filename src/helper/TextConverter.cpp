@@ -55,6 +55,11 @@ string TextConverter::stripHtml()
  */
 string TextConverter::execCmd()
 {
+    if (this->cmd.empty())
+    {
+        return this->stripHtml(); 
+    }
+
     string homePath = getenv("HOME");
     string rawFilePath = homePath + "/.config/neix/tmp-raw.txt";
     string renderedFilePath = homePath + "/.config/neix/tmp-rendered.txt";
