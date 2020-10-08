@@ -68,8 +68,7 @@ char * ParserRSS::getFeedTitle()
  */
 char * ParserRSS::getFeedContent()
 {
-    char *content = this->getNodeContent(this->entryNode->first_node("description"));
-    return this->renderTextToPlaintext(content);
+    return this->getNodeContent(this->entryNode->first_node("description"));
 }
 
 

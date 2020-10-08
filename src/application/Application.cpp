@@ -15,6 +15,7 @@
 
 #include "config.h"
 #include "helper/helper.h"
+#include "helper/TextConverter.h"
 #include "application/Application.h"
 #include "application/ApplicationWindow.h"
 #include "feed/Feeds.h"
@@ -472,7 +473,8 @@ void Application::openArticle()
 
     if (strlen(entry->description) > 0)
     {
-        this->rw.pushContent(trim(entry->description));
+        TextConverter tc(entry->description, this->renderCommand);
+        this->rw.pushContent(tc.execCmd());
     }
 
     this->rw.show();

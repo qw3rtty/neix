@@ -127,6 +127,7 @@ int main(int argc, char* argv[])
     cout << prefix << "Launch TUI" << endl;
     Application app;
     app.openCommand = mainConfig.getEntryByName("openCommand");
+    app.renderCommand = mainConfig.getEntryByName("renderText");
     thread asyncThread(&Application::show, &app);
 
     // Load and fill articles

@@ -32,7 +32,6 @@ Parser::Parser(struct rawRss content)
 {
     this->loadXml(content);
     this->timeFormatUI = nullptr;
-    this->renderCommand = nullptr;
 }
 
 
@@ -188,110 +187,6 @@ char *Parser::convertHtmlToPlaintext(const char *text)
 
 
 /**
- * Render given text to plaintext
- *
- * @param   text    - Text which should be rendered into plaintext
- * @return
- */
-char * Parser::renderTextToPlaintext(const char *text)
-{
-    if (this->renderCommand == nullptr)
-    {
-        return this->convertHtmlToPlaintext(text);
-    }
-
-    string homePath = getenv("HOME");
-    string rawFilePath = homePath + "/.config/neix/tmp-raw.txt";
-    string renderedFilePath = homePath + "/.config/neix/tmp-rendered.txt";
-
-    this->prepareRawText(rawFilePath, text);
-    string renderCmd = this->buildFullRenderCommand(rawFilePath, renderedFilePath);
-    this->renderText(renderCmd);
-
-    string renderedText = this->getRenderedText(renderedFilePath);
-    return strdup(renderedText.c_str());
-}
-
-
-/**
- * Build render command for system call
- *
- * @param   rawFilePath         - Path to the file which should contain the raw text
- * @param   renderedFilePath    - Path to the file for the rendered text
- * @return
- */
-string Parser::buildFullRenderCommand(const string& rawFilePath, const string& renderedFilePath)
-{
-    string renderCmd = this->renderCommand;
-    renderCmd += " ";
-    renderCmd += rawFilePath;
-    renderCmd += " > ";
-    renderCmd += renderedFilePath;
-
-    return renderCmd;
-}
-
-
-/**
- * Prepares the raw text file
- *
- * @param   rawFilePath     - Path to the file which should contain the raw text
- * @param   text            - Text to write into file
- * @return
- */
-bool Parser::prepareRawText(const string& rawFilePath, const char *text)
-{
-    bool success = false;
-    ofstream rawFile;
-    rawFile.open(rawFilePath);
-    if (rawFile.is_open())
-    {
-        rawFile << text;
-        rawFile.close();
-        success = true;
-    }
-    return success;
-}
-
-
-/**
- * Execute the system command
- *
- * @param   command     - Command which should be executed
- * @return
- */
-int Parser::renderText(const string& command)
-{
-    return system(command.c_str());
-}
-
-
-/**
- * Get rendered text
- *
- * @param   filePath    - Path to the file which contains the rendered text
- * @return
- */
-string Parser::getRenderedText(const string& filePath)
-{
-    string renderedText;
-    string line;
-
-    ifstream renderedFile(filePath);
-    if (renderedFile.is_open())
-    {
-        while ( getline (renderedFile,line) )
-        {
-            renderedText += line;
-            renderedText += "\n";
-        }
-        renderedFile.close();
-    }
-
-    return trim(renderedText);
-}
-
-/**
  * Format given times string to configured format
  *
  * @param   timeString
@@ -333,15 +228,6 @@ char *Parser::getTimeFormatUI()
 void Parser::applyConfig(const vector<pair<string, string>> config)
 {
     this->setTimeFormatUI(config.at(0).second.c_str());
-
-    if (config.size() >= 4)
-    {
-        pair<string, string> renderCmd = config.at(3);
-        if (!renderCmd.second.empty())
-        {
-            this->setRenderCommand(renderCmd.second.c_str());
-        }
-    }
 }
 
 
@@ -355,18 +241,5 @@ void Parser::setTimeFormatUI(const char *format)
     if (format != nullptr)
     {
         this->timeFormatUI = strdup(format);
-    }
-}
-
-/**
- * Set the render command
- *
- * @param   command     - String which contains the system command for rendering an text
- */
-void Parser::setRenderCommand(const char *command)
-{
-    if (command != nullptr)
-    {
-        this->renderCommand = strdup(command);
     }
 }

@@ -40,14 +40,6 @@ namespace
         char *dateFormat = parser->getTimeFormatUI();
         EXPECT_TRUE(strcmp(dateFormat, "%d.%m.%Y %H:%M") == 0);
 
-        string htmlText = "<h1>Text</h1> <p>and words</p>";
-        string renderedText = parser->renderTextToPlaintext(htmlText.c_str());
-        EXPECT_TRUE(strcmp(renderedText.c_str(), "Text and words") == 0);
-
-        parser->setRenderCommand("w3m -dump -T text/html");
-        renderedText = parser->renderTextToPlaintext(htmlText.c_str());
-        EXPECT_TRUE(strcmp(renderedText.c_str(), "Text\n\nand words") == 0);
-
         struct rssItem *item = nullptr;
         while ((item = parser->getFeedItem()) != nullptr)
         {

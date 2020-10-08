@@ -9,8 +9,8 @@
  * @filesource
  */
 
-#ifndef neix_PARSER_H
-#define neix_PARSER_H
+#ifndef NEIX_PARSER_H
+#define NEIX_PARSER_H
 
 #include <vector>
 #include "rapidxml/rapidxml.hpp"
@@ -36,10 +36,8 @@ namespace neix
         struct rssItem* getFeedItem();
 
         char* convertHtmlToPlaintext(const char *text);
-        char* renderTextToPlaintext(const char *text);
         char* formatTimeString(const char *timeString);
         void setTimeFormatUI(const char *format);
-        void setRenderCommand(const char *command);
         char* getTimeFormatUI();
         void applyConfig(const vector<pair<string, string>> config);
 
@@ -48,12 +46,6 @@ namespace neix
         xml_node<> *rootNode{};
         xml_node<> *entryNode{};
         char* timeFormatUI;
-        char* renderCommand;
-
-        string buildFullRenderCommand(const string& rawFilePath, const string& renderedFilePath);
-        bool prepareRawText(const string& rawFilePath, const char *text);
-        int renderText(const string& command);
-        string getRenderedText(const string& filePath);
 
         virtual char* getFeedDateFormat() = 0;
         char* getNodeContent(xml_node<> *node);
@@ -62,4 +54,4 @@ namespace neix
     };
 }
 
-#endif //neix_PARSER_H
+#endif //NEIX_PARSER_H
