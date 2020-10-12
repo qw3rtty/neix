@@ -1,4 +1,9 @@
 # neix - a news reader for your terminal
+![issues](https://img.shields.io/github/issues/tomschwarz/neix)
+![forks](https://img.shields.io/github/forks/tomschwarz/neix)
+![stars](https://img.shields.io/github/stars/tomschwarz/neix)
+![license](https://img.shields.io/github/license/tomschwarz/neix)
+
 **neix** is a simple, **work in progress** terminal feed reader for all common RSS/Atom feeds on the web out there.
 So you can read your news without advertisments or other annoying stuff. Just the informations you need. 
 You can import your existing collection of feeds from an OPML file or just configure them manually. 
