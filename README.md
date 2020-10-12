@@ -55,8 +55,8 @@ $ sudo make install
 
 ### :computer: Packaging
 **neix** is available packaged for the following package manager/operating systems:  
-- [AUR](https://aur.archlinux.org/packages/neix-git/)
-- [zypper](https://build.opensuse.org/package/show/network:utilities/neix)
+[![AUR](https://img.shields.io/badge/AUR-v0.1.3-brightgreen)](https://aur.archlinux.org/packages/neix-git/)  
+[![zypper](https://img.shields.io/badge/zypper-v0.1.3-brightgreen)](https://build.opensuse.org/package/show/network:utilities/neix)  
 
 ---
 
