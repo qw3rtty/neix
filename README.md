@@ -12,7 +12,7 @@ You got the full control of your news you want to read!
 - [Installation](#pager-installation)
 	- [Manual installation](#pager-manual-installation)
 	- [Requirements](#bookmark_tabs-requirements)
-	- [Package manager](#computer-package-manager)
+	- [Packaging](#computer-packaging)
 - [Uninstall](#pager-uninstall)
 - [Unit tests](#heavy_check_mark-unit-tests)
 - [Usage](#clipboard-usage)
@@ -48,12 +48,10 @@ $ sudo make install
 - [libcurl (version 7.64.0 or newer)](http://curl.haxx.se/download.html)
 - [ncurses (version 5 or newer)](https://invisible-island.net/ncurses/#downloads)
 
-### :computer: Package manager
-Available package managers:
-`Right now, there are no package manager available.`  
-
-Soon available package managers:
-- openSuse: `zypper install neix`
+### :computer: Packaging
+**neix** is available packaged for the following package manager/operating systems:  
+- [AUR](https://aur.archlinux.org/packages/neix-git/)
+- [zypper](https://build.opensuse.org/package/show/network:utilities/neix)
 
 ---
 
