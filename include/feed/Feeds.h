@@ -13,6 +13,8 @@
 #define neix_FEEDS_H
 
 #define FEEDS_MAX 250
+#include <vector>
+using namespace std;
 
 struct rssItem
 {
@@ -30,7 +32,7 @@ struct rss
     int unreadCount;
     bool error;
     bool loading;
-    struct rssItem *items[FEEDS_MAX];
+    vector<struct rssItem*> items;
 };
 
 namespace neix

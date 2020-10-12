@@ -105,8 +105,7 @@ bool Feeds::addArticle(int feedIndex, int articleIndex, struct rssItem *newArtic
         throw out_of_range("Index is out of range!");
     }
 
-    this->rssFeeds[feedIndex]->items[articleIndex] = (struct rssItem*) calloc(FEEDS_MAX, sizeof(struct rssItem));
-    this->rssFeeds[feedIndex]->items[articleIndex] = newArticle;
+    this->rssFeeds[feedIndex]->items.push_back(newArticle);
 
     this->rssFeeds[feedIndex]->articleCount++;
     this->rssFeeds[feedIndex]->unreadCount++;
@@ -146,7 +145,7 @@ struct rssItem * Feeds::getArticle(int feedIndex, int articleIndex)
         throw out_of_range("Index is out of range!");
     }
 
-    return this->rssFeeds[feedIndex]->items[articleIndex];
+    return this->rssFeeds[feedIndex]->items.at(articleIndex);
 }
 
 
