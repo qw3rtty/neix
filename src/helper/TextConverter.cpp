@@ -26,6 +26,7 @@ TextConverter::TextConverter(string t, string c)
 {
     this->text = move(t);
     this->cmd = move(c);
+    this->cmdExecuted = false;
 }
 
 
@@ -67,9 +68,16 @@ string TextConverter::execCmd()
     this->_prepareRawText(rawFilePath, this->text);
     string renderCmd = this->_buildFullRenderCommand(rawFilePath, 
         renderedFilePath);
-    this->_renderText(renderCmd);
-
-    return this->_getRenderedText(renderedFilePath);
+   
+    if (this->_renderText(renderCmd) == 0)
+    {
+        this->cmdExecuted = true;
+        return this->_getRenderedText(renderedFilePath);
+    }
+    else
+    {
+        return this->stripHtml(); 
+    }
 }
 
 

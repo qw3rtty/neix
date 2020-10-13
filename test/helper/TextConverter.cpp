@@ -44,7 +44,13 @@ namespace {
     {
         TextConverter tc("Hello <b>World</b> <p>Lorem ispum.</p>", "w3m -dump -T text/html");
         string txt = tc.execCmd();
-        EXPECT_STREQ(txt.c_str(), "Hello World\n\nLorem ispum."); 
+       
+        string expected = "Hello World\n\nLorem ispum.";  
+        if (!tc.cmdExecuted)
+        {
+            expected = "Hello World Lorem ispum."; 
+        }
+        EXPECT_STREQ(txt.c_str(), expected.c_str());
 
         TextConverter tcon("Hello <b>World</b> again.");
         txt = tcon.execCmd();

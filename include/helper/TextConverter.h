@@ -26,6 +26,7 @@ namespace neix
 
         string stripHtml();
         string execCmd();
+        bool cmdExecuted;
 
     private:
         string text;
