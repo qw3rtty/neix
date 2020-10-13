@@ -76,14 +76,7 @@ bool Feeds::validIndex(int index)
  */
 bool Feeds::addFeed(struct rss *newFeed)
 {
-    this->rssFeeds[this->count] = (struct rss*) calloc(1, sizeof(struct rss));
-    this->rssFeeds[this->count]->articleCount = newFeed->articleCount;
-    this->rssFeeds[this->count]->unreadCount = newFeed->unreadCount;
-    this->rssFeeds[this->count]->error = newFeed->error;
-    this->rssFeeds[this->count]->loading = newFeed->loading;
-
-    memcpy(&this->rssFeeds[this->count]->title, &newFeed->title, sizeof(newFeed->title));
-    memcpy(&this->rssFeeds[this->count]->url, &newFeed->url, sizeof(newFeed->url));
+    this->rssFeeds.push_back(newFeed);
     this->count++;
 
     return true;
@@ -105,10 +98,9 @@ bool Feeds::addArticle(int feedIndex, int articleIndex, struct rssItem *newArtic
         throw out_of_range("Index is out of range!");
     }
 
-    this->rssFeeds[feedIndex]->items.push_back(newArticle);
-
-    this->rssFeeds[feedIndex]->articleCount++;
-    this->rssFeeds[feedIndex]->unreadCount++;
+    this->rssFeeds.at(feedIndex)->items.push_back(newArticle);
+    this->rssFeeds.at(feedIndex)->articleCount++;
+    this->rssFeeds.at(feedIndex)->unreadCount++;
 
     return true;
 }
@@ -127,7 +119,7 @@ struct rss *Feeds::getFeed(int index)
         throw out_of_range("Index is out of range!");
     }
 
-    return this->rssFeeds[index];
+    return this->rssFeeds.at(index);
 }
 
 
@@ -145,7 +137,7 @@ struct rssItem * Feeds::getArticle(int feedIndex, int articleIndex)
         throw out_of_range("Index is out of range!");
     }
 
-    return this->rssFeeds[feedIndex]->items.at(articleIndex);
+    return this->rssFeeds.at(feedIndex)->items.at(articleIndex);
 }
 
 

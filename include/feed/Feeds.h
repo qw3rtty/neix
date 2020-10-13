@@ -9,25 +9,25 @@
  * @filesource
  */
 
-#ifndef neix_FEEDS_H
-#define neix_FEEDS_H
+#ifndef NEIX_FEEDS_H
+#define NEIX_FEEDS_H
 
-#define FEEDS_MAX 250
 #include <vector>
 using namespace std;
 
 struct rssItem
 {
-    char *title;
-    char *description;
-    char *date;
-    char *url;
+    char* title;
+    char* description;
+    char* date;
+    char* url;
     int read;
 };
+
 struct rss
 {
-    char *title;
-    char *url;
+    char* title;
+    char* url;
     int articleCount;
     int unreadCount;
     bool error;
@@ -40,23 +40,23 @@ namespace neix
     class Feeds
     {
     public:
-        static Feeds *getInstance();
-        struct rss *getFeed(int index);
-        struct rssItem *getArticle(int feedIndex, int articleIndex);
+        static Feeds* getInstance();
+        struct rss* getFeed(int index);
+        struct rssItem* getArticle(int feedIndex, int articleIndex);
         int getCount();
         char* getFeedLineTitle(int feedIndex, unsigned int length = 0);
 
         bool validIndex(int index);
-        bool addFeed(struct rss *newFeed);
-        bool addArticle(int feedIndex, int articleIndex, struct rssItem *newArticle);
+        bool addFeed(struct rss* newFeed);
+        bool addArticle(int feedIndex, int articleIndex, struct rssItem* newArticle);
 
     private:
         Feeds();
         int count;
 
-        static Feeds *instance;
-        struct rss *rssFeeds[FEEDS_MAX];
+        static Feeds* instance;
+        vector<struct rss*> rssFeeds;
     };
 }
 
-#endif //neix_FEEDS_H
+#endif //NEIX_FEEDS_H
