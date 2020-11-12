@@ -61,8 +61,8 @@ string subStrWithEndingDots(const string& s, const unsigned int length)
  */
 string getConfigHomePath()
 {
-    string path = getenv("HOME");
-    path += "/.config/neix/";
+    string path = getenv("XDG_CONFIG_HOME");
+    path += "/neix/";
 
     return path;
 }

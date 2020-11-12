@@ -23,16 +23,16 @@ find_package(Curses REQUIRED)
 include_directories(${CURSES_INCLUDE_DIRS})
 
 # Prepare filesystem for installation
-file(MAKE_DIRECTORY $ENV{HOME}/.config/neix/)
+file(MAKE_DIRECTORY $ENV{XDG_CONFIG_HOME}//neix/)
 
 # Check for main config file
-if(NOT EXISTS "$ENV{HOME}/.config/neix/neix.conf")
-    configure_file(./config/neix.conf $ENV{HOME}/.config/neix/neix.conf)
+if(NOT EXISTS "$ENV{XDG_CONFIG_HOME}/neix/neix.conf")
+    configure_file(./config/neix.conf $ENV{XDG_CONFIG_HOME}/neix/neix.conf)
 endif()
 
 # Check for feed config file
-if(NOT EXISTS "$ENV{HOME}/.config/neix/feeds.conf")
-    configure_file(./config/feeds.conf $ENV{HOME}/.config/neix/feeds.conf)
+if(NOT EXISTS "$ENV{XDG_CONFIG_HOME}/neix/feeds.conf")
+    configure_file(./config/feeds.conf $ENV{XDG_CONFIG_HOME}/neix/feeds.conf)
 endif()
 
 # Version
@@ -48,11 +48,11 @@ add_compile_definitions(DEFAULT_MAIN_CONFIG="${CMAKE_INSTALL_PREFIX}/${CMAKE_INS
 add_compile_definitions(DEFAULT_FEEDS_CONFIG="${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATAROOTDIR}/neix/feeds.conf")
 
 # Path for main neix config file
-set(MainConfigPath "$ENV{HOME}/.config/neix/neix.conf")
+set(MainConfigPath "$ENV{XDG_CONFIG_HOME}/neix/neix.conf")
 add_compile_definitions(MAIN_CONFIG_PATH="${MainConfigPath}")
 
 # Path for feed config file
-set(FeedConfigPath "$ENV{HOME}/.config/neix/feeds.conf")
+set(FeedConfigPath "$ENV{XDG_CONFIG_HOME}/neix/feeds.conf")
 add_compile_definitions(FEED_CONFIG_PATH="${FeedConfigPath}")
 
 set(CMAKE_CXX_STANDARD 11)
