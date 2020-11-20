@@ -53,8 +53,6 @@ namespace neix
         int articleWindowWidth;
 
         void initChoices();
-        void printVersion();
-        void printControlHints();
         void createFeedWindow();
         void createArticleWindow();
         void createReadWindow();

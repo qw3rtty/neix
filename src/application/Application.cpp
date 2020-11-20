@@ -39,7 +39,7 @@ Application::Application()
 
     this->openCommand = "";
     this->reading = false;
-    this->windowHeight = LINES - 4;
+    this->windowHeight = LINES;
     this->createFeedWindow();
     this->createArticleWindow();
     this->createReadWindow();
@@ -76,7 +76,7 @@ void Application::createFeedWindow()
     this->feedWindowWidth = (int) (COLS / 3);
 
     this->fw.setDimensions(this->windowHeight, this->feedWindowWidth);
-    this->fw.setPosition(2, 0);
+    this->fw.setPosition(0, 0);
 }
 
 
@@ -88,7 +88,7 @@ void Application::createArticleWindow()
     this->articleWindowWidth = (int) (COLS / 3) * 2;
 
     this->aw.setDimensions(this->windowHeight, this->articleWindowWidth);
-    this->aw.setPosition(2, this->feedWindowWidth);
+    this->aw.setPosition(0, this->feedWindowWidth);
 }
 
 /**
@@ -97,7 +97,7 @@ void Application::createArticleWindow()
 void Application::createReadWindow()
 {
     this->rw.setDimensions(this->windowHeight, this->articleWindowWidth);
-    this->rw.setPosition(2, this->feedWindowWidth);
+    this->rw.setPosition(0, this->feedWindowWidth);
 
     this->rw.enableHighlight = false;
     this->rw.scrollAlways = true;
@@ -113,9 +113,6 @@ void Application::resize()
     refresh();
     clear();
 
-    this->printVersion();
-    this->printControlHints();
-
     this->createFeedWindow();
     this->createArticleWindow();
     this->createReadWindow();
@@ -129,35 +126,11 @@ void Application::resize()
 
 
 /**
- * Print current version line
- */
-void Application::printVersion()
-{
-    attron(A_REVERSE);
-    mvprintw(1, 0, " neix %s ", VERSION);
-    attroff(A_REVERSE);
-}
-
-
-/**
- * Print control hints
- */
-void Application::printControlHints()
-{
-    attron(A_REVERSE);
-    mvprintw(LINES - 2, 0, " q:Quit/Close | ENTER:Open | o:Open Browser | j/J:Down | k/K:Up ");
-    attroff(A_REVERSE);
-}
-
-
-/**
  * Show's complete UI
  */
 void Application::show()
 {
     Feeds *feeds = Feeds::getInstance();
-    this->printVersion();
-    this->printControlHints();
 
     refresh();
     this->fillWindowsWithContent();
@@ -207,14 +180,14 @@ void Application::show()
                 break;
 
             case KEY_UPPER_K:
-				if (this->reading)
-				{
-					break;	
-				}
+                if (this->reading)
+                {
+                    break;
+                }
 
                 this->articleChoice = 0;
                 this->fw.decreaseHighlight();
-		this->fw.scrollUp();
+                this->fw.scrollUp();
                 this->fw.update();
                 this->choice = this->decreaseChoice(this->choice, feedCount);
 
@@ -225,14 +198,14 @@ void Application::show()
                 break;
 
             case KEY_UPPER_J:
-				if (this->reading)
-				{
-					break;	
-				}
+                if (this->reading)
+                {
+                    break;
+                }
 
                 this->articleChoice = 0;
                 this->fw.increaseHighlight();
-		this->fw.scrollDown();
+                this->fw.scrollDown();
                 this->fw.update();
                 this->choice = this->increaseChoice(this->choice, feedCount);
 
@@ -273,8 +246,6 @@ void Application::show()
                 break;
 
             default:
-                mvprintw(LINES - 1, 0, "Charcter pressed is = %3d Hopefully it can be printed as '%c'", c, c);
-                refresh();
                 break;
         }
 
@@ -486,10 +457,10 @@ void Application::openArticle()
  */
 void Application::openArticleLink()
 {
-	if (this->openCommand.empty())
-	{
-		return;	
-	}
+    if (this->openCommand.empty())
+    {
+        return;
+    }
 
     Feeds *feeds = Feeds::getInstance();
     struct rssItem *article = feeds->getArticle(this->choice, this->articleChoice);

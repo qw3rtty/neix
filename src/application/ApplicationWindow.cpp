@@ -97,7 +97,7 @@ bool ApplicationWindow::_create()
     this->win = newwin(this->height, this->width, this->y, this->x);
     keypad(this->win, TRUE);
 
-    this->pad = newpad(200, this->width-4);
+    this->pad = newpad(this->height-4, this->width-4);
     keypad(this->pad, TRUE);
 
     return this->win != nullptr && this->pad != nullptr;
@@ -289,7 +289,7 @@ void ApplicationWindow::setDimensions(int height, int width)
     if (this->created)
     {
         wresize(this->win, this->height, this->width);
-        wresize(this->pad, 200, this->width-4);
+        wresize(this->pad, this->height-4, this->width-4);
     }
 }
 

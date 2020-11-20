@@ -105,7 +105,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        cout << prefix << "! Could not set 'locale', no entry found in config." << endl;	
+        cout << prefix << "! Could not set 'locale', no entry found in config." << endl;
     }
 
     if (!mainConfig.hasEntry("openCommand"))
@@ -159,6 +159,6 @@ int main(int argc, char* argv[])
         app.printWindows();
     }
     asyncThread.join();
-	
+
     return 0;
 }
