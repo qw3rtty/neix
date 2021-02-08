@@ -40,7 +40,7 @@ void processArguments(int argc, char **argv)
 
             case 'i':
                 cout << prefix << "Import feeds from: " << optarg << endl;
-                imported = opml::import(optarg, FEED_CONFIG_PATH);
+                imported = opml::import(optarg, getFeedConfigPath());
                 cout << prefix << imported << " feed(s) was imported" << endl;
                 break;
 
