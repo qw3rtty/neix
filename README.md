@@ -132,11 +132,12 @@ If **neix** is completely launched you got the following key's to navigate:
 **neix** has some command line options you can use. 
 See below the available options:
 
-| Option        | Argument | Description                                                                                      |
-|---------------|----------|--------------------------------------------------------------------------------------------------|
-| <kbd>-v</kbd> | `-`      | Prints the installed version of **neix** and exits.                                              | 
-| <kbd>-i</kbd> | `<path>` | Import feeds of given OPML file and exits. Path can be absolute or relative.                     |
-| <kbd>-e</kbd> | `<path>` | Export feeds to given file or path. Creates an OPML 2.0 file. Path can be absolute or relative.  |
+| Option        | Argument     | Description                                                                                      |
+|---------------|--------------|--------------------------------------------------------------------------------------------------|
+| <kbd>-v</kbd> | `-`          | Prints the installed version of **neix** and exits.                                              | 
+| <kbd>-i</kbd> | `<path>`     | Import feeds of given OPML file and exits. Path can be absolute or relative.                     |
+| <kbd>-e</kbd> | `<path>`     | Export feeds to given file or path. Creates an OPML 2.0 file. Path can be absolute or relative.  |
+| <kbd>-f</kbd> | `<filename>` | Use a custom feed configuration file. Have to be located in the default neix config folder.      |
 
 Usage of option `-v`:
 ```bash
@@ -151,6 +152,12 @@ $ neix -i ~/Downloads/import.xml
 Usage of option `-e`:
 ```bash
 $ neix -e ~/Downloads/export.xml
+```
+
+Usage of option `-f`:
+```bash
+# Location: ~/.config/neix/custom-feeds.conf
+$ neix -f custom-feeds.conf
 ```
 
 ---

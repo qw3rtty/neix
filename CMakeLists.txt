@@ -36,7 +36,7 @@ if(NOT EXISTS "$ENV{HOME}/.config/neix/feeds.conf")
 endif()
 
 # Version
-set(neixVersion "0.1.3")
+set(neixVersion "0.1.4")
 add_compile_definitions(VERSION="v${neixVersion}")
 
 # User Agent for CURL
