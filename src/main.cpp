@@ -16,6 +16,8 @@
 using namespace std;
 using namespace neix;
 
+string CUSTOM_FEED_CONFIG = "";
+
 /**
  * Process command line arguments
  * @param   argc
@@ -23,6 +25,7 @@ using namespace neix;
  */
 void processArguments(int argc, char **argv)
 {
+    int exiting = 1;
     int option;
     unsigned int imported = 0;
 
@@ -30,7 +33,7 @@ void processArguments(int argc, char **argv)
     ConfigReader fc("");
     opml opmlExporter;
 
-    while ((option = getopt(argc, argv, "vi:e:")) != -1)
+    while ((option = getopt(argc, argv, "vi:e:f:")) != -1)
     {
         switch (option)
         {
@@ -54,12 +57,20 @@ void processArguments(int argc, char **argv)
                 opmlExporter.exportFeeds(optarg);
                 break;
 
+            case 'f':
+                // TODO: Extract to function without exit!
+                // Maybe there coming more options without exiting after
+                cout << prefix << "Use custom feed config: " << optarg << endl;
+                CUSTOM_FEED_CONFIG = optarg;
+                exiting = 0;
+                break;
+
             default:
                 break;
         }
     }
 
-    if (argc > 1)
+    if (exiting && argc > 1)
     {
         exit(0);
     }
@@ -89,7 +100,7 @@ int main(int argc, char* argv[])
         return 0;
     }
 
-    string feedConfigPath = getFeedConfigPath();
+    string feedConfigPath = getFeedConfigPath(CUSTOM_FEED_CONFIG);
     ConfigReader feedConfig = ConfigReader::create(feedConfigPath.c_str());
     if (feedConfig.count() == 0)
     {

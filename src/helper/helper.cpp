@@ -99,9 +99,12 @@ string getMainConfigPath()
  *
  * @return  path
  */
-string getFeedConfigPath()
+string getFeedConfigPath(string configName)
 {
-    return getConfigPathByName("feeds.conf");
+    if (configName.empty()) {
+       configName = "feeds.conf"; 
+    }
+    return getConfigPathByName(configName);
 }
 
 /**

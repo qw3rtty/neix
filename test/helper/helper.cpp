@@ -67,7 +67,12 @@ namespace {
         string path = getFeedConfigPath();
         string expectedPath = getenv("HOME");
         expectedPath += "/.config/neix/feeds.conf";
+        EXPECT_TRUE(strcmp(path.c_str(), expectedPath.c_str()) == 0);
 
+        string customConfigName = "custom-feeds.conf";
+        path = getFeedConfigPath(customConfigName);
+        expectedPath = getenv("HOME");
+        expectedPath += "/.config/neix/custom-feeds.conf";
         EXPECT_TRUE(strcmp(path.c_str(), expectedPath.c_str()) == 0);
     }
 

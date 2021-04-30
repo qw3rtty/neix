@@ -27,7 +27,7 @@ string subStrWithEndingDots(const string& s, const unsigned int length);
 string getConfigHomePath();
 string getConfigPathByName(const string& name);
 string getMainConfigPath();
-string getFeedConfigPath();
+string getFeedConfigPath(string configName = "");
 bool configFilesExists();
 bool copyDefaultConfigFiles();
 
