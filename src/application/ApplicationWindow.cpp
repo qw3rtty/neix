@@ -66,7 +66,7 @@ void ApplicationWindow::_printPad()
  */
 void ApplicationWindow::_printContent()
 {
-    wclear(this->pad);
+    werase(this->pad);
     int x = 0, y = 0, counter = 0;
     for (auto & line: this->content)
     {
@@ -124,8 +124,8 @@ void ApplicationWindow::show()
 void ApplicationWindow::hide()
 {
     refresh();
-    wclear(this->pad);
-    wclear(this->win);
+    werase(this->pad);
+    werase(this->win);
 }
 
 
@@ -146,7 +146,7 @@ void ApplicationWindow::reset()
 {
     this->offsetTop = 0;
     this->resetContent();
-    wclear(this->pad);
+    werase(this->pad);
 }
 
 void ApplicationWindow::resetContent()

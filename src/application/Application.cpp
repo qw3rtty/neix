@@ -32,7 +32,7 @@ Application::Application()
 
     initscr();
 	keypad(stdscr, TRUE);
-    clear();
+    erase();
     noecho();
     cbreak();
     curs_set(0);
@@ -111,7 +111,7 @@ void Application::resize()
 {
     endwin();
     refresh();
-    clear();
+    erase();
 
     this->printVersion();
     this->printControlHints();
