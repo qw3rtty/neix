@@ -30,5 +30,5 @@ string getMainConfigPath();
 string getFeedConfigPath(string configName = "");
 bool configFilesExists();
 bool copyDefaultConfigFiles();
-
+string replaceString(string str, const string& replace, const string& with);
 #endif //neix_HELPER_H

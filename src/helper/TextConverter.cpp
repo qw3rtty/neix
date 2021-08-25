@@ -22,11 +22,12 @@ using namespace neix;
 /**
  * Constructor
  */
-TextConverter::TextConverter(string t, string c)
+TextConverter::TextConverter(string t, int a_w, string c)
 {
     this->text = move(t);
     this->cmd = move(c);
     this->cmdExecuted = false;
+    this->article_width = a_w;
 }
 
 
@@ -91,7 +92,7 @@ string TextConverter::execCmd()
 string TextConverter::_buildFullRenderCommand(const string& rawFilePath, 
     const string& renderedFilePath)
 {
-    string renderCmd = this->cmd;
+    string renderCmd = replaceString(this->cmd, "$article_width", to_string(this->article_width));
     renderCmd += " ";
     renderCmd += rawFilePath;
     renderCmd += " > ";
