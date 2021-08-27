@@ -127,7 +127,6 @@ void Application::resize()
     {
         this->openArticle();
     }
-    refresh();
 }
 
 
@@ -148,10 +147,11 @@ void Application::printVersion()
 void Application::printControlHints()
 {
     attron(A_REVERSE);
-    if (COLS > 74)
-        mvprintw(LINES - 2, 0, " q:Quit/Close | ENTER:Open | o:Open Browser | j/J/PGDN:Down | k/K/PGUP:Up ");
+    if (COLS >= 85)
+        mvprintw(LINES - 2, 0, " q/<- : Close | ENTER/-> : Open | o : Open Browser | j/J/PGDN : Down | k/K/PGUP : Up ");
     else
-        mvprintw(LINES - 2, 0, " q | ENTER | o | j/J/PGDN | k/K/PGUP ");
+        mvprintw(LINES - 2, 0, "q/←|↵/→|o|j/J/PGDN/↑|k/K/PGUP/↓");
+
     attroff(A_REVERSE);
 }
 
