@@ -116,15 +116,18 @@ void Application::resize()
     this->printVersion();
     this->printControlHints();
 
+    this->windowHeight = LINES - 4;
     this->createFeedWindow();
     this->createArticleWindow();
     this->createReadWindow();
+    this->fillWindowsWithContent();
     this->printWindows();
 
     if (this->reading)
     {
         this->openArticle();
     }
+    refresh();
 }
 
 
@@ -145,7 +148,10 @@ void Application::printVersion()
 void Application::printControlHints()
 {
     attron(A_REVERSE);
-    mvprintw(LINES - 2, 0, " q:Quit/Close | ENTER:Open | o:Open Browser | j/J:Down | k/K:Up ");
+    if (COLS > 74)
+        mvprintw(LINES - 2, 0, " q:Quit/Close | ENTER:Open | o:Open Browser | j/J/PGDN:Down | k/K/PGUP:Up ");
+    else
+        mvprintw(LINES - 2, 0, " q | ENTER | o | j/J/PGDN | k/K/PGUP ");
     attroff(A_REVERSE);
 }
 
@@ -170,6 +176,7 @@ void Application::show()
         int articleCount = feeds->getFeed(this->choice)->articleCount;
         switch (this->c)
         {
+            case KEY_R:
             case KEY_RESIZE:
                 this->resize();
                 break;
@@ -206,6 +213,7 @@ void Application::show()
                 }
                 break;
 
+            case KEY_PPAGE:
             case KEY_UPPER_K:
 				if (this->reading)
 				{
@@ -214,7 +222,7 @@ void Application::show()
 
                 this->articleChoice = 0;
                 this->fw.decreaseHighlight();
-		this->fw.scrollUp();
+                this->fw.scrollUp();
                 this->fw.update();
                 this->choice = this->decreaseChoice(this->choice, feedCount);
 
@@ -224,6 +232,7 @@ void Application::show()
                 this->aw.update();
                 break;
 
+            case KEY_NPAGE:
             case KEY_UPPER_J:
 				if (this->reading)
 				{
@@ -232,7 +241,7 @@ void Application::show()
 
                 this->articleChoice = 0;
                 this->fw.increaseHighlight();
-		this->fw.scrollDown();
+                this->fw.scrollDown();
                 this->fw.update();
                 this->choice = this->increaseChoice(this->choice, feedCount);
 
