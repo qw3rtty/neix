@@ -255,6 +255,7 @@ void Application::show()
                 this->openArticleLink();
                 break;
 
+            case KEY_RIGHT:
             case ENTER:
                 this->aw.hide();
                 this->openArticle();
@@ -264,6 +265,7 @@ void Application::show()
                 this->fw.update();
                 break;
 
+            case KEY_LEFT:
             case KEY_Q:
                 if (this->reading)
                 {
