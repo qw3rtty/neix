@@ -68,13 +68,17 @@ string getConfigHomePath()
 }
 
 /**
- * Get the config path of the home path of neix
+ * Get the config path of the home path of neix if the name is not an absolute file path
  * > from executing user
  *
  * @return  path
  */
 string getConfigPathByName(const string& name)
 {
+    if (name.at(0) == '/') {
+        // we consider the name as the full file path
+        return name;
+    }
     string path = getConfigHomePath();
     path += name;
 
