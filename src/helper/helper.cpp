@@ -75,7 +75,7 @@ string getConfigHomePath()
  */
 string getConfigPathByName(const string& name)
 {
-    if (name.at(0) == '/') {
+    if (name.length() > 0 && name.at(0) == '/') {
         // we consider the name as the full file path
         return name;
     }
