@@ -20,6 +20,8 @@
 #include "application/ApplicationWindow.h"
 #include "feed/Feeds.h"
 
+#define REFLOW_LIMIT 60
+
 using namespace std;
 using namespace neix;
 
@@ -72,7 +74,7 @@ void Application::initChoices()
  */
 void Application::createFeedWindow()
 {
-    if (COLS > 60)
+    if (COLS > REFLOW_LIMIT)
     {
         this->feedWindowWidth = (int) (COLS / 3);
         this->feedWindowHeight = LINES-4;
@@ -92,7 +94,7 @@ void Application::createFeedWindow()
  */
 void Application::createArticleWindow()
 {
-    if (COLS > 60)
+    if (COLS > REFLOW_LIMIT)
     {
         this->articleWindowWidth = (int) (COLS * 2 / 3);
         this->articleWindowHeight = LINES-4;
@@ -105,7 +107,7 @@ void Application::createArticleWindow()
 
     this->aw.setDimensions(this->articleWindowHeight, this->articleWindowWidth);
 
-    if (COLS > 60)
+    if (COLS > REFLOW_LIMIT)
         this->aw.setPosition(2, this->feedWindowWidth);
     else
         this->aw.setPosition(this->feedWindowHeight+2, 0);
@@ -117,7 +119,7 @@ void Application::createArticleWindow()
 void Application::createReadWindow()
 {
     this->rw.setDimensions(this->articleWindowHeight, this->articleWindowWidth);
-    if (COLS > 60)
+    if (COLS > REFLOW_LIMIT)
     {
         this->rw.setPosition(2, this->feedWindowWidth);
     }
