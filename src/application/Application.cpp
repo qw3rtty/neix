@@ -39,7 +39,6 @@ Application::Application()
 
     this->openCommand = "";
     this->reading = false;
-    this->windowHeight = LINES - 4;
     this->createFeedWindow();
     this->createArticleWindow();
     this->createReadWindow();
@@ -73,9 +72,17 @@ void Application::initChoices()
  */
 void Application::createFeedWindow()
 {
-    this->feedWindowWidth = (int) (COLS / 3);
-
-    this->fw.setDimensions(this->windowHeight, this->feedWindowWidth);
+    if (COLS > 60)
+    {
+        this->feedWindowWidth = (int) (COLS / 3);
+        this->feedWindowHeight = LINES-4;
+    }
+    else
+    {
+        this->feedWindowWidth = COLS;
+        this->feedWindowHeight = (int) (LINES-4)/4;
+    }
+    this->fw.setDimensions(this->feedWindowHeight, this->feedWindowWidth);
     this->fw.setPosition(2, 0);
 }
 
@@ -85,10 +92,23 @@ void Application::createFeedWindow()
  */
 void Application::createArticleWindow()
 {
-    this->articleWindowWidth = (int) (COLS / 3) * 2;
+    if (COLS > 60)
+    {
+        this->articleWindowWidth = (int) (COLS * 2 / 3);
+        this->articleWindowHeight = LINES-4;
+    }
+    else
+    {
+        this->articleWindowWidth = COLS;
+        this->articleWindowHeight = (int) ((LINES-4) * 3) / 4 ;
+    }
 
-    this->aw.setDimensions(this->windowHeight, this->articleWindowWidth);
-    this->aw.setPosition(2, this->feedWindowWidth);
+    this->aw.setDimensions(this->articleWindowHeight, this->articleWindowWidth);
+
+    if (COLS > 60)
+        this->aw.setPosition(2, this->feedWindowWidth);
+    else
+        this->aw.setPosition(this->feedWindowHeight+2, 0);
 }
 
 /**
@@ -96,8 +116,15 @@ void Application::createArticleWindow()
  */
 void Application::createReadWindow()
 {
-    this->rw.setDimensions(this->windowHeight, this->articleWindowWidth);
-    this->rw.setPosition(2, this->feedWindowWidth);
+    this->rw.setDimensions(this->articleWindowHeight, this->articleWindowWidth);
+    if (COLS > 60)
+    {
+        this->rw.setPosition(2, this->feedWindowWidth);
+    }
+    else
+    {
+        this->rw.setPosition(this->feedWindowHeight+2, 0);
+    }
 
     this->rw.enableHighlight = false;
     this->rw.scrollAlways = true;
@@ -116,7 +143,6 @@ void Application::resize()
     this->printVersion();
     this->printControlHints();
 
-    this->windowHeight = LINES - 4;
     this->createFeedWindow();
     this->createArticleWindow();
     this->createReadWindow();
@@ -217,7 +243,7 @@ void Application::show()
             case KEY_UPPER_K:
 				if (this->reading)
 				{
-					break;	
+					break;
 				}
 
                 this->articleChoice = 0;
@@ -236,7 +262,7 @@ void Application::show()
             case KEY_UPPER_J:
 				if (this->reading)
 				{
-					break;	
+					break;
 				}
 
                 this->articleChoice = 0;
@@ -284,7 +310,7 @@ void Application::show()
                 break;
 
             default:
-                mvprintw(LINES - 1, 0, "Charcter pressed is = %3d Hopefully it can be printed as '%c'", c, c);
+                mvprintw(LINES - 1, 0, "Character pressed is = %3d Hopefully it can be printed as '%c'", c, c);
                 refresh();
                 break;
         }
@@ -342,27 +368,27 @@ void Application::printArticlesInWindow()
 {
     if (this->reading)
     {
-        return; 
+        return;
     }
 
     this->aw.resetContent();
     Feeds *feeds = Feeds::getInstance();
     struct rss* feed = feeds->getFeed(this->choice);
-  
-    if (feed->loading && feed->articleCount == 0) 
+
+    if (feed->loading && feed->articleCount == 0)
     {
         this->aw.pushContent(" Feeds loading ... ");
-        return; 
+        return;
     }
     else if (feed->loading && feed->articleCount > 0)
     {
         feed->loading = false;
     }
-    
+
     if (feed->error)
     {
         this->aw.pushContent(" Could not parse feed! ");
-        return; 
+        return;
     }
 
     for (int i = 0; i < feed->articleCount; i++)
@@ -378,9 +404,6 @@ void Application::printArticlesInWindow()
 /**
  * Print standard feed article
  *
- * @param   window      - The window to print
- * @param   y           - Y coordinate
- * @param   x           - X coordinate
  * @param   entry       - RSS item to print
  */
 string Application::printArticleInWindow(struct rssItem *entry)
@@ -393,11 +416,17 @@ string Application::printArticleInWindow(struct rssItem *entry)
     }
     line = readIcon;
 
-    line += "    ";
-    line += entry->date;
-
+    if (this->articleWindowWidth > 40)
+    {
+        line += "  ";
+        line += entry->date;
+        line += "  ";
+    }
+    else
+    {
+        line += " ";
+    }
     string title(entry->title);
-    line += "    ";
     line += title;
 
     return subStrWithEndingDots(line, this->articleWindowWidth-4);
@@ -499,7 +528,7 @@ void Application::openArticleLink()
 {
 	if (this->openCommand.empty())
 	{
-		return;	
+		return;
 	}
 
     Feeds *feeds = Feeds::getInstance();
