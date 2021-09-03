@@ -48,9 +48,10 @@ namespace neix
         int quit;
         int c;
 
-        int windowHeight;
         int feedWindowWidth;
+        int feedWindowHeight;
         int articleWindowWidth;
+        int articleWindowHeight;
 
         void initChoices();
         void printVersion();
