@@ -22,7 +22,7 @@ using namespace neix;
 /**
  * Constructor
  */
-TextConverter::TextConverter(string t, int a_w, string c)
+TextConverter::TextConverter(string t, string c, int a_w)
 {
     this->text = move(t);
     this->cmd = move(c);

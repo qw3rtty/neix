@@ -473,7 +473,7 @@ void Application::openArticle()
 
     if (strlen(entry->description) > 0)
     {
-        TextConverter tc(entry->description, length, this->renderCommand);
+        TextConverter tc(entry->description, this->renderCommand, length);
         this->rw.pushContent(tc.execCmd());
     }
 

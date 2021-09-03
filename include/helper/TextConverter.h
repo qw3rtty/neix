@@ -21,7 +21,7 @@ namespace neix
     class TextConverter 
     {
     public:
-        TextConverter(string t, int a_w, string c = string());
+        TextConverter(string t, string c = string(), int a_w = 0);
         ~TextConverter();
 
         string stripHtml();
