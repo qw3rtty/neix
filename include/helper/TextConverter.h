@@ -21,7 +21,7 @@ namespace neix
     class TextConverter 
     {
     public:
-        TextConverter(string t, string c = string());
+        TextConverter(string t, string c = string(), int a_w = 0);
         ~TextConverter();
 
         string stripHtml();
@@ -31,7 +31,7 @@ namespace neix
     private:
         string text;
         string cmd;
-
+        int article_width;
         string _buildFullRenderCommand(const string& rawFilePath, 
             const string& renderedFilePath);
         bool _prepareRawText(const string& rawFilePath, const string text);

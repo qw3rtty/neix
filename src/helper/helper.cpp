@@ -147,3 +147,17 @@ bool copyDefaultConfigFiles()
 
     return true;
 }
+
+/**
+ * Replace all occurrences of substr "r" with "s"
+ */
+string replaceString(string str, const string& replace, const string& with) {
+    if(!replace.empty()) {
+        std::size_t pos = 0;
+        while ((pos = str.find(replace, pos)) != std::string::npos) {
+            str.replace(pos, replace.length(), with);
+            pos += with.length();
+        }
+    }
+    return str;
+}

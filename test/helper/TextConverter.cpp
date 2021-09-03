@@ -56,4 +56,31 @@ namespace {
         txt = tcon.execCmd();
         EXPECT_STREQ(txt.c_str(), "Hello World again."); 
     }
+
+    TEST(TextConverter, execCmd_article_width)
+    {
+        TextConverter tc("Unused", "f() { echo \"The article width is $article_width\" } && f", 3);
+        string txt = tc.execCmd();
+       
+        string expected = "The article width is 3";
+        if (!tc.cmdExecuted)
+        {
+            expected = "Unused"; 
+        }
+        EXPECT_STREQ(txt.c_str(), expected.c_str());
+        
+        TextConverter tc2("Unused", "f() { echo \"The article width is $article_width\" } && f");
+        string txt2 = tc2.execCmd();
+       
+        string expected2 = "The article width is 0";
+        if (!tc2.cmdExecuted)
+        {
+            expected2 = "Unused"; 
+        }
+        EXPECT_STREQ(txt2.c_str(), expected2.c_str());
+
+        TextConverter tcon("Hello <b>World</b> again.");
+        txt = tcon.execCmd();
+        EXPECT_STREQ(txt.c_str(), "Hello World again.");
+    }
 }
