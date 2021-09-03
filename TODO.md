@@ -20,7 +20,7 @@
 ## :chart_with_downwards_trend: Low priority
 * [x] Add man-page on install
 * [ ] Add logging ([spdlog](https://github.com/gabime/spdlog))
-* [ ] Optimize for termux
+* [x] Optimize for termux
 
 ## :question: Maybe
 * [ ] ?? Change to libxml++ ??
